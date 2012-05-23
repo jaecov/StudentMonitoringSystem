@@ -52,6 +52,18 @@
     <StartupObject>StudentMonitoringSystem.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GSMCommServer">
+      <HintPath>..\Files\GSMCommServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GSMCommShared">
+      <HintPath>..\Files\GSMCommShared.dll</HintPath>
+    </Reference>
+    <Reference Include="GSMCommunication">
+      <HintPath>..\Files\GSMCommunication.dll</HintPath>
+    </Reference>
+    <Reference Include="PDUConverter">
+      <HintPath>..\Files\PDUConverter.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

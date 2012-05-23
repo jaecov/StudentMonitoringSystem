@@ -35,7 +35,7 @@
             this.txtFailed = new System.Windows.Forms.TextBox();
             this.txtSent = new System.Windows.Forms.TextBox();
             this.Label7 = new System.Windows.Forms.Label();
-            this.txtModemResponce = new System.Windows.Forms.TextBox();
+            this.txtOutput = new System.Windows.Forms.TextBox();
             this.Label2 = new System.Windows.Forms.Label();
             this.Label3 = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
@@ -43,6 +43,10 @@
             this.txtNumber = new System.Windows.Forms.TextBox();
             this.numOfText = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
+            this.chkSMSC = new System.Windows.Forms.CheckBox();
+            this.chkUnicode = new System.Windows.Forms.CheckBox();
+            this.chkAlert = new System.Windows.Forms.CheckBox();
+            this.txtSMSC = new System.Windows.Forms.TextBox();
             this.GroupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,20 +127,20 @@
             this.Label7.TabIndex = 157;
             this.Label7.Text = "Successfully Sent:";
             // 
-            // txtModemResponce
+            // txtOutput
             // 
-            this.txtModemResponce.BackColor = System.Drawing.Color.SteelBlue;
-            this.txtModemResponce.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtModemResponce.ForeColor = System.Drawing.Color.White;
-            this.txtModemResponce.Location = new System.Drawing.Point(12, 435);
-            this.txtModemResponce.Multiline = true;
-            this.txtModemResponce.Name = "txtModemResponce";
-            this.txtModemResponce.ReadOnly = true;
-            this.txtModemResponce.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtModemResponce.Size = new System.Drawing.Size(225, 126);
-            this.txtModemResponce.TabIndex = 170;
-            this.txtModemResponce.TabStop = false;
-            this.txtModemResponce.WordWrap = false;
+            this.txtOutput.BackColor = System.Drawing.Color.SteelBlue;
+            this.txtOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOutput.ForeColor = System.Drawing.Color.White;
+            this.txtOutput.Location = new System.Drawing.Point(12, 435);
+            this.txtOutput.Multiline = true;
+            this.txtOutput.Name = "txtOutput";
+            this.txtOutput.ReadOnly = true;
+            this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtOutput.Size = new System.Drawing.Size(225, 126);
+            this.txtOutput.TabIndex = 170;
+            this.txtOutput.TabStop = false;
+            this.txtOutput.WordWrap = false;
             // 
             // Label2
             // 
@@ -167,7 +171,6 @@
             // 
             // txtMessage
             // 
-            this.txtMessage.Enabled = false;
             this.txtMessage.Location = new System.Drawing.Point(12, 65);
             this.txtMessage.MaxLength = 160;
             this.txtMessage.Multiline = true;
@@ -175,10 +178,10 @@
             this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtMessage.Size = new System.Drawing.Size(225, 172);
             this.txtMessage.TabIndex = 166;
+            this.txtMessage.TextChanged += new System.EventHandler(this.txtMessage_TextChanged);
             // 
             // txtNumber
             // 
-            this.txtNumber.Enabled = false;
             this.txtNumber.Location = new System.Drawing.Point(12, 26);
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(171, 20);
@@ -186,7 +189,6 @@
             // 
             // numOfText
             // 
-            this.numOfText.Enabled = false;
             this.numOfText.Location = new System.Drawing.Point(200, 245);
             this.numOfText.MaxLength = 3;
             this.numOfText.Name = "numOfText";
@@ -199,21 +201,60 @@
             // 
             // btnSend
             // 
-            this.btnSend.Enabled = false;
             this.btnSend.Location = new System.Drawing.Point(12, 243);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(169, 23);
             this.btnSend.TabIndex = 167;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
+            // chkSMSC
+            // 
+            this.chkSMSC.AutoSize = true;
+            this.chkSMSC.Location = new System.Drawing.Point(342, 101);
+            this.chkSMSC.Name = "chkSMSC";
+            this.chkSMSC.Size = new System.Drawing.Size(59, 17);
+            this.chkSMSC.TabIndex = 174;
+            this.chkSMSC.Text = "SMSC:";
+            this.chkSMSC.CheckedChanged += new System.EventHandler(this.chkSMSC_CheckedChanged);
+            // 
+            // chkUnicode
+            // 
+            this.chkUnicode.AutoSize = true;
+            this.chkUnicode.Location = new System.Drawing.Point(342, 148);
+            this.chkUnicode.Name = "chkUnicode";
+            this.chkUnicode.Size = new System.Drawing.Size(145, 17);
+            this.chkUnicode.TabIndex = 177;
+            this.chkUnicode.Text = "Send as Unicode (UCS2)";
+            // 
+            // chkAlert
+            // 
+            this.chkAlert.AutoSize = true;
+            this.chkAlert.Location = new System.Drawing.Point(342, 125);
+            this.chkAlert.Name = "chkAlert";
+            this.chkAlert.Size = new System.Drawing.Size(180, 17);
+            this.chkAlert.TabIndex = 176;
+            this.chkAlert.Text = "Request immediate display (alert)";
+            // 
+            // txtSMSC
+            // 
+            this.txtSMSC.Location = new System.Drawing.Point(407, 99);
+            this.txtSMSC.Name = "txtSMSC";
+            this.txtSMSC.Size = new System.Drawing.Size(128, 20);
+            this.txtSMSC.TabIndex = 175;
             // 
             // SendSMS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(894, 659);
+            this.Controls.Add(this.chkSMSC);
+            this.Controls.Add(this.chkUnicode);
+            this.Controls.Add(this.chkAlert);
+            this.Controls.Add(this.txtSMSC);
             this.Controls.Add(this.GroupBox2);
-            this.Controls.Add(this.txtModemResponce);
+            this.Controls.Add(this.txtOutput);
             this.Controls.Add(this.Label2);
             this.Controls.Add(this.Label3);
             this.Controls.Add(this.Label1);
@@ -240,7 +281,7 @@
         internal System.Windows.Forms.TextBox txtFailed;
         internal System.Windows.Forms.TextBox txtSent;
         internal System.Windows.Forms.Label Label7;
-        internal System.Windows.Forms.TextBox txtModemResponce;
+        internal System.Windows.Forms.TextBox txtOutput;
         internal System.Windows.Forms.Label Label2;
         internal System.Windows.Forms.Label Label3;
         internal System.Windows.Forms.Label Label1;
@@ -248,6 +289,10 @@
         internal System.Windows.Forms.TextBox txtNumber;
         internal System.Windows.Forms.TextBox numOfText;
         internal System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.CheckBox chkSMSC;
+        private System.Windows.Forms.CheckBox chkUnicode;
+        private System.Windows.Forms.CheckBox chkAlert;
+        private System.Windows.Forms.TextBox txtSMSC;
 
     }
 }

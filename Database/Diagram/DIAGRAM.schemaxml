@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">sms</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="employees" view="colnames">
+<left>88</left>
+<top>1525</top>
+<width>147</width>
+<height>322</height>
+<sql_create_table>CREATE TABLE `employees` (
+  `EmployeeID` int(11) NOT NULL AUTO_INCREMENT,
+  `EmployeeNumber` varchar(100) NOT NULL,
+  `Password` varchar(100) DEFAULT NULL,
+  `FirstName` varchar(100) NOT NULL,
+  `MiddleName` varchar(100) NOT NULL,
+  `LastName` varchar(100) NOT NULL,
+  `Birthday` date NOT NULL,
+  `ImagePath` varchar(500) DEFAULT NULL,
+  `EmailAddress` varchar(100) DEFAULT NULL,
+  `RFID` varchar(100) DEFAULT NULL,
+  `Note` varchar(500) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`EmployeeID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="employees_section" view="colnames">
+<left>256</left>
+<top>1552</top>
+<width>120</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `employees_section` (
+  `EmployeeID` int(11) NOT NULL,
+  `SectionID` int(11) NOT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `CreatedDate` datetime NOT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  KEY `FK_guardiansstudent` (`EmployeeID`),
+  KEY `FK_guardiansstudents` (`SectionID`),
+  CONSTRAINT `FK_employeessections` FOREIGN KEY (`SectionID`) REFERENCES `sections` (`SectionID`),
+  CONSTRAINT `FK_employeessection` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="guardians" view="colnames">
+<left>638</left>
+<top>1050</top>
+<width>140</width>
+<height>288</height>
+<sql_create_table>CREATE TABLE `guardians` (
+  `GuardianID` int(11) NOT NULL,
+  `FirstName` varchar(100) NOT NULL,
+  `MiddleName` varchar(100) NOT NULL,
+  `LastName` varchar(100) NOT NULL,
+  `Birthday` date DEFAULT NULL,
+  `ImagePath` varchar(500) DEFAULT NULL,
+  `EmailAddress` varchar(100) DEFAULT NULL,
+  `RFID` varchar(100) DEFAULT NULL,
+  `Note` varchar(500) DEFAULT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `CreatedDate` datetime NOT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`GuardianID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="guardians_mobile" view="colnames">
+<left>952</left>
+<top>770</top>
+<width>160</width>
+<height>172</height>
+<sql_create_table>CREATE TABLE `guardians_mobile` (
+  `GuardianID` int(11) NOT NULL,
+  `MobileNumber` varchar(20) NOT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `CreatedDate` datetime NOT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  KEY `FK_guardiansmobile` (`GuardianID`),
+  CONSTRAINT `FK_guardiansmobile` FOREIGN KEY (`GuardianID`) REFERENCES `guardians` (`GuardianID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="guardians_student" view="colnames">
+<left>950</left>
+<top>1352</top>
+<width>160</width>
+<height>180</height>
+<sql_create_table>CREATE TABLE `guardians_student` (
+  `GuardianID` int(11) NOT NULL,
+  `StudentID` int(11) NOT NULL,
+  `Relationship` varchar(100) DEFAULT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `CreatedDate` datetime NOT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  KEY `FK_guardiansstudent` (`GuardianID`),
+  KEY `FK_guardiansstudents` (`StudentID`),
+  CONSTRAINT `FK_guardiansstudents` FOREIGN KEY (`StudentID`) REFERENCES `students` (`StudentID`),
+  CONSTRAINT `FK_guardiansstudent` FOREIGN KEY (`GuardianID`) REFERENCES `guardians` (`GuardianID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="sections" view="colnames">
+<left>402</left>
+<top>1552</top>
+<width>121</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `sections` (
+  `SectionID` int(11) NOT NULL AUTO_INCREMENT,
+  `SectionName` varchar(100) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`SectionID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="sms_guardians" view="colnames">
+<left>950</left>
+<top>1106</top>
+<width>160</width>
+<height>172</height>
+<sql_create_table>CREATE TABLE `sms_guardians` (
+  `TextID` int(11) NOT NULL AUTO_INCREMENT,
+  `GuardianID` int(11) NOT NULL,
+  `Message` varchar(250) NOT NULL,
+  `SentDate` datetime DEFAULT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `CreatedDate` datetime NOT NULL,
+  PRIMARY KEY (`TextID`),
+  KEY `FK_smspendingmessage` (`GuardianID`),
+  CONSTRAINT `FK_sms_guardians` FOREIGN KEY (`GuardianID`) REFERENCES `guardians` (`GuardianID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="sms_pending_guardians" view="colnames">
+<left>952</left>
+<top>944</top>
+<width>160</width>
+<height>156</height>
+<sql_create_table>CREATE TABLE `sms_pending_guardians` (
+  `TextID` int(11) NOT NULL AUTO_INCREMENT,
+  `GuardianID` int(11) NOT NULL,
+  `Message` varchar(250) DEFAULT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `CreatedDate` datetime NOT NULL,
+  PRIMARY KEY (`TextID`),
+  KEY `FK_sms_pending_guardians` (`GuardianID`),
+  CONSTRAINT `FK_sms_pending_guardians` FOREIGN KEY (`GuardianID`) REFERENCES `guardians` (`GuardianID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="sms_pending_students" view="colnames">
+<left>952</left>
+<top>1788</top>
+<width>164</width>
+<height>156</height>
+<sql_create_table>CREATE TABLE `sms_pending_students` (
+  `TextID` int(11) NOT NULL AUTO_INCREMENT,
+  `StudentID` int(11) NOT NULL,
+  `Message` varchar(250) NOT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `CreatedDate` datetime NOT NULL,
+  PRIMARY KEY (`TextID`),
+  KEY `FK_smspendingmessage` (`StudentID`),
+  CONSTRAINT `FK_smspendingmessage` FOREIGN KEY (`StudentID`) REFERENCES `students` (`StudentID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="sms_students" view="colnames">
+<left>952</left>
+<top>1948</top>
+<width>164</width>
+<height>160</height>
+<sql_create_table>CREATE TABLE `sms_students` (
+  `TextID` int(11) NOT NULL AUTO_INCREMENT,
+  `StudentID` int(11) NOT NULL,
+  `Message` varchar(250) NOT NULL,
+  `SentDate` datetime DEFAULT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `CreatedDate` datetime NOT NULL,
+  PRIMARY KEY (`TextID`),
+  KEY `FK_smspendingmessage` (`StudentID`),
+  CONSTRAINT `FK_sms_students` FOREIGN KEY (`StudentID`) REFERENCES `students` (`StudentID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="students" view="colnames">
+<left>644</left>
+<top>1564</top>
+<width>135</width>
+<height>323</height>
+<sql_create_table>CREATE TABLE `students` (
+  `StudentID` int(11) NOT NULL AUTO_INCREMENT,
+  `StudentNumber` varchar(100) NOT NULL,
+  `FirstName` varchar(100) NOT NULL,
+  `MiddleName` varchar(100) NOT NULL,
+  `LastName` varchar(100) NOT NULL,
+  `Birthday` date NOT NULL,
+  `ImagePath` varchar(500) DEFAULT NULL,
+  `EmailAddress` varchar(100) DEFAULT NULL,
+  `SectionID` int(11) DEFAULT NULL,
+  `RFID` varchar(100) DEFAULT NULL,
+  `Note` varchar(500) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`StudentID`),
+  KEY `FK_students` (`SectionID`),
+  CONSTRAINT `FK_students` FOREIGN KEY (`SectionID`) REFERENCES `sections` (`SectionID`)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="students_mobile" view="colnames">
+<left>952</left>
+<top>1612</top>
+<width>164</width>
+<height>172</height>
+<sql_create_table>CREATE TABLE `students_mobile` (
+  `StudentID` int(11) NOT NULL,
+  `MobileNumber` varchar(20) NOT NULL,
+  `CreatedBy` int(11) NOT NULL,
+  `CreatedDate` datetime NOT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  KEY `FK_studentsmobile` (`StudentID`),
+  CONSTRAINT `FK_studentsmobile` FOREIGN KEY (`StudentID`) REFERENCES `students` (`StudentID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="sms_inbox" view="colnames">
+<left>1281</left>
+<top>1371</top>
+<width>160</width>
+<height>140</height>
+<sql_create_table>CREATE TABLE `sms_inbox` (
+  `InboxID` int(11) NOT NULL AUTO_INCREMENT,
+  `MobileNumber` varchar(20) NOT NULL,
+  `Message` varchar(500) DEFAULT NULL,
+  `ReceivedDate` datetime NOT NULL,
+  PRIMARY KEY (`InboxID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

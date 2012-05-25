@@ -310,7 +310,7 @@ namespace BusinessObjects
                     db.SaveChanges();
                     StudentList = null;
 
-                    return (stud.StudentID != null) ? true : false;
+                    return (stud.StudentID != 0) ? true : false;
                 }
             }
             catch (Exception ex)
@@ -337,8 +337,8 @@ namespace BusinessObjects
 
                     db.SaveChanges();
                     StudentList = null;
-
-                    return (stud.StudentID != null) ? true : false;
+                    
+                    return (stud.StudentID != 0) ? true : false;
                 }
             }
             catch (Exception ex)

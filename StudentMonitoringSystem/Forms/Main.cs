@@ -13,16 +13,20 @@ namespace StudentMonitoringSystem
 {
     public partial class Main : Form
     {
+        #region Constructor
+
         public Main()
         {
             InitializeComponent();
         }
 
-        #region Form Events
+        #endregion
 
+        #region Form Events
+        
         private void Main_Load(object sender, EventArgs e)
         {
-            Student.InsertStudent();
+
         }
 
         private void sendSMSToolStripMenuItem_Click(object sender, EventArgs e)
@@ -46,10 +50,6 @@ namespace StudentMonitoringSystem
         }
 
         #endregion
-
-        
-
-       
 
     }
 }

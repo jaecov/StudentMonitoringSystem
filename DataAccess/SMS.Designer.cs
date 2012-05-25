@@ -3395,7 +3395,8 @@ namespace DataAccess
         /// <param name="birthday">Initial value of the Birthday property.</param>
         /// <param name="createdBy">Initial value of the CreatedBy property.</param>
         /// <param name="createdDate">Initial value of the CreatedDate property.</param>
-        public static student Createstudent(global::System.Int32 studentID, global::System.String studentNumber, global::System.String firstName, global::System.String middleName, global::System.String lastName, global::System.DateTime birthday, global::System.Int32 createdBy, global::System.DateTime createdDate)
+        /// <param name="active">Initial value of the Active property.</param>
+        public static student Createstudent(global::System.Int32 studentID, global::System.String studentNumber, global::System.String firstName, global::System.String middleName, global::System.String lastName, global::System.DateTime birthday, global::System.Int32 createdBy, global::System.DateTime createdDate, global::System.Boolean active)
         {
             student student = new student();
             student.StudentID = studentID;
@@ -3406,6 +3407,7 @@ namespace DataAccess
             student.Birthday = birthday;
             student.CreatedBy = createdBy;
             student.CreatedDate = createdDate;
+            student.Active = active;
             return student;
         }
 
@@ -3774,6 +3776,30 @@ namespace DataAccess
         private Nullable<global::System.DateTime> _ModifiedDate;
         partial void OnModifiedDateChanging(Nullable<global::System.DateTime> value);
         partial void OnModifiedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Active
+        {
+            get
+            {
+                return _Active;
+            }
+            set
+            {
+                OnActiveChanging(value);
+                ReportPropertyChanging("Active");
+                _Active = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Active");
+                OnActiveChanged();
+            }
+        }
+        private global::System.Boolean _Active;
+        partial void OnActiveChanging(global::System.Boolean value);
+        partial void OnActiveChanged();
 
         #endregion
     

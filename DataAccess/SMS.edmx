@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="smsModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="smsModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="smsModelStoreContainer">
           <EntitySet Name="employees" EntityType="smsModel.Store.employees" store:Type="Tables" Schema="sms" />
           <EntitySet Name="employees_section" EntityType="smsModel.Store.employees_section" store:Type="Tables" Schema="sms" />
@@ -218,6 +218,7 @@
           <Property Name="SectionID" Type="int" />
           <Property Name="RFID" Type="varchar" MaxLength="100" />
           <Property Name="Note" Type="varchar" MaxLength="500" />
+          <Property Name="Active" Type="bool" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="ModifiedBy" Type="int" />
@@ -367,8 +368,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="smsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -610,6 +610,7 @@
           <NavigationProperty Name="sms_pending_students" Relationship="smsModel.FK_smspendingmessage" FromRole="students" ToRole="sms_pending_students" />
           <NavigationProperty Name="sms_students" Relationship="smsModel.FK_sms_students" FromRole="students" ToRole="sms_students" />
           <NavigationProperty Name="students_mobile" Relationship="smsModel.FK_studentsmobile" FromRole="students" ToRole="students_mobile" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
         </EntityType>
         <EntityType Name="students_mobile">
           <Key>
@@ -869,7 +870,8 @@
             <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="students"><EntityTypeMapping TypeName="smsModel.student"><MappingFragment StoreEntitySet="students">
-            <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
             <ScalarProperty Name="StudentNumber" ColumnName="StudentNumber" />
             <ScalarProperty Name="FirstName" ColumnName="FirstName" />
             <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />

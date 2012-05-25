@@ -90,30 +90,26 @@ namespace BusinessObjects
 
         #endregion
 
-        public static void InsertStudent()
+        
+
+        public static bool InsertStudent(string studentNumber, string firstName, string middleName, string lastName, DateTime birthday)
         {
-
-
             using (smsEntities db = new smsEntities())
             {
                 student stud = new student();
-                stud.StudentNumber = "1234";
-                stud.FirstName = "Jake";
-                stud.MiddleName = "santi";
-                stud.LastName = "ddd";
-                stud.Birthday = DateTime.Now;
+                stud.StudentNumber = studentNumber;
+                stud.FirstName = firstName;
+                stud.MiddleName = middleName;
+                stud.LastName = lastName;
+                stud.Birthday = birthday;
                 stud.CreatedBy = 1;
                 stud.CreatedDate = DateTime.Now;
 
                 db.AddTostudents(stud);
                 db.SaveChanges();
 
-
+                return (stud.StudentID != 0) ? true : false;
             }
-
-          
-
-
         }
 
 

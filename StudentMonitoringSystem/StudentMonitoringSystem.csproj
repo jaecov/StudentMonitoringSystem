@@ -53,16 +53,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GSMCommServer">
-      <HintPath>..\Files\GSMCommServer.dll</HintPath>
+      <HintPath>..\ReferenceLibraries\GSMCommServer.dll</HintPath>
     </Reference>
     <Reference Include="GSMCommShared">
-      <HintPath>..\Files\GSMCommShared.dll</HintPath>
+      <HintPath>..\ReferenceLibraries\GSMCommShared.dll</HintPath>
     </Reference>
     <Reference Include="GSMCommunication">
-      <HintPath>..\Files\GSMCommunication.dll</HintPath>
+      <HintPath>..\ReferenceLibraries\GSMCommunication.dll</HintPath>
     </Reference>
     <Reference Include="PDUConverter">
-      <HintPath>..\Files\PDUConverter.dll</HintPath>
+      <HintPath>..\ReferenceLibraries\PDUConverter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

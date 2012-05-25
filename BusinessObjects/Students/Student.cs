@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using DataAccess;
+using DataAccess;
 
 namespace BusinessObjects
 {
@@ -93,23 +93,23 @@ namespace BusinessObjects
         public static void InsertStudent()
         {
 
-            
-            //using (smsEntities db = new smsEntities())
-            //{
-            //    student stud = new student();
-            //    stud.StudentNumber = "1234";
-            //    stud.FirstName = "Jake";
-            //    stud.MiddleName = "santi";
-            //    stud.LastName = "ddd";
-            //    stud.Birthday = DateTime.Now;
-            //    stud.CreatedBy = 1;
-            //    stud.CreatedDate = DateTime.Now;
 
-            //    db.AddTostudents(stud);
-            //    db.SaveChanges();
+            using (smsEntities db = new smsEntities())
+            {
+                student stud = new student();
+                stud.StudentNumber = "1234";
+                stud.FirstName = "Jake";
+                stud.MiddleName = "santi";
+                stud.LastName = "ddd";
+                stud.Birthday = DateTime.Now;
+                stud.CreatedBy = 1;
+                stud.CreatedDate = DateTime.Now;
+
+                db.AddTostudents(stud);
+                db.SaveChanges();
 
 
-            //}
+            }
 
           
 

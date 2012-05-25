@@ -1,0 +1,995 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="smsModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="smsModelStoreContainer">
+          <EntitySet Name="employees" EntityType="smsModel.Store.employees" store:Type="Tables" Schema="sms" />
+          <EntitySet Name="employees_section" EntityType="smsModel.Store.employees_section" store:Type="Tables" Schema="sms" />
+          <EntitySet Name="guardians" EntityType="smsModel.Store.guardians" store:Type="Tables" Schema="sms" />
+          <EntitySet Name="guardians_mobile" EntityType="smsModel.Store.guardians_mobile" store:Type="Tables" Schema="sms" />
+          <EntitySet Name="guardians_student" EntityType="smsModel.Store.guardians_student" store:Type="Tables" Schema="sms" />
+          <EntitySet Name="sections" EntityType="smsModel.Store.sections" store:Type="Tables" Schema="sms" />
+          <EntitySet Name="sms_guardians" EntityType="smsModel.Store.sms_guardians" store:Type="Tables" Schema="sms" />
+          <EntitySet Name="sms_inbox" EntityType="smsModel.Store.sms_inbox" store:Type="Tables" Schema="sms" />
+          <EntitySet Name="sms_pending_guardians" EntityType="smsModel.Store.sms_pending_guardians" store:Type="Tables" Schema="sms" />
+          <EntitySet Name="sms_pending_students" EntityType="smsModel.Store.sms_pending_students" store:Type="Tables" Schema="sms" />
+          <EntitySet Name="sms_students" EntityType="smsModel.Store.sms_students" store:Type="Tables" Schema="sms" />
+          <EntitySet Name="students" EntityType="smsModel.Store.students" store:Type="Tables" Schema="sms" />
+          <EntitySet Name="students_mobile" EntityType="smsModel.Store.students_mobile" store:Type="Tables" Schema="sms" />
+          <AssociationSet Name="FK_employeessection" Association="smsModel.Store.FK_employeessection">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employees_section" EntitySet="employees_section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeessections" Association="smsModel.Store.FK_employeessections">
+            <End Role="sections" EntitySet="sections" />
+            <End Role="employees_section" EntitySet="employees_section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_guardiansmobile" Association="smsModel.Store.FK_guardiansmobile">
+            <End Role="guardians" EntitySet="guardians" />
+            <End Role="guardians_mobile" EntitySet="guardians_mobile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_guardiansstudent" Association="smsModel.Store.FK_guardiansstudent">
+            <End Role="guardians" EntitySet="guardians" />
+            <End Role="guardians_student" EntitySet="guardians_student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_guardiansstudents" Association="smsModel.Store.FK_guardiansstudents">
+            <End Role="students" EntitySet="students" />
+            <End Role="guardians_student" EntitySet="guardians_student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_smspendingmessage" Association="smsModel.Store.FK_smspendingmessage">
+            <End Role="students" EntitySet="students" />
+            <End Role="sms_pending_students" EntitySet="sms_pending_students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sms_guardians" Association="smsModel.Store.FK_sms_guardians">
+            <End Role="guardians" EntitySet="guardians" />
+            <End Role="sms_guardians" EntitySet="sms_guardians" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sms_pending_guardians" Association="smsModel.Store.FK_sms_pending_guardians">
+            <End Role="guardians" EntitySet="guardians" />
+            <End Role="sms_pending_guardians" EntitySet="sms_pending_guardians" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sms_students" Association="smsModel.Store.FK_sms_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="sms_students" EntitySet="sms_students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_students" Association="smsModel.Store.FK_students">
+            <End Role="sections" EntitySet="sections" />
+            <End Role="students" EntitySet="students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentsmobile" Association="smsModel.Store.FK_studentsmobile">
+            <End Role="students" EntitySet="students" />
+            <End Role="students_mobile" EntitySet="students_mobile" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeNumber" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="500" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="100" />
+          <Property Name="RFID" Type="varchar" MaxLength="100" />
+          <Property Name="Note" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="employees_section">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="SectionID" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="guardians">
+          <Key>
+            <PropertyRef Name="GuardianID" />
+          </Key>
+          <Property Name="GuardianID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="500" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="100" />
+          <Property Name="RFID" Type="varchar" MaxLength="100" />
+          <Property Name="Note" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="guardians_mobile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GuardianID" Type="int" Nullable="false" />
+          <Property Name="MobileNumber" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="guardians_student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GuardianID" Type="int" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="Relationship" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sections">
+          <Key>
+            <PropertyRef Name="SectionID" />
+          </Key>
+          <Property Name="SectionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SectionName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sms_guardians">
+          <Key>
+            <PropertyRef Name="TextID" />
+          </Key>
+          <Property Name="TextID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GuardianID" Type="int" Nullable="false" />
+          <Property Name="Message" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="SentDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sms_inbox">
+          <Key>
+            <PropertyRef Name="InboxID" />
+          </Key>
+          <Property Name="InboxID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MobileNumber" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Message" Type="varchar" MaxLength="500" />
+          <Property Name="ReceivedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sms_pending_guardians">
+          <Key>
+            <PropertyRef Name="TextID" />
+          </Key>
+          <Property Name="TextID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GuardianID" Type="int" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="250" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sms_pending_students">
+          <Key>
+            <PropertyRef Name="TextID" />
+          </Key>
+          <Property Name="TextID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="Message" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sms_students">
+          <Key>
+            <PropertyRef Name="TextID" />
+          </Key>
+          <Property Name="TextID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="Message" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="SentDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="students">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StudentNumber" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="500" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="100" />
+          <Property Name="SectionID" Type="int" />
+          <Property Name="RFID" Type="varchar" MaxLength="100" />
+          <Property Name="Note" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="students_mobile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="MobileNumber" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_employeessection">
+          <End Role="employees" Type="smsModel.Store.employees" Multiplicity="1" />
+          <End Role="employees_section" Type="smsModel.Store.employees_section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="employees_section">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeessections">
+          <End Role="sections" Type="smsModel.Store.sections" Multiplicity="1" />
+          <End Role="employees_section" Type="smsModel.Store.employees_section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sections">
+              <PropertyRef Name="SectionID" />
+            </Principal>
+            <Dependent Role="employees_section">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_guardiansmobile">
+          <End Role="guardians" Type="smsModel.Store.guardians" Multiplicity="1" />
+          <End Role="guardians_mobile" Type="smsModel.Store.guardians_mobile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="guardians">
+              <PropertyRef Name="GuardianID" />
+            </Principal>
+            <Dependent Role="guardians_mobile">
+              <PropertyRef Name="GuardianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_guardiansstudent">
+          <End Role="guardians" Type="smsModel.Store.guardians" Multiplicity="1" />
+          <End Role="guardians_student" Type="smsModel.Store.guardians_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="guardians">
+              <PropertyRef Name="GuardianID" />
+            </Principal>
+            <Dependent Role="guardians_student">
+              <PropertyRef Name="GuardianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_guardiansstudents">
+          <End Role="students" Type="smsModel.Store.students" Multiplicity="1" />
+          <End Role="guardians_student" Type="smsModel.Store.guardians_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="guardians_student">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_smspendingmessage">
+          <End Role="students" Type="smsModel.Store.students" Multiplicity="1" />
+          <End Role="sms_pending_students" Type="smsModel.Store.sms_pending_students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="sms_pending_students">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sms_guardians">
+          <End Role="guardians" Type="smsModel.Store.guardians" Multiplicity="1" />
+          <End Role="sms_guardians" Type="smsModel.Store.sms_guardians" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="guardians">
+              <PropertyRef Name="GuardianID" />
+            </Principal>
+            <Dependent Role="sms_guardians">
+              <PropertyRef Name="GuardianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sms_pending_guardians">
+          <End Role="guardians" Type="smsModel.Store.guardians" Multiplicity="1" />
+          <End Role="sms_pending_guardians" Type="smsModel.Store.sms_pending_guardians" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="guardians">
+              <PropertyRef Name="GuardianID" />
+            </Principal>
+            <Dependent Role="sms_pending_guardians">
+              <PropertyRef Name="GuardianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sms_students">
+          <End Role="students" Type="smsModel.Store.students" Multiplicity="1" />
+          <End Role="sms_students" Type="smsModel.Store.sms_students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="sms_students">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_students">
+          <End Role="sections" Type="smsModel.Store.sections" Multiplicity="0..1" />
+          <End Role="students" Type="smsModel.Store.students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sections">
+              <PropertyRef Name="SectionID" />
+            </Principal>
+            <Dependent Role="students">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_studentsmobile">
+          <End Role="students" Type="smsModel.Store.students" Multiplicity="1" />
+          <End Role="students_mobile" Type="smsModel.Store.students_mobile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="students_mobile">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="smsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="smsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="employees" EntityType="smsModel.employee" />
+          <EntitySet Name="employees_section" EntityType="smsModel.employees_section" />
+          <EntitySet Name="guardians" EntityType="smsModel.guardian" />
+          <EntitySet Name="guardians_mobile" EntityType="smsModel.guardians_mobile" />
+          <EntitySet Name="guardians_student" EntityType="smsModel.guardians_student" />
+          <EntitySet Name="sections" EntityType="smsModel.section" />
+          <EntitySet Name="sms_guardians" EntityType="smsModel.sms_guardians" />
+          <EntitySet Name="sms_inbox" EntityType="smsModel.sms_inbox" />
+          <EntitySet Name="sms_pending_guardians" EntityType="smsModel.sms_pending_guardians" />
+          <EntitySet Name="sms_pending_students" EntityType="smsModel.sms_pending_students" />
+          <EntitySet Name="sms_students" EntityType="smsModel.sms_students" />
+          <EntitySet Name="students" EntityType="smsModel.student" />
+          <EntitySet Name="students_mobile" EntityType="smsModel.students_mobile" />
+          <AssociationSet Name="FK_employeessection" Association="smsModel.FK_employeessection">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="employees_section" EntitySet="employees_section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeessections" Association="smsModel.FK_employeessections">
+            <End Role="sections" EntitySet="sections" />
+            <End Role="employees_section" EntitySet="employees_section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_guardiansmobile" Association="smsModel.FK_guardiansmobile">
+            <End Role="guardians" EntitySet="guardians" />
+            <End Role="guardians_mobile" EntitySet="guardians_mobile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_guardiansstudent" Association="smsModel.FK_guardiansstudent">
+            <End Role="guardians" EntitySet="guardians" />
+            <End Role="guardians_student" EntitySet="guardians_student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sms_guardians" Association="smsModel.FK_sms_guardians">
+            <End Role="guardians" EntitySet="guardians" />
+            <End Role="sms_guardians" EntitySet="sms_guardians" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sms_pending_guardians" Association="smsModel.FK_sms_pending_guardians">
+            <End Role="guardians" EntitySet="guardians" />
+            <End Role="sms_pending_guardians" EntitySet="sms_pending_guardians" />
+          </AssociationSet>
+          <AssociationSet Name="FK_guardiansstudents" Association="smsModel.FK_guardiansstudents">
+            <End Role="students" EntitySet="students" />
+            <End Role="guardians_student" EntitySet="guardians_student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_students" Association="smsModel.FK_students">
+            <End Role="sections" EntitySet="sections" />
+            <End Role="students" EntitySet="students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_smspendingmessage" Association="smsModel.FK_smspendingmessage">
+            <End Role="students" EntitySet="students" />
+            <End Role="sms_pending_students" EntitySet="sms_pending_students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sms_students" Association="smsModel.FK_sms_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="sms_students" EntitySet="sms_students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentsmobile" Association="smsModel.FK_studentsmobile">
+            <End Role="students" EntitySet="students" />
+            <End Role="students_mobile" EntitySet="students_mobile" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeNumber" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="MiddleName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" />
+          <Property Name="ImagePath" Type="String" />
+          <Property Name="EmailAddress" Type="String" />
+          <Property Name="RFID" Type="String" />
+          <Property Name="Note" Type="String" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <NavigationProperty Name="employees_section" Relationship="smsModel.FK_employeessection" FromRole="employees" ToRole="employees_section" />
+        </EntityType>
+        <EntityType Name="employees_section">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="SectionID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <NavigationProperty Name="employee" Relationship="smsModel.FK_employeessection" FromRole="employees_section" ToRole="employees" />
+          <NavigationProperty Name="section" Relationship="smsModel.FK_employeessections" FromRole="employees_section" ToRole="sections" />
+        </EntityType>
+        <EntityType Name="guardian">
+          <Key>
+            <PropertyRef Name="GuardianID" />
+          </Key>
+          <Property Name="GuardianID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="MiddleName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" />
+          <Property Name="ImagePath" Type="String" />
+          <Property Name="EmailAddress" Type="String" />
+          <Property Name="RFID" Type="String" />
+          <Property Name="Note" Type="String" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <NavigationProperty Name="guardians_mobile" Relationship="smsModel.FK_guardiansmobile" FromRole="guardians" ToRole="guardians_mobile" />
+          <NavigationProperty Name="guardians_student" Relationship="smsModel.FK_guardiansstudent" FromRole="guardians" ToRole="guardians_student" />
+          <NavigationProperty Name="sms_guardians" Relationship="smsModel.FK_sms_guardians" FromRole="guardians" ToRole="sms_guardians" />
+          <NavigationProperty Name="sms_pending_guardians" Relationship="smsModel.FK_sms_pending_guardians" FromRole="guardians" ToRole="sms_pending_guardians" />
+        </EntityType>
+        <EntityType Name="guardians_mobile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuardianID" Type="Int32" Nullable="false" />
+          <Property Name="MobileNumber" Type="String" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <NavigationProperty Name="guardian" Relationship="smsModel.FK_guardiansmobile" FromRole="guardians_mobile" ToRole="guardians" />
+        </EntityType>
+        <EntityType Name="guardians_student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuardianID" Type="Int32" Nullable="false" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="Relationship" Type="String" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <NavigationProperty Name="guardian" Relationship="smsModel.FK_guardiansstudent" FromRole="guardians_student" ToRole="guardians" />
+          <NavigationProperty Name="student" Relationship="smsModel.FK_guardiansstudents" FromRole="guardians_student" ToRole="students" />
+        </EntityType>
+        <EntityType Name="section">
+          <Key>
+            <PropertyRef Name="SectionID" />
+          </Key>
+          <Property Name="SectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionName" Type="String" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <NavigationProperty Name="employees_section" Relationship="smsModel.FK_employeessections" FromRole="sections" ToRole="employees_section" />
+          <NavigationProperty Name="students" Relationship="smsModel.FK_students" FromRole="sections" ToRole="students" />
+        </EntityType>
+        <EntityType Name="sms_guardians">
+          <Key>
+            <PropertyRef Name="TextID" />
+          </Key>
+          <Property Name="TextID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuardianID" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" Nullable="false" />
+          <Property Name="SentDate" Type="DateTime" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <NavigationProperty Name="guardian" Relationship="smsModel.FK_sms_guardians" FromRole="sms_guardians" ToRole="guardians" />
+        </EntityType>
+        <EntityType Name="sms_inbox">
+          <Key>
+            <PropertyRef Name="InboxID" />
+          </Key>
+          <Property Name="InboxID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MobileNumber" Type="String" Nullable="false" />
+          <Property Name="Message" Type="String" />
+          <Property Name="ReceivedDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sms_pending_guardians">
+          <Key>
+            <PropertyRef Name="TextID" />
+          </Key>
+          <Property Name="TextID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuardianID" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="guardian" Relationship="smsModel.FK_sms_pending_guardians" FromRole="sms_pending_guardians" ToRole="guardians" />
+        </EntityType>
+        <EntityType Name="sms_pending_students">
+          <Key>
+            <PropertyRef Name="TextID" />
+          </Key>
+          <Property Name="TextID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="student" Relationship="smsModel.FK_smspendingmessage" FromRole="sms_pending_students" ToRole="students" />
+        </EntityType>
+        <EntityType Name="sms_students">
+          <Key>
+            <PropertyRef Name="TextID" />
+          </Key>
+          <Property Name="TextID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" Nullable="false" />
+          <Property Name="SentDate" Type="DateTime" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="student" Relationship="smsModel.FK_sms_students" FromRole="sms_students" ToRole="students" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentNumber" Type="String" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="MiddleName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" />
+          <Property Name="ImagePath" Type="String" />
+          <Property Name="EmailAddress" Type="String" />
+          <Property Name="SectionID" Type="Int32" />
+          <Property Name="RFID" Type="String" />
+          <Property Name="Note" Type="String" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <NavigationProperty Name="guardians_student" Relationship="smsModel.FK_guardiansstudents" FromRole="students" ToRole="guardians_student" />
+          <NavigationProperty Name="section" Relationship="smsModel.FK_students" FromRole="students" ToRole="sections" />
+          <NavigationProperty Name="sms_pending_students" Relationship="smsModel.FK_smspendingmessage" FromRole="students" ToRole="sms_pending_students" />
+          <NavigationProperty Name="sms_students" Relationship="smsModel.FK_sms_students" FromRole="students" ToRole="sms_students" />
+          <NavigationProperty Name="students_mobile" Relationship="smsModel.FK_studentsmobile" FromRole="students" ToRole="students_mobile" />
+        </EntityType>
+        <EntityType Name="students_mobile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="MobileNumber" Type="String" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" />
+          <NavigationProperty Name="student" Relationship="smsModel.FK_studentsmobile" FromRole="students_mobile" ToRole="students" />
+        </EntityType>
+        <Association Name="FK_employeessection">
+          <End Role="employees" Type="smsModel.employee" Multiplicity="1" />
+          <End Role="employees_section" Type="smsModel.employees_section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="employees_section">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeessections">
+          <End Role="sections" Type="smsModel.section" Multiplicity="1" />
+          <End Role="employees_section" Type="smsModel.employees_section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sections">
+              <PropertyRef Name="SectionID" />
+            </Principal>
+            <Dependent Role="employees_section">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_guardiansmobile">
+          <End Role="guardians" Type="smsModel.guardian" Multiplicity="1" />
+          <End Role="guardians_mobile" Type="smsModel.guardians_mobile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="guardians">
+              <PropertyRef Name="GuardianID" />
+            </Principal>
+            <Dependent Role="guardians_mobile">
+              <PropertyRef Name="GuardianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_guardiansstudent">
+          <End Role="guardians" Type="smsModel.guardian" Multiplicity="1" />
+          <End Role="guardians_student" Type="smsModel.guardians_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="guardians">
+              <PropertyRef Name="GuardianID" />
+            </Principal>
+            <Dependent Role="guardians_student">
+              <PropertyRef Name="GuardianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sms_guardians">
+          <End Role="guardians" Type="smsModel.guardian" Multiplicity="1" />
+          <End Role="sms_guardians" Type="smsModel.sms_guardians" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="guardians">
+              <PropertyRef Name="GuardianID" />
+            </Principal>
+            <Dependent Role="sms_guardians">
+              <PropertyRef Name="GuardianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sms_pending_guardians">
+          <End Role="guardians" Type="smsModel.guardian" Multiplicity="1" />
+          <End Role="sms_pending_guardians" Type="smsModel.sms_pending_guardians" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="guardians">
+              <PropertyRef Name="GuardianID" />
+            </Principal>
+            <Dependent Role="sms_pending_guardians">
+              <PropertyRef Name="GuardianID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_guardiansstudents">
+          <End Role="students" Type="smsModel.student" Multiplicity="1" />
+          <End Role="guardians_student" Type="smsModel.guardians_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="guardians_student">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_students">
+          <End Role="sections" Type="smsModel.section" Multiplicity="0..1" />
+          <End Role="students" Type="smsModel.student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sections">
+              <PropertyRef Name="SectionID" />
+            </Principal>
+            <Dependent Role="students">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_smspendingmessage">
+          <End Role="students" Type="smsModel.student" Multiplicity="1" />
+          <End Role="sms_pending_students" Type="smsModel.sms_pending_students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="sms_pending_students">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sms_students">
+          <End Role="students" Type="smsModel.student" Multiplicity="1" />
+          <End Role="sms_students" Type="smsModel.sms_students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="sms_students">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_studentsmobile">
+          <End Role="students" Type="smsModel.student" Multiplicity="1" />
+          <End Role="students_mobile" Type="smsModel.students_mobile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="students_mobile">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="smsModelStoreContainer" CdmEntityContainer="smsEntities">
+          <EntitySetMapping Name="employees"><EntityTypeMapping TypeName="smsModel.employee"><MappingFragment StoreEntitySet="employees">
+            <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+            <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+            <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+            <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+            <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+            <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+            <ScalarProperty Name="RFID" ColumnName="RFID" />
+            <ScalarProperty Name="Note" ColumnName="Note" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="employees_section"><EntityTypeMapping TypeName="smsModel.employees_section"><MappingFragment StoreEntitySet="employees_section">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+            <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="guardians"><EntityTypeMapping TypeName="smsModel.guardian"><MappingFragment StoreEntitySet="guardians">
+            <ScalarProperty Name="GuardianID" ColumnName="GuardianID" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+            <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+            <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+            <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+            <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+            <ScalarProperty Name="RFID" ColumnName="RFID" />
+            <ScalarProperty Name="Note" ColumnName="Note" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="guardians_mobile"><EntityTypeMapping TypeName="smsModel.guardians_mobile"><MappingFragment StoreEntitySet="guardians_mobile">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="GuardianID" ColumnName="GuardianID" />
+            <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="guardians_student"><EntityTypeMapping TypeName="smsModel.guardians_student"><MappingFragment StoreEntitySet="guardians_student">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="GuardianID" ColumnName="GuardianID" />
+            <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+            <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="sections"><EntityTypeMapping TypeName="smsModel.section"><MappingFragment StoreEntitySet="sections">
+            <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+            <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="sms_guardians"><EntityTypeMapping TypeName="smsModel.sms_guardians"><MappingFragment StoreEntitySet="sms_guardians">
+            <ScalarProperty Name="TextID" ColumnName="TextID" />
+            <ScalarProperty Name="GuardianID" ColumnName="GuardianID" />
+            <ScalarProperty Name="Message" ColumnName="Message" />
+            <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="sms_inbox"><EntityTypeMapping TypeName="smsModel.sms_inbox"><MappingFragment StoreEntitySet="sms_inbox">
+            <ScalarProperty Name="InboxID" ColumnName="InboxID" />
+            <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+            <ScalarProperty Name="Message" ColumnName="Message" />
+            <ScalarProperty Name="ReceivedDate" ColumnName="ReceivedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="sms_pending_guardians"><EntityTypeMapping TypeName="smsModel.sms_pending_guardians"><MappingFragment StoreEntitySet="sms_pending_guardians">
+            <ScalarProperty Name="TextID" ColumnName="TextID" />
+            <ScalarProperty Name="GuardianID" ColumnName="GuardianID" />
+            <ScalarProperty Name="Message" ColumnName="Message" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="sms_pending_students"><EntityTypeMapping TypeName="smsModel.sms_pending_students"><MappingFragment StoreEntitySet="sms_pending_students">
+            <ScalarProperty Name="TextID" ColumnName="TextID" />
+            <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+            <ScalarProperty Name="Message" ColumnName="Message" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="sms_students"><EntityTypeMapping TypeName="smsModel.sms_students"><MappingFragment StoreEntitySet="sms_students">
+            <ScalarProperty Name="TextID" ColumnName="TextID" />
+            <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+            <ScalarProperty Name="Message" ColumnName="Message" />
+            <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="students"><EntityTypeMapping TypeName="smsModel.student"><MappingFragment StoreEntitySet="students">
+            <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+            <ScalarProperty Name="StudentNumber" ColumnName="StudentNumber" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+            <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+            <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+            <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+            <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+            <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+            <ScalarProperty Name="RFID" ColumnName="RFID" />
+            <ScalarProperty Name="Note" ColumnName="Note" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="students_mobile"><EntityTypeMapping TypeName="smsModel.students_mobile"><MappingFragment StoreEntitySet="students_mobile">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+            <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+            <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="SMS">
+        <EntityTypeShape EntityType="smsModel.employee" Width="1.5" PointX="0.75" PointY="2.625" Height="4.0956022135416656" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.employees_section" Width="1.5" PointX="3" PointY="6.25" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.guardian" Width="1.5" PointX="3" PointY="1" Height="4.2879036458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.guardians_mobile" Width="1.5" PointX="5.25" PointY="4.5" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.guardians_student" Width="1.5" PointX="5.25" PointY="8.625" Height="2.9417936197916639" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.section" Width="1.5" PointX="0.75" PointY="8.375" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.sms_guardians" Width="1.5" PointX="5.25" PointY="0.75" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.sms_inbox" Width="1.5" PointX="7.75" PointY="0.875" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.sms_pending_guardians" Width="1.5" PointX="5.25" PointY="22.25" Height="2.1725878906250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.sms_pending_students" Width="1.5" PointX="5.25" PointY="12.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.sms_students" Width="1.5" PointX="5.25" PointY="15.5" Height="2.3648893229166763" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.student" Width="1.5" PointX="3" PointY="10.75" Height="4.8648079427083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="smsModel.students_mobile" Width="1.5" PointX="5.25" PointY="18.625" Height="2.5571907552083388" IsExpanded="true" />
+        <AssociationConnector Association="smsModel.FK_employeessection" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.4853011067708328" />
+          <ConnectorPoint PointX="3" PointY="6.4853011067708328" />
+        </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_employeessections" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.68724609375" />
+          <ConnectorPoint PointX="3" PointY="8.68724609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_guardiansmobile" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.8939518229166659" />
+          <ConnectorPoint PointX="5.25" PointY="4.8939518229166659" />
+        </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_guardiansstudent" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.23136418429487" />
+          <ConnectorPoint PointX="5.03125" PointY="5.76261418429487" />
+          <ConnectorPoint PointX="5.03125" PointY="10.095896809895832" />
+          <ConnectorPoint PointX="5.25" PointY="10.095896809895832" />
+        </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_sms_guardians" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="2.24974609375" />
+          <ConnectorPoint PointX="5.25" PointY="2.24974609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_sms_pending_guardians" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.4757692307692309" PointY="5.2879036458333317" />
+          <ConnectorPoint PointX="4.875" PointY="5.6871344150641008" />
+          <ConnectorPoint PointX="4.875" PointY="23.3362939453125" />
+          <ConnectorPoint PointX="5.25" PointY="23.3362939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_guardiansstudents" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="11.158396809895832" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="11.158396809895832" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="11.158396809895832" />
+          <ConnectorPoint PointX="5.25" PointY="11.158396809895832" />
+        </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_students" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="10.932190755208332" />
+          <ConnectorPoint PointX="1.5" PointY="13.273499848958331" />
+          <ConnectorPoint PointX="3" PointY="13.273499848958331" />
+        </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_smspendingmessage" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="13.5862939453125" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="13.5862939453125" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="13.5862939453125" />
+          <ConnectorPoint PointX="5.25" PointY="13.5862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_sms_students" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="15.614807942708332" />
+          <ConnectorPoint PointX="3.75" PointY="16.739849132812502" />
+          <ConnectorPoint PointX="4.0729191666666669" PointY="16.739849132812502" />
+          <ConnectorPoint PointX="4.2395858333333329" PointY="16.739849132812502" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="16.739849132812502" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="16.739849132812502" />
+          <ConnectorPoint PointX="5.25" PointY="16.739849132812502" />
+        </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_studentsmobile" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.1562525" PointY="15.614807942708332" />
+          <ConnectorPoint PointX="4.1562525" PointY="19.903595377604169" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="19.903595377604169" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="19.903595377604169" />
+          <ConnectorPoint PointX="5.25" PointY="19.903595377604169" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

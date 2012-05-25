@@ -215,6 +215,12 @@
     <Content Include="Resources\Webcam_Capture.png" />
     <Content Include="Resources\Webcam_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">
+      <Project>{47FA2D3A-B67E-4F4C-A3C0-0BB80DF93E3D}</Project>
+      <Name>BusinessObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

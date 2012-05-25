@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using StudentMonitoringSystem.Forms.SMS;
+using BusinessObjects;
 
 namespace StudentMonitoringSystem
 {
@@ -21,7 +22,7 @@ namespace StudentMonitoringSystem
 
         private void Main_Load(object sender, EventArgs e)
         {
-
+            Student.InsertStudent();
         }
 
         private void sendSMSToolStripMenuItem_Click(object sender, EventArgs e)

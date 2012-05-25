@@ -18,7 +18,7 @@ namespace StudentMonitoringSystem.Forms.SMS
     public partial class SendSMS : Form
     {
         private delegate void SetTextCallback(string text);
-        //private GsmCommMain comm;
+        private GsmCommMain comm;
 
         public SendSMS()
         {

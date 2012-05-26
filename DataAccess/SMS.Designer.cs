@@ -25,10 +25,10 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("smsModel", "FK_sms_guardians", "guardian", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataAccess.guardian), "sms_guardians", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.sms_guardians), true)]
 [assembly: EdmRelationshipAttribute("smsModel", "FK_sms_pending_guardians", "guardian", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataAccess.guardian), "sms_pending_guardians", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.sms_pending_guardians), true)]
 [assembly: EdmRelationshipAttribute("smsModel", "FK_guardiansstudents", "student", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataAccess.student), "guardians_student", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.guardians_student), true)]
-[assembly: EdmRelationshipAttribute("smsModel", "FK_students", "section", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DataAccess.section), "student", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.student), true)]
 [assembly: EdmRelationshipAttribute("smsModel", "FK_smspendingmessage", "student", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataAccess.student), "sms_pending_students", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.sms_pending_students), true)]
 [assembly: EdmRelationshipAttribute("smsModel", "FK_sms_students", "student", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataAccess.student), "sms_students", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.sms_students), true)]
 [assembly: EdmRelationshipAttribute("smsModel", "FK_studentsmobile", "student", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataAccess.student), "students_mobile", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.students_mobile), true)]
+[assembly: EdmRelationshipAttribute("smsModel", "FK_students", "section", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DataAccess.section), "student", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.student), true)]
 
 #endregion
 
@@ -48,7 +48,7 @@ namespace DataAccess
         /// </summary>
         public smsEntities() : base("name=smsEntities", "smsEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = true;
+            this.ContextOptions.LazyLoadingEnabled = false;
             OnContextCreated();
         }
     
@@ -57,7 +57,7 @@ namespace DataAccess
         /// </summary>
         public smsEntities(string connectionString) : base(connectionString, "smsEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = true;
+            this.ContextOptions.LazyLoadingEnabled = false;
             OnContextCreated();
         }
     
@@ -66,7 +66,7 @@ namespace DataAccess
         /// </summary>
         public smsEntities(EntityConnection connection) : base(connection, "smsEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = true;
+            this.ContextOptions.LazyLoadingEnabled = false;
             OnContextCreated();
         }
     
@@ -1115,23 +1115,23 @@ namespace DataAccess
         /// <param name="firstName">Initial value of the FirstName property.</param>
         /// <param name="middleName">Initial value of the MiddleName property.</param>
         /// <param name="lastName">Initial value of the LastName property.</param>
-        /// <param name="createdBy">Initial value of the CreatedBy property.</param>
-        /// <param name="createdDate">Initial value of the CreatedDate property.</param>
         /// <param name="automaticSMS">Initial value of the AutomaticSMS property.</param>
         /// <param name="automaticEmail">Initial value of the AutomaticEmail property.</param>
         /// <param name="active">Initial value of the Active property.</param>
-        public static guardian Createguardian(global::System.Int32 guardianID, global::System.String firstName, global::System.String middleName, global::System.String lastName, global::System.Int32 createdBy, global::System.DateTime createdDate, global::System.Boolean automaticSMS, global::System.Boolean automaticEmail, global::System.Boolean active)
+        /// <param name="createdBy">Initial value of the CreatedBy property.</param>
+        /// <param name="createdDate">Initial value of the CreatedDate property.</param>
+        public static guardian Createguardian(global::System.Int32 guardianID, global::System.String firstName, global::System.String middleName, global::System.String lastName, global::System.Boolean automaticSMS, global::System.Boolean automaticEmail, global::System.Boolean active, global::System.Int32 createdBy, global::System.DateTime createdDate)
         {
             guardian guardian = new guardian();
             guardian.GuardianID = guardianID;
             guardian.FirstName = firstName;
             guardian.MiddleName = middleName;
             guardian.LastName = lastName;
-            guardian.CreatedBy = createdBy;
-            guardian.CreatedDate = createdDate;
             guardian.AutomaticSMS = automaticSMS;
             guardian.AutomaticEmail = automaticEmail;
             guardian.Active = active;
+            guardian.CreatedBy = createdBy;
+            guardian.CreatedDate = createdDate;
             return guardian;
         }
 
@@ -1362,6 +1362,78 @@ namespace DataAccess
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Boolean AutomaticSMS
+        {
+            get
+            {
+                return _AutomaticSMS;
+            }
+            set
+            {
+                OnAutomaticSMSChanging(value);
+                ReportPropertyChanging("AutomaticSMS");
+                _AutomaticSMS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AutomaticSMS");
+                OnAutomaticSMSChanged();
+            }
+        }
+        private global::System.Boolean _AutomaticSMS;
+        partial void OnAutomaticSMSChanging(global::System.Boolean value);
+        partial void OnAutomaticSMSChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean AutomaticEmail
+        {
+            get
+            {
+                return _AutomaticEmail;
+            }
+            set
+            {
+                OnAutomaticEmailChanging(value);
+                ReportPropertyChanging("AutomaticEmail");
+                _AutomaticEmail = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AutomaticEmail");
+                OnAutomaticEmailChanged();
+            }
+        }
+        private global::System.Boolean _AutomaticEmail;
+        partial void OnAutomaticEmailChanging(global::System.Boolean value);
+        partial void OnAutomaticEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Active
+        {
+            get
+            {
+                return _Active;
+            }
+            set
+            {
+                OnActiveChanging(value);
+                ReportPropertyChanging("Active");
+                _Active = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Active");
+                OnActiveChanged();
+            }
+        }
+        private global::System.Boolean _Active;
+        partial void OnActiveChanging(global::System.Boolean value);
+        partial void OnActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.Int32 CreatedBy
         {
             get
@@ -1452,78 +1524,6 @@ namespace DataAccess
         private Nullable<global::System.DateTime> _ModifiedDate;
         partial void OnModifiedDateChanging(Nullable<global::System.DateTime> value);
         partial void OnModifiedDateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean AutomaticSMS
-        {
-            get
-            {
-                return _AutomaticSMS;
-            }
-            set
-            {
-                OnAutomaticSMSChanging(value);
-                ReportPropertyChanging("AutomaticSMS");
-                _AutomaticSMS = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("AutomaticSMS");
-                OnAutomaticSMSChanged();
-            }
-        }
-        private global::System.Boolean _AutomaticSMS;
-        partial void OnAutomaticSMSChanging(global::System.Boolean value);
-        partial void OnAutomaticSMSChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean AutomaticEmail
-        {
-            get
-            {
-                return _AutomaticEmail;
-            }
-            set
-            {
-                OnAutomaticEmailChanging(value);
-                ReportPropertyChanging("AutomaticEmail");
-                _AutomaticEmail = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("AutomaticEmail");
-                OnAutomaticEmailChanged();
-            }
-        }
-        private global::System.Boolean _AutomaticEmail;
-        partial void OnAutomaticEmailChanging(global::System.Boolean value);
-        partial void OnAutomaticEmailChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean Active
-        {
-            get
-            {
-                return _Active;
-            }
-            set
-            {
-                OnActiveChanging(value);
-                ReportPropertyChanging("Active");
-                _Active = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Active");
-                OnActiveChanged();
-            }
-        }
-        private global::System.Boolean _Active;
-        partial void OnActiveChanging(global::System.Boolean value);
-        partial void OnActiveChanged();
 
         #endregion
     
@@ -2158,10 +2158,16 @@ namespace DataAccess
         /// Create a new section object.
         /// </summary>
         /// <param name="sectionID">Initial value of the SectionID property.</param>
-        public static section Createsection(global::System.Int32 sectionID)
+        /// <param name="sectionName">Initial value of the SectionName property.</param>
+        /// <param name="createdBy">Initial value of the CreatedBy property.</param>
+        /// <param name="createdDate">Initial value of the CreatedDate property.</param>
+        public static section Createsection(global::System.Int32 sectionID, global::System.String sectionName, global::System.Int32 createdBy, global::System.DateTime createdDate)
         {
             section section = new section();
             section.SectionID = sectionID;
+            section.SectionName = sectionName;
+            section.CreatedBy = createdBy;
+            section.CreatedDate = createdDate;
             return section;
         }
 
@@ -2198,7 +2204,7 @@ namespace DataAccess
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String SectionName
         {
@@ -2210,7 +2216,7 @@ namespace DataAccess
             {
                 OnSectionNameChanging(value);
                 ReportPropertyChanging("SectionName");
-                _SectionName = StructuralObject.SetValidValue(value, true);
+                _SectionName = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("SectionName");
                 OnSectionNameChanged();
             }
@@ -2222,9 +2228,9 @@ namespace DataAccess
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CreatedBy
+        public global::System.Int32 CreatedBy
         {
             get
             {
@@ -2239,16 +2245,16 @@ namespace DataAccess
                 OnCreatedByChanged();
             }
         }
-        private Nullable<global::System.Int32> _CreatedBy;
-        partial void OnCreatedByChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _CreatedBy;
+        partial void OnCreatedByChanging(global::System.Int32 value);
         partial void OnCreatedByChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> CreatedDate
+        public global::System.DateTime CreatedDate
         {
             get
             {
@@ -2263,8 +2269,8 @@ namespace DataAccess
                 OnCreatedDateChanged();
             }
         }
-        private Nullable<global::System.DateTime> _CreatedDate;
-        partial void OnCreatedDateChanging(Nullable<global::System.DateTime> value);
+        private global::System.DateTime _CreatedDate;
+        partial void OnCreatedDateChanging(global::System.DateTime value);
         partial void OnCreatedDateChanged();
     
         /// <summary>
@@ -3363,7 +3369,9 @@ namespace DataAccess
         /// <param name="lastName">Initial value of the LastName property.</param>
         /// <param name="birthday">Initial value of the Birthday property.</param>
         /// <param name="active">Initial value of the Active property.</param>
-        public static student Createstudent(global::System.Int32 studentID, global::System.String studentNumber, global::System.String firstName, global::System.String middleName, global::System.String lastName, global::System.DateTime birthday, global::System.Boolean active)
+        /// <param name="createdBy">Initial value of the CreatedBy property.</param>
+        /// <param name="createdDate">Initial value of the CreatedDate property.</param>
+        public static student Createstudent(global::System.Int32 studentID, global::System.String studentNumber, global::System.String firstName, global::System.String middleName, global::System.String lastName, global::System.DateTime birthday, global::System.Boolean active, global::System.Int32 createdBy, global::System.DateTime createdDate)
         {
             student student = new student();
             student.StudentID = studentID;
@@ -3373,6 +3381,8 @@ namespace DataAccess
             student.LastName = lastName;
             student.Birthday = birthday;
             student.Active = active;
+            student.CreatedBy = createdBy;
+            student.CreatedDate = createdDate;
             return student;
         }
 
@@ -3673,9 +3683,9 @@ namespace DataAccess
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CreatedBy
+        public global::System.Int32 CreatedBy
         {
             get
             {
@@ -3690,16 +3700,16 @@ namespace DataAccess
                 OnCreatedByChanged();
             }
         }
-        private Nullable<global::System.Int32> _CreatedBy;
-        partial void OnCreatedByChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _CreatedBy;
+        partial void OnCreatedByChanging(global::System.Int32 value);
         partial void OnCreatedByChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> CreatedDate
+        public global::System.DateTime CreatedDate
         {
             get
             {
@@ -3714,8 +3724,8 @@ namespace DataAccess
                 OnCreatedDateChanged();
             }
         }
-        private Nullable<global::System.DateTime> _CreatedDate;
-        partial void OnCreatedDateChanging(Nullable<global::System.DateTime> value);
+        private global::System.DateTime _CreatedDate;
+        partial void OnCreatedDateChanging(global::System.DateTime value);
         partial void OnCreatedDateChanged();
     
         /// <summary>
@@ -3798,44 +3808,6 @@ namespace DataAccess
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("smsModel", "FK_students", "section")]
-        public section section
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<section>("smsModel.FK_students", "section").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<section>("smsModel.FK_students", "section").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<section> sectionReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<section>("smsModel.FK_students", "section");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<section>("smsModel.FK_students", "section", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("smsModel", "FK_smspendingmessage", "sms_pending_students")]
         public EntityCollection<sms_pending_students> sms_pending_students
         {
@@ -3892,6 +3864,44 @@ namespace DataAccess
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<students_mobile>("smsModel.FK_studentsmobile", "students_mobile", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("smsModel", "FK_students", "section")]
+        public section section
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<section>("smsModel.FK_students", "section").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<section>("smsModel.FK_students", "section").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<section> sectionReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<section>("smsModel.FK_students", "section");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<section>("smsModel.FK_students", "section", value);
                 }
             }
         }

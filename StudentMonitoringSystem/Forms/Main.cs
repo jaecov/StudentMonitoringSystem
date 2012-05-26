@@ -43,6 +43,7 @@ namespace StudentMonitoringSystem
             CloseAllForm();
             SendSMS newMDIChild = new SendSMS();
             newMDIChild.MdiParent = this;
+            newMDIChild.WindowState = FormWindowState.Maximized;
             newMDIChild.Show();
         }
 
@@ -51,6 +52,7 @@ namespace StudentMonitoringSystem
             CloseAllForm();
             Student newMDIChild = new Student();
             newMDIChild.MdiParent = this;
+            newMDIChild.WindowState = FormWindowState.Maximized;
             newMDIChild.Show();
         }
 

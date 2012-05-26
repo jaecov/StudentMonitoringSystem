@@ -4,7 +4,6 @@ using System.Linq;
 using DataAccess;
 using System.Collections;
 
-
 namespace BusinessObjects
 {
     public class Student
@@ -264,10 +263,11 @@ namespace BusinessObjects
         {
             try
             {
-                if (StudentList != null) return StudentList;
-
                 using (smsEntities db = new smsEntities())
                 {
+
+                    
+
                     IList stud;
 
                     switch (criteria.Type)
@@ -294,10 +294,11 @@ namespace BusinessObjects
                             break;
                         default:
                             throw new Exception("Invalid CriteriaType.");
-                        
                     }
+
                     return (List<student>)stud;
                 }
+
             }
             catch (Exception ex)
             {

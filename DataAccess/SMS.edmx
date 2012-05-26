@@ -199,9 +199,9 @@
             <PropertyRef Name="SectionID" />
           </Key>
           <Property Name="SectionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="SectionName" Type="varchar" MaxLength="100" />
-          <Property Name="CreatedBy" Type="int" />
-          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="SectionName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
@@ -272,8 +272,8 @@
           <Property Name="RFID" Type="varchar" MaxLength="100" />
           <Property Name="Note" Type="varchar" MaxLength="500" />
           <Property Name="Active" Type="bool" Nullable="false" />
-          <Property Name="CreatedBy" Type="int" />
-          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
@@ -472,10 +472,6 @@
             <End Role="student" EntitySet="students" />
             <End Role="guardians_student" EntitySet="guardians_student" />
           </AssociationSet>
-          <AssociationSet Name="FK_students" Association="smsModel.FK_students">
-            <End Role="section" EntitySet="sections" />
-            <End Role="student" EntitySet="students" />
-          </AssociationSet>
           <AssociationSet Name="FK_smspendingmessage" Association="smsModel.FK_smspendingmessage">
             <End Role="student" EntitySet="students" />
             <End Role="sms_pending_students" EntitySet="sms_pending_students" />
@@ -487,6 +483,10 @@
           <AssociationSet Name="FK_studentsmobile" Association="smsModel.FK_studentsmobile">
             <End Role="student" EntitySet="students" />
             <End Role="students_mobile" EntitySet="students_mobile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_students" Association="smsModel.FK_students">
+            <End Role="section" EntitySet="sections" />
+            <End Role="student" EntitySet="students" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="employee">
@@ -539,6 +539,9 @@
           <Property Type="String" Name="EmailAddress" />
           <Property Type="String" Name="RFID" />
           <Property Type="String" Name="Note" />
+          <Property Type="Boolean" Name="AutomaticSMS" Nullable="false" />
+          <Property Type="Boolean" Name="AutomaticEmail" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
           <Property Type="Int32" Name="CreatedBy" Nullable="false" />
           <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
           <Property Type="Int32" Name="ModifiedBy" />
@@ -547,9 +550,6 @@
           <NavigationProperty Name="guardians_student" Relationship="smsModel.FK_guardiansstudent" FromRole="guardian" ToRole="guardians_student" />
           <NavigationProperty Name="sms_guardians" Relationship="smsModel.FK_sms_guardians" FromRole="guardian" ToRole="sms_guardians" />
           <NavigationProperty Name="sms_pending_guardians" Relationship="smsModel.FK_sms_pending_guardians" FromRole="guardian" ToRole="sms_pending_guardians" />
-          <Property Type="Boolean" Name="AutomaticSMS" Nullable="false" />
-          <Property Type="Boolean" Name="AutomaticEmail" Nullable="false" />
-          <Property Type="Boolean" Name="Active" Nullable="false" />
         </EntityType>
         <EntityType Name="guardians_mobile">
           <Key>
@@ -588,9 +588,9 @@
             <PropertyRef Name="SectionID" />
           </Key>
           <Property Type="Int32" Name="SectionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="SectionName" />
-          <Property Type="Int32" Name="CreatedBy" />
-          <Property Type="DateTime" Name="CreatedDate" />
+          <Property Type="String" Name="SectionName" Nullable="false" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
           <Property Type="Int32" Name="ModifiedBy" />
           <Property Type="DateTime" Name="ModifiedDate" />
           <NavigationProperty Name="employees_section" Relationship="smsModel.FK_employeessections" FromRole="section" ToRole="employees_section" />
@@ -667,15 +667,15 @@
           <Property Type="String" Name="RFID" />
           <Property Type="String" Name="Note" />
           <Property Type="Boolean" Name="Active" Nullable="false" />
-          <Property Type="Int32" Name="CreatedBy" />
-          <Property Type="DateTime" Name="CreatedDate" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
           <Property Type="Int32" Name="ModifiedBy" />
           <Property Type="DateTime" Name="ModifiedDate" />
           <NavigationProperty Name="guardians_student" Relationship="smsModel.FK_guardiansstudents" FromRole="student" ToRole="guardians_student" />
-          <NavigationProperty Name="section" Relationship="smsModel.FK_students" FromRole="student" ToRole="section" />
           <NavigationProperty Name="sms_pending_students" Relationship="smsModel.FK_smspendingmessage" FromRole="student" ToRole="sms_pending_students" />
           <NavigationProperty Name="sms_students" Relationship="smsModel.FK_sms_students" FromRole="student" ToRole="sms_students" />
           <NavigationProperty Name="students_mobile" Relationship="smsModel.FK_studentsmobile" FromRole="student" ToRole="students_mobile" />
+          <NavigationProperty Name="section" Relationship="smsModel.FK_students" FromRole="student" ToRole="section" />
         </EntityType>
         <EntityType Name="students_mobile">
           <Key>
@@ -776,18 +776,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_students">
-          <End Type="smsModel.section" Role="section" Multiplicity="0..1" />
-          <End Type="smsModel.student" Role="student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="section">
-              <PropertyRef Name="SectionID" />
-            </Principal>
-            <Dependent Role="student">
-              <PropertyRef Name="SectionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_smspendingmessage">
           <End Type="smsModel.student" Role="student" Multiplicity="1" />
           <End Type="smsModel.sms_pending_students" Role="sms_pending_students" Multiplicity="*" />
@@ -821,6 +809,18 @@
             </Principal>
             <Dependent Role="students_mobile">
               <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_students">
+          <End Type="smsModel.section" Role="section" Multiplicity="0..1" />
+          <End Type="smsModel.student" Role="student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="section">
+              <PropertyRef Name="SectionID" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="SectionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -866,13 +866,13 @@
           <EntitySetMapping Name="guardians">
             <EntityTypeMapping TypeName="smsModel.guardian">
               <MappingFragment StoreEntitySet="guardians">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="AutomaticEmail" ColumnName="AutomaticEmail" />
-                <ScalarProperty Name="AutomaticSMS" ColumnName="AutomaticSMS" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="AutomaticEmail" ColumnName="AutomaticEmail" />
+                <ScalarProperty Name="AutomaticSMS" ColumnName="AutomaticSMS" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="RFID" ColumnName="RFID" />
                 <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
@@ -1033,77 +1033,75 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="SMS">
-        <EntityTypeShape EntityType="smsModel.employee" Width="1.5" PointX="0.75" PointY="2.5" Height="4.0956022135416674" />
-        <EntityTypeShape EntityType="smsModel.employees_section" Width="1.5" PointX="3" PointY="6.25" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="smsModel.guardian" Width="1.5" PointX="3" PointY="0.75" Height="4.2879036458333388" />
-        <EntityTypeShape EntityType="smsModel.guardians_mobile" Width="1.5" PointX="5.25" PointY="5" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="smsModel.guardians_student" Width="1.5" PointX="5.25" PointY="8.5" Height="2.749492187499996" />
-        <EntityTypeShape EntityType="smsModel.section" Width="1.5" PointX="0.75" PointY="8.25" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="smsModel.sms_guardians" Width="1.5" PointX="5.25" PointY="1.125" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="smsModel.sms_inbox" Width="1.5" PointX="7.75" PointY="1.125" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="smsModel.sms_pending_guardians" Width="1.5" PointX="5.25" PointY="22.25" Height="2.172587890624996" />
-        <EntityTypeShape EntityType="smsModel.sms_pending_students" Width="1.5" PointX="5.25" PointY="12.25" Height="2.172587890624996" />
-        <EntityTypeShape EntityType="smsModel.sms_students" Width="1.5" PointX="5.25" PointY="15.125" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="smsModel.student" Width="1.5" PointX="3" PointY="10.375" Height="5.05710937500001" />
-        <EntityTypeShape EntityType="smsModel.students_mobile" Width="1.5" PointX="5.25" PointY="18.25" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="smsModel.employee" Width="1.5" PointX="0.75" PointY="2.875" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="smsModel.employees_section" Width="1.5" PointX="3" PointY="6.625" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="smsModel.guardian" Width="1.5" PointX="3" PointY="0.75" Height="4.8648079427083388" />
+        <EntityTypeShape EntityType="smsModel.guardians_mobile" Width="1.5" PointX="5.25" PointY="5.25" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="smsModel.guardians_student" Width="1.5" PointX="5.25" PointY="8.75" Height="2.749492187499996" />
+        <EntityTypeShape EntityType="smsModel.section" Width="1.5" PointX="0.75" PointY="8.625" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="smsModel.sms_guardians" Width="1.5" PointX="5.25" PointY="1.375" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="smsModel.sms_inbox" Width="1.5" PointX="7.75" PointY="1.375" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="smsModel.sms_pending_guardians" Width="1.5" PointX="5.25" PointY="22.5" Height="2.172587890624996" />
+        <EntityTypeShape EntityType="smsModel.sms_pending_students" Width="1.5" PointX="5.25" PointY="12.5" Height="2.172587890624996" />
+        <EntityTypeShape EntityType="smsModel.sms_students" Width="1.5" PointX="5.25" PointY="15.375" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="smsModel.student" Width="1.5" PointX="3" PointY="10.625" Height="5.05710937500001" />
+        <EntityTypeShape EntityType="smsModel.students_mobile" Width="1.5" PointX="5.25" PointY="18.5" Height="2.3648893229166674" />
         <AssociationConnector Association="smsModel.FK_employeessection" >
-          <ConnectorPoint PointX="2.25" PointY="6.4228011067708337" />
-          <ConnectorPoint PointX="3" PointY="6.4228011067708337" />
+          <ConnectorPoint PointX="2.25" PointY="6.7978011067708337" />
+          <ConnectorPoint PointX="3" PointY="6.7978011067708337" />
         </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_employeessections" >
-          <ConnectorPoint PointX="2.25" PointY="8.52859537760417" />
-          <ConnectorPoint PointX="3" PointY="8.52859537760417" />
+          <ConnectorPoint PointX="2.25" PointY="8.90359537760417" />
+          <ConnectorPoint PointX="3" PointY="8.90359537760417" />
         </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_guardiansmobile" >
-          <ConnectorPoint PointX="4.5" PointY="5.0009795689102621" />
-          <ConnectorPoint PointX="4.65625" PointY="5.1572295689102621" />
-          <ConnectorPoint PointX="4.65625" PointY="4.40625" />
-          <ConnectorPoint PointX="5.25" PointY="5" />
+          <ConnectorPoint PointX="4.5" PointY="5.4324039713541694" />
+          <ConnectorPoint PointX="5.25" PointY="5.4324039713541694" />
         </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_guardiansstudent" >
-          <ConnectorPoint PointX="4.5" PointY="5.0067487996794924" />
-          <ConnectorPoint PointX="5.03125" PointY="5.5379987996794924" />
-          <ConnectorPoint PointX="5.03125" PointY="9.874746093749998" />
-          <ConnectorPoint PointX="5.25" PointY="9.874746093749998" />
+          <ConnectorPoint PointX="4.5" PointY="5.5582684811698773" />
+          <ConnectorPoint PointX="5.03125" PointY="6.0895184811698773" />
+          <ConnectorPoint PointX="5.03125" PointY="10.124746093749998" />
+          <ConnectorPoint PointX="5.25" PointY="10.124746093749998" />
         </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_sms_guardians" >
-          <ConnectorPoint PointX="4.5" PointY="2.3074446614583337" />
-          <ConnectorPoint PointX="5.25" PointY="2.3074446614583337" />
+          <ConnectorPoint PointX="4.5" PointY="2.5574446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="2.5574446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_sms_pending_guardians" >
-          <ConnectorPoint PointX="4.4630769230769234" PointY="5.0379036458333388" />
-          <ConnectorPoint PointX="4.875" PointY="5.4498267227564154" />
-          <ConnectorPoint PointX="4.875" PointY="23.336293945312498" />
-          <ConnectorPoint PointX="5.25" PointY="23.336293945312498" />
+          <ConnectorPoint PointX="4.4757692307692309" PointY="5.6148079427083388" />
+          <ConnectorPoint PointX="4.875" PointY="6.0140387119391079" />
+          <ConnectorPoint PointX="4.875" PointY="23.586293945312498" />
+          <ConnectorPoint PointX="5.25" PointY="23.586293945312498" />
         </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_guardiansstudents" >
-          <ConnectorPoint PointX="4.5" PointY="10.812246093749998" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="10.812246093749998" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="10.812246093749998" />
-          <ConnectorPoint PointX="5.25" PointY="10.812246093749998" />
-        </AssociationConnector>
-        <AssociationConnector Association="smsModel.FK_students" >
-          <ConnectorPoint PointX="2.25" PointY="10.591095377604169" />
-          <ConnectorPoint PointX="3" PointY="10.591095377604169" />
+          <ConnectorPoint PointX="4.5" PointY="11.062246093749998" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="11.062246093749998" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="11.062246093749998" />
+          <ConnectorPoint PointX="5.25" PointY="11.062246093749998" />
         </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_smspendingmessage" >
-          <ConnectorPoint PointX="4.5" PointY="13.336293945312498" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="13.336293945312498" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="13.336293945312498" />
-          <ConnectorPoint PointX="5.25" PointY="13.336293945312498" />
+          <ConnectorPoint PointX="4.5" PointY="13.586293945312498" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="13.586293945312498" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="13.586293945312498" />
+          <ConnectorPoint PointX="5.25" PointY="13.586293945312498" />
         </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_sms_students" >
-          <ConnectorPoint PointX="4.5" PointY="15.278554687500005" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="15.278554687500005" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="15.278554687500005" />
-          <ConnectorPoint PointX="5.25" PointY="15.278554687500005" />
+          <ConnectorPoint PointX="4.5" PointY="15.5285546875" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="15.5285546875" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="15.5285546875" />
+          <ConnectorPoint PointX="5.25" PointY="15.5285546875" />
         </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_studentsmobile" >
-          <ConnectorPoint PointX="3.75" PointY="15.43210937500001" />
-          <ConnectorPoint PointX="3.75" PointY="19.432444661458334" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="19.432444661458334" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="19.432444661458334" />
-          <ConnectorPoint PointX="5.25" PointY="19.432444661458334" />
+          <ConnectorPoint PointX="3.75" PointY="15.682109375" />
+          <ConnectorPoint PointX="3.75" PointY="19.682444661458334" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="19.682444661458334" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="19.682444661458334" />
+          <ConnectorPoint PointX="5.25" PointY="19.682444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_students" >
+          <ConnectorPoint PointX="2.25" PointY="10.903595377604166" />
+          <ConnectorPoint PointX="3" PointY="10.903595377604166" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

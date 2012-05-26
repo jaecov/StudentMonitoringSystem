@@ -263,10 +263,9 @@ namespace BusinessObjects
         {
             try
             {
-                using (smsEntities db = new smsEntities())
-                {
-
-                    
+                //using (smsEntities db = new smsEntities())
+                //{
+                    smsEntities db = new smsEntities();
 
                     IList stud;
 
@@ -274,8 +273,8 @@ namespace BusinessObjects
                     {
                         case CriteriaType.ByStatus:
                             stud = (from x in db.students
-                                       where x.Active == criteria.Status
-                                       select x).ToList();
+                                    where x.Active == criteria.Status
+                                    select x).ToList();
                             break;
                         case CriteriaType.BySection:
                             stud = (from x in db.students
@@ -297,7 +296,7 @@ namespace BusinessObjects
                     }
 
                     return (List<student>)stud;
-                }
+                //}
 
             }
             catch (Exception ex)

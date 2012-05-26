@@ -114,7 +114,7 @@
             this.Birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ImagePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmailAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SectionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SectionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -244,7 +244,7 @@
             // btnRestore
             // 
             this.btnRestore.Enabled = false;
-            this.btnRestore.Location = new System.Drawing.Point(916, 32);
+            this.btnRestore.Location = new System.Drawing.Point(836, 25);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(81, 23);
             this.btnRestore.TabIndex = 236;
@@ -255,24 +255,27 @@
             // Label39
             // 
             this.Label39.AutoSize = true;
+            this.Label39.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label39.Location = new System.Drawing.Point(13, 179);
             this.Label39.Name = "Label39";
-            this.Label39.Size = new System.Drawing.Size(44, 13);
+            this.Label39.Size = new System.Drawing.Size(39, 15);
             this.Label39.TabIndex = 242;
             this.Label39.Text = "Search:";
             // 
             // RadioButton2
             // 
             this.RadioButton2.AutoSize = true;
+            this.RadioButton2.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RadioButton2.Location = new System.Drawing.Point(371, 177);
             this.RadioButton2.Name = "RadioButton2";
-            this.RadioButton2.Size = new System.Drawing.Size(61, 17);
+            this.RadioButton2.Size = new System.Drawing.Size(57, 19);
             this.RadioButton2.TabIndex = 246;
             this.RadioButton2.Text = "Archive";
             this.RadioButton2.UseVisualStyleBackColor = true;
             // 
             // txtSearch
             // 
+            this.txtSearch.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.Location = new System.Drawing.Point(63, 176);
             this.txtSearch.MaxLength = 255;
             this.txtSearch.Name = "txtSearch";
@@ -282,7 +285,7 @@
             // btnDelete
             // 
             this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(916, 88);
+            this.btnDelete.Location = new System.Drawing.Point(836, 81);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(81, 23);
             this.btnDelete.TabIndex = 237;
@@ -293,7 +296,7 @@
             // btnArchive
             // 
             this.btnArchive.Enabled = false;
-            this.btnArchive.Location = new System.Drawing.Point(916, 61);
+            this.btnArchive.Location = new System.Drawing.Point(836, 54);
             this.btnArchive.Name = "btnArchive";
             this.btnArchive.Size = new System.Drawing.Size(81, 23);
             this.btnArchive.TabIndex = 234;
@@ -303,7 +306,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(916, 146);
+            this.btnRefresh.Location = new System.Drawing.Point(880, 315);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(81, 23);
             this.btnRefresh.TabIndex = 239;
@@ -317,7 +320,7 @@
             this.GroupBox1.Controls.Add(this.btnCancel);
             this.GroupBox1.Controls.Add(this.btnSubmit);
             this.GroupBox1.Controls.Add(this.btnUpdate);
-            this.GroupBox1.Location = new System.Drawing.Point(815, 24);
+            this.GroupBox1.Location = new System.Drawing.Point(735, 17);
             this.GroupBox1.Name = "GroupBox1";
             this.GroupBox1.Size = new System.Drawing.Size(95, 145);
             this.GroupBox1.TabIndex = 243;
@@ -325,6 +328,7 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Location = new System.Drawing.Point(6, 19);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(81, 23);
@@ -334,6 +338,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(6, 106);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(81, 23);
@@ -344,6 +349,7 @@
             // btnSubmit
             // 
             this.btnSubmit.Enabled = false;
+            this.btnSubmit.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.Location = new System.Drawing.Point(6, 48);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(81, 23);
@@ -354,6 +360,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Enabled = false;
+            this.btnUpdate.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.Location = new System.Drawing.Point(6, 77);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(81, 23);
@@ -363,7 +370,7 @@
             // 
             // btnViewArchive
             // 
-            this.btnViewArchive.Location = new System.Drawing.Point(916, 117);
+            this.btnViewArchive.Location = new System.Drawing.Point(880, 286);
             this.btnViewArchive.Name = "btnViewArchive";
             this.btnViewArchive.Size = new System.Drawing.Size(81, 23);
             this.btnViewArchive.TabIndex = 235;
@@ -376,6 +383,7 @@
             this.TabControl1.Controls.Add(this.TabPage1);
             this.TabControl1.Controls.Add(this.TabPage3);
             this.TabControl1.Controls.Add(this.TabPage5);
+            this.TabControl1.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TabControl1.Location = new System.Drawing.Point(12, 12);
             this.TabControl1.Name = "TabControl1";
             this.TabControl1.SelectedIndex = 0;
@@ -410,10 +418,11 @@
             this.TabPage1.Controls.Add(this.Label1);
             this.TabPage1.Controls.Add(this.CDPictureBox);
             this.TabPage1.Controls.Add(this.CDWebcam);
-            this.TabPage1.Location = new System.Drawing.Point(4, 22);
+            this.TabPage1.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TabPage1.Location = new System.Drawing.Point(4, 24);
             this.TabPage1.Name = "TabPage1";
             this.TabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage1.Size = new System.Drawing.Size(709, 132);
+            this.TabPage1.Size = new System.Drawing.Size(709, 130);
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "Student Information";
             this.TabPage1.UseVisualStyleBackColor = true;
@@ -430,10 +439,11 @@
             // Label48
             // 
             this.Label48.AutoSize = true;
+            this.Label48.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label48.ForeColor = System.Drawing.Color.DimGray;
             this.Label48.Location = new System.Drawing.Point(297, 98);
             this.Label48.Name = "Label48";
-            this.Label48.Size = new System.Drawing.Size(35, 13);
+            this.Label48.Size = new System.Drawing.Size(33, 15);
             this.Label48.TabIndex = 226;
             this.Label48.Text = "Email:";
             // 
@@ -449,10 +459,11 @@
             // Label50
             // 
             this.Label50.AutoSize = true;
+            this.Label50.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label50.ForeColor = System.Drawing.Color.DimGray;
             this.Label50.Location = new System.Drawing.Point(297, 72);
             this.Label50.Name = "Label50";
-            this.Label50.Size = new System.Drawing.Size(47, 13);
+            this.Label50.Size = new System.Drawing.Size(43, 15);
             this.Label50.TabIndex = 225;
             this.Label50.Text = "Number:";
             // 
@@ -462,7 +473,7 @@
             this.Label45.ForeColor = System.Drawing.Color.Red;
             this.Label45.Location = new System.Drawing.Point(286, 16);
             this.Label45.Name = "Label45";
-            this.Label45.Size = new System.Drawing.Size(11, 13);
+            this.Label45.Size = new System.Drawing.Size(11, 15);
             this.Label45.TabIndex = 210;
             this.Label45.Text = "*";
             // 
@@ -473,16 +484,17 @@
             this.cmbSection.Location = new System.Drawing.Point(355, 16);
             this.cmbSection.MaxDropDownItems = 30;
             this.cmbSection.Name = "cmbSection";
-            this.cmbSection.Size = new System.Drawing.Size(98, 21);
+            this.cmbSection.Size = new System.Drawing.Size(98, 23);
             this.cmbSection.TabIndex = 208;
             // 
             // Label46
             // 
             this.Label46.AutoSize = true;
+            this.Label46.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label46.ForeColor = System.Drawing.Color.DimGray;
             this.Label46.Location = new System.Drawing.Point(297, 18);
             this.Label46.Name = "Label46";
-            this.Label46.Size = new System.Drawing.Size(46, 13);
+            this.Label46.Size = new System.Drawing.Size(40, 15);
             this.Label46.TabIndex = 209;
             this.Label46.Text = "Section:";
             // 
@@ -497,10 +509,11 @@
             // lblAge
             // 
             this.lblAge.AutoSize = true;
+            this.lblAge.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAge.ForeColor = System.Drawing.Color.DimGray;
             this.lblAge.Location = new System.Drawing.Point(459, 45);
             this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(38, 13);
+            this.lblAge.Size = new System.Drawing.Size(34, 15);
             this.lblAge.TabIndex = 206;
             this.lblAge.Text = "Age: 0";
             // 
@@ -520,7 +533,7 @@
             this.Label21.ForeColor = System.Drawing.Color.Red;
             this.Label21.Location = new System.Drawing.Point(8, 72);
             this.Label21.Name = "Label21";
-            this.Label21.Size = new System.Drawing.Size(11, 13);
+            this.Label21.Size = new System.Drawing.Size(11, 15);
             this.Label21.TabIndex = 196;
             this.Label21.Text = "*";
             // 
@@ -535,10 +548,11 @@
             // Label26
             // 
             this.Label26.AutoSize = true;
+            this.Label26.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label26.ForeColor = System.Drawing.Color.DimGray;
             this.Label26.Location = new System.Drawing.Point(18, 72);
             this.Label26.Name = "Label26";
-            this.Label26.Size = new System.Drawing.Size(72, 13);
+            this.Label26.Size = new System.Drawing.Size(65, 15);
             this.Label26.TabIndex = 195;
             this.Label26.Text = "Middle Name:";
             // 
@@ -548,7 +562,7 @@
             this.Label25.ForeColor = System.Drawing.Color.Red;
             this.Label25.Location = new System.Drawing.Point(286, 43);
             this.Label25.Name = "Label25";
-            this.Label25.Size = new System.Drawing.Size(11, 13);
+            this.Label25.Size = new System.Drawing.Size(11, 15);
             this.Label25.TabIndex = 191;
             this.Label25.Text = "*";
             // 
@@ -558,7 +572,7 @@
             this.Label24.ForeColor = System.Drawing.Color.Red;
             this.Label24.Location = new System.Drawing.Point(8, 45);
             this.Label24.Name = "Label24";
-            this.Label24.Size = new System.Drawing.Size(11, 13);
+            this.Label24.Size = new System.Drawing.Size(11, 15);
             this.Label24.TabIndex = 190;
             this.Label24.Text = "*";
             // 
@@ -568,7 +582,7 @@
             this.Label23.ForeColor = System.Drawing.Color.Red;
             this.Label23.Location = new System.Drawing.Point(8, 98);
             this.Label23.Name = "Label23";
-            this.Label23.Size = new System.Drawing.Size(11, 13);
+            this.Label23.Size = new System.Drawing.Size(11, 15);
             this.Label23.TabIndex = 189;
             this.Label23.Text = "*";
             // 
@@ -578,7 +592,7 @@
             this.Label22.ForeColor = System.Drawing.Color.Red;
             this.Label22.Location = new System.Drawing.Point(8, 18);
             this.Label22.Name = "Label22";
-            this.Label22.Size = new System.Drawing.Size(11, 13);
+            this.Label22.Size = new System.Drawing.Size(11, 15);
             this.Label22.TabIndex = 188;
             this.Label22.Text = "*";
             // 
@@ -594,10 +608,11 @@
             // Label4
             // 
             this.Label4.AutoSize = true;
+            this.Label4.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label4.ForeColor = System.Drawing.Color.DimGray;
             this.Label4.Location = new System.Drawing.Point(297, 45);
             this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(48, 13);
+            this.Label4.Size = new System.Drawing.Size(44, 15);
             this.Label4.TabIndex = 184;
             this.Label4.Text = "Birthday:";
             // 
@@ -612,10 +627,11 @@
             // Label3
             // 
             this.Label3.AutoSize = true;
+            this.Label3.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label3.ForeColor = System.Drawing.Color.DimGray;
             this.Label3.Location = new System.Drawing.Point(18, 45);
             this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(60, 13);
+            this.Label3.Size = new System.Drawing.Size(56, 15);
             this.Label3.TabIndex = 183;
             this.Label3.Text = "First Name:";
             // 
@@ -630,20 +646,22 @@
             // Label2
             // 
             this.Label2.AutoSize = true;
+            this.Label2.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label2.ForeColor = System.Drawing.Color.DimGray;
             this.Label2.Location = new System.Drawing.Point(18, 98);
             this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(61, 13);
+            this.Label2.Size = new System.Drawing.Size(55, 15);
             this.Label2.TabIndex = 182;
             this.Label2.Text = "Last Name:";
             // 
             // Label1
             // 
             this.Label1.AutoSize = true;
+            this.Label1.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label1.ForeColor = System.Drawing.Color.DimGray;
             this.Label1.Location = new System.Drawing.Point(18, 18);
             this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(61, 13);
+            this.Label1.Size = new System.Drawing.Size(51, 15);
             this.Label1.TabIndex = 181;
             this.Label1.Text = "Student ID:";
             // 
@@ -673,10 +691,10 @@
             // 
             this.TabPage3.Controls.Add(this.groupBox3);
             this.TabPage3.Controls.Add(this.groupBox2);
-            this.TabPage3.Location = new System.Drawing.Point(4, 22);
+            this.TabPage3.Location = new System.Drawing.Point(4, 24);
             this.TabPage3.Name = "TabPage3";
             this.TabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage3.Size = new System.Drawing.Size(709, 132);
+            this.TabPage3.Size = new System.Drawing.Size(709, 130);
             this.TabPage3.TabIndex = 2;
             this.TabPage3.Text = "Guardian";
             this.TabPage3.UseVisualStyleBackColor = true;
@@ -711,7 +729,7 @@
             this.label5.ForeColor = System.Drawing.Color.DimGray;
             this.label5.Location = new System.Drawing.Point(10, 79);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(33, 15);
             this.label5.TabIndex = 240;
             this.label5.Text = "Email:";
             // 
@@ -730,7 +748,7 @@
             this.label6.ForeColor = System.Drawing.Color.DimGray;
             this.label6.Location = new System.Drawing.Point(10, 53);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 13);
+            this.label6.Size = new System.Drawing.Size(43, 15);
             this.label6.TabIndex = 239;
             this.label6.Text = "Number:";
             // 
@@ -742,7 +760,7 @@
             this.cmbCitizenship.Location = new System.Drawing.Point(69, 23);
             this.cmbCitizenship.MaxLength = 100;
             this.cmbCitizenship.Name = "cmbCitizenship";
-            this.cmbCitizenship.Size = new System.Drawing.Size(208, 21);
+            this.cmbCitizenship.Size = new System.Drawing.Size(208, 23);
             this.cmbCitizenship.Sorted = true;
             this.cmbCitizenship.TabIndex = 236;
             // 
@@ -752,7 +770,7 @@
             this.Label18.ForeColor = System.Drawing.Color.DimGray;
             this.Label18.Location = new System.Drawing.Point(10, 26);
             this.Label18.Name = "Label18";
-            this.Label18.Size = new System.Drawing.Size(53, 13);
+            this.Label18.Size = new System.Drawing.Size(47, 15);
             this.Label18.TabIndex = 231;
             this.Label18.Text = "Guardian:";
             // 
@@ -773,7 +791,7 @@
             this.chkAutoTxt.ForeColor = System.Drawing.Color.DimGray;
             this.chkAutoTxt.Location = new System.Drawing.Point(15, 18);
             this.chkAutoTxt.Name = "chkAutoTxt";
-            this.chkAutoTxt.Size = new System.Drawing.Size(74, 17);
+            this.chkAutoTxt.Size = new System.Drawing.Size(67, 19);
             this.chkAutoTxt.TabIndex = 199;
             this.chkAutoTxt.Text = "Auto SMS";
             this.chkAutoTxt.UseVisualStyleBackColor = true;
@@ -784,7 +802,7 @@
             this.checkBox1.ForeColor = System.Drawing.Color.DimGray;
             this.checkBox1.Location = new System.Drawing.Point(15, 41);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(76, 17);
+            this.checkBox1.Size = new System.Drawing.Size(70, 19);
             this.checkBox1.TabIndex = 225;
             this.checkBox1.Text = "Auto Email";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -792,10 +810,10 @@
             // TabPage5
             // 
             this.TabPage5.Controls.Add(this.txtNote);
-            this.TabPage5.Location = new System.Drawing.Point(4, 22);
+            this.TabPage5.Location = new System.Drawing.Point(4, 24);
             this.TabPage5.Name = "TabPage5";
             this.TabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage5.Size = new System.Drawing.Size(709, 132);
+            this.TabPage5.Size = new System.Drawing.Size(709, 130);
             this.TabPage5.TabIndex = 4;
             this.TabPage5.Text = "Note";
             this.TabPage5.UseVisualStyleBackColor = true;
@@ -812,9 +830,10 @@
             // RadioButton1
             // 
             this.RadioButton1.AutoSize = true;
+            this.RadioButton1.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RadioButton1.Location = new System.Drawing.Point(289, 177);
             this.RadioButton1.Name = "RadioButton1";
-            this.RadioButton1.Size = new System.Drawing.Size(76, 17);
+            this.RadioButton1.Size = new System.Drawing.Size(70, 19);
             this.RadioButton1.TabIndex = 245;
             this.RadioButton1.Text = "Master List";
             this.RadioButton1.UseVisualStyleBackColor = true;
@@ -825,13 +844,14 @@
             this.grdStudents.AllowUserToDeleteRows = false;
             this.grdStudents.AllowUserToOrderColumns = true;
             this.grdStudents.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.grdStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.grdStudents.BackgroundColor = System.Drawing.Color.Silver;
+            this.grdStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdStudents.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -846,7 +866,7 @@
             this.Birthday,
             this.ImagePath,
             this.EmailAddress,
-            this.SectionID,
+            this.SectionName,
             this.RFID,
             this.Active,
             this.Note,
@@ -863,12 +883,12 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdStudents.DefaultCellStyle = dataGridViewCellStyle4;
             this.grdStudents.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.grdStudents.Location = new System.Drawing.Point(0, 205);
+            this.grdStudents.Location = new System.Drawing.Point(0, 202);
             this.grdStudents.Name = "grdStudents";
             this.grdStudents.ReadOnly = true;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -876,7 +896,7 @@
             this.grdStudents.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.grdStudents.RowHeadersVisible = false;
             this.grdStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdStudents.Size = new System.Drawing.Size(1009, 465);
+            this.grdStudents.Size = new System.Drawing.Size(1009, 468);
             this.grdStudents.TabIndex = 247;
             this.grdStudents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdStudents_CellContentClick);
             // 
@@ -887,7 +907,6 @@
             this.StudentID.Name = "StudentID";
             this.StudentID.ReadOnly = true;
             this.StudentID.Visible = false;
-            this.StudentID.Width = 69;
             // 
             // StudentNumber
             // 
@@ -896,7 +915,6 @@
             this.StudentNumber.HeaderText = "Student No.";
             this.StudentNumber.Name = "StudentNumber";
             this.StudentNumber.ReadOnly = true;
-            this.StudentNumber.Width = 95;
             // 
             // FirstName
             // 
@@ -905,7 +923,6 @@
             this.FirstName.HeaderText = "First Name";
             this.FirstName.Name = "FirstName";
             this.FirstName.ReadOnly = true;
-            this.FirstName.Width = 91;
             // 
             // MiddleName
             // 
@@ -914,7 +931,6 @@
             this.MiddleName.HeaderText = "Middle Name";
             this.MiddleName.Name = "MiddleName";
             this.MiddleName.ReadOnly = true;
-            this.MiddleName.Width = 103;
             // 
             // LastName
             // 
@@ -923,7 +939,6 @@
             this.LastName.HeaderText = "Last Name";
             this.LastName.Name = "LastName";
             this.LastName.ReadOnly = true;
-            this.LastName.Width = 90;
             // 
             // Birthday
             // 
@@ -935,7 +950,6 @@
             this.Birthday.HeaderText = "Birthday";
             this.Birthday.Name = "Birthday";
             this.Birthday.ReadOnly = true;
-            this.Birthday.Width = 77;
             // 
             // ImagePath
             // 
@@ -944,7 +958,6 @@
             this.ImagePath.Name = "ImagePath";
             this.ImagePath.ReadOnly = true;
             this.ImagePath.Visible = false;
-            this.ImagePath.Width = 90;
             // 
             // EmailAddress
             // 
@@ -953,16 +966,14 @@
             this.EmailAddress.HeaderText = "Email Address";
             this.EmailAddress.Name = "EmailAddress";
             this.EmailAddress.ReadOnly = true;
-            this.EmailAddress.Width = 112;
             // 
-            // SectionID
+            // SectionName
             // 
-            this.SectionID.DataPropertyName = "SectionID";
-            this.SectionID.FillWeight = 83.95642F;
-            this.SectionID.HeaderText = "Section";
-            this.SectionID.Name = "SectionID";
-            this.SectionID.ReadOnly = true;
-            this.SectionID.Width = 73;
+            this.SectionName.DataPropertyName = "SectionName";
+            this.SectionName.FillWeight = 83.95642F;
+            this.SectionName.HeaderText = "Section";
+            this.SectionName.Name = "SectionName";
+            this.SectionName.ReadOnly = true;
             // 
             // RFID
             // 
@@ -970,7 +981,6 @@
             this.RFID.HeaderText = "RFID";
             this.RFID.Name = "RFID";
             this.RFID.ReadOnly = true;
-            this.RFID.Width = 55;
             // 
             // Active
             // 
@@ -981,7 +991,6 @@
             this.Active.ReadOnly = true;
             this.Active.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Active.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Active.Width = 50;
             // 
             // Note
             // 
@@ -990,7 +999,6 @@
             this.Note.HeaderText = "Note";
             this.Note.Name = "Note";
             this.Note.ReadOnly = true;
-            this.Note.Width = 57;
             // 
             // CreatedBy
             // 
@@ -999,7 +1007,6 @@
             this.CreatedBy.HeaderText = "Created By";
             this.CreatedBy.Name = "CreatedBy";
             this.CreatedBy.ReadOnly = true;
-            this.CreatedBy.Width = 92;
             // 
             // CreatedDate
             // 
@@ -1008,7 +1015,6 @@
             this.CreatedDate.HeaderText = "Created Date";
             this.CreatedDate.Name = "CreatedDate";
             this.CreatedDate.ReadOnly = true;
-            this.CreatedDate.Width = 103;
             // 
             // ModifiedBy
             // 
@@ -1017,7 +1023,6 @@
             this.ModifiedBy.HeaderText = "Modified By";
             this.ModifiedBy.Name = "ModifiedBy";
             this.ModifiedBy.ReadOnly = true;
-            this.ModifiedBy.Width = 96;
             // 
             // ModifiedDate
             // 
@@ -1026,7 +1031,6 @@
             this.ModifiedDate.HeaderText = "Modified Date";
             this.ModifiedDate.Name = "ModifiedDate";
             this.ModifiedDate.ReadOnly = true;
-            this.ModifiedDate.Width = 107;
             // 
             // Student
             // 
@@ -1035,17 +1039,17 @@
             this.ClientSize = new System.Drawing.Size(1009, 692);
             this.Controls.Add(this.grdStudents);
             this.Controls.Add(this.StatusStrip1);
-            this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.Label39);
             this.Controls.Add(this.RadioButton2);
+            this.Controls.Add(this.btnRestore);
             this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnArchive);
-            this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this.RadioButton1);
             this.Controls.Add(this.btnViewArchive);
             this.Controls.Add(this.TabControl1);
-            this.Controls.Add(this.RadioButton1);
             this.Name = "Student";
             this.Text = "Student";
             this.Load += new System.EventHandler(this.Student_Load);
@@ -1153,7 +1157,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Birthday;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImagePath;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmailAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SectionID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SectionName;
         private System.Windows.Forms.DataGridViewTextBoxColumn RFID;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Active;
         private System.Windows.Forms.DataGridViewTextBoxColumn Note;

@@ -48,7 +48,7 @@ namespace DataAccess
         /// </summary>
         public smsEntities() : base("name=smsEntities", "smsEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = false;
+            this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
@@ -57,7 +57,7 @@ namespace DataAccess
         /// </summary>
         public smsEntities(string connectionString) : base(connectionString, "smsEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = false;
+            this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
@@ -66,7 +66,7 @@ namespace DataAccess
         /// </summary>
         public smsEntities(EntityConnection connection) : base(connection, "smsEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = false;
+            this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     

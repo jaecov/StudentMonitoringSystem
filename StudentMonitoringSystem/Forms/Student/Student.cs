@@ -19,7 +19,25 @@ namespace StudentMonitoringSystem.Forms.Student
 
         private void Student_Load(object sender, EventArgs e)
         {
-            this.grdStudents.DataSource = BO.Student.GetStudentByStatus(true);
+            this.grdStudents.DataSource = BO.Student.GetStudentByStatus(true).Select
+                    (s => new { 
+                        s.StudentID, 
+                        s.StudentNumber,
+                        s.FirstName, 
+                        s.MiddleName,
+                        s.LastName,
+                        s.Birthday,
+                        s.ImagePath,
+                        s.EmailAddress,
+                        s.section.SectionName,
+                        s.RFID,
+                        s.Note,
+                        s.Active,
+                        s.CreatedBy,
+                        s.CreatedDate,
+                        s.ModifiedBy,
+                        s.ModifiedDate
+                    }).ToList(); 
            
          
         }

@@ -33,10 +33,11 @@ namespace StudentMonitoringSystem.Forms.Student
                         s.RFID,
                         s.Note,
                         s.Active,
-                        s.CreatedBy,
+                        CreatedBy = s.employee.FirstName + ' ' + s.employee.LastName,
                         s.CreatedDate,
                         s.ModifiedBy,
-                        s.ModifiedDate
+                        s.ModifiedDate,
+                        
                     }).ToList(); 
            
          

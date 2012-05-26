@@ -56,11 +56,7 @@
       `students_mobile`.`ModifiedDate`
       FROM `students_mobile` AS `students_mobile`</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_employeessection" Association="smsModel.Store.FK_employeessection">
-            <End Role="employees" EntitySet="employees" />
-            <End Role="employees_section" EntitySet="employees_section" />
-          </AssociationSet>
-          <AssociationSet Name="FK_employeessections" Association="smsModel.Store.FK_employeessections">
+          <AssociationSet Name="FK_employees_section" Association="smsModel.Store.FK_employees_section">
             <End Role="sections" EntitySet="sections" />
             <End Role="employees_section" EntitySet="employees_section" />
           </AssociationSet>
@@ -75,6 +71,10 @@
           <AssociationSet Name="FK_guardiansstudents" Association="smsModel.Store.FK_guardiansstudents">
             <End Role="students" EntitySet="students" />
             <End Role="guardians_student" EntitySet="guardians_student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sections" Association="smsModel.Store.FK_sections">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="sections" EntitySet="sections" />
           </AssociationSet>
           <AssociationSet Name="FK_smspendingmessage" Association="smsModel.Store.FK_smspendingmessage">
             <End Role="students" EntitySet="students" />
@@ -99,6 +99,10 @@
           <AssociationSet Name="FK_studentsmobile" Association="smsModel.Store.FK_studentsmobile">
             <End Role="students" EntitySet="students" />
             <End Role="students_mobile" EntitySet="students_mobile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentsw" Association="smsModel.Store.FK_studentsw">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="students" EntitySet="students" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="employees">
@@ -294,19 +298,7 @@
           <Property Name="ModifiedBy" Type="int" />
           <Property Name="ModifiedDate" Type="datetime" />
         </EntityType>
-        <Association Name="FK_employeessection">
-          <End Role="employees" Type="smsModel.Store.employees" Multiplicity="1" />
-          <End Role="employees_section" Type="smsModel.Store.employees_section" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="employees">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="employees_section">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_employeessections">
+        <Association Name="FK_employees_section">
           <End Role="sections" Type="smsModel.Store.sections" Multiplicity="1" />
           <End Role="employees_section" Type="smsModel.Store.employees_section" Multiplicity="*" />
           <ReferentialConstraint>
@@ -351,6 +343,18 @@
             </Principal>
             <Dependent Role="guardians_student">
               <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sections">
+          <End Role="employees" Type="smsModel.Store.employees" Multiplicity="1" />
+          <End Role="sections" Type="smsModel.Store.sections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="sections">
+              <PropertyRef Name="CreatedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -426,6 +430,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_studentsw">
+          <End Role="employees" Type="smsModel.Store.employees" Multiplicity="1" />
+          <End Role="students" Type="smsModel.Store.students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="students">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -444,11 +460,11 @@
           <EntitySet Name="sms_students" EntityType="smsModel.sms_students" />
           <EntitySet Name="students" EntityType="smsModel.student" />
           <EntitySet Name="students_mobile" EntityType="smsModel.students_mobile" />
-          <AssociationSet Name="FK_employeessection" Association="smsModel.FK_employeessection">
+          <AssociationSet Name="FK_employees_section" Association="smsModel.FK_employees_section">
             <End Role="employee" EntitySet="employees" />
             <End Role="employees_section" EntitySet="employees_section" />
           </AssociationSet>
-          <AssociationSet Name="FK_employeessections" Association="smsModel.FK_employeessections">
+          <AssociationSet Name="FK_employees_sectionx" Association="smsModel.FK_employees_sectionx">
             <End Role="section" EntitySet="sections" />
             <End Role="employees_section" EntitySet="employees_section" />
           </AssociationSet>
@@ -472,6 +488,10 @@
             <End Role="student" EntitySet="students" />
             <End Role="guardians_student" EntitySet="guardians_student" />
           </AssociationSet>
+          <AssociationSet Name="FK_students" Association="smsModel.FK_students">
+            <End Role="section" EntitySet="sections" />
+            <End Role="student" EntitySet="students" />
+          </AssociationSet>
           <AssociationSet Name="FK_smspendingmessage" Association="smsModel.FK_smspendingmessage">
             <End Role="student" EntitySet="students" />
             <End Role="sms_pending_students" EntitySet="sms_pending_students" />
@@ -484,8 +504,12 @@
             <End Role="student" EntitySet="students" />
             <End Role="students_mobile" EntitySet="students_mobile" />
           </AssociationSet>
-          <AssociationSet Name="FK_students" Association="smsModel.FK_students">
+          <AssociationSet Name="FK_sections" Association="smsModel.FK_sections">
+            <End Role="employee" EntitySet="employees" />
             <End Role="section" EntitySet="sections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentsw" Association="smsModel.FK_studentsw">
+            <End Role="employee" EntitySet="employees" />
             <End Role="student" EntitySet="students" />
           </AssociationSet>
         </EntityContainer>
@@ -508,7 +532,9 @@
           <Property Type="DateTime" Name="CreatedDate" />
           <Property Type="Int32" Name="ModifiedBy" />
           <Property Type="DateTime" Name="ModifiedDate" />
-          <NavigationProperty Name="employees_section" Relationship="smsModel.FK_employeessection" FromRole="employee" ToRole="employees_section" />
+          <NavigationProperty Name="employees_section" Relationship="smsModel.FK_employees_section" FromRole="employee" ToRole="employees_section" />
+          <NavigationProperty Name="sections" Relationship="smsModel.FK_sections" FromRole="employee" ToRole="section" />
+          <NavigationProperty Name="students" Relationship="smsModel.FK_studentsw" FromRole="employee" ToRole="student" />
         </EntityType>
         <EntityType Name="employees_section">
           <Key>
@@ -523,8 +549,8 @@
           <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
           <Property Type="Int32" Name="ModifiedBy" />
           <Property Type="DateTime" Name="ModifiedDate" />
-          <NavigationProperty Name="employee" Relationship="smsModel.FK_employeessection" FromRole="employees_section" ToRole="employee" />
-          <NavigationProperty Name="section" Relationship="smsModel.FK_employeessections" FromRole="employees_section" ToRole="section" />
+          <NavigationProperty Name="employee" Relationship="smsModel.FK_employees_section" FromRole="employees_section" ToRole="employee" />
+          <NavigationProperty Name="section" Relationship="smsModel.FK_employees_sectionx" FromRole="employees_section" ToRole="section" />
         </EntityType>
         <EntityType Name="guardian">
           <Key>
@@ -593,8 +619,9 @@
           <Property Type="DateTime" Name="CreatedDate" Nullable="false" />
           <Property Type="Int32" Name="ModifiedBy" />
           <Property Type="DateTime" Name="ModifiedDate" />
-          <NavigationProperty Name="employees_section" Relationship="smsModel.FK_employeessections" FromRole="section" ToRole="employees_section" />
+          <NavigationProperty Name="employees_section" Relationship="smsModel.FK_employees_sectionx" FromRole="section" ToRole="employees_section" />
           <NavigationProperty Name="students" Relationship="smsModel.FK_students" FromRole="section" ToRole="student" />
+          <NavigationProperty Name="employee" Relationship="smsModel.FK_sections" FromRole="section" ToRole="employee" />
         </EntityType>
         <EntityType Name="sms_guardians">
           <Key>
@@ -672,10 +699,11 @@
           <Property Type="Int32" Name="ModifiedBy" />
           <Property Type="DateTime" Name="ModifiedDate" />
           <NavigationProperty Name="guardians_student" Relationship="smsModel.FK_guardiansstudents" FromRole="student" ToRole="guardians_student" />
+          <NavigationProperty Name="section" Relationship="smsModel.FK_students" FromRole="student" ToRole="section" />
           <NavigationProperty Name="sms_pending_students" Relationship="smsModel.FK_smspendingmessage" FromRole="student" ToRole="sms_pending_students" />
           <NavigationProperty Name="sms_students" Relationship="smsModel.FK_sms_students" FromRole="student" ToRole="sms_students" />
           <NavigationProperty Name="students_mobile" Relationship="smsModel.FK_studentsmobile" FromRole="student" ToRole="students_mobile" />
-          <NavigationProperty Name="section" Relationship="smsModel.FK_students" FromRole="student" ToRole="section" />
+          <NavigationProperty Name="employee" Relationship="smsModel.FK_studentsw" FromRole="student" ToRole="employee" />
         </EntityType>
         <EntityType Name="students_mobile">
           <Key>
@@ -692,7 +720,7 @@
           <Property Type="DateTime" Name="ModifiedDate" />
           <NavigationProperty Name="student" Relationship="smsModel.FK_studentsmobile" FromRole="students_mobile" ToRole="student" />
         </EntityType>
-        <Association Name="FK_employeessection">
+        <Association Name="FK_employees_section">
           <End Type="smsModel.employee" Role="employee" Multiplicity="1" />
           <End Type="smsModel.employees_section" Role="employees_section" Multiplicity="*" />
           <ReferentialConstraint>
@@ -704,7 +732,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_employeessections">
+        <Association Name="FK_employees_sectionx">
           <End Type="smsModel.section" Role="section" Multiplicity="1" />
           <End Type="smsModel.employees_section" Role="employees_section" Multiplicity="*" />
           <ReferentialConstraint>
@@ -776,6 +804,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_students">
+          <End Type="smsModel.section" Role="section" Multiplicity="0..1" />
+          <End Type="smsModel.student" Role="student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="section">
+              <PropertyRef Name="SectionID" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="SectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_smspendingmessage">
           <End Type="smsModel.student" Role="student" Multiplicity="1" />
           <End Type="smsModel.sms_pending_students" Role="sms_pending_students" Multiplicity="*" />
@@ -812,15 +852,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_students">
-          <End Type="smsModel.section" Role="section" Multiplicity="0..1" />
+        <Association Name="FK_sections">
+          <End Type="smsModel.employee" Role="employee" Multiplicity="1" />
+          <End Type="smsModel.section" Role="section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="section">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_studentsw">
+          <End Type="smsModel.employee" Role="employee" Multiplicity="1" />
           <End Type="smsModel.student" Role="student" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="section">
-              <PropertyRef Name="SectionID" />
+            <Principal Role="employee">
+              <PropertyRef Name="EmployeeID" />
             </Principal>
             <Dependent Role="student">
-              <PropertyRef Name="SectionID" />
+              <PropertyRef Name="CreatedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1046,12 +1098,14 @@
         <EntityTypeShape EntityType="smsModel.sms_students" Width="1.5" PointX="5.25" PointY="15.375" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="smsModel.student" Width="1.5" PointX="3" PointY="10.625" Height="5.05710937500001" />
         <EntityTypeShape EntityType="smsModel.students_mobile" Width="1.5" PointX="5.25" PointY="18.5" Height="2.3648893229166674" />
-        <AssociationConnector Association="smsModel.FK_employeessection" >
-          <ConnectorPoint PointX="2.25" PointY="6.7978011067708337" />
-          <ConnectorPoint PointX="3" PointY="6.7978011067708337" />
+        <AssociationConnector Association="smsModel.FK_employees_section" >
+          <ConnectorPoint PointX="2.25" PointY="6.9901025390625" />
+          <ConnectorPoint PointX="3" PointY="6.9901025390625" />
         </AssociationConnector>
-        <AssociationConnector Association="smsModel.FK_employeessections" >
+        <AssociationConnector Association="smsModel.FK_employees_sectionx" >
           <ConnectorPoint PointX="2.25" PointY="8.90359537760417" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="8.90359537760417" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="8.90359537760417" />
           <ConnectorPoint PointX="3" PointY="8.90359537760417" />
         </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_guardiansmobile" >
@@ -1080,6 +1134,12 @@
           <ConnectorPoint PointX="4.958333333333333" PointY="11.062246093749998" />
           <ConnectorPoint PointX="5.25" PointY="11.062246093749998" />
         </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_students" >
+          <ConnectorPoint PointX="2.25" PointY="10.99974609375" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="10.99974609375" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="10.99974609375" />
+          <ConnectorPoint PointX="3" PointY="10.99974609375" />
+        </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_smspendingmessage" >
           <ConnectorPoint PointX="4.5" PointY="13.586293945312498" />
           <ConnectorPoint PointX="4.791666666666667" PointY="13.586293945312498" />
@@ -1087,21 +1147,27 @@
           <ConnectorPoint PointX="5.25" PointY="13.586293945312498" />
         </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_sms_students" >
-          <ConnectorPoint PointX="4.5" PointY="15.5285546875" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="15.5285546875" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="15.5285546875" />
-          <ConnectorPoint PointX="5.25" PointY="15.5285546875" />
+          <ConnectorPoint PointX="4.5" PointY="15.624705403645834" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="15.624705403645834" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="15.624705403645834" />
+          <ConnectorPoint PointX="5.25" PointY="15.624705403645834" />
         </AssociationConnector>
         <AssociationConnector Association="smsModel.FK_studentsmobile" >
-          <ConnectorPoint PointX="3.75" PointY="15.682109375" />
+          <ConnectorPoint PointX="3.75" PointY="15.874410807291666" />
           <ConnectorPoint PointX="3.75" PointY="19.682444661458334" />
           <ConnectorPoint PointX="4.791666666666667" PointY="19.682444661458334" />
           <ConnectorPoint PointX="4.958333333333333" PointY="19.682444661458334" />
           <ConnectorPoint PointX="5.25" PointY="19.682444661458334" />
         </AssociationConnector>
-        <AssociationConnector Association="smsModel.FK_students" >
-          <ConnectorPoint PointX="2.25" PointY="10.903595377604166" />
-          <ConnectorPoint PointX="3" PointY="10.903595377604166" />
+        <AssociationConnector Association="smsModel.FK_sections" >
+          <ConnectorPoint PointX="1.5" PointY="7.355205078125" />
+          <ConnectorPoint PointX="1.5" PointY="8.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="smsModel.FK_studentsw" >
+          <ConnectorPoint PointX="2.25" PointY="7.355205078125" />
+          <ConnectorPoint PointX="2.625" PointY="7.730205078125" />
+          <ConnectorPoint PointX="2.625" PointY="13.468330450520828" />
+          <ConnectorPoint PointX="3" PointY="13.468330450520828" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

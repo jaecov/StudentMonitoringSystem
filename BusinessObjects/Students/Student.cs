@@ -263,12 +263,10 @@ namespace BusinessObjects
         {
             try
             {
+                IList stud;
+                smsEntities db = new smsEntities();
                 //using (smsEntities db = new smsEntities())
                 //{
-                    smsEntities db = new smsEntities();
-
-                    IList stud;
-
                     switch (criteria.Type)
                     {
                         case CriteriaType.ByStatus:
@@ -278,7 +276,7 @@ namespace BusinessObjects
                             break;
                         case CriteriaType.BySection:
                             stud = (from x in db.students
-                                   where x.SectionID == criteria.Section
+                                    where x.SectionID == criteria.Section
                                     select x).ToList();
                             break;
                         case CriteriaType.ByStudentNumber:
@@ -294,10 +292,8 @@ namespace BusinessObjects
                         default:
                             throw new Exception("Invalid CriteriaType.");
                     }
-
-                    return (List<student>)stud;
                 //}
-
+                return (List<student>)stud;
             }
             catch (Exception ex)
             {

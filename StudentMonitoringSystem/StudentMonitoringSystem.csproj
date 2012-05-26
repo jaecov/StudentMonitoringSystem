@@ -101,6 +101,12 @@
     <Compile Include="Forms\SMS\Sent.Designer.cs">
       <DependentUpon>Sent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Student\Student.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Student\Student.Designer.cs">
+      <DependentUpon>Student.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Main.resx">

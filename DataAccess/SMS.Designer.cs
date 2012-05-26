@@ -1117,7 +1117,10 @@ namespace DataAccess
         /// <param name="lastName">Initial value of the LastName property.</param>
         /// <param name="createdBy">Initial value of the CreatedBy property.</param>
         /// <param name="createdDate">Initial value of the CreatedDate property.</param>
-        public static guardian Createguardian(global::System.Int32 guardianID, global::System.String firstName, global::System.String middleName, global::System.String lastName, global::System.Int32 createdBy, global::System.DateTime createdDate)
+        /// <param name="automaticSMS">Initial value of the AutomaticSMS property.</param>
+        /// <param name="automaticEmail">Initial value of the AutomaticEmail property.</param>
+        /// <param name="active">Initial value of the Active property.</param>
+        public static guardian Createguardian(global::System.Int32 guardianID, global::System.String firstName, global::System.String middleName, global::System.String lastName, global::System.Int32 createdBy, global::System.DateTime createdDate, global::System.Boolean automaticSMS, global::System.Boolean automaticEmail, global::System.Boolean active)
         {
             guardian guardian = new guardian();
             guardian.GuardianID = guardianID;
@@ -1126,6 +1129,9 @@ namespace DataAccess
             guardian.LastName = lastName;
             guardian.CreatedBy = createdBy;
             guardian.CreatedDate = createdDate;
+            guardian.AutomaticSMS = automaticSMS;
+            guardian.AutomaticEmail = automaticEmail;
+            guardian.Active = active;
             return guardian;
         }
 
@@ -1446,6 +1452,78 @@ namespace DataAccess
         private Nullable<global::System.DateTime> _ModifiedDate;
         partial void OnModifiedDateChanging(Nullable<global::System.DateTime> value);
         partial void OnModifiedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean AutomaticSMS
+        {
+            get
+            {
+                return _AutomaticSMS;
+            }
+            set
+            {
+                OnAutomaticSMSChanging(value);
+                ReportPropertyChanging("AutomaticSMS");
+                _AutomaticSMS = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AutomaticSMS");
+                OnAutomaticSMSChanged();
+            }
+        }
+        private global::System.Boolean _AutomaticSMS;
+        partial void OnAutomaticSMSChanging(global::System.Boolean value);
+        partial void OnAutomaticSMSChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean AutomaticEmail
+        {
+            get
+            {
+                return _AutomaticEmail;
+            }
+            set
+            {
+                OnAutomaticEmailChanging(value);
+                ReportPropertyChanging("AutomaticEmail");
+                _AutomaticEmail = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AutomaticEmail");
+                OnAutomaticEmailChanged();
+            }
+        }
+        private global::System.Boolean _AutomaticEmail;
+        partial void OnAutomaticEmailChanging(global::System.Boolean value);
+        partial void OnAutomaticEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Active
+        {
+            get
+            {
+                return _Active;
+            }
+            set
+            {
+                OnActiveChanging(value);
+                ReportPropertyChanging("Active");
+                _Active = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Active");
+                OnActiveChanged();
+            }
+        }
+        private global::System.Boolean _Active;
+        partial void OnActiveChanging(global::System.Boolean value);
+        partial void OnActiveChanged();
 
         #endregion
     

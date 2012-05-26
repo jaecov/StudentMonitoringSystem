@@ -151,6 +151,9 @@
           <Property Name="EmailAddress" Type="varchar" MaxLength="100" />
           <Property Name="RFID" Type="varchar" MaxLength="100" />
           <Property Name="Note" Type="varchar" MaxLength="500" />
+          <Property Name="AutomaticSMS" Type="bool" Nullable="false" />
+          <Property Name="AutomaticEmail" Type="bool" Nullable="false" />
+          <Property Name="Active" Type="bool" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="ModifiedBy" Type="int" />
@@ -544,6 +547,9 @@
           <NavigationProperty Name="guardians_student" Relationship="smsModel.FK_guardiansstudent" FromRole="guardian" ToRole="guardians_student" />
           <NavigationProperty Name="sms_guardians" Relationship="smsModel.FK_sms_guardians" FromRole="guardian" ToRole="sms_guardians" />
           <NavigationProperty Name="sms_pending_guardians" Relationship="smsModel.FK_sms_pending_guardians" FromRole="guardian" ToRole="sms_pending_guardians" />
+          <Property Type="Boolean" Name="AutomaticSMS" Nullable="false" />
+          <Property Type="Boolean" Name="AutomaticEmail" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
         </EntityType>
         <EntityType Name="guardians_mobile">
           <Key>
@@ -860,6 +866,9 @@
           <EntitySetMapping Name="guardians">
             <EntityTypeMapping TypeName="smsModel.guardian">
               <MappingFragment StoreEntitySet="guardians">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="AutomaticEmail" ColumnName="AutomaticEmail" />
+                <ScalarProperty Name="AutomaticSMS" ColumnName="AutomaticSMS" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

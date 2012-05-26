@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataAccess;
+using System.Collections;
+
 
 namespace BusinessObjects
 {
     public class Student
     {
+
         #region Business Methods
 
         /// <summary>
@@ -94,53 +97,18 @@ namespace BusinessObjects
 
         #endregion
 
-        #region DataAccess
+        #region Factory
 
         /// <summary>
-        /// Get all list of active student
+        /// Get all list of student by status
         /// </summary>
-        /// <returns>List of active student</returns>
-        public static List<student> GetStudentByAllActive()
+        /// <param name="status">Active = True, Inactive = False</param>
+        /// <returns>List of student</returns>
+        public static List<student> GetStudentByStatus(bool status)
         {
             try
             {
-                if (StudentList != null) return StudentList;
-
-                using (smsEntities db = new smsEntities())
-                {
-                    var stud = from x in db.students
-                               where x.Active == true
-                                select x;
-
-                    StudentList = stud.ToList();
-                    return StudentList;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Get all list of inactive student
-        /// </summary>
-        /// <returns>List of inactive student</returns>
-        public static List<student> GetStudentByAllInActive()
-        {
-            try
-            {
-                if (StudentList != null) return StudentList;
-
-                using (smsEntities db = new smsEntities())
-                {
-                    var stud = from x in db.students
-                               where x.Active == false
-                               select x;
-
-                    StudentList = stud.ToList();
-                    return StudentList;
-                }
+                return Fetch(new Criteria(CriteriaType.ByStatus, status));
             }
             catch (Exception ex)
             {
@@ -156,14 +124,7 @@ namespace BusinessObjects
         {
             try
             {
-                using (smsEntities db = new smsEntities())
-                {
-                    var stud = from x in db.students
-                               where x.StudentNumber == studentNumber
-                               select x;
-
-                    return stud.ToList();
-                }
+                return Fetch(new Criteria(CriteriaType.ByStudentNumber, studentNumber));
             }
             catch (Exception ex)
             {
@@ -179,14 +140,7 @@ namespace BusinessObjects
         {
             try
             {
-                using (smsEntities db = new smsEntities())
-                {
-                    var stud = from x in db.students
-                               where x.SectionID == sectionID
-                               select x;
-
-                    return stud.ToList();
-                }
+                return Fetch(new Criteria(CriteriaType.BySection, sectionID));
             }
             catch (Exception ex)
             {
@@ -202,13 +156,147 @@ namespace BusinessObjects
         {
             try
             {
+                return Fetch(new Criteria(CriteriaType.ByName, name));
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region DataAccess
+
+        private enum CriteriaType
+        {
+            ByStatus,
+            ByStudentNumber,
+            BySection,
+            ByName
+        }
+
+        private class Criteria
+        {
+            private CriteriaType m_Type;
+            public CriteriaType Type
+            {
+                get { return m_Type; }
+            }
+
+            private bool m_Status;
+            private string m_StudentNumber;
+            private int m_Section;
+            private string m_Name;
+
+            public bool Status
+            {
+                get { return m_Status; }
+                set { m_Status = value; }
+            }
+
+            public string StudentNumber
+            {
+                get { return m_StudentNumber; }
+                set { m_StudentNumber = value; }
+            }
+
+            public int Section
+            {
+                get { return m_Section; }
+                set { m_Section = value; }
+            }
+
+            public string Name
+            {
+                get { return m_Name; }
+                set { m_Name = value; }
+            }
+
+            public Criteria(CriteriaType type, bool sParameter)
+            {
+                m_Type = type;
+                switch (type)
+                {
+                    case CriteriaType.ByStatus:
+                        m_Status = sParameter;
+                        break;
+                    default:
+                        throw new Exception("Invalid criteria type.");
+                }
+            }
+
+            public Criteria(CriteriaType type, string sParameter)
+            {
+                m_Type = type;
+                switch (type)
+                {
+                    case CriteriaType.ByStudentNumber:
+                        m_StudentNumber = sParameter;
+                        break;
+                    case CriteriaType.ByName:
+                        m_Name = sParameter;
+                        break;
+                    default:
+                        throw new Exception("Invalid criteria type.");
+                }
+            }
+
+            public Criteria(CriteriaType type, int sParameter)
+            {
+                m_Type = type;
+                switch (type)
+                {
+                    case CriteriaType.BySection:
+                        m_Section = sParameter;
+                        break;
+                    default:
+                        throw new Exception("Invalid criteria type.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get all list of active student
+        /// </summary>
+        /// <returns>List of active student</returns>
+        private static List<student> Fetch(Criteria criteria)
+        {
+            try
+            {
+                if (StudentList != null) return StudentList;
+
                 using (smsEntities db = new smsEntities())
                 {
-                    var stud = from x in db.students
-                               where x.FirstName.StartsWith(name) || x.LastName.StartsWith(name)
-                               select x;
+                    IList stud;
 
-                    return stud.ToList();
+                    switch (criteria.Type)
+                    {
+                        case CriteriaType.ByStatus:
+                            stud = (from x in db.students
+                                       where x.Active == criteria.Status
+                                       select x).ToList();
+                            break;
+                        case CriteriaType.BySection:
+                            stud = (from x in db.students
+                                   where x.SectionID == criteria.Section
+                                    select x).ToList();
+                            break;
+                        case CriteriaType.ByStudentNumber:
+                            stud = (from x in db.students
+                                    where x.StudentNumber == criteria.StudentNumber
+                                    select x).ToList();
+                            break;
+                        case CriteriaType.ByName:
+                            stud = (from x in db.students
+                                    where x.FirstName.StartsWith(criteria.Name) || x.LastName.StartsWith(criteria.Name)
+                                    select x).ToList();
+                            break;
+                        default:
+                            throw new Exception("Invalid CriteriaType.");
+                        
+                    }
+                    return (List<student>)stud;
                 }
             }
             catch (Exception ex)
@@ -226,7 +314,7 @@ namespace BusinessObjects
         /// <param name="lastName"></param>
         /// <param name="birthday"></param>
         /// <returns>True if added successfully otherwise false if not.</returns>
-        public static bool InsertStudent(string studentNumber, string firstName, string middleName, string lastName, DateTime birthday)
+        public static bool InsertStudent(string studentNumber, string firstName, string middleName, string lastName, DateTime birthday, string note)
         {
             try
             {
@@ -238,6 +326,8 @@ namespace BusinessObjects
                     stud.MiddleName = middleName;
                     stud.LastName = lastName;
                     stud.Birthday = birthday;
+                    stud.Note = note;
+                    stud.Active = true;
                     stud.CreatedBy = 1;
                     stud.CreatedDate = DateTime.Now;
 
@@ -264,7 +354,7 @@ namespace BusinessObjects
         /// <param name="lastName"></param>
         /// <param name="birthday"></param>
         /// <returns>True if updated successfully otherwise false if not.</returns>
-        public static bool UpdateStudent(int studentID, string studentNumber, string firstName, string middleName, string lastName, DateTime birthday)
+        public static bool UpdateStudent(int studentID, string studentNumber, string firstName, string middleName, string lastName, DateTime birthday, string note, bool studentStatus)
         {
             try
             {
@@ -276,68 +366,14 @@ namespace BusinessObjects
                     stud.MiddleName = middleName;
                     stud.LastName = lastName;
                     stud.Birthday = birthday;
+                    stud.Note = note;
+                    stud.Active = studentStatus;
                     stud.ModifiedBy = 1;
                     stud.ModifiedDate = DateTime.Now;
 
                     db.SaveChanges();
                     StudentList = null;
 
-                    return (stud.StudentID != 0) ? true : false;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Deactivate existing student
-        /// </summary>
-        /// <param name="studentID"></param>
-        /// <returns>True if deactivate successfully otherwise false if not.</returns>
-        public static bool DeactivateStudent(int studentID)
-        {
-            try
-            {
-                using (smsEntities db = new smsEntities())
-                {
-                    student stud = db.students.Single(u => u.StudentID == studentID);
-                    stud.Active = false;
-                    stud.ModifiedBy = 1;
-                    stud.ModifiedDate = DateTime.Now;
-
-                    db.SaveChanges();
-                    StudentList = null;
-
-                    return (stud.StudentID != 0) ? true : false;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Activate existing student
-        /// </summary>
-        /// <param name="studentID"></param>
-        /// <returns>True if activate successfully otherwise false if not.</returns>
-        public static bool ActivateStudent(int studentID)
-        {
-            try
-            {
-                using (smsEntities db = new smsEntities())
-                {
-                    student stud = db.students.Single(u => u.StudentID == studentID);
-                    stud.Active = true;
-                    stud.ModifiedBy = 1;
-                    stud.ModifiedDate = DateTime.Now;
-
-                    db.SaveChanges();
-                    StudentList = null;
-                    
                     return (stud.StudentID != 0) ? true : false;
                 }
             }
@@ -348,6 +384,5 @@ namespace BusinessObjects
         }
 
         #endregion
-
     }
 }   

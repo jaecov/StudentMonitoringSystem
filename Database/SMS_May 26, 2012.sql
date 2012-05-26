@@ -37,9 +37,11 @@ CREATE TABLE `employees` (
   `ModifiedBy` int(11) DEFAULT NULL,
   `ModifiedDate` datetime DEFAULT NULL,
   PRIMARY KEY (`EmployeeID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `employees` */
+
+insert  into `employees`(`EmployeeID`,`EmployeeNumber`,`Password`,`FirstName`,`MiddleName`,`LastName`,`Birthday`,`ImagePath`,`EmailAddress`,`RFID`,`Note`,`CreatedBy`,`CreatedDate`,`ModifiedBy`,`ModifiedDate`) values (1,'1','1','administrator','','','2012-01-01',NULL,NULL,NULL,NULL,1,'2012-01-01 00:00:00',NULL,NULL);
 
 /*Table structure for table `employees_section` */
 
@@ -54,8 +56,12 @@ CREATE TABLE `employees_section` (
   `ModifiedDate` datetime DEFAULT NULL,
   KEY `FK_guardiansstudent` (`EmployeeID`),
   KEY `FK_guardiansstudents` (`SectionID`),
-  CONSTRAINT `FK_employeessection` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`),
-  CONSTRAINT `FK_employeessections` FOREIGN KEY (`SectionID`) REFERENCES `sections` (`SectionID`)
+  KEY `FK_employees_sectiondf` (`CreatedBy`),
+  KEY `FK_employees_sectiongfhfg` (`ModifiedBy`),
+  CONSTRAINT `FK_employees_sectiongfhfg` FOREIGN KEY (`ModifiedBy`) REFERENCES `employees` (`EmployeeID`),
+  CONSTRAINT `FK_employees_section` FOREIGN KEY (`SectionID`) REFERENCES `sections` (`SectionID`),
+  CONSTRAINT `FK_employees_sectionb` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`),
+  CONSTRAINT `FK_employees_sectiondf` FOREIGN KEY (`CreatedBy`) REFERENCES `employees` (`EmployeeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `employees_section` */
@@ -81,7 +87,8 @@ CREATE TABLE `guardians` (
   `CreatedDate` datetime NOT NULL,
   `ModifiedBy` int(11) DEFAULT NULL,
   `ModifiedDate` datetime DEFAULT NULL,
-  PRIMARY KEY (`GuardianID`)
+  PRIMARY KEY (`GuardianID`),
+  KEY `FK_guardians` (`CreatedBy`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `guardians` */
@@ -134,7 +141,11 @@ CREATE TABLE `sections` (
   `CreatedDate` datetime NOT NULL,
   `ModifiedBy` int(11) DEFAULT NULL,
   `ModifiedDate` datetime DEFAULT NULL,
-  PRIMARY KEY (`SectionID`)
+  PRIMARY KEY (`SectionID`),
+  KEY `FK_sections` (`CreatedBy`),
+  KEY `FK_sectionsfg` (`ModifiedBy`),
+  CONSTRAINT `FK_sectionsfg` FOREIGN KEY (`ModifiedBy`) REFERENCES `employees` (`EmployeeID`),
+  CONSTRAINT `FK_sections` FOREIGN KEY (`CreatedBy`) REFERENCES `employees` (`EmployeeID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sections` */
@@ -248,12 +259,16 @@ CREATE TABLE `students` (
   `ModifiedDate` datetime DEFAULT NULL,
   PRIMARY KEY (`StudentID`),
   KEY `FK_students` (`SectionID`),
-  CONSTRAINT `FK_students` FOREIGN KEY (`SectionID`) REFERENCES `sections` (`SectionID`)
+  KEY `FK_studentsw` (`CreatedBy`),
+  KEY `FK_studentsggg` (`ModifiedBy`),
+  CONSTRAINT `FK_studentsggg` FOREIGN KEY (`ModifiedBy`) REFERENCES `employees` (`EmployeeID`),
+  CONSTRAINT `FK_students` FOREIGN KEY (`SectionID`) REFERENCES `sections` (`SectionID`),
+  CONSTRAINT `FK_studentsw` FOREIGN KEY (`CreatedBy`) REFERENCES `employees` (`EmployeeID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 /*Data for the table `students` */
 
-insert  into `students`(`StudentID`,`StudentNumber`,`FirstName`,`MiddleName`,`LastName`,`Birthday`,`ImagePath`,`EmailAddress`,`SectionID`,`RFID`,`Note`,`Active`,`CreatedBy`,`CreatedDate`,`ModifiedBy`,`ModifiedDate`) values (1,'087-2010-0020','Gladys','Cabuhat','Valeriano','1989-08-09',NULL,NULL,1,NULL,'Very Good',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(2,'087-2010-0022','Gemma Rica','Santiago','Chua','1990-11-16',NULL,NULL,1,NULL,':D Good :D',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(3,'087-2010-0009','Jaypee','Dela Cruz','Porciunculla','1988-10-01',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(4,'087-2010-0023','Jun','Garces','Gialogo','1987-06-17',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(5,'087-2010-0025','Roxanne','Obliosca','Banluta','1991-11-11',NULL,NULL,2,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(6,'087-2010-0008','Ryam','C','Fernando','1989-11-22',NULL,NULL,1,NULL,'Very Good',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(7,'087-2010-0011','Emilio','Parfahn','Villanueva','1988-09-05',NULL,NULL,2,NULL,'Good',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(8,'087-2010-0030','Aive','D','Kalos','2010-10-24',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(9,'087-2010-0042','Gorgonio','Jombo','Cruz','1987-02-04',NULL,NULL,2,NULL,'SAMPLE',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(10,'087-2010-0004','Jasmine','Dsa','Torno','1984-09-30',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(11,'087-2010-0007','John Carlo','Delos Reyes','Cruz','1987-04-14',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(12,'087-2010-0014','Marie Christine','Quinzon','Ventura','2010-09-24',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(13,'087-2010-0017','Ronald','Acuesta','Trinidad','1990-04-20',NULL,NULL,1,NULL,'Good',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(14,'087-2010-0026','Alan','L','Perjes','1988-04-28',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(15,'087-2010-0024','Arianne Giselle','Abaya','Soberano','1990-09-20',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(16,'087-2010-0027','Vince','S','Abosolo','1988-10-23',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(17,'087-2010-0029','Moniena','Moreno','Santiago','1993-12-14',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(18,'087-2010-0003','Maan','S.','Talabia','1983-09-30',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(19,'087-2010-0005','Jaja','Santiago','Vasquez','1988-10-29',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(20,'087-2010-0010','Iris Erika','Reynaldo','Reyes','1986-09-06',NULL,NULL,1,NULL,'very good',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(21,'087-2010-0012','Karla Chriselda','Avendaño','Castillio','1988-04-14',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(22,'087-2010-0018','Myra','Casidsid','Flores','1989-11-01',NULL,NULL,1,NULL,'Good',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(23,'087-2010-0019','Krisanto','Perceverancia','Rey','1990-03-18',NULL,NULL,1,NULL,'record of theft and jailed once',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(24,'087-2010-0002','Jaecov','Santiago','Vasquez','1987-05-04',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(25,'087-2010-0006','Ma. Lou-Anne','Yao','Dino','1988-09-21',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(26,'087-2010-0016','Mark William','T','Zafra','1987-05-31',NULL,NULL,1,NULL,'Good',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(27,'087-2010-0015','Nazer','Santiago','Miranda','1987-07-18',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(28,'087-2010-0013','Ruby','Palallos','Palma','1990-09-27',NULL,NULL,1,NULL,'very good',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(29,'087-2012-0044','King','Qwdqwdcqwrw','Wdqwdqw','1986-05-16',NULL,NULL,1,NULL,'',1,0,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00');
+insert  into `students`(`StudentID`,`StudentNumber`,`FirstName`,`MiddleName`,`LastName`,`Birthday`,`ImagePath`,`EmailAddress`,`SectionID`,`RFID`,`Note`,`Active`,`CreatedBy`,`CreatedDate`,`ModifiedBy`,`ModifiedDate`) values (1,'087-2010-0020','Gladys','Cabuhat','Valeriano','1989-08-09',NULL,NULL,1,NULL,'Very Good',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(2,'087-2010-0022','Gemma Rica','Santiago','Chua','1990-11-16',NULL,NULL,1,NULL,':D Good :D',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(3,'087-2010-0009','Jaypee','Dela Cruz','Porciunculla','1988-10-01',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(4,'087-2010-0023','Jun','Garces','Gialogo','1987-06-17',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(5,'087-2010-0025','Roxanne','Obliosca','Banluta','1991-11-11',NULL,NULL,2,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(6,'087-2010-0008','Ryam','C','Fernando','1989-11-22',NULL,NULL,1,NULL,'Very Good',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(7,'087-2010-0011','Emilio','Parfahn','Villanueva','1988-09-05',NULL,NULL,2,NULL,'Good',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(8,'087-2010-0030','Aive','D','Kalos','2010-10-24',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(9,'087-2010-0042','Gorgonio','Jombo','Cruz','1987-02-04',NULL,NULL,2,NULL,'SAMPLE',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(10,'087-2010-0004','Jasmine','Dsa','Torno','1984-09-30',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(11,'087-2010-0007','John Carlo','Delos Reyes','Cruz','1987-04-14',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(12,'087-2010-0014','Marie Christine','Quinzon','Ventura','2010-09-24',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(13,'087-2010-0017','Ronald','Acuesta','Trinidad','1990-04-20',NULL,NULL,1,NULL,'Good',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(14,'087-2010-0026','Alan','L','Perjes','1988-04-28',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(15,'087-2010-0024','Arianne Giselle','Abaya','Soberano','1990-09-20',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(16,'087-2010-0027','Vince','S','Abosolo','1988-10-23',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(17,'087-2010-0029','Moniena','Moreno','Santiago','1993-12-14',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(18,'087-2010-0003','Maan','S.','Talabia','1983-09-30',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(19,'087-2010-0005','Jaja','Santiago','Vasquez','1988-10-29',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(20,'087-2010-0010','Iris Erika','Reynaldo','Reyes','1986-09-06',NULL,NULL,1,NULL,'very good',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(21,'087-2010-0012','Karla Chriselda','Avendaño','Castillio','1988-04-14',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(22,'087-2010-0018','Myra','Casidsid','Flores','1989-11-01',NULL,NULL,1,NULL,'Good',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(23,'087-2010-0019','Krisanto','Perceverancia','Rey','1990-03-18',NULL,NULL,1,NULL,'record of theft and jailed once',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(24,'087-2010-0002','Jaecov','Santiago','Vasquez','1987-05-04',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(25,'087-2010-0006','Ma. Lou-Anne','Yao','Dino','1988-09-21',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(26,'087-2010-0016','Mark William','T','Zafra','1987-05-31',NULL,NULL,1,NULL,'Good',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(27,'087-2010-0015','Nazer','Santiago','Miranda','1987-07-18',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(28,'087-2010-0013','Ruby','Palallos','Palma','1990-09-27',NULL,NULL,1,NULL,'very good',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00'),(29,'087-2012-0044','King','Qwdqwdcqwrw','Wdqwdqw','1986-05-16',NULL,NULL,1,NULL,'',1,1,'2012-01-01 00:00:00',NULL,'2012-01-01 00:00:00');
 
 /*Table structure for table `students_mobile` */
 
@@ -271,6 +286,8 @@ CREATE TABLE `students_mobile` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `students_mobile` */
+
+insert  into `students_mobile`(`StudentID`,`MobileNumber`,`CreatedBy`,`CreatedDate`,`ModifiedBy`,`ModifiedDate`) values (1,'222222',1,'2012-01-01 00:00:00',NULL,NULL),(1,'333333',1,'2012-01-01 00:00:00',NULL,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

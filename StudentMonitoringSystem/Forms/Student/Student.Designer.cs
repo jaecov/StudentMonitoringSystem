@@ -115,8 +115,8 @@
             this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ImagePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmailAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SectionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmailAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -358,6 +358,7 @@
             this.btnSubmit.TabIndex = 31;
             this.btnSubmit.Text = "&Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // btnUpdate
             // 
@@ -463,7 +464,7 @@
             this.Label50.AutoSize = true;
             this.Label50.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label50.ForeColor = System.Drawing.Color.DimGray;
-            this.Label50.Location = new System.Drawing.Point(297, 72);
+            this.Label50.Location = new System.Drawing.Point(297, 71);
             this.Label50.Name = "Label50";
             this.Label50.Size = new System.Drawing.Size(43, 15);
             this.Label50.TabIndex = 225;
@@ -473,7 +474,7 @@
             // 
             this.Label45.AutoSize = true;
             this.Label45.ForeColor = System.Drawing.Color.Red;
-            this.Label45.Location = new System.Drawing.Point(286, 16);
+            this.Label45.Location = new System.Drawing.Point(286, 39);
             this.Label45.Name = "Label45";
             this.Label45.Size = new System.Drawing.Size(11, 15);
             this.Label45.TabIndex = 210;
@@ -483,10 +484,10 @@
             // 
             this.cmbSection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSection.FormattingEnabled = true;
-            this.cmbSection.Location = new System.Drawing.Point(355, 16);
+            this.cmbSection.Location = new System.Drawing.Point(355, 39);
             this.cmbSection.MaxDropDownItems = 30;
             this.cmbSection.Name = "cmbSection";
-            this.cmbSection.Size = new System.Drawing.Size(98, 23);
+            this.cmbSection.Size = new System.Drawing.Size(142, 23);
             this.cmbSection.TabIndex = 208;
             // 
             // Label46
@@ -494,7 +495,7 @@
             this.Label46.AutoSize = true;
             this.Label46.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label46.ForeColor = System.Drawing.Color.DimGray;
-            this.Label46.Location = new System.Drawing.Point(297, 18);
+            this.Label46.Location = new System.Drawing.Point(297, 42);
             this.Label46.Name = "Label46";
             this.Label46.Size = new System.Drawing.Size(40, 15);
             this.Label46.TabIndex = 209;
@@ -513,7 +514,7 @@
             this.lblAge.AutoSize = true;
             this.lblAge.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAge.ForeColor = System.Drawing.Color.DimGray;
-            this.lblAge.Location = new System.Drawing.Point(459, 45);
+            this.lblAge.Location = new System.Drawing.Point(463, 15);
             this.lblAge.Name = "lblAge";
             this.lblAge.Size = new System.Drawing.Size(34, 15);
             this.lblAge.TabIndex = 206;
@@ -562,7 +563,7 @@
             // 
             this.Label25.AutoSize = true;
             this.Label25.ForeColor = System.Drawing.Color.Red;
-            this.Label25.Location = new System.Drawing.Point(286, 43);
+            this.Label25.Location = new System.Drawing.Point(286, 13);
             this.Label25.Name = "Label25";
             this.Label25.Size = new System.Drawing.Size(11, 15);
             this.Label25.TabIndex = 191;
@@ -601,7 +602,7 @@
             // cmbDOB
             // 
             this.cmbDOB.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.cmbDOB.Location = new System.Drawing.Point(355, 41);
+            this.cmbDOB.Location = new System.Drawing.Point(355, 13);
             this.cmbDOB.MinDate = new System.DateTime(1950, 1, 1, 0, 0, 0, 0);
             this.cmbDOB.Name = "cmbDOB";
             this.cmbDOB.Size = new System.Drawing.Size(98, 20);
@@ -612,7 +613,7 @@
             this.Label4.AutoSize = true;
             this.Label4.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label4.ForeColor = System.Drawing.Color.DimGray;
-            this.Label4.Location = new System.Drawing.Point(297, 45);
+            this.Label4.Location = new System.Drawing.Point(297, 15);
             this.Label4.Name = "Label4";
             this.Label4.Size = new System.Drawing.Size(44, 15);
             this.Label4.TabIndex = 184;
@@ -663,9 +664,9 @@
             this.Label1.ForeColor = System.Drawing.Color.DimGray;
             this.Label1.Location = new System.Drawing.Point(18, 18);
             this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(51, 15);
+            this.Label1.Size = new System.Drawing.Size(58, 15);
             this.Label1.TabIndex = 181;
-            this.Label1.Text = "Student ID:";
+            this.Label1.Text = "Student No.:";
             // 
             // CDPictureBox
             // 
@@ -780,9 +781,9 @@
             // 
             this.groupBox2.Controls.Add(this.chkAutoTxt);
             this.groupBox2.Controls.Add(this.checkBox1);
-            this.groupBox2.Location = new System.Drawing.Point(299, 9);
+            this.groupBox2.Location = new System.Drawing.Point(299, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(404, 117);
+            this.groupBox2.Size = new System.Drawing.Size(404, 121);
             this.groupBox2.TabIndex = 231;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Notification";
@@ -848,6 +849,9 @@
             this.grdStudents.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.grdStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdStudents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.grdStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdStudents.BackgroundColor = System.Drawing.Color.White;
             this.grdStudents.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -869,8 +873,8 @@
             this.LastName,
             this.Birthday,
             this.ImagePath,
-            this.EmailAddress,
             this.SectionName,
+            this.EmailAddress,
             this.RFID,
             this.Note,
             this.Active,
@@ -878,15 +882,15 @@
             this.CreatedDate,
             this.ModifiedBy,
             this.ModifiedDate});
+            this.grdStudents.ContextMenuStrip = this.ContextMenuStrip1;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdStudents.DefaultCellStyle = dataGridViewCellStyle6;
-            this.grdStudents.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grdStudents.GridColor = System.Drawing.Color.Gainsboro;
             this.grdStudents.Location = new System.Drawing.Point(0, 202);
             this.grdStudents.Name = "grdStudents";
@@ -903,7 +907,6 @@
             this.grdStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdStudents.Size = new System.Drawing.Size(1009, 468);
             this.grdStudents.TabIndex = 247;
-            this.grdStudents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdStudents_CellContentClick);
             // 
             // StudentID
             // 
@@ -964,14 +967,6 @@
             this.ImagePath.ReadOnly = true;
             this.ImagePath.Visible = false;
             // 
-            // EmailAddress
-            // 
-            this.EmailAddress.DataPropertyName = "EmailAddress";
-            this.EmailAddress.FillWeight = 122.2845F;
-            this.EmailAddress.HeaderText = "Email Address";
-            this.EmailAddress.Name = "EmailAddress";
-            this.EmailAddress.ReadOnly = true;
-            // 
             // SectionName
             // 
             this.SectionName.DataPropertyName = "SectionName";
@@ -979,6 +974,14 @@
             this.SectionName.HeaderText = "Section";
             this.SectionName.Name = "SectionName";
             this.SectionName.ReadOnly = true;
+            // 
+            // EmailAddress
+            // 
+            this.EmailAddress.DataPropertyName = "EmailAddress";
+            this.EmailAddress.FillWeight = 122.2845F;
+            this.EmailAddress.HeaderText = "Email Address";
+            this.EmailAddress.Name = "EmailAddress";
+            this.EmailAddress.ReadOnly = true;
             // 
             // RFID
             // 
@@ -1061,6 +1064,7 @@
             this.Controls.Add(this.TabControl1);
             this.Name = "Student";
             this.Text = "Student";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Student_Load);
             this.ContextMenuStrip1.ResumeLayout(false);
             this.StatusStrip1.ResumeLayout(false);
@@ -1165,8 +1169,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Birthday;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImagePath;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EmailAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn SectionName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmailAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn RFID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Note;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Active;

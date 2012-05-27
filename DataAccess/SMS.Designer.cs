@@ -31,6 +31,10 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("smsModel", "FK_studentsmobile", "student", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataAccess.student), "students_mobile", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.students_mobile), true)]
 [assembly: EdmRelationshipAttribute("smsModel", "FK_sections", "employee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataAccess.employee), "section", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.section), true)]
 [assembly: EdmRelationshipAttribute("smsModel", "FK_studentsw", "employee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataAccess.employee), "student", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.student), true)]
+[assembly: EdmRelationshipAttribute("smsModel", "FK_employees_sectiondf", "employee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataAccess.employee), "employees_section", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.employees_section), true)]
+[assembly: EdmRelationshipAttribute("smsModel", "FK_employees_sectiongfhfg", "employee", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DataAccess.employee), "employees_section", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.employees_section), true)]
+[assembly: EdmRelationshipAttribute("smsModel", "FK_sectionsfg", "employee", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DataAccess.employee), "section", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.section), true)]
+[assembly: EdmRelationshipAttribute("smsModel", "FK_studentsggg", "employee", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DataAccess.employee), "student", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataAccess.student), true)]
 
 #endregion
 
@@ -871,6 +875,94 @@ namespace DataAccess
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("smsModel", "FK_employees_sectiondf", "employees_section")]
+        public EntityCollection<employees_section> employees_section1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<employees_section>("smsModel.FK_employees_sectiondf", "employees_section");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<employees_section>("smsModel.FK_employees_sectiondf", "employees_section", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("smsModel", "FK_employees_sectiongfhfg", "employees_section")]
+        public EntityCollection<employees_section> employees_section2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<employees_section>("smsModel.FK_employees_sectiongfhfg", "employees_section");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<employees_section>("smsModel.FK_employees_sectiongfhfg", "employees_section", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("smsModel", "FK_sectionsfg", "section")]
+        public EntityCollection<section> sections1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<section>("smsModel.FK_sectionsfg", "section");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<section>("smsModel.FK_sectionsfg", "section", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("smsModel", "FK_studentsggg", "student")]
+        public EntityCollection<student> students_1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<student>("smsModel.FK_studentsggg", "student");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<student>("smsModel.FK_studentsggg", "student", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -1137,6 +1229,82 @@ namespace DataAccess
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<section>("smsModel.FK_employees_sectionx", "section", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("smsModel", "FK_employees_sectiondf", "employee")]
+        public employee employee1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<employee>("smsModel.FK_employees_sectiondf", "employee").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<employee>("smsModel.FK_employees_sectiondf", "employee").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<employee> employee1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<employee>("smsModel.FK_employees_sectiondf", "employee");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<employee>("smsModel.FK_employees_sectiondf", "employee", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("smsModel", "FK_employees_sectiongfhfg", "employee")]
+        public employee employee2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<employee>("smsModel.FK_employees_sectiongfhfg", "employee").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<employee>("smsModel.FK_employees_sectiongfhfg", "employee").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<employee> employee2Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<employee>("smsModel.FK_employees_sectiongfhfg", "employee");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<employee>("smsModel.FK_employees_sectiongfhfg", "employee", value);
                 }
             }
         }
@@ -2449,6 +2617,44 @@ namespace DataAccess
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<employee>("smsModel.FK_sections", "employee", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("smsModel", "FK_sectionsfg", "employee")]
+        public employee employee1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<employee>("smsModel.FK_sectionsfg", "employee").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<employee>("smsModel.FK_sectionsfg", "employee").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<employee> employee1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<employee>("smsModel.FK_sectionsfg", "employee");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<employee>("smsModel.FK_sectionsfg", "employee", value);
                 }
             }
         }
@@ -4024,6 +4230,44 @@ namespace DataAccess
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<employee>("smsModel.FK_studentsw", "employee", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("smsModel", "FK_studentsggg", "employee")]
+        public employee employee_1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<employee>("smsModel.FK_studentsggg", "employee").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<employee>("smsModel.FK_studentsggg", "employee").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<employee> employee_1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<employee>("smsModel.FK_studentsggg", "employee");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<employee>("smsModel.FK_studentsggg", "employee", value);
                 }
             }
         }

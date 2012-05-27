@@ -19,11 +19,21 @@ namespace StudentMonitoringSystem.Forms.Student
 
         private void Student_Load(object sender, EventArgs e)
         {
-            this.grdStudents.DataSource = BO.Student.GetStudentByStatus(true).Select
-                    (s => new { 
-                        s.StudentID, 
+            PopulateStudents(true);
+        }
+
+
+
+        #region Methods
+
+        private void PopulateStudents(bool Status)
+        {
+            this.grdStudents.DataSource = BO.Student.GetStudentByStatus(Status).Select
+                    (s => new
+                    {
+                        s.StudentID,
                         s.StudentNumber,
-                        s.FirstName, 
+                        s.FirstName,
                         s.MiddleName,
                         s.LastName,
                         s.Birthday,
@@ -33,22 +43,24 @@ namespace StudentMonitoringSystem.Forms.Student
                         s.RFID,
                         s.Note,
                         s.Active,
-                        CreatedBy = s.employee.FirstName + ' ' + s.employee.LastName,
+                        CreatedBy = s.employee.FirstName + ' ' + s.employee.MiddleName + ' ' + s.employee.LastName,
                         s.CreatedDate,
                         s.ModifiedBy,
-                        s.ModifiedDate,
-                        
+                        s.ModifiedDate
                     }).ToList(); 
-           
-         
         }
 
-        private void grdStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        #endregion
+
+        #region Events
+
+        private void btnSubmit_Click(object sender, EventArgs e)
         {
 
         }
 
-
+        #endregion
 
     }
 }

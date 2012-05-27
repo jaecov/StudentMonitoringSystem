@@ -40,8 +40,6 @@ namespace StudentMonitoringSystem.Forms.Student
                         s.ImagePath,
                         s.EmailAddress,
                         s.section.SectionName,
-                        s.RFID,
-                        s.Note,
                         s.Active,
                         CreatedBy = s.employee.FirstName + ' ' + s.employee.MiddleName + ' ' + s.employee.LastName,
                         s.CreatedDate,
@@ -61,6 +59,28 @@ namespace StudentMonitoringSystem.Forms.Student
         }
 
         #endregion
+
+        private void grdStudents_Click(object sender, EventArgs e)
+        {
+            //int orderId = (int)grdStudents.SelectedRows[0].Cells[0].Value;
+
+            //this.grdStudents.SelectedCells[XXXXXXXXXXX].Value.ToString();
+            this.txtStudentNumber.Text = this.grdStudents.SelectedCells[1].Value.ToString();
+            //this.txtFirstName.Text      = this.grdStudents.SelectedRows[1].Cells[2].Value.ToString();
+            //this.txtMiddleName.Text     = this.grdStudents.SelectedCells[3].Value.ToString();
+            //this.txtLastName.Text       = this.grdStudents.SelectedCells[4].Value.ToString();
+            //this.cmbBirthday.Text       = this.grdStudents.SelectedCells[5].Value.ToString();
+            //this.cmbSection.Text        = this.grdStudents.SelectedCells[6].Value.ToString();
+            //this.txtNumber.Text         = this.grdStudents.SelectedCells[7].Value.ToString();
+            //this.txtEmail.Text          = this.grdStudents.SelectedCells[8].Value.ToString();
+            //this.cmbGuardian.Text       = this.grdStudents.SelectedCells[9].Value.ToString();
+            //this.txtGuardianNumber.Text = this.grdStudents.SelectedCells[10].Value.ToString();
+            //this.txtGuardianEmail.Text  = this.grdStudents.SelectedCells[10].Value.ToString();
+            //this.txtNote.Text           = this.grdStudents.SelectedCells[11].Value.ToString();
+        }
+
+
+
 
     }
 }

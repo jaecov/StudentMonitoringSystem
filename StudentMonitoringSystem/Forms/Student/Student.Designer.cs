@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ContextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RefreshDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,7 +84,7 @@
             this.Label24 = new System.Windows.Forms.Label();
             this.Label23 = new System.Windows.Forms.Label();
             this.Label22 = new System.Windows.Forms.Label();
-            this.cmbDOB = new System.Windows.Forms.DateTimePicker();
+            this.cmbBirthday = new System.Windows.Forms.DateTimePicker();
             this.Label4 = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.Label3 = new System.Windows.Forms.Label();
@@ -95,11 +95,11 @@
             this.CDWebcam = new System.Windows.Forms.PictureBox();
             this.TabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.txtGuardianNumber = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtGuardianEmail = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cmbCitizenship = new System.Windows.Forms.ComboBox();
+            this.cmbGuardian = new System.Windows.Forms.ComboBox();
             this.Label18 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkAutoTxt = new System.Windows.Forms.CheckBox();
@@ -117,8 +117,9 @@
             this.ImagePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SectionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmailAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RFID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Guardian = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GuardianMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GuardianEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.CreatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -412,7 +413,7 @@
             this.TabPage1.Controls.Add(this.Label24);
             this.TabPage1.Controls.Add(this.Label23);
             this.TabPage1.Controls.Add(this.Label22);
-            this.TabPage1.Controls.Add(this.cmbDOB);
+            this.TabPage1.Controls.Add(this.cmbBirthday);
             this.TabPage1.Controls.Add(this.Label4);
             this.TabPage1.Controls.Add(this.txtFirstName);
             this.TabPage1.Controls.Add(this.Label3);
@@ -599,14 +600,14 @@
             this.Label22.TabIndex = 188;
             this.Label22.Text = "*";
             // 
-            // cmbDOB
+            // cmbBirthday
             // 
-            this.cmbDOB.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.cmbDOB.Location = new System.Drawing.Point(355, 13);
-            this.cmbDOB.MinDate = new System.DateTime(1950, 1, 1, 0, 0, 0, 0);
-            this.cmbDOB.Name = "cmbDOB";
-            this.cmbDOB.Size = new System.Drawing.Size(98, 20);
-            this.cmbDOB.TabIndex = 7;
+            this.cmbBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.cmbBirthday.Location = new System.Drawing.Point(355, 13);
+            this.cmbBirthday.MinDate = new System.DateTime(1950, 1, 1, 0, 0, 0, 0);
+            this.cmbBirthday.Name = "cmbBirthday";
+            this.cmbBirthday.Size = new System.Drawing.Size(98, 20);
+            this.cmbBirthday.TabIndex = 7;
             // 
             // Label4
             // 
@@ -704,11 +705,11 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.maskedTextBox1);
+            this.groupBox3.Controls.Add(this.txtGuardianNumber);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.txtGuardianEmail);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.cmbCitizenship);
+            this.groupBox3.Controls.Add(this.cmbGuardian);
             this.groupBox3.Controls.Add(this.Label18);
             this.groupBox3.Location = new System.Drawing.Point(6, 6);
             this.groupBox3.Name = "groupBox3";
@@ -717,14 +718,14 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Guardian";
             // 
-            // maskedTextBox1
+            // txtGuardianNumber
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(69, 50);
-            this.maskedTextBox1.Mask = "(9999) 000 - 0000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.PromptChar = ' ';
-            this.maskedTextBox1.Size = new System.Drawing.Size(208, 20);
-            this.maskedTextBox1.TabIndex = 237;
+            this.txtGuardianNumber.Location = new System.Drawing.Point(69, 50);
+            this.txtGuardianNumber.Mask = "(9999) 000 - 0000";
+            this.txtGuardianNumber.Name = "txtGuardianNumber";
+            this.txtGuardianNumber.PromptChar = ' ';
+            this.txtGuardianNumber.Size = new System.Drawing.Size(208, 20);
+            this.txtGuardianNumber.TabIndex = 237;
             // 
             // label5
             // 
@@ -736,14 +737,14 @@
             this.label5.TabIndex = 240;
             this.label5.Text = "Email:";
             // 
-            // textBox1
+            // txtGuardianEmail
             // 
-            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.textBox1.Location = new System.Drawing.Point(69, 76);
-            this.textBox1.MaxLength = 100;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(208, 20);
-            this.textBox1.TabIndex = 238;
+            this.txtGuardianEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtGuardianEmail.Location = new System.Drawing.Point(69, 76);
+            this.txtGuardianEmail.MaxLength = 100;
+            this.txtGuardianEmail.Name = "txtGuardianEmail";
+            this.txtGuardianEmail.Size = new System.Drawing.Size(208, 20);
+            this.txtGuardianEmail.TabIndex = 238;
             // 
             // label6
             // 
@@ -755,17 +756,17 @@
             this.label6.TabIndex = 239;
             this.label6.Text = "Number:";
             // 
-            // cmbCitizenship
+            // cmbGuardian
             // 
-            this.cmbCitizenship.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbCitizenship.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbCitizenship.FormattingEnabled = true;
-            this.cmbCitizenship.Location = new System.Drawing.Point(69, 23);
-            this.cmbCitizenship.MaxLength = 100;
-            this.cmbCitizenship.Name = "cmbCitizenship";
-            this.cmbCitizenship.Size = new System.Drawing.Size(208, 23);
-            this.cmbCitizenship.Sorted = true;
-            this.cmbCitizenship.TabIndex = 236;
+            this.cmbGuardian.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbGuardian.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbGuardian.FormattingEnabled = true;
+            this.cmbGuardian.Location = new System.Drawing.Point(69, 23);
+            this.cmbGuardian.MaxLength = 100;
+            this.cmbGuardian.Name = "cmbGuardian";
+            this.cmbGuardian.Size = new System.Drawing.Size(208, 23);
+            this.cmbGuardian.Sorted = true;
+            this.cmbGuardian.TabIndex = 236;
             // 
             // Label18
             // 
@@ -847,8 +848,8 @@
             this.grdStudents.AllowUserToDeleteRows = false;
             this.grdStudents.AllowUserToOrderColumns = true;
             this.grdStudents.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.grdStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.grdStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.grdStudents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -856,14 +857,14 @@
             this.grdStudents.BackgroundColor = System.Drawing.Color.White;
             this.grdStudents.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.grdStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.grdStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StudentID,
@@ -875,38 +876,40 @@
             this.ImagePath,
             this.SectionName,
             this.EmailAddress,
-            this.RFID,
-            this.Note,
+            this.Guardian,
+            this.GuardianMobile,
+            this.GuardianEmail,
             this.Active,
             this.CreatedBy,
             this.CreatedDate,
             this.ModifiedBy,
             this.ModifiedDate});
             this.grdStudents.ContextMenuStrip = this.ContextMenuStrip1;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdStudents.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdStudents.DefaultCellStyle = dataGridViewCellStyle13;
             this.grdStudents.GridColor = System.Drawing.Color.Gainsboro;
             this.grdStudents.Location = new System.Drawing.Point(0, 202);
             this.grdStudents.Name = "grdStudents";
             this.grdStudents.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdStudents.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdStudents.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.grdStudents.RowHeadersVisible = false;
             this.grdStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdStudents.Size = new System.Drawing.Size(1009, 468);
             this.grdStudents.TabIndex = 247;
+            this.grdStudents.Click += new System.EventHandler(this.grdStudents_Click);
             // 
             // StudentID
             // 
@@ -951,9 +954,9 @@
             // Birthday
             // 
             this.Birthday.DataPropertyName = "Birthday";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.NullValue = null;
-            this.Birthday.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.NullValue = null;
+            this.Birthday.DefaultCellStyle = dataGridViewCellStyle10;
             this.Birthday.FillWeight = 91.95496F;
             this.Birthday.HeaderText = "Birthday";
             this.Birthday.Name = "Birthday";
@@ -983,20 +986,26 @@
             this.EmailAddress.Name = "EmailAddress";
             this.EmailAddress.ReadOnly = true;
             // 
-            // RFID
+            // Guardian
             // 
-            this.RFID.DataPropertyName = "RFID";
-            this.RFID.HeaderText = "RFID";
-            this.RFID.Name = "RFID";
-            this.RFID.ReadOnly = true;
+            this.Guardian.DataPropertyName = "Guardian";
+            this.Guardian.HeaderText = "Guardian";
+            this.Guardian.Name = "Guardian";
+            this.Guardian.ReadOnly = true;
             // 
-            // Note
+            // GuardianMobile
             // 
-            this.Note.DataPropertyName = "Note";
-            this.Note.FillWeight = 65.60966F;
-            this.Note.HeaderText = "Note";
-            this.Note.Name = "Note";
-            this.Note.ReadOnly = true;
+            this.GuardianMobile.DataPropertyName = "GuardianMobile";
+            this.GuardianMobile.HeaderText = "Guardian Mobile";
+            this.GuardianMobile.Name = "GuardianMobile";
+            this.GuardianMobile.ReadOnly = true;
+            // 
+            // GuardianEmail
+            // 
+            this.GuardianEmail.DataPropertyName = "GuardianEmail";
+            this.GuardianEmail.HeaderText = "GuardianEmail";
+            this.GuardianEmail.Name = "GuardianEmail";
+            this.GuardianEmail.ReadOnly = true;
             // 
             // Active
             // 
@@ -1019,8 +1028,8 @@
             // CreatedDate
             // 
             this.CreatedDate.DataPropertyName = "CreatedDate";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.CreatedDate.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.CreatedDate.DefaultCellStyle = dataGridViewCellStyle11;
             this.CreatedDate.FillWeight = 110.4636F;
             this.CreatedDate.HeaderText = "Created Date";
             this.CreatedDate.Name = "CreatedDate";
@@ -1037,8 +1046,8 @@
             // ModifiedDate
             // 
             this.ModifiedDate.DataPropertyName = "ModifiedDate";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ModifiedDate.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ModifiedDate.DefaultCellStyle = dataGridViewCellStyle12;
             this.ModifiedDate.FillWeight = 109.986F;
             this.ModifiedDate.HeaderText = "Modified Date";
             this.ModifiedDate.Name = "ModifiedDate";
@@ -1130,7 +1139,7 @@
         internal System.Windows.Forms.Label Label24;
         internal System.Windows.Forms.Label Label23;
         internal System.Windows.Forms.Label Label22;
-        internal System.Windows.Forms.DateTimePicker cmbDOB;
+        internal System.Windows.Forms.DateTimePicker cmbBirthday;
         internal System.Windows.Forms.Label Label4;
         internal System.Windows.Forms.TextBox txtFirstName;
         internal System.Windows.Forms.Label Label3;
@@ -1151,15 +1160,15 @@
         internal System.Windows.Forms.CheckBox checkBox1;
         internal System.Windows.Forms.GroupBox groupBox2;
         internal System.Windows.Forms.GroupBox groupBox3;
-        internal System.Windows.Forms.ComboBox cmbCitizenship;
+        internal System.Windows.Forms.ComboBox cmbGuardian;
         internal System.Windows.Forms.Label Label18;
         internal System.Windows.Forms.MaskedTextBox txtNumber;
         internal System.Windows.Forms.Label Label48;
         internal System.Windows.Forms.TextBox txtEmail;
         internal System.Windows.Forms.Label Label50;
-        internal System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        internal System.Windows.Forms.MaskedTextBox txtGuardianNumber;
         internal System.Windows.Forms.Label label5;
-        internal System.Windows.Forms.TextBox textBox1;
+        internal System.Windows.Forms.TextBox txtGuardianEmail;
         internal System.Windows.Forms.Label label6;
         internal System.Windows.Forms.DataGridView grdStudents;
         private System.Windows.Forms.DataGridViewTextBoxColumn StudentID;
@@ -1171,8 +1180,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ImagePath;
         private System.Windows.Forms.DataGridViewTextBoxColumn SectionName;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmailAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RFID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Note;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Guardian;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GuardianMobile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GuardianEmail;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Active;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedDate;

@@ -65,7 +65,7 @@ namespace StudentMonitoringSystem.Forms.Student
             //int orderId = (int)grdStudents.SelectedRows[0].Cells[0].Value;
 
             //this.grdStudents.SelectedCells[XXXXXXXXXXX].Value.ToString();
-            this.txtStudentNumber.Text = this.grdStudents.SelectedCells[1].Value.ToString();
+            //this.txtStudentNumber.Text = this.grdStudents.SelectedCells[1].Value.ToString();
             //this.txtFirstName.Text      = this.grdStudents.SelectedRows[1].Cells[2].Value.ToString();
             //this.txtMiddleName.Text     = this.grdStudents.SelectedCells[3].Value.ToString();
             //this.txtLastName.Text       = this.grdStudents.SelectedCells[4].Value.ToString();

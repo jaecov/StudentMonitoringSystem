@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="studentmonitoringModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="studentmonitoringModelStoreContainer">
+          <EntitySet Name="core_civilstatus" EntityType="studentmonitoringModel.Store.core_civilstatus" store:Type="Tables" Schema="studentmonitoring" />
+          <EntitySet Name="core_gender" EntityType="studentmonitoringModel.Store.core_gender" store:Type="Tables" Schema="studentmonitoring" />
+          <EntitySet Name="core_student" EntityType="studentmonitoringModel.Store.core_student" store:Type="Tables" Schema="studentmonitoring" />
+          <EntitySet Name="vstudentinfo" EntityType="studentmonitoringModel.Store.vstudentinfo" store:Type="Views" store:Schema="studentmonitoring" store:Name="vstudentinfo">
+            <DefiningQuery>SELECT
+      `vstudentinfo`.`id`, 
+      `vstudentinfo`.`number`, 
+      `vstudentinfo`.`firstname`, 
+      `vstudentinfo`.`middlename`, 
+      `vstudentinfo`.`lastname`, 
+      `vstudentinfo`.`dateofbirth`, 
+      `vstudentinfo`.`citizenship`, 
+      `vstudentinfo`.`gender_id`, 
+      `vstudentinfo`.`gender`, 
+      `vstudentinfo`.`civilstatus_id`, 
+      `vstudentinfo`.`civilstatus`
+      FROM `vstudentinfo` AS `vstudentinfo`</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="core_civilstatus_core_student" Association="studentmonitoringModel.Store.core_civilstatus_core_student">
+            <End Role="core_civilstatus" EntitySet="core_civilstatus" />
+            <End Role="core_student" EntitySet="core_student" />
+          </AssociationSet>
+          <AssociationSet Name="core_gender_core_student" Association="studentmonitoringModel.Store.core_gender_core_student">
+            <End Role="core_gender" EntitySet="core_gender" />
+            <End Role="core_student" EntitySet="core_student" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="core_civilstatus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="core_gender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="core_student">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="number" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="firstname" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="middlename" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="lastname" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="dateofbirth" Type="date" />
+          <Property Name="gender_id" Type="int" Nullable="false" />
+          <Property Name="civilstatus_id" Type="int" Nullable="false" />
+          <Property Name="citizenship" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.studentmonitoring.vstudentinfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vstudentinfo">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="number" />
+            <PropertyRef Name="firstname" />
+            <PropertyRef Name="middlename" />
+            <PropertyRef Name="lastname" />
+            <PropertyRef Name="citizenship" />
+            <PropertyRef Name="gender_id" />
+            <PropertyRef Name="gender" />
+            <PropertyRef Name="civilstatus_id" />
+            <PropertyRef Name="civilstatus" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="number" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="firstname" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="middlename" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="lastname" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="dateofbirth" Type="date" />
+          <Property Name="citizenship" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="gender_id" Type="int" Nullable="false" />
+          <Property Name="gender" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="civilstatus_id" Type="int" Nullable="false" />
+          <Property Name="civilstatus" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <Association Name="core_civilstatus_core_student">
+          <End Role="core_civilstatus" Type="studentmonitoringModel.Store.core_civilstatus" Multiplicity="1" />
+          <End Role="core_student" Type="studentmonitoringModel.Store.core_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="core_civilstatus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="core_student">
+              <PropertyRef Name="civilstatus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="core_gender_core_student">
+          <End Role="core_gender" Type="studentmonitoringModel.Store.core_gender" Multiplicity="1" />
+          <End Role="core_student" Type="studentmonitoringModel.Store.core_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="core_gender">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="core_student">
+              <PropertyRef Name="gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="studentmonitoringModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="studentmonitoringEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="core_civilstatuses" EntityType="studentmonitoringModel.core_civilstatus" />
+          <EntitySet Name="core_genders" EntityType="studentmonitoringModel.core_gender" />
+          <EntitySet Name="core_student" EntityType="studentmonitoringModel.core_student" />
+          <EntitySet Name="vstudentinfoes" EntityType="studentmonitoringModel.vstudentinfo" />
+          <AssociationSet Name="core_civilstatus_core_student" Association="studentmonitoringModel.core_civilstatus_core_student">
+            <End Role="core_civilstatus" EntitySet="core_civilstatuses" />
+            <End Role="core_student" EntitySet="core_student" />
+          </AssociationSet>
+          <AssociationSet Name="core_gender_core_student" Association="studentmonitoringModel.core_gender_core_student">
+            <End Role="core_gender" EntitySet="core_genders" />
+            <End Role="core_student" EntitySet="core_student" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="core_civilstatus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" />
+          <NavigationProperty Name="core_student" Relationship="studentmonitoringModel.core_civilstatus_core_student" FromRole="core_civilstatus" ToRole="core_student" />
+        </EntityType>
+        <EntityType Name="core_gender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" />
+          <NavigationProperty Name="core_student" Relationship="studentmonitoringModel.core_gender_core_student" FromRole="core_gender" ToRole="core_student" />
+          </EntityType>
+        <EntityType Name="core_student">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="number" Nullable="false" />
+          <Property Type="String" Name="firstname" Nullable="false" />
+          <Property Type="String" Name="middlename" Nullable="false" />
+          <Property Type="String" Name="lastname" Nullable="false" />
+          <Property Type="DateTime" Name="dateofbirth" />
+          <Property Type="Int32" Name="gender_id" Nullable="false" />
+          <Property Type="Int32" Name="civilstatus_id" Nullable="false" />
+          <Property Type="String" Name="citizenship" Nullable="false" />
+          <NavigationProperty Name="core_civilstatus" Relationship="studentmonitoringModel.core_civilstatus_core_student" FromRole="core_student" ToRole="core_civilstatus" />
+          <NavigationProperty Name="core_gender" Relationship="studentmonitoringModel.core_gender_core_student" FromRole="core_student" ToRole="core_gender" />
+        </EntityType>
+        <EntityType Name="vstudentinfo">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="number" />
+            <PropertyRef Name="firstname" />
+            <PropertyRef Name="middlename" />
+            <PropertyRef Name="lastname" />
+            <PropertyRef Name="citizenship" />
+            <PropertyRef Name="gender_id" />
+            <PropertyRef Name="gender" />
+            <PropertyRef Name="civilstatus_id" />
+            <PropertyRef Name="civilstatus" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="number" Nullable="false" />
+          <Property Type="String" Name="firstname" Nullable="false" />
+          <Property Type="String" Name="middlename" Nullable="false" />
+          <Property Type="String" Name="lastname" Nullable="false" />
+          <Property Type="DateTime" Name="dateofbirth" />
+          <Property Type="String" Name="citizenship" Nullable="false" />
+          <Property Type="Int32" Name="gender_id" Nullable="false" />
+          <Property Type="String" Name="gender" Nullable="false" />
+          <Property Type="Int32" Name="civilstatus_id" Nullable="false" />
+          <Property Type="String" Name="civilstatus" Nullable="false" />
+        </EntityType>
+        <Association Name="core_civilstatus_core_student">
+          <End Type="studentmonitoringModel.core_civilstatus" Role="core_civilstatus" Multiplicity="1" />
+          <End Type="studentmonitoringModel.core_student" Role="core_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="core_civilstatus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="core_student">
+              <PropertyRef Name="civilstatus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="core_gender_core_student">
+          <End Type="studentmonitoringModel.core_gender" Role="core_gender" Multiplicity="1" />
+          <End Type="studentmonitoringModel.core_student" Role="core_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="core_gender">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="core_student">
+              <PropertyRef Name="gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="studentmonitoringModelStoreContainer" CdmEntityContainer="studentmonitoringEntities">
+          <EntitySetMapping Name="core_civilstatuses">
+            <EntityTypeMapping TypeName="studentmonitoringModel.core_civilstatus">
+              <MappingFragment StoreEntitySet="core_civilstatus">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="core_genders">
+            <EntityTypeMapping TypeName="studentmonitoringModel.core_gender">
+              <MappingFragment StoreEntitySet="core_gender">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="core_student">
+            <EntityTypeMapping TypeName="studentmonitoringModel.core_student">
+              <MappingFragment StoreEntitySet="core_student">
+                <ScalarProperty Name="citizenship" ColumnName="citizenship" />
+                <ScalarProperty Name="civilstatus_id" ColumnName="civilstatus_id" />
+                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
+                <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="middlename" ColumnName="middlename" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vstudentinfoes">
+            <EntityTypeMapping TypeName="studentmonitoringModel.vstudentinfo">
+              <MappingFragment StoreEntitySet="vstudentinfo">
+                <ScalarProperty Name="civilstatus" ColumnName="civilstatus" />
+                <ScalarProperty Name="civilstatus_id" ColumnName="civilstatus_id" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
+                <ScalarProperty Name="citizenship" ColumnName="citizenship" />
+                <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="middlename" ColumnName="middlename" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="EntityModel">
+        <EntityTypeShape EntityType="studentmonitoringModel.core_civilstatus" Width="1.5" PointX="0.75" PointY="1.625" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="studentmonitoringModel.core_gender" Width="1.5" PointX="0.75" PointY="5.625" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="studentmonitoringModel.core_student" Width="1.5" PointX="3" PointY="2.875" Height="3.1340950520833322" />
+        <EntityTypeShape EntityType="studentmonitoringModel.vstudentinfo" Width="1.5" PointX="5.375" PointY="0.75" Height="3.1340950520833317" />
+        <AssociationConnector Association="studentmonitoringModel.core_civilstatus_core_student" >
+          <ConnectorPoint PointX="2.25" PointY="3.047841796875" />
+          <ConnectorPoint PointX="3" PointY="3.047841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="studentmonitoringModel.core_gender_core_student" >
+          <ConnectorPoint PointX="2.25" PointY="5.8170475260416659" />
+          <ConnectorPoint PointX="3" PointY="5.8170475260416659" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

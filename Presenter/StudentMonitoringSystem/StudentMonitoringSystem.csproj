@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B5BAA225-E03D-45B5-8ACF-51655B7C3D89}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StudentMonitoringSystem</RootNamespace>
+    <AssemblyName>StudentMonitoringSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>StudentMonitoringSystem.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GSMCommServer">
+      <HintPath>..\..\ReferenceLibraries\GSMCommServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GSMCommShared">
+      <HintPath>..\..\ReferenceLibraries\GSMCommShared.dll</HintPath>
+    </Reference>
+    <Reference Include="GSMCommunication">
+      <HintPath>..\..\ReferenceLibraries\GSMCommunication.dll</HintPath>
+    </Reference>
+    <Reference Include="PDUConverter">
+      <HintPath>..\..\ReferenceLibraries\PDUConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\..\ReferenceLibraries\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\Core\FormStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Core\FormStudent.Designer.cs">
+      <DependentUpon>FormStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SMS\Inbox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SMS\Inbox.Designer.cs">
+      <DependentUpon>Inbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SMS\SendSMS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SMS\SendSMS.Designer.cs">
+      <DependentUpon>SendSMS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SMS\Sent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SMS\Sent.Designer.cs">
+      <DependentUpon>Sent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Core\FormStudent.resx">
+      <DependentUpon>FormStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SMS\SendSMS.resx">
+      <DependentUpon>SendSMS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SMS\Sent.resx">
+      <DependentUpon>Sent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\about.png" />
+    <Content Include="Resources\aboutsystem.jpg" />
+    <Content Include="Resources\admin.png" />
+    <Content Include="Resources\administrator.ico" />
+    <Content Include="Resources\archives.png" />
+    <Content Include="Resources\audit.png" />
+    <Content Include="Resources\backup.png" />
+    <Content Include="Resources\Banner.png" />
+    <Content Include="Resources\calendar.png" />
+    <Content Include="Resources\Connection_bg.jpg" />
+    <Content Include="Resources\Connection_bg.png" />
+    <Content Include="Resources\Connection_bg1.png" />
+    <Content Include="Resources\course.png" />
+    <Content Include="Resources\customer.png" />
+    <Content Include="Resources\customer1.png" />
+    <Content Include="Resources\delete.png" />
+    <Content Include="Resources\delete1.png" />
+    <Content Include="Resources\employee.png" />
+    <Content Include="Resources\employee_user.png" />
+    <Content Include="Resources\export.png" />
+    <Content Include="Resources\gear.gif" />
+    <Content Include="Resources\graduated.png" />
+    <Content Include="Resources\help.png" />
+    <Content Include="Resources\id-card.png" />
+    <Content Include="Resources\id-card1.png" />
+    <Content Include="Resources\ID_size.png" />
+    <Content Include="Resources\log.png" />
+    <Content Include="Resources\login_bg.png" />
+    <Content Include="Resources\logoff.png" />
+    <Content Include="Resources\maintenance.png" />
+    <Content Include="Resources\Main_wallpaper1024x768.png" />
+    <Content Include="Resources\mobile-phone.png" />
+    <Content Include="Resources\my-profile.png" />
+    <Content Include="Resources\network.png" />
+    <Content Include="Resources\notify.png" />
+    <Content Include="Resources\no_picture.png" />
+    <Content Include="Resources\refresh.png" />
+    <Content Include="Resources\refresh1.png" />
+    <Content Include="Resources\registration.gif" />
+    <Content Include="Resources\remove.png" />
+    <Content Include="Resources\Report.png" />
+    <Content Include="Resources\restore.png" />
+    <Content Include="Resources\restore1.png" />
+    <Content Include="Resources\schedule.png" />
+    <Content Include="Resources\show.png" />
+    <Content Include="Resources\sms-call.png" />
+    <Content Include="Resources\sms.png" />
+    <Content Include="Resources\sti logo.png" />
+    <Content Include="Resources\student.png" />
+    <Content Include="Resources\Tags.png" />
+    <Content Include="Resources\update.png" />
+    <Content Include="Resources\user1.png" />
+    <Content Include="Resources\utilities.png" />
+    <Content Include="Resources\utilities1.png" />
+    <Content Include="Resources\visitor.png" />
+    <Content Include="Resources\void.png" />
+    <Content Include="Resources\warning.wav" />
+    <Content Include="Resources\Webcam-icon.jpg" />
+    <Content Include="Resources\Webcam_Capture.png" />
+    <Content Include="Resources\Webcam_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Entities\Entities.csproj">
+      <Project>{41CD239D-F384-4F2C-8E26-1543A71E9FF5}</Project>
+      <Name>Entities %28Entities\Entities%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Presenter\Presenter.csproj">
+      <Project>{090F5B83-DB64-4180-874D-F17BEB5360B4}</Project>
+      <Name>Presenter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

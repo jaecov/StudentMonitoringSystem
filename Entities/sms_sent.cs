@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 namespace StudentMonitoringSystem.Entities
 {
     [Serializable]
-    public partial class vstudentinfo: BaseObject
+    public partial class sms_sent: BaseObject
     {
         #region Primitive Properties
     
@@ -33,55 +33,19 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual string firstname
+        public virtual string message
         {
             get;
             set;
         }
     
-        public virtual string middlename
+        public virtual System.DateTime datecreated
         {
             get;
             set;
         }
     
-        public virtual string lastname
-        {
-            get;
-            set;
-        }
-    
-        public virtual System.DateTime dateofbirth
-        {
-            get;
-            set;
-        }
-    
-        public virtual string citizenship
-        {
-            get;
-            set;
-        }
-    
-        public virtual int gender_id
-        {
-            get;
-            set;
-        }
-    
-        public virtual string gender
-        {
-            get;
-            set;
-        }
-    
-        public virtual int civilstatus_id
-        {
-            get;
-            set;
-        }
-    
-        public virtual string civilstatus
+        public virtual Nullable<int> notification_id
         {
             get;
             set;

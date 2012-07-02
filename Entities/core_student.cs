@@ -33,6 +33,12 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
+        public virtual string rfid
+        {
+            get;
+            set;
+        }
+    
         public virtual string firstname
         {
             get;
@@ -51,7 +57,13 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual Nullable<System.DateTime> dateofbirth
+        public virtual System.DateTime dateofbirth
+        {
+            get;
+            set;
+        }
+    
+        public virtual byte[] picture
         {
             get;
             set;
@@ -96,9 +108,77 @@ namespace StudentMonitoringSystem.Entities
             get;
             set;
         }
+    
+        public virtual int barangay_id
+        {
+            get { return _barangay_id; }
+            set
+            {
+                if (_barangay_id != value)
+                {
+                    if (core_barangay != null && core_barangay.id != value)
+                    {
+                        core_barangay = null;
+                    }
+                    _barangay_id = value;
+                }
+            }
+        }
+        private int _barangay_id;
+    
+        public virtual string mothername
+        {
+            get;
+            set;
+        }
+    
+        public virtual string motheroccupation
+        {
+            get;
+            set;
+        }
+    
+        public virtual string fathername
+        {
+            get;
+            set;
+        }
+    
+        public virtual string fatheroccupation
+        {
+            get;
+            set;
+        }
+    
+        public virtual System.DateTime datecreated
+        {
+            get;
+            set;
+        }
+    
+        public virtual System.DateTime dateupdated
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties
+    
+        public virtual core_barangay core_barangay
+        {
+            get { return _core_barangay; }
+            set
+            {
+                if (!ReferenceEquals(_core_barangay, value))
+                {
+                    var previousValue = _core_barangay;
+                    _core_barangay = value;
+                    Fixupcore_barangay(previousValue);
+                }
+            }
+        }
+        private core_barangay _core_barangay;
     
         public virtual core_civilstatus core_civilstatus
         {
@@ -114,6 +194,38 @@ namespace StudentMonitoringSystem.Entities
             }
         }
         private core_civilstatus _core_civilstatus;
+    
+        public virtual ICollection<core_contact> core_contact
+        {
+            get
+            {
+                if (_core_contact == null)
+                {
+                    var newCollection = new FixupCollection<core_contact>();
+                    newCollection.CollectionChanged += Fixupcore_contact;
+                    _core_contact = newCollection;
+                }
+                return _core_contact;
+            }
+            set
+            {
+                if (!ReferenceEquals(_core_contact, value))
+                {
+                    var previousValue = _core_contact as FixupCollection<core_contact>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupcore_contact;
+                    }
+                    _core_contact = value;
+                    var newValue = value as FixupCollection<core_contact>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupcore_contact;
+                    }
+                }
+            }
+        }
+        private ICollection<core_contact> _core_contact;
     
         public virtual core_gender core_gender
         {
@@ -132,6 +244,26 @@ namespace StudentMonitoringSystem.Entities
 
         #endregion
         #region Association Fixup
+    
+        private void Fixupcore_barangay(core_barangay previousValue)
+        {
+            if (previousValue != null && previousValue.core_student.Contains(this))
+            {
+                previousValue.core_student.Remove(this);
+            }
+    
+            if (core_barangay != null)
+            {
+                if (!core_barangay.core_student.Contains(this))
+                {
+                    core_barangay.core_student.Add(this);
+                }
+                if (barangay_id != core_barangay.id)
+                {
+                    barangay_id = core_barangay.id;
+                }
+            }
+        }
     
         private void Fixupcore_civilstatus(core_civilstatus previousValue)
         {
@@ -169,6 +301,28 @@ namespace StudentMonitoringSystem.Entities
                 if (gender_id != core_gender.id)
                 {
                     gender_id = core_gender.id;
+                }
+            }
+        }
+    
+        private void Fixupcore_contact(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (core_contact item in e.NewItems)
+                {
+                    item.core_student = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (core_contact item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.core_student, this))
+                    {
+                        item.core_student = null;
+                    }
                 }
             }
         }

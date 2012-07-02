@@ -17,9 +17,21 @@ using System.Runtime.Serialization;
 namespace StudentMonitoringSystem.Entities
 {
     [Serializable]
-    public partial class vstudentinfo: BaseObject
+    public partial class log_entrybook_archive: BaseObject
     {
         #region Primitive Properties
+    
+        public virtual int archivedid
+        {
+            get;
+            set;
+        }
+    
+        public virtual System.DateTime archiveddate
+        {
+            get;
+            set;
+        }
     
         public virtual int id
         {
@@ -27,61 +39,31 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual string number
+        public virtual string rfid
         {
             get;
             set;
         }
     
-        public virtual string firstname
+        public virtual System.DateTime timein
         {
             get;
             set;
         }
     
-        public virtual string middlename
+        public virtual System.DateTime timeout
         {
             get;
             set;
         }
     
-        public virtual string lastname
+        public virtual System.DateTime datecreated
         {
             get;
             set;
         }
     
-        public virtual System.DateTime dateofbirth
-        {
-            get;
-            set;
-        }
-    
-        public virtual string citizenship
-        {
-            get;
-            set;
-        }
-    
-        public virtual int gender_id
-        {
-            get;
-            set;
-        }
-    
-        public virtual string gender
-        {
-            get;
-            set;
-        }
-    
-        public virtual int civilstatus_id
-        {
-            get;
-            set;
-        }
-    
-        public virtual string civilstatus
+        public virtual bool @override
         {
             get;
             set;

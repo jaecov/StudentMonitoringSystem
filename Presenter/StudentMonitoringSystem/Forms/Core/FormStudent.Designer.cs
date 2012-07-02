@@ -185,7 +185,7 @@
             this.lvwStudent.TabIndex = 27;
             this.lvwStudent.UseCompatibleStateImageBehavior = false;
             this.lvwStudent.View = System.Windows.Forms.View.Details;
-            this.lvwStudent.SelectedIndexChanged += new System.EventHandler(this.lvStudent_SelectedIndexChanged);
+            this.lvwStudent.SelectedIndexChanged += new System.EventHandler(this.lvwStudent_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -222,7 +222,6 @@
             this.txtNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNo.Location = new System.Drawing.Point(78, 20);
             this.txtNo.Name = "txtNo";
-            this.txtNo.ReadOnly = true;
             this.txtNo.Size = new System.Drawing.Size(167, 20);
             this.txtNo.TabIndex = 29;
             // 

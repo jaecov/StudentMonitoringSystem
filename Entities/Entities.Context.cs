@@ -53,11 +53,29 @@ namespace StudentMonitoringSystem.Entities
     
         #region ObjectSet Properties
     
+    	public ObjectSet<core_audittrail> core_audittrails
+    	{
+    		get { return _core_audittrails  ?? (_core_audittrails = CreateObjectSet<core_audittrail>("core_audittrails")); }
+    	}
+    	private ObjectSet<core_audittrail> _core_audittrails;
+    
+    	public ObjectSet<core_barangay> core_barangays
+    	{
+    		get { return _core_barangays  ?? (_core_barangays = CreateObjectSet<core_barangay>("core_barangays")); }
+    	}
+    	private ObjectSet<core_barangay> _core_barangays;
+    
     	public ObjectSet<core_civilstatus> core_civilstatuses
     	{
     		get { return _core_civilstatuses  ?? (_core_civilstatuses = CreateObjectSet<core_civilstatus>("core_civilstatuses")); }
     	}
     	private ObjectSet<core_civilstatus> _core_civilstatuses;
+    
+    	public ObjectSet<core_contact> core_contacts
+    	{
+    		get { return _core_contacts  ?? (_core_contacts = CreateObjectSet<core_contact>("core_contacts")); }
+    	}
+    	private ObjectSet<core_contact> _core_contacts;
     
     	public ObjectSet<core_gender> core_genders
     	{
@@ -65,17 +83,137 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<core_gender> _core_genders;
     
-    	public ObjectSet<core_student> core_student
+    	public ObjectSet<core_student> core_students
     	{
-    		get { return _core_student  ?? (_core_student = CreateObjectSet<core_student>("core_student")); }
+    		get { return _core_students  ?? (_core_students = CreateObjectSet<core_student>("core_students")); }
     	}
-    	private ObjectSet<core_student> _core_student;
+    	private ObjectSet<core_student> _core_students;
     
-    	public ObjectSet<vstudentinfo> vstudentinfoes
+    	public ObjectSet<core_systemsettings> core_systemsettingss
     	{
-    		get { return _vstudentinfoes  ?? (_vstudentinfoes = CreateObjectSet<vstudentinfo>("vstudentinfoes")); }
+    		get { return _core_systemsettingss  ?? (_core_systemsettingss = CreateObjectSet<core_systemsettings>("core_systemsettingss")); }
     	}
-    	private ObjectSet<vstudentinfo> _vstudentinfoes;
+    	private ObjectSet<core_systemsettings> _core_systemsettingss;
+    
+    	public ObjectSet<core_user> core_users
+    	{
+    		get { return _core_users  ?? (_core_users = CreateObjectSet<core_user>("core_users")); }
+    	}
+    	private ObjectSet<core_user> _core_users;
+    
+    	public ObjectSet<emp_contact> emp_contacts
+    	{
+    		get { return _emp_contacts  ?? (_emp_contacts = CreateObjectSet<emp_contact>("emp_contacts")); }
+    	}
+    	private ObjectSet<emp_contact> _emp_contacts;
+    
+    	public ObjectSet<emp_employee> emp_employees
+    	{
+    		get { return _emp_employees  ?? (_emp_employees = CreateObjectSet<emp_employee>("emp_employees")); }
+    	}
+    	private ObjectSet<emp_employee> _emp_employees;
+    
+    	public ObjectSet<enroll_course> enroll_courses
+    	{
+    		get { return _enroll_courses  ?? (_enroll_courses = CreateObjectSet<enroll_course>("enroll_courses")); }
+    	}
+    	private ObjectSet<enroll_course> _enroll_courses;
+    
+    	public ObjectSet<enroll_room> enroll_rooms
+    	{
+    		get { return _enroll_rooms  ?? (_enroll_rooms = CreateObjectSet<enroll_room>("enroll_rooms")); }
+    	}
+    	private ObjectSet<enroll_room> _enroll_rooms;
+    
+    	public ObjectSet<enroll_schedule> enroll_schedules
+    	{
+    		get { return _enroll_schedules  ?? (_enroll_schedules = CreateObjectSet<enroll_schedule>("enroll_schedules")); }
+    	}
+    	private ObjectSet<enroll_schedule> _enroll_schedules;
+    
+    	public ObjectSet<enroll_section> enroll_sections
+    	{
+    		get { return _enroll_sections  ?? (_enroll_sections = CreateObjectSet<enroll_section>("enroll_sections")); }
+    	}
+    	private ObjectSet<enroll_section> _enroll_sections;
+    
+    	public ObjectSet<enroll_subject> enroll_subjects
+    	{
+    		get { return _enroll_subjects  ?? (_enroll_subjects = CreateObjectSet<enroll_subject>("enroll_subjects")); }
+    	}
+    	private ObjectSet<enroll_subject> _enroll_subjects;
+    
+    	public ObjectSet<log_entrybook> log_entrybooks
+    	{
+    		get { return _log_entrybooks  ?? (_log_entrybooks = CreateObjectSet<log_entrybook>("log_entrybooks")); }
+    	}
+    	private ObjectSet<log_entrybook> _log_entrybooks;
+    
+    	public ObjectSet<log_entrybook_archive> log_entrybook_archives
+    	{
+    		get { return _log_entrybook_archives  ?? (_log_entrybook_archives = CreateObjectSet<log_entrybook_archive>("log_entrybook_archives")); }
+    	}
+    	private ObjectSet<log_entrybook_archive> _log_entrybook_archives;
+    
+    	public ObjectSet<sms_inbox> sms_inboxes
+    	{
+    		get { return _sms_inboxes  ?? (_sms_inboxes = CreateObjectSet<sms_inbox>("sms_inboxes")); }
+    	}
+    	private ObjectSet<sms_inbox> _sms_inboxes;
+    
+    	public ObjectSet<sms_inbox_archive> sms_inbox_archives
+    	{
+    		get { return _sms_inbox_archives  ?? (_sms_inbox_archives = CreateObjectSet<sms_inbox_archive>("sms_inbox_archives")); }
+    	}
+    	private ObjectSet<sms_inbox_archive> _sms_inbox_archives;
+    
+    	public ObjectSet<sms_networkprovider> sms_networkproviders
+    	{
+    		get { return _sms_networkproviders  ?? (_sms_networkproviders = CreateObjectSet<sms_networkprovider>("sms_networkproviders")); }
+    	}
+    	private ObjectSet<sms_networkprovider> _sms_networkproviders;
+    
+    	public ObjectSet<sms_notification> sms_notifications
+    	{
+    		get { return _sms_notifications  ?? (_sms_notifications = CreateObjectSet<sms_notification>("sms_notifications")); }
+    	}
+    	private ObjectSet<sms_notification> _sms_notifications;
+    
+    	public ObjectSet<sms_outbox> sms_outboxes
+    	{
+    		get { return _sms_outboxes  ?? (_sms_outboxes = CreateObjectSet<sms_outbox>("sms_outboxes")); }
+    	}
+    	private ObjectSet<sms_outbox> _sms_outboxes;
+    
+    	public ObjectSet<sms_outbox_archive> sms_outbox_archives
+    	{
+    		get { return _sms_outbox_archives  ?? (_sms_outbox_archives = CreateObjectSet<sms_outbox_archive>("sms_outbox_archives")); }
+    	}
+    	private ObjectSet<sms_outbox_archive> _sms_outbox_archives;
+    
+    	public ObjectSet<sms_sent> sms_sents
+    	{
+    		get { return _sms_sents  ?? (_sms_sents = CreateObjectSet<sms_sent>("sms_sents")); }
+    	}
+    	private ObjectSet<sms_sent> _sms_sents;
+    
+    	public ObjectSet<sms_sent_archive> sms_sent_archives
+    	{
+    		get { return _sms_sent_archives  ?? (_sms_sent_archives = CreateObjectSet<sms_sent_archive>("sms_sent_archives")); }
+    	}
+    	private ObjectSet<sms_sent_archive> _sms_sent_archives;
+    
+    	public ObjectSet<sms_status> sms_statuses
+    	{
+    		get { return _sms_statuses  ?? (_sms_statuses = CreateObjectSet<sms_status>("sms_statuses")); }
+    	}
+    	private ObjectSet<sms_status> _sms_statuses;
+    
+    	public ObjectSet<vstudentinfo> vstudentinfos
+    	{
+    		get { return _vstudentinfos  ?? (_vstudentinfos = CreateObjectSet<vstudentinfo>("vstudentinfos")); }
+    	}
+    	private ObjectSet<vstudentinfo> _vstudentinfos;
 
         #endregion
 
@@ -83,9 +221,24 @@ namespace StudentMonitoringSystem.Entities
     				
     	public ObjectSet<T> GetObjectSet<T>() where T : class    		
     	{							
+    		if(typeof(T) == typeof(core_audittrail))
+    		{
+    			return (ObjectSet<T>)(object)core_audittrails;
+    		}
+    								
+    		if(typeof(T) == typeof(core_barangay))
+    		{
+    			return (ObjectSet<T>)(object)core_barangays;
+    		}
+    								
     		if(typeof(T) == typeof(core_civilstatus))
     		{
     			return (ObjectSet<T>)(object)core_civilstatuses;
+    		}
+    								
+    		if(typeof(T) == typeof(core_contact))
+    		{
+    			return (ObjectSet<T>)(object)core_contacts;
     		}
     								
     		if(typeof(T) == typeof(core_gender))
@@ -95,12 +248,112 @@ namespace StudentMonitoringSystem.Entities
     								
     		if(typeof(T) == typeof(core_student))
     		{
-    			return (ObjectSet<T>)(object)core_student;
+    			return (ObjectSet<T>)(object)core_students;
+    		}
+    								
+    		if(typeof(T) == typeof(core_systemsettings))
+    		{
+    			return (ObjectSet<T>)(object)core_systemsettingss;
+    		}
+    								
+    		if(typeof(T) == typeof(core_user))
+    		{
+    			return (ObjectSet<T>)(object)core_users;
+    		}
+    								
+    		if(typeof(T) == typeof(emp_contact))
+    		{
+    			return (ObjectSet<T>)(object)emp_contacts;
+    		}
+    								
+    		if(typeof(T) == typeof(emp_employee))
+    		{
+    			return (ObjectSet<T>)(object)emp_employees;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_course))
+    		{
+    			return (ObjectSet<T>)(object)enroll_courses;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_room))
+    		{
+    			return (ObjectSet<T>)(object)enroll_rooms;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_schedule))
+    		{
+    			return (ObjectSet<T>)(object)enroll_schedules;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_section))
+    		{
+    			return (ObjectSet<T>)(object)enroll_sections;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_subject))
+    		{
+    			return (ObjectSet<T>)(object)enroll_subjects;
+    		}
+    								
+    		if(typeof(T) == typeof(log_entrybook))
+    		{
+    			return (ObjectSet<T>)(object)log_entrybooks;
+    		}
+    								
+    		if(typeof(T) == typeof(log_entrybook_archive))
+    		{
+    			return (ObjectSet<T>)(object)log_entrybook_archives;
+    		}
+    								
+    		if(typeof(T) == typeof(sms_inbox))
+    		{
+    			return (ObjectSet<T>)(object)sms_inboxes;
+    		}
+    								
+    		if(typeof(T) == typeof(sms_inbox_archive))
+    		{
+    			return (ObjectSet<T>)(object)sms_inbox_archives;
+    		}
+    								
+    		if(typeof(T) == typeof(sms_networkprovider))
+    		{
+    			return (ObjectSet<T>)(object)sms_networkproviders;
+    		}
+    								
+    		if(typeof(T) == typeof(sms_notification))
+    		{
+    			return (ObjectSet<T>)(object)sms_notifications;
+    		}
+    								
+    		if(typeof(T) == typeof(sms_outbox))
+    		{
+    			return (ObjectSet<T>)(object)sms_outboxes;
+    		}
+    								
+    		if(typeof(T) == typeof(sms_outbox_archive))
+    		{
+    			return (ObjectSet<T>)(object)sms_outbox_archives;
+    		}
+    								
+    		if(typeof(T) == typeof(sms_sent))
+    		{
+    			return (ObjectSet<T>)(object)sms_sents;
+    		}
+    								
+    		if(typeof(T) == typeof(sms_sent_archive))
+    		{
+    			return (ObjectSet<T>)(object)sms_sent_archives;
+    		}
+    								
+    		if(typeof(T) == typeof(sms_status))
+    		{
+    			return (ObjectSet<T>)(object)sms_statuses;
     		}
     								
     		if(typeof(T) == typeof(vstudentinfo))
     		{
-    			return (ObjectSet<T>)(object)vstudentinfoes;
+    			return (ObjectSet<T>)(object)vstudentinfos;
     		}
     				
     		return null;

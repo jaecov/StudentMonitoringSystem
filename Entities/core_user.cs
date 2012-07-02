@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 namespace StudentMonitoringSystem.Entities
 {
     [Serializable]
-    public partial class vstudentinfo: BaseObject
+    public partial class core_user: BaseObject
     {
         #region Primitive Properties
     
@@ -27,61 +27,25 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual string number
+        public virtual string username
         {
             get;
             set;
         }
     
-        public virtual string firstname
+        public virtual string password
         {
             get;
             set;
         }
     
-        public virtual string middlename
+        public virtual string name
         {
             get;
             set;
         }
     
-        public virtual string lastname
-        {
-            get;
-            set;
-        }
-    
-        public virtual System.DateTime dateofbirth
-        {
-            get;
-            set;
-        }
-    
-        public virtual string citizenship
-        {
-            get;
-            set;
-        }
-    
-        public virtual int gender_id
-        {
-            get;
-            set;
-        }
-    
-        public virtual string gender
-        {
-            get;
-            set;
-        }
-    
-        public virtual int civilstatus_id
-        {
-            get;
-            set;
-        }
-    
-        public virtual string civilstatus
+        public virtual bool isdeleted
         {
             get;
             set;

@@ -16,18 +16,35 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`studentmonitoring` /*!40100 DEFAULT CHA
 
 USE `studentmonitoring`;
 
-/*Table structure for table `core_audittrail` */
+/*Table structure for table `audt_audittrail` */
 
-DROP TABLE IF EXISTS `core_audittrail`;
+DROP TABLE IF EXISTS `audt_audittrail`;
 
-CREATE TABLE `core_audittrail` (
+CREATE TABLE `audt_audittrail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `message` longtext NOT NULL,
+  `isexception` bit(1) NOT NULL,
   `datecreated` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `core_audittrail` */
+/*Data for the table `audt_audittrail` */
+
+/*Table structure for table `audt_log` */
+
+DROP TABLE IF EXISTS `audt_log`;
+
+CREATE TABLE `audt_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tablename` varchar(50) NOT NULL,
+  `rowid` int(11) NOT NULL,
+  `command` varchar(50) NOT NULL,
+  `savedby` varchar(50) NOT NULL,
+  `datecreated` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `audt_log` */
 
 /*Table structure for table `core_barangay` */
 
@@ -36,14 +53,32 @@ DROP TABLE IF EXISTS `core_barangay`;
 CREATE TABLE `core_barangay` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `city` varchar(100) NOT NULL,
-  `province` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `city_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `core_barangay_city` (`city_id`),
+  CONSTRAINT `core_barangay_city` FOREIGN KEY (`city_id`) REFERENCES `core_city` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `core_barangay` */
 
-insert  into `core_barangay`(`id`,`name`,`city`,`province`) values (1,'pinmilapil','sison','pangasinan');
+insert  into `core_barangay`(`id`,`name`,`city_id`) values (1,'Pinmilapil',1),(3,'Olympia',2);
+
+/*Table structure for table `core_city` */
+
+DROP TABLE IF EXISTS `core_city`;
+
+CREATE TABLE `core_city` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `province_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `core_city_province` (`province_id`),
+  CONSTRAINT `core_city_province` FOREIGN KEY (`province_id`) REFERENCES `core_province` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+/*Data for the table `core_city` */
+
+insert  into `core_city`(`id`,`name`,`province_id`) values (1,'Sison',1),(2,'Makati',2),(3,'Manila',2),(4,'Caloocan City',2);
 
 /*Table structure for table `core_civilstatus` */
 
@@ -67,11 +102,11 @@ CREATE TABLE `core_contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `number` varchar(15) DEFAULT NULL,
   `emailaddress` varchar(100) DEFAULT NULL,
-  `remarks` varchar(100) DEFAULT NULL,
+  `note` varchar(100) DEFAULT NULL,
   `student_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `student_id` (`student_id`),
-  CONSTRAINT `core_contact_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `core_student` (`id`)
+  KEY `core_contact_student` (`student_id`),
+  CONSTRAINT `core_contact_student` FOREIGN KEY (`student_id`) REFERENCES `core_student` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `core_contact` */
@@ -90,6 +125,20 @@ CREATE TABLE `core_gender` (
 
 insert  into `core_gender`(`id`,`name`) values (1,'Male'),(2,'Female');
 
+/*Table structure for table `core_province` */
+
+DROP TABLE IF EXISTS `core_province`;
+
+CREATE TABLE `core_province` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `core_province` */
+
+insert  into `core_province`(`id`,`name`) values (1,'Pangasinan'),(2,'NCR');
+
 /*Table structure for table `core_student` */
 
 DROP TABLE IF EXISTS `core_student`;
@@ -106,13 +155,13 @@ CREATE TABLE `core_student` (
   `gender_id` int(11) NOT NULL,
   `civilstatus_id` int(11) NOT NULL,
   `citizenship` varchar(50) NOT NULL,
+  `street` varchar(100) DEFAULT NULL,
   `barangay_id` int(11) NOT NULL,
   `mothername` varchar(100) DEFAULT NULL,
   `motheroccupation` varchar(100) DEFAULT NULL,
   `fathername` varchar(100) DEFAULT NULL,
   `fatheroccupation` varchar(100) DEFAULT NULL,
-  `datecreated` datetime NOT NULL,
-  `dateupdated` datetime NOT NULL,
+  `note` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `core_civilstatus_core_student` (`civilstatus_id`),
   KEY `core_gender_core_student` (`gender_id`),
@@ -120,11 +169,11 @@ CREATE TABLE `core_student` (
   CONSTRAINT `core_barangay_core_student` FOREIGN KEY (`barangay_id`) REFERENCES `core_barangay` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `core_civilstatus_core_student` FOREIGN KEY (`civilstatus_id`) REFERENCES `core_civilstatus` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `core_gender_core_student` FOREIGN KEY (`gender_id`) REFERENCES `core_gender` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `core_student` */
 
-insert  into `core_student`(`id`,`number`,`rfid`,`firstname`,`middlename`,`lastname`,`dateofbirth`,`picture`,`gender_id`,`civilstatus_id`,`citizenship`,`barangay_id`,`mothername`,`motheroccupation`,`fathername`,`fatheroccupation`,`datecreated`,`dateupdated`) values (6,'201272-1352359',NULL,'firstname','middlename','lastname','2012-07-02',NULL,1,1,'filipino',1,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+insert  into `core_student`(`id`,`number`,`rfid`,`firstname`,`middlename`,`lastname`,`dateofbirth`,`picture`,`gender_id`,`civilstatus_id`,`citizenship`,`street`,`barangay_id`,`mothername`,`motheroccupation`,`fathername`,`fatheroccupation`,`note`) values (6,'201272-1352359',NULL,'firstname','middlename','lastname','2012-07-04',NULL,1,1,'filipino','05',1,NULL,NULL,NULL,NULL,NULL),(9,'asdfads',NULL,'asdfsadfff','sdfsdf','ssss','2012-07-04',NULL,2,2,'dddfd','asdfasdfasf',3,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `core_systemsettings` */
 
@@ -161,11 +210,11 @@ CREATE TABLE `emp_contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `number` varchar(15) DEFAULT NULL,
   `emailaddress` varchar(100) DEFAULT NULL,
-  `remarks` varchar(100) DEFAULT NULL,
+  `note` varchar(100) DEFAULT NULL,
   `employee_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `employee_id` (`employee_id`),
-  CONSTRAINT `emp_contact_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `emp_employee` (`id`)
+  KEY `emp_contact_employee` (`employee_id`),
+  CONSTRAINT `emp_contact_employee` FOREIGN KEY (`employee_id`) REFERENCES `emp_employee` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `emp_contact` */
@@ -186,8 +235,6 @@ CREATE TABLE `emp_employee` (
   `civilstatus_id` int(11) NOT NULL,
   `citizenship` varchar(100) NOT NULL,
   `barangay_id` int(11) NOT NULL,
-  `datecreated` datetime NOT NULL,
-  `dateupdated` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -241,9 +288,9 @@ CREATE TABLE `enroll_schedule` (
   KEY `enroll_section_schedule` (`section_id`),
   KEY `enroll_employee_schedule` (`employee_id`),
   KEY `enroll_room_schedule` (`room_id`),
-  CONSTRAINT `enroll_room_schedule` FOREIGN KEY (`room_id`) REFERENCES `enroll_room` (`id`),
   CONSTRAINT `enroll_course_schedule` FOREIGN KEY (`course_id`) REFERENCES `enroll_course` (`id`),
   CONSTRAINT `enroll_employee_schedule` FOREIGN KEY (`employee_id`) REFERENCES `emp_employee` (`id`),
+  CONSTRAINT `enroll_room_schedule` FOREIGN KEY (`room_id`) REFERENCES `enroll_room` (`id`),
   CONSTRAINT `enroll_section_schedule` FOREIGN KEY (`section_id`) REFERENCES `enroll_section` (`id`),
   CONSTRAINT `enroll_subject_schedule` FOREIGN KEY (`subject_id`) REFERENCES `enroll_subject` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -259,8 +306,8 @@ CREATE TABLE `enroll_section` (
   `name` varchar(100) NOT NULL,
   `course_id` int(1) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `course_id` (`course_id`),
-  CONSTRAINT `enroll_section_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `enroll_course` (`id`)
+  KEY `enroll_section_course` (`course_id`),
+  CONSTRAINT `enroll_section_course` FOREIGN KEY (`course_id`) REFERENCES `enroll_course` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `enroll_section` */
@@ -290,8 +337,7 @@ CREATE TABLE `log_entrybook` (
   `rfid` varchar(100) NOT NULL,
   `timein` datetime NOT NULL,
   `timeout` datetime NOT NULL,
-  `datecreated` datetime NOT NULL,
-  `override` bit(1) NOT NULL,
+  `isoverride` bit(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -302,15 +348,14 @@ CREATE TABLE `log_entrybook` (
 DROP TABLE IF EXISTS `log_entrybook_archive`;
 
 CREATE TABLE `log_entrybook_archive` (
-  `archivedid` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `archiveddate` datetime NOT NULL,
-  `id` int(11) NOT NULL,
+  `entrybook_id` int(11) NOT NULL,
   `rfid` varchar(100) NOT NULL,
   `timein` datetime NOT NULL,
   `timeout` datetime NOT NULL,
-  `datecreated` datetime NOT NULL,
-  `override` bit(1) NOT NULL,
-  PRIMARY KEY (`archivedid`)
+  `isoverride` bit(1) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `log_entrybook_archive` */
@@ -406,16 +451,16 @@ CREATE TABLE `sms_outbox` (
 DROP TABLE IF EXISTS `sms_outbox_archive`;
 
 CREATE TABLE `sms_outbox_archive` (
-  `archivedid` int(11) NOT NULL,
-  `archiveddate` datetime NOT NULL,
   `id` int(11) NOT NULL,
+  `archiveddate` datetime NOT NULL,
+  `outbox_id` int(11) NOT NULL,
   `number` varchar(15) NOT NULL,
   `message` longtext NOT NULL,
   `status_id` int(11) NOT NULL,
   `notification_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`archivedid`),
-  KEY `status_id` (`status_id`),
-  CONSTRAINT `sms_outbox_archive_ibfk_1` FOREIGN KEY (`status_id`) REFERENCES `sms_outbox_archive` (`archivedid`)
+  PRIMARY KEY (`id`),
+  KEY `sms_outbox_archive_status` (`status_id`),
+  CONSTRAINT `sms_outbox_archive_status` FOREIGN KEY (`status_id`) REFERENCES `sms_status` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `sms_outbox_archive` */
@@ -440,13 +485,13 @@ CREATE TABLE `sms_sent` (
 DROP TABLE IF EXISTS `sms_sent_archive`;
 
 CREATE TABLE `sms_sent_archive` (
-  `archivedid` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `archiveddate` datetime NOT NULL,
-  `id` int(11) NOT NULL,
+  `sent_id` int(11) NOT NULL,
   `number` varchar(15) NOT NULL,
   `datecreated` datetime NOT NULL,
   `notification_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`archivedid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `sms_sent_archive` */
@@ -475,15 +520,29 @@ DROP TABLE IF EXISTS `vstudentinfo`;
 /*!50001 CREATE TABLE  `vstudentinfo`(
  `id` int(11) ,
  `number` varchar(50) ,
+ `rfid` varchar(100) ,
  `firstname` varchar(50) ,
  `middlename` varchar(50) ,
  `lastname` varchar(50) ,
  `dateofbirth` date ,
- `citizenship` varchar(50) ,
+ `picture` longblob ,
  `gender_id` int(11) ,
- `gender` varchar(10) ,
  `civilstatus_id` int(11) ,
- `civilstatus` varchar(20) 
+ `citizenship` varchar(50) ,
+ `street` varchar(100) ,
+ `barangay_id` int(11) ,
+ `mothername` varchar(100) ,
+ `motheroccupation` varchar(100) ,
+ `fathername` varchar(100) ,
+ `fatheroccupation` varchar(100) ,
+ `note` varchar(100) ,
+ `civilstatus` varchar(20) ,
+ `gender` varchar(10) ,
+ `barangay` varchar(100) ,
+ `city_id` int(11) ,
+ `city` varchar(100) ,
+ `province_id` int(11) ,
+ `province` varchar(100) 
 )*/;
 
 /*View structure for view vstudentinfo */
@@ -491,7 +550,7 @@ DROP TABLE IF EXISTS `vstudentinfo`;
 /*!50001 DROP TABLE IF EXISTS `vstudentinfo` */;
 /*!50001 DROP VIEW IF EXISTS `vstudentinfo` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vstudentinfo` AS select `s`.`id` AS `id`,`s`.`number` AS `number`,`s`.`firstname` AS `firstname`,`s`.`middlename` AS `middlename`,`s`.`lastname` AS `lastname`,`s`.`dateofbirth` AS `dateofbirth`,`s`.`citizenship` AS `citizenship`,`s`.`gender_id` AS `gender_id`,`g`.`name` AS `gender`,`s`.`civilstatus_id` AS `civilstatus_id`,`cs`.`name` AS `civilstatus` from ((`core_student` `s` join `core_gender` `g` on((`s`.`gender_id` = `g`.`id`))) join `core_civilstatus` `cs` on((`s`.`civilstatus_id` = `cs`.`id`))) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vstudentinfo` AS select `core_student`.`id` AS `id`,`core_student`.`number` AS `number`,`core_student`.`rfid` AS `rfid`,`core_student`.`firstname` AS `firstname`,`core_student`.`middlename` AS `middlename`,`core_student`.`lastname` AS `lastname`,`core_student`.`dateofbirth` AS `dateofbirth`,`core_student`.`picture` AS `picture`,`core_student`.`gender_id` AS `gender_id`,`core_student`.`civilstatus_id` AS `civilstatus_id`,`core_student`.`citizenship` AS `citizenship`,`core_student`.`street` AS `street`,`core_student`.`barangay_id` AS `barangay_id`,`core_student`.`mothername` AS `mothername`,`core_student`.`motheroccupation` AS `motheroccupation`,`core_student`.`fathername` AS `fathername`,`core_student`.`fatheroccupation` AS `fatheroccupation`,`core_student`.`note` AS `note`,`core_civilstatus`.`name` AS `civilstatus`,`core_gender`.`name` AS `gender`,`core_barangay`.`name` AS `barangay`,`core_barangay`.`city_id` AS `city_id`,`core_city`.`name` AS `city`,`core_city`.`province_id` AS `province_id`,`core_province`.`name` AS `province` from (((((`core_student` join `core_gender` on((`core_student`.`gender_id` = `core_gender`.`id`))) join `core_civilstatus` on((`core_student`.`civilstatus_id` = `core_civilstatus`.`id`))) join `core_barangay` on((`core_student`.`barangay_id` = `core_barangay`.`id`))) join `core_city` on((`core_barangay`.`city_id` = `core_city`.`id`))) join `core_province` on((`core_city`.`province_id` = `core_province`.`id`))) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

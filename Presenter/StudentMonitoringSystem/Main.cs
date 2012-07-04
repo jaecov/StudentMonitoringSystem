@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using StudentMonitoringSystem.Forms.Core;
+using StudentMonitoringSystem.Forms;
 
 namespace StudentMonitoringSystem
 {
@@ -33,6 +34,12 @@ namespace StudentMonitoringSystem
             ShowForm(student);
         }
 
+        private void EmployeeInformationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormTest frm = new FormTest();
+            ShowForm(frm);
+        }
+
         #endregion
         
         #region Methods
@@ -52,5 +59,7 @@ namespace StudentMonitoringSystem
         }
 
         #endregion
+
+      
     }
 }

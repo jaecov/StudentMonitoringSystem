@@ -45,13 +45,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual System.DateTime datecreated
-        {
-            get;
-            set;
-        }
-    
-        public virtual bool @override
+        public virtual bool isoverride
         {
             get;
             set;

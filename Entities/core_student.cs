@@ -150,13 +150,13 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual System.DateTime datecreated
+        public virtual string note
         {
             get;
             set;
         }
     
-        public virtual System.DateTime dateupdated
+        public virtual string street
         {
             get;
             set;

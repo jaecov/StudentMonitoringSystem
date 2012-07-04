@@ -21,7 +21,7 @@ namespace StudentMonitoringSystem.Entities
     {
         #region Primitive Properties
     
-        public virtual int archivedid
+        public virtual int id
         {
             get;
             set;
@@ -33,7 +33,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual int id
+        public virtual int outbox_id
         {
             get;
             set;
@@ -58,9 +58,9 @@ namespace StudentMonitoringSystem.Entities
             {
                 if (_status_id != value)
                 {
-                    if (sms_outbox_archive2 != null && sms_outbox_archive2.archivedid != value)
+                    if (sms_status != null && sms_status.id != value)
                     {
-                        sms_outbox_archive2 = null;
+                        sms_status = null;
                     }
                     _status_id = value;
                 }
@@ -77,94 +77,40 @@ namespace StudentMonitoringSystem.Entities
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<sms_outbox_archive> sms_outbox_archive1
+        public virtual sms_status sms_status
         {
-            get
-            {
-                if (_sms_outbox_archive1 == null)
-                {
-                    var newCollection = new FixupCollection<sms_outbox_archive>();
-                    newCollection.CollectionChanged += Fixupsms_outbox_archive1;
-                    _sms_outbox_archive1 = newCollection;
-                }
-                return _sms_outbox_archive1;
-            }
+            get { return _sms_status; }
             set
             {
-                if (!ReferenceEquals(_sms_outbox_archive1, value))
+                if (!ReferenceEquals(_sms_status, value))
                 {
-                    var previousValue = _sms_outbox_archive1 as FixupCollection<sms_outbox_archive>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupsms_outbox_archive1;
-                    }
-                    _sms_outbox_archive1 = value;
-                    var newValue = value as FixupCollection<sms_outbox_archive>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupsms_outbox_archive1;
-                    }
+                    var previousValue = _sms_status;
+                    _sms_status = value;
+                    Fixupsms_status(previousValue);
                 }
             }
         }
-        private ICollection<sms_outbox_archive> _sms_outbox_archive1;
-    
-        public virtual sms_outbox_archive sms_outbox_archive2
-        {
-            get { return _sms_outbox_archive2; }
-            set
-            {
-                if (!ReferenceEquals(_sms_outbox_archive2, value))
-                {
-                    var previousValue = _sms_outbox_archive2;
-                    _sms_outbox_archive2 = value;
-                    Fixupsms_outbox_archive2(previousValue);
-                }
-            }
-        }
-        private sms_outbox_archive _sms_outbox_archive2;
+        private sms_status _sms_status;
 
         #endregion
         #region Association Fixup
     
-        private void Fixupsms_outbox_archive2(sms_outbox_archive previousValue)
+        private void Fixupsms_status(sms_status previousValue)
         {
-            if (previousValue != null && previousValue.sms_outbox_archive1.Contains(this))
+            if (previousValue != null && previousValue.sms_outbox_archive.Contains(this))
             {
-                previousValue.sms_outbox_archive1.Remove(this);
+                previousValue.sms_outbox_archive.Remove(this);
             }
     
-            if (sms_outbox_archive2 != null)
+            if (sms_status != null)
             {
-                if (!sms_outbox_archive2.sms_outbox_archive1.Contains(this))
+                if (!sms_status.sms_outbox_archive.Contains(this))
                 {
-                    sms_outbox_archive2.sms_outbox_archive1.Add(this);
+                    sms_status.sms_outbox_archive.Add(this);
                 }
-                if (status_id != sms_outbox_archive2.archivedid)
+                if (status_id != sms_status.id)
                 {
-                    status_id = sms_outbox_archive2.archivedid;
-                }
-            }
-        }
-    
-        private void Fixupsms_outbox_archive1(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (sms_outbox_archive item in e.NewItems)
-                {
-                    item.sms_outbox_archive2 = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (sms_outbox_archive item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.sms_outbox_archive2, this))
-                    {
-                        item.sms_outbox_archive2 = null;
-                    }
+                    status_id = sms_status.id;
                 }
             }
         }

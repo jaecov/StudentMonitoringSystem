@@ -55,14 +55,32 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.CDPictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.GroupBox5 = new System.Windows.Forms.GroupBox();
+            this.cmbCity = new System.Windows.Forms.ComboBox();
+            this.cmbProvince = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.Label14 = new System.Windows.Forms.Label();
+            this.Label15 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtStreet = new System.Windows.Forms.TextBox();
+            this.cmbBarangay = new System.Windows.Forms.ComboBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.CDPictureBox = new System.Windows.Forms.PictureBox();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.GroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CDPictureBox)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.GroupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CDPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCitizenship
@@ -176,7 +194,8 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader7});
             this.lvwStudent.FullRowSelect = true;
             this.lvwStudent.GridLines = true;
             this.lvwStudent.Location = new System.Drawing.Point(4, 218);
@@ -253,12 +272,13 @@
             // 
             // GroupBox1
             // 
+            this.GroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox1.Controls.Add(this.btnDelete);
             this.GroupBox1.Controls.Add(this.btnReset);
             this.GroupBox1.Controls.Add(this.btnSave);
-            this.GroupBox1.Location = new System.Drawing.Point(703, 11);
+            this.GroupBox1.Location = new System.Drawing.Point(788, 12);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(95, 110);
+            this.GroupBox1.Size = new System.Drawing.Size(95, 185);
             this.GroupBox1.TabIndex = 198;
             this.GroupBox1.TabStop = false;
             // 
@@ -292,27 +312,18 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // CDPictureBox
-            // 
-            this.CDPictureBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.CDPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CDPictureBox.Location = new System.Drawing.Point(535, 11);
-            this.CDPictureBox.Name = "CDPictureBox";
-            this.CDPictureBox.Size = new System.Drawing.Size(144, 120);
-            this.CDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.CDPictureBox.TabIndex = 205;
-            this.CDPictureBox.TabStop = false;
-            // 
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(4, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(891, 164);
+            this.tabControl1.Size = new System.Drawing.Size(701, 175);
             this.tabControl1.TabIndex = 206;
             // 
             // tabPage1
@@ -320,7 +331,6 @@
             this.tabPage1.Controls.Add(this.txtNo);
             this.tabPage1.Controls.Add(this.CDPictureBox);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.GroupBox1);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.dteDateOfBirth);
             this.tabPage1.Controls.Add(this.label3);
@@ -338,20 +348,199 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(883, 138);
+            this.tabPage1.Size = new System.Drawing.Size(693, 149);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Personal Information";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.GroupBox5);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(883, 138);
+            this.tabPage2.Size = new System.Drawing.Size(693, 149);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Contacts and Adress";
+            this.tabPage2.Text = "Adress";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // GroupBox5
+            // 
+            this.GroupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBox5.Controls.Add(this.cmbBarangay);
+            this.GroupBox5.Controls.Add(this.cmbCity);
+            this.GroupBox5.Controls.Add(this.cmbProvince);
+            this.GroupBox5.Controls.Add(this.label9);
+            this.GroupBox5.Controls.Add(this.label10);
+            this.GroupBox5.Controls.Add(this.label11);
+            this.GroupBox5.Controls.Add(this.label12);
+            this.GroupBox5.Controls.Add(this.Label14);
+            this.GroupBox5.Controls.Add(this.Label15);
+            this.GroupBox5.Controls.Add(this.label13);
+            this.GroupBox5.Controls.Add(this.label16);
+            this.GroupBox5.Controls.Add(this.txtStreet);
+            this.GroupBox5.Location = new System.Drawing.Point(6, 6);
+            this.GroupBox5.Name = "GroupBox5";
+            this.GroupBox5.Size = new System.Drawing.Size(668, 137);
+            this.GroupBox5.TabIndex = 216;
+            this.GroupBox5.TabStop = false;
+            this.GroupBox5.Text = "Address";
+            // 
+            // cmbCity
+            // 
+            this.cmbCity.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbCity.FormattingEnabled = true;
+            this.cmbCity.Location = new System.Drawing.Point(108, 41);
+            this.cmbCity.MaxLength = 100;
+            this.cmbCity.Name = "cmbCity";
+            this.cmbCity.Size = new System.Drawing.Size(337, 21);
+            this.cmbCity.TabIndex = 15;
+            this.cmbCity.SelectedIndexChanged += new System.EventHandler(this.cmbCity_SelectedIndexChanged);
+            // 
+            // cmbProvince
+            // 
+            this.cmbProvince.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbProvince.FormattingEnabled = true;
+            this.cmbProvince.Location = new System.Drawing.Point(108, 10);
+            this.cmbProvince.MaxLength = 100;
+            this.cmbProvince.Name = "cmbProvince";
+            this.cmbProvince.Size = new System.Drawing.Size(337, 21);
+            this.cmbProvince.TabIndex = 14;
+            this.cmbProvince.SelectedIndexChanged += new System.EventHandler(this.cmbProvince_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.Red;
+            this.label9.Location = new System.Drawing.Point(11, 96);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(11, 13);
+            this.label9.TabIndex = 207;
+            this.label9.Text = "*";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(11, 70);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(11, 13);
+            this.label10.TabIndex = 206;
+            this.label10.Text = "*";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.Red;
+            this.label11.Location = new System.Drawing.Point(11, 44);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(11, 13);
+            this.label11.TabIndex = 205;
+            this.label11.Text = "*";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.Location = new System.Drawing.Point(11, 18);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(11, 13);
+            this.label12.TabIndex = 204;
+            this.label12.Text = "*";
+            // 
+            // Label14
+            // 
+            this.Label14.AutoSize = true;
+            this.Label14.ForeColor = System.Drawing.Color.DimGray;
+            this.Label14.Location = new System.Drawing.Point(20, 16);
+            this.Label14.Name = "Label14";
+            this.Label14.Size = new System.Drawing.Size(82, 13);
+            this.Label14.TabIndex = 203;
+            this.Label14.Text = "State/Province:";
+            // 
+            // Label15
+            // 
+            this.Label15.AutoSize = true;
+            this.Label15.ForeColor = System.Drawing.Color.DimGray;
+            this.Label15.Location = new System.Drawing.Point(20, 39);
+            this.Label15.Name = "Label15";
+            this.Label15.Size = new System.Drawing.Size(77, 13);
+            this.Label15.TabIndex = 202;
+            this.Label15.Text = "City/Municipal:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.DimGray;
+            this.label13.Location = new System.Drawing.Point(28, 70);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(31, 13);
+            this.label13.TabIndex = 201;
+            this.label13.Text = "Brgy:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.ForeColor = System.Drawing.Color.DimGray;
+            this.label16.Location = new System.Drawing.Point(28, 96);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(38, 13);
+            this.label16.TabIndex = 200;
+            this.label16.Text = "Street:";
+            // 
+            // txtStreet
+            // 
+            this.txtStreet.Location = new System.Drawing.Point(108, 99);
+            this.txtStreet.MaxLength = 100;
+            this.txtStreet.Name = "txtStreet";
+            this.txtStreet.Size = new System.Drawing.Size(337, 20);
+            this.txtStreet.TabIndex = 12;
+            // 
+            // cmbBarangay
+            // 
+            this.cmbBarangay.FormattingEnabled = true;
+            this.cmbBarangay.Location = new System.Drawing.Point(108, 70);
+            this.cmbBarangay.MaxLength = 100;
+            this.cmbBarangay.Name = "cmbBarangay";
+            this.cmbBarangay.Size = new System.Drawing.Size(337, 21);
+            this.cmbBarangay.TabIndex = 208;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(693, 149);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Contacts";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(693, 149);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Guardian and Parent";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // CDPictureBox
+            // 
+            this.CDPictureBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.CDPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CDPictureBox.Location = new System.Drawing.Point(535, 11);
+            this.CDPictureBox.Name = "CDPictureBox";
+            this.CDPictureBox.Size = new System.Drawing.Size(144, 120);
+            this.CDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.CDPictureBox.TabIndex = 205;
+            this.CDPictureBox.TabStop = false;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Address";
             // 
             // FormStudent
             // 
@@ -360,15 +549,19 @@
             this.ClientSize = new System.Drawing.Size(895, 394);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.lvwStudent);
+            this.Controls.Add(this.GroupBox1);
             this.Name = "FormStudent";
             this.TabText = "Student";
             this.Text = "Student";
             this.Load += new System.EventHandler(this.Student_Load);
             this.GroupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.CDPictureBox)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.GroupBox5.ResumeLayout(false);
+            this.GroupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CDPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -406,6 +599,22 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        internal System.Windows.Forms.GroupBox GroupBox5;
+        internal System.Windows.Forms.ComboBox cmbCity;
+        internal System.Windows.Forms.ComboBox cmbProvince;
+        internal System.Windows.Forms.Label label9;
+        internal System.Windows.Forms.Label label10;
+        internal System.Windows.Forms.Label label11;
+        internal System.Windows.Forms.Label label12;
+        internal System.Windows.Forms.Label Label14;
+        internal System.Windows.Forms.Label Label15;
+        internal System.Windows.Forms.Label label13;
+        internal System.Windows.Forms.Label label16;
+        internal System.Windows.Forms.TextBox txtStreet;
+        internal System.Windows.Forms.ComboBox cmbBarangay;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
 
       
 

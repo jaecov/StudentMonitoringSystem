@@ -18,8 +18,13 @@ namespace StudentMonitoringSystem.Presenter.Core
         int Gender_id { get; set; }
         int CivilStatus_id { get; set; }
         string Citizenship { get; set; }
-        IList CivilStatusDataSource { set; }
-        IList GenderDataSource { set; }
+        string Street { get; set; }
+        int Barangay_id { get; set; }
+        List<core_civilstatus> CivilStatusDataSource { set; }
+        List<core_gender> GenderDataSource { set; }
         List<vstudentinfo> StudentDataSource { set; }
+        List<core_barangay> BarangayDataSource { set; }
+        List<core_city> CityDataSource { set; }
+        List<core_province> ProvinceDataSource { set; }
     }
 }

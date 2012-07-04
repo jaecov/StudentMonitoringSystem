@@ -86,18 +86,6 @@ namespace StudentMonitoringSystem.Entities
             get;
             set;
         }
-    
-        public virtual System.DateTime datecreated
-        {
-            get;
-            set;
-        }
-    
-        public virtual System.DateTime dateupdated
-        {
-            get;
-            set;
-        }
 
         #endregion
         #region Navigation Properties

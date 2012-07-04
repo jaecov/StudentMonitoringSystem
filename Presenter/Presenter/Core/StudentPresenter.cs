@@ -17,16 +17,19 @@ namespace StudentMonitoringSystem.Presenter.Core
 
         #endregion
 
+        #region Load
+
         public void LoadItems()
         {
             View.CivilStatusDataSource = Controller.GetObject<core_civilstatus>().ToList();
             View.GenderDataSource = Controller.GetObject<core_gender>().ToList();
-            LoadStudents();
-            View.Number = Common.GenerateNewNumber();
+            View.ProvinceDataSource = Controller.GetObject<core_province>().ToList(); 
+            LoadStudentDataSource();
+            //View.Number = Common.GenerateNewNumber();
 
         }
 
-        public void LoadStudents()
+        public void LoadStudentDataSource()
         {
             View.StudentDataSource = Controller.GetObject<vstudentinfo>().ToList();
         }
@@ -47,6 +50,50 @@ namespace StudentMonitoringSystem.Presenter.Core
             View.Citizenship = item.citizenship;
         }
 
+        public void LoadCityDataSource(int provinceID)
+        {
+            if (provinceID > 0)
+            {
+                var items = Controller.GetObject<core_city>().Where(c => c.province_id == provinceID).ToList();
+                View.CityDataSource = items;
+            }
+            else
+            {
+                var items = Controller.GetObject<core_city>().ToList();
+                View.CityDataSource = items;
+            }
+            
+        }
+
+        public void LoadBarangayDataSource(int cityID)
+        {
+            var items = Controller.GetObject<core_barangay>().Where(c=>c.city_id == cityID).ToList();
+            View.BarangayDataSource = items;
+        }
+
+        #endregion
+
+        #region Get
+
+        private void GetValues(ref core_student item)
+        {
+            item.id = View.ID;
+            item.number = View.Number;
+            item.firstname = View.Firstname;
+            item.middlename = View.Middlename;
+            item.lastname = View.Lastname;
+            item.dateofbirth = View.DateOfBirth;
+            item.gender_id = View.Gender_id;
+            item.civilstatus_id = View.CivilStatus_id;
+            item.citizenship = View.Citizenship;
+            item.barangay_id = View.Barangay_id;
+            item.street = View.Street;
+        }
+
+        #endregion
+
+        #region CRUD
+
         public bool Delete()
         {
             if (View.ID > 0)
@@ -57,14 +104,14 @@ namespace StudentMonitoringSystem.Presenter.Core
                     if (item == null)
                         return false;
 
-                    Controller.DeleteObject<core_student>(item);                    
-                    LoadStudents();
+                    Controller.DeleteObject<core_student>(item);
+                    LoadStudentDataSource();
                     View.Notify(Common.Result.DeleteSuceeded, null);
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    View.Notify(Common.Result.DeleteFailed, ex);                    
+                    View.Notify(Common.Result.DeleteFailed, ex);
                 }
             }
             return false;
@@ -72,7 +119,7 @@ namespace StudentMonitoringSystem.Presenter.Core
 
         public void Save()
         {
-           
+
             if (View.ID == 0)
             {
                 CreateStudent();
@@ -82,7 +129,7 @@ namespace StudentMonitoringSystem.Presenter.Core
                 UpdateStudent();
             }
 
-            LoadStudents();
+            LoadStudentDataSource();
         }
 
         private void CreateStudent()
@@ -118,21 +165,11 @@ namespace StudentMonitoringSystem.Presenter.Core
             catch (Exception ex)
             {
                 View.Notify(Common.Result.UpdateFailed, ex);
-            }    
+            }
         }
 
-        private void GetValues(ref core_student item)
-        {
-            item.id = View.ID;
-            item.number = View.Number;
-            item.firstname = View.Firstname;
-            item.middlename = View.Middlename;
-            item.lastname = View.Lastname;
-            item.dateofbirth = View.DateOfBirth;
-            item.gender_id = View.Gender_id;
-            item.civilstatus_id = View.CivilStatus_id;
-            item.citizenship = View.Citizenship;
-        }
+        #endregion
+
 
     }
 }

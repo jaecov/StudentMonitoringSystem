@@ -131,7 +131,35 @@ namespace StudentMonitoringSystem.Forms.Core
             set { dteDateOfBirth.Value = value; }
         }
 
-        public IList CivilStatusDataSource
+        public string Street
+        {
+            get
+            {
+                return txtStreet.Text;
+            }
+            set
+            {
+                txtStreet.Text = value;
+            }
+        }
+
+        public int Barangay_id
+        {
+            get
+            {
+                int value = 0;
+                int.TryParse(Convert.ToString(cmbBarangay.SelectedValue), out value);
+                return value;
+            }
+            set
+            {
+                if (cmbBarangay.Items.Count > 0)
+                    cmbBarangay.SelectedValue = value;
+
+            }
+        }
+
+        public List<core_civilstatus> CivilStatusDataSource
         {
             set
             {
@@ -141,7 +169,7 @@ namespace StudentMonitoringSystem.Forms.Core
             }
         }
 
-        public IList GenderDataSource
+        public List<core_gender> GenderDataSource
         {
             set
             {
@@ -156,6 +184,37 @@ namespace StudentMonitoringSystem.Forms.Core
             set
             {
                 LoadStudents(value);
+            }
+        }
+        
+        public List<core_barangay> BarangayDataSource
+        {
+            set
+            {
+                cmbBarangay.DataSource = null;
+                cmbBarangay.DisplayMember = "name";
+                cmbBarangay.ValueMember = "id";
+                cmbBarangay.DataSource = value;
+            }
+        }
+
+        public List<core_city> CityDataSource
+        {
+            set
+            {
+                cmbCity.DisplayMember = "name";
+                cmbCity.ValueMember = "id";
+                cmbCity.DataSource = value;
+            }
+        }
+
+        public List<core_province> ProvinceDataSource
+        {
+            set
+            {
+                cmbProvince.DisplayMember = "name";
+                cmbProvince.ValueMember = "id";
+                cmbProvince.DataSource = value;
             }
         }
 
@@ -218,6 +277,24 @@ namespace StudentMonitoringSystem.Forms.Core
             }           
         }
 
+        private void cmbProvince_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbProvince.SelectedValue != null)
+            {
+                int id = Convert.ToInt32(cmbProvince.SelectedValue);
+                Presenter.LoadCityDataSource(id);
+            }
+        }
+
+        private void cmbCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCity.SelectedValue != null)
+            {
+                int id = Convert.ToInt32(cmbCity.SelectedValue);
+                Presenter.LoadBarangayDataSource(id);
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -246,7 +323,7 @@ namespace StudentMonitoringSystem.Forms.Core
                 item.SubItems.Add(student.civilstatus);
                 item.SubItems.Add(student.dateofbirth.ToString());
                 item.SubItems.Add(student.citizenship);
-
+                item.SubItems.Add(string.Format("{0} {1}, {2}, {3}", student.street, student.barangay, student.city, student.province));
                 lvwStudent.Items.Add(item);
             }
         }

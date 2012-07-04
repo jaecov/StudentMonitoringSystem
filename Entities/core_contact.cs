@@ -39,7 +39,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual string remarks
+        public virtual string note
         {
             get;
             set;

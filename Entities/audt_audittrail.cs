@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 namespace StudentMonitoringSystem.Entities
 {
     [Serializable]
-    public partial class log_entrybook_archive: BaseObject
+    public partial class audt_audittrail: BaseObject
     {
         #region Primitive Properties
     
@@ -27,37 +27,19 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual System.DateTime archiveddate
+        public virtual string message
         {
             get;
             set;
         }
     
-        public virtual int entrybook_id
+        public virtual bool isexception
         {
             get;
             set;
         }
     
-        public virtual string rfid
-        {
-            get;
-            set;
-        }
-    
-        public virtual System.DateTime timein
-        {
-            get;
-            set;
-        }
-    
-        public virtual System.DateTime timeout
-        {
-            get;
-            set;
-        }
-    
-        public virtual bool isoverride
+        public virtual System.DateTime datecreated
         {
             get;
             set;

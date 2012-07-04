@@ -6,11 +6,14 @@
     <edmx:StorageModels>
     <Schema Namespace="studentmonitoringModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="studentmonitoringModelStoreContainer">
-          <EntitySet Name="core_audittrail" EntityType="studentmonitoringModel.Store.core_audittrail" store:Type="Tables" Schema="studentmonitoring" />
+          <EntitySet Name="audt_audittrail" EntityType="studentmonitoringModel.Store.audt_audittrail" store:Type="Tables" Schema="studentmonitoring" />
+          <EntitySet Name="audt_log" EntityType="studentmonitoringModel.Store.audt_log" store:Type="Tables" Schema="studentmonitoring" />
           <EntitySet Name="core_barangay" EntityType="studentmonitoringModel.Store.core_barangay" store:Type="Tables" Schema="studentmonitoring" />
+          <EntitySet Name="core_city" EntityType="studentmonitoringModel.Store.core_city" store:Type="Tables" Schema="studentmonitoring" />
           <EntitySet Name="core_civilstatus" EntityType="studentmonitoringModel.Store.core_civilstatus" store:Type="Tables" Schema="studentmonitoring" />
           <EntitySet Name="core_contact" EntityType="studentmonitoringModel.Store.core_contact" store:Type="Tables" Schema="studentmonitoring" />
           <EntitySet Name="core_gender" EntityType="studentmonitoringModel.Store.core_gender" store:Type="Tables" Schema="studentmonitoring" />
+          <EntitySet Name="core_province" EntityType="studentmonitoringModel.Store.core_province" store:Type="Tables" Schema="studentmonitoring" />
           <EntitySet Name="core_student" EntityType="studentmonitoringModel.Store.core_student" store:Type="Tables" Schema="studentmonitoring" />
           <EntitySet Name="core_systemsettings" EntityType="studentmonitoringModel.Store.core_systemsettings" store:Type="Tables" Schema="studentmonitoring" />
           <EntitySet Name="core_user" EntityType="studentmonitoringModel.Store.core_user" store:Type="Tables" Schema="studentmonitoring" />
@@ -46,26 +49,48 @@
             <DefiningQuery>SELECT
       `vstudentinfo`.`id`, 
       `vstudentinfo`.`number`, 
+      `vstudentinfo`.`rfid`, 
       `vstudentinfo`.`firstname`, 
       `vstudentinfo`.`middlename`, 
       `vstudentinfo`.`lastname`, 
       `vstudentinfo`.`dateofbirth`, 
-      `vstudentinfo`.`citizenship`, 
+      `vstudentinfo`.`picture`, 
       `vstudentinfo`.`gender_id`, 
-      `vstudentinfo`.`gender`, 
       `vstudentinfo`.`civilstatus_id`, 
-      `vstudentinfo`.`civilstatus`
+      `vstudentinfo`.`citizenship`, 
+      `vstudentinfo`.`street`, 
+      `vstudentinfo`.`barangay_id`, 
+      `vstudentinfo`.`mothername`, 
+      `vstudentinfo`.`motheroccupation`, 
+      `vstudentinfo`.`fathername`, 
+      `vstudentinfo`.`fatheroccupation`, 
+      `vstudentinfo`.`note`, 
+      `vstudentinfo`.`civilstatus`, 
+      `vstudentinfo`.`gender`, 
+      `vstudentinfo`.`barangay`, 
+      `vstudentinfo`.`city_id`, 
+      `vstudentinfo`.`city`, 
+      `vstudentinfo`.`province_id`, 
+      `vstudentinfo`.`province`
       FROM `vstudentinfo` AS `vstudentinfo`</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="core_barangay_city" Association="studentmonitoringModel.Store.core_barangay_city">
+            <End Role="core_city" EntitySet="core_city" />
+            <End Role="core_barangay" EntitySet="core_barangay" />
+          </AssociationSet>
           <AssociationSet Name="core_barangay_core_student" Association="studentmonitoringModel.Store.core_barangay_core_student">
             <End Role="core_barangay" EntitySet="core_barangay" />
             <End Role="core_student" EntitySet="core_student" />
+          </AssociationSet>
+          <AssociationSet Name="core_city_province" Association="studentmonitoringModel.Store.core_city_province">
+            <End Role="core_province" EntitySet="core_province" />
+            <End Role="core_city" EntitySet="core_city" />
           </AssociationSet>
           <AssociationSet Name="core_civilstatus_core_student" Association="studentmonitoringModel.Store.core_civilstatus_core_student">
             <End Role="core_civilstatus" EntitySet="core_civilstatus" />
             <End Role="core_student" EntitySet="core_student" />
           </AssociationSet>
-          <AssociationSet Name="core_contact_ibfk_1" Association="studentmonitoringModel.Store.core_contact_ibfk_1">
+          <AssociationSet Name="core_contact_student" Association="studentmonitoringModel.Store.core_contact_student">
             <End Role="core_student" EntitySet="core_student" />
             <End Role="core_contact" EntitySet="core_contact" />
           </AssociationSet>
@@ -73,7 +98,7 @@
             <End Role="core_gender" EntitySet="core_gender" />
             <End Role="core_student" EntitySet="core_student" />
           </AssociationSet>
-          <AssociationSet Name="emp_contact_ibfk_1" Association="studentmonitoringModel.Store.emp_contact_ibfk_1">
+          <AssociationSet Name="emp_contact_employee" Association="studentmonitoringModel.Store.emp_contact_employee">
             <End Role="emp_employee" EntitySet="emp_employee" />
             <End Role="emp_contact" EntitySet="emp_contact" />
           </AssociationSet>
@@ -89,7 +114,7 @@
             <End Role="enroll_room" EntitySet="enroll_room" />
             <End Role="enroll_schedule" EntitySet="enroll_schedule" />
           </AssociationSet>
-          <AssociationSet Name="enroll_section_ibfk_1" Association="studentmonitoringModel.Store.enroll_section_ibfk_1">
+          <AssociationSet Name="enroll_section_course" Association="studentmonitoringModel.Store.enroll_section_course">
             <End Role="enroll_course" EntitySet="enroll_course" />
             <End Role="enroll_section" EntitySet="enroll_section" />
           </AssociationSet>
@@ -113,21 +138,33 @@
             <End Role="enroll_room" EntitySet="enroll_room" />
             <End Role="sms_notification" EntitySet="sms_notification" />
           </AssociationSet>
-          <AssociationSet Name="sms_outbox_archive_ibfk_1" Association="studentmonitoringModel.Store.sms_outbox_archive_ibfk_1">
+          <AssociationSet Name="sms_outbox_archive_status" Association="studentmonitoringModel.Store.sms_outbox_archive_status">
+            <End Role="sms_status" EntitySet="sms_status" />
             <End Role="sms_outbox_archive" EntitySet="sms_outbox_archive" />
-            <End Role="sms_outbox_archive1" EntitySet="sms_outbox_archive" />
           </AssociationSet>
           <AssociationSet Name="sms_outbox_ibfk_1" Association="studentmonitoringModel.Store.sms_outbox_ibfk_1">
             <End Role="sms_status" EntitySet="sms_status" />
             <End Role="sms_outbox" EntitySet="sms_outbox" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="core_audittrail">
+        <EntityType Name="audt_audittrail">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="message" Type="longtext" Nullable="false" />
+          <Property Name="isexception" Type="bit" Nullable="false" />
+          <Property Name="datecreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="audt_log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="tablename" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="rowid" Type="int" Nullable="false" />
+          <Property Name="command" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="savedby" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="datecreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="core_barangay">
@@ -136,8 +173,15 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="city" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="province" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="city_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="core_city">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="province_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="core_civilstatus">
           <Key>
@@ -153,7 +197,7 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="number" Type="varchar" MaxLength="15" />
           <Property Name="emailaddress" Type="varchar" MaxLength="100" />
-          <Property Name="remarks" Type="varchar" MaxLength="100" />
+          <Property Name="note" Type="varchar" MaxLength="100" />
           <Property Name="student_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="core_gender">
@@ -162,6 +206,13 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="core_province">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <EntityType Name="core_student">
           <Key>
@@ -178,13 +229,13 @@
           <Property Name="gender_id" Type="int" Nullable="false" />
           <Property Name="civilstatus_id" Type="int" Nullable="false" />
           <Property Name="citizenship" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="street" Type="varchar" MaxLength="100" />
           <Property Name="barangay_id" Type="int" Nullable="false" />
           <Property Name="mothername" Type="varchar" MaxLength="100" />
           <Property Name="motheroccupation" Type="varchar" MaxLength="100" />
           <Property Name="fathername" Type="varchar" MaxLength="100" />
           <Property Name="fatheroccupation" Type="varchar" MaxLength="100" />
-          <Property Name="datecreated" Type="datetime" Nullable="false" />
-          <Property Name="dateupdated" Type="datetime" Nullable="false" />
+          <Property Name="note" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="core_systemsettings">
           <Key>
@@ -210,7 +261,7 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="number" Type="varchar" MaxLength="15" />
           <Property Name="emailaddress" Type="varchar" MaxLength="100" />
-          <Property Name="remarks" Type="varchar" MaxLength="100" />
+          <Property Name="note" Type="varchar" MaxLength="100" />
           <Property Name="employee_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="emp_employee">
@@ -228,8 +279,6 @@
           <Property Name="civilstatus_id" Type="int" Nullable="false" />
           <Property Name="citizenship" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="barangay_id" Type="int" Nullable="false" />
-          <Property Name="datecreated" Type="datetime" Nullable="false" />
-          <Property Name="dateupdated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="enroll_course">
           <Key>
@@ -282,21 +331,19 @@
           <Property Name="rfid" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="timein" Type="datetime" Nullable="false" />
           <Property Name="timeout" Type="datetime" Nullable="false" />
-          <Property Name="datecreated" Type="datetime" Nullable="false" />
-          <Property Name="override" Type="bit" Nullable="false" />
+          <Property Name="isoverride" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="log_entrybook_archive">
           <Key>
-            <PropertyRef Name="archivedid" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="archivedid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="archiveddate" Type="datetime" Nullable="false" />
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="entrybook_id" Type="int" Nullable="false" />
           <Property Name="rfid" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="timein" Type="datetime" Nullable="false" />
           <Property Name="timeout" Type="datetime" Nullable="false" />
-          <Property Name="datecreated" Type="datetime" Nullable="false" />
-          <Property Name="override" Type="bit" Nullable="false" />
+          <Property Name="isoverride" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="sms_inbox">
           <Key>
@@ -360,11 +407,11 @@
         </EntityType>
         <EntityType Name="sms_outbox_archive">
           <Key>
-            <PropertyRef Name="archivedid" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="archivedid" Type="int" Nullable="false" />
-          <Property Name="archiveddate" Type="datetime" Nullable="false" />
           <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="archiveddate" Type="datetime" Nullable="false" />
+          <Property Name="outbox_id" Type="int" Nullable="false" />
           <Property Name="number" Type="varchar" Nullable="false" MaxLength="15" />
           <Property Name="message" Type="longtext" Nullable="false" />
           <Property Name="status_id" Type="int" Nullable="false" />
@@ -382,11 +429,11 @@
         </EntityType>
         <EntityType Name="sms_sent_archive">
           <Key>
-            <PropertyRef Name="archivedid" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="archivedid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="archiveddate" Type="datetime" Nullable="false" />
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="sent_id" Type="int" Nullable="false" />
           <Property Name="number" Type="varchar" Nullable="false" MaxLength="15" />
           <Property Name="datecreated" Type="datetime" Nullable="false" />
           <Property Name="notification_id" Type="int" />
@@ -409,24 +456,56 @@
             <PropertyRef Name="middlename" />
             <PropertyRef Name="lastname" />
             <PropertyRef Name="dateofbirth" />
-            <PropertyRef Name="citizenship" />
             <PropertyRef Name="gender_id" />
-            <PropertyRef Name="gender" />
             <PropertyRef Name="civilstatus_id" />
+            <PropertyRef Name="citizenship" />
+            <PropertyRef Name="barangay_id" />
             <PropertyRef Name="civilstatus" />
+            <PropertyRef Name="gender" />
+            <PropertyRef Name="barangay" />
+            <PropertyRef Name="city_id" />
+            <PropertyRef Name="city" />
+            <PropertyRef Name="province_id" />
+            <PropertyRef Name="province" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="number" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="rfid" Type="varchar" MaxLength="100" />
           <Property Name="firstname" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="middlename" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="lastname" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="dateofbirth" Type="date" Nullable="false" />
-          <Property Name="citizenship" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="picture" Type="longblob" />
           <Property Name="gender_id" Type="int" Nullable="false" />
-          <Property Name="gender" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="civilstatus_id" Type="int" Nullable="false" />
+          <Property Name="citizenship" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="street" Type="varchar" MaxLength="100" />
+          <Property Name="barangay_id" Type="int" Nullable="false" />
+          <Property Name="mothername" Type="varchar" MaxLength="100" />
+          <Property Name="motheroccupation" Type="varchar" MaxLength="100" />
+          <Property Name="fathername" Type="varchar" MaxLength="100" />
+          <Property Name="fatheroccupation" Type="varchar" MaxLength="100" />
+          <Property Name="note" Type="varchar" MaxLength="100" />
           <Property Name="civilstatus" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="gender" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="barangay" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="city_id" Type="int" Nullable="false" />
+          <Property Name="city" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="province_id" Type="int" Nullable="false" />
+          <Property Name="province" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
+        <Association Name="core_barangay_city">
+          <End Role="core_city" Type="studentmonitoringModel.Store.core_city" Multiplicity="1" />
+          <End Role="core_barangay" Type="studentmonitoringModel.Store.core_barangay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="core_city">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="core_barangay">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="core_barangay_core_student">
           <End Role="core_barangay" Type="studentmonitoringModel.Store.core_barangay" Multiplicity="1" />
           <End Role="core_student" Type="studentmonitoringModel.Store.core_student" Multiplicity="*" />
@@ -436,6 +515,18 @@
             </Principal>
             <Dependent Role="core_student">
               <PropertyRef Name="barangay_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="core_city_province">
+          <End Role="core_province" Type="studentmonitoringModel.Store.core_province" Multiplicity="1" />
+          <End Role="core_city" Type="studentmonitoringModel.Store.core_city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="core_province">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="core_city">
+              <PropertyRef Name="province_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -451,7 +542,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="core_contact_ibfk_1">
+        <Association Name="core_contact_student">
           <End Role="core_student" Type="studentmonitoringModel.Store.core_student" Multiplicity="1" />
           <End Role="core_contact" Type="studentmonitoringModel.Store.core_contact" Multiplicity="*" />
           <ReferentialConstraint>
@@ -475,7 +566,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="emp_contact_ibfk_1">
+        <Association Name="emp_contact_employee">
           <End Role="emp_employee" Type="studentmonitoringModel.Store.emp_employee" Multiplicity="1" />
           <End Role="emp_contact" Type="studentmonitoringModel.Store.emp_contact" Multiplicity="*" />
           <ReferentialConstraint>
@@ -523,7 +614,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="enroll_section_ibfk_1">
+        <Association Name="enroll_section_course">
           <End Role="enroll_course" Type="studentmonitoringModel.Store.enroll_course" Multiplicity="1" />
           <End Role="enroll_section" Type="studentmonitoringModel.Store.enroll_section" Multiplicity="*" />
           <ReferentialConstraint>
@@ -595,14 +686,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="sms_outbox_archive_ibfk_1">
-          <End Role="sms_outbox_archive" Type="studentmonitoringModel.Store.sms_outbox_archive" Multiplicity="1" />
-          <End Role="sms_outbox_archive1" Type="studentmonitoringModel.Store.sms_outbox_archive" Multiplicity="*" />
+        <Association Name="sms_outbox_archive_status">
+          <End Role="sms_status" Type="studentmonitoringModel.Store.sms_status" Multiplicity="1" />
+          <End Role="sms_outbox_archive" Type="studentmonitoringModel.Store.sms_outbox_archive" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="sms_outbox_archive">
-              <PropertyRef Name="archivedid" />
+            <Principal Role="sms_status">
+              <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="sms_outbox_archive1">
+            <Dependent Role="sms_outbox_archive">
               <PropertyRef Name="status_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -624,104 +715,127 @@
     <edmx:ConceptualModels>
       <Schema Namespace="studentmonitoringModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="studentmonitoringEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="core_audittrails" EntityType="studentmonitoringModel.core_audittrail" />
-          <EntitySet Name="core_barangays" EntityType="studentmonitoringModel.core_barangay" />
-          <EntitySet Name="core_civilstatuses" EntityType="studentmonitoringModel.core_civilstatus" />
-          <EntitySet Name="core_contacts" EntityType="studentmonitoringModel.core_contact" />
-          <EntitySet Name="core_genders" EntityType="studentmonitoringModel.core_gender" />
-          <EntitySet Name="core_students" EntityType="studentmonitoringModel.core_student" />
-          <EntitySet Name="core_systemsettingss" EntityType="studentmonitoringModel.core_systemsettings" />
-          <EntitySet Name="core_users" EntityType="studentmonitoringModel.core_user" />
-          <EntitySet Name="emp_contacts" EntityType="studentmonitoringModel.emp_contact" />
-          <EntitySet Name="emp_employees" EntityType="studentmonitoringModel.emp_employee" />
-          <EntitySet Name="enroll_courses" EntityType="studentmonitoringModel.enroll_course" />
-          <EntitySet Name="enroll_rooms" EntityType="studentmonitoringModel.enroll_room" />
-          <EntitySet Name="enroll_schedules" EntityType="studentmonitoringModel.enroll_schedule" />
-          <EntitySet Name="enroll_sections" EntityType="studentmonitoringModel.enroll_section" />
-          <EntitySet Name="enroll_subjects" EntityType="studentmonitoringModel.enroll_subject" />
-          <EntitySet Name="log_entrybooks" EntityType="studentmonitoringModel.log_entrybook" />
-          <EntitySet Name="log_entrybook_archives" EntityType="studentmonitoringModel.log_entrybook_archive" />
-          <EntitySet Name="sms_inboxes" EntityType="studentmonitoringModel.sms_inbox" />
-          <EntitySet Name="sms_inbox_archives" EntityType="studentmonitoringModel.sms_inbox_archive" />
-          <EntitySet Name="sms_networkproviders" EntityType="studentmonitoringModel.sms_networkprovider" />
-          <EntitySet Name="sms_notifications" EntityType="studentmonitoringModel.sms_notification" />
-          <EntitySet Name="sms_outboxes" EntityType="studentmonitoringModel.sms_outbox" />
-          <EntitySet Name="sms_outbox_archives" EntityType="studentmonitoringModel.sms_outbox_archive" />
-          <EntitySet Name="sms_sents" EntityType="studentmonitoringModel.sms_sent" />
-          <EntitySet Name="sms_sent_archives" EntityType="studentmonitoringModel.sms_sent_archive" />
-          <EntitySet Name="sms_statuses" EntityType="studentmonitoringModel.sms_status" />
-          <EntitySet Name="vstudentinfos" EntityType="studentmonitoringModel.vstudentinfo" />
+          <EntitySet Name="audt_audittrail" EntityType="studentmonitoringModel.audt_audittrail" />
+          <EntitySet Name="audt_log" EntityType="studentmonitoringModel.audt_log" />
+          <EntitySet Name="core_barangay" EntityType="studentmonitoringModel.core_barangay" />
+          <EntitySet Name="core_city" EntityType="studentmonitoringModel.core_city" />
+          <EntitySet Name="core_civilstatus" EntityType="studentmonitoringModel.core_civilstatus" />
+          <EntitySet Name="core_contact" EntityType="studentmonitoringModel.core_contact" />
+          <EntitySet Name="core_gender" EntityType="studentmonitoringModel.core_gender" />
+          <EntitySet Name="core_province" EntityType="studentmonitoringModel.core_province" />
+          <EntitySet Name="core_student" EntityType="studentmonitoringModel.core_student" />
+          <EntitySet Name="core_systemsettings" EntityType="studentmonitoringModel.core_systemsettings" />
+          <EntitySet Name="core_user" EntityType="studentmonitoringModel.core_user" />
+          <EntitySet Name="emp_contact" EntityType="studentmonitoringModel.emp_contact" />
+          <EntitySet Name="emp_employee" EntityType="studentmonitoringModel.emp_employee" />
+          <EntitySet Name="enroll_course" EntityType="studentmonitoringModel.enroll_course" />
+          <EntitySet Name="enroll_room" EntityType="studentmonitoringModel.enroll_room" />
+          <EntitySet Name="enroll_schedule" EntityType="studentmonitoringModel.enroll_schedule" />
+          <EntitySet Name="enroll_section" EntityType="studentmonitoringModel.enroll_section" />
+          <EntitySet Name="enroll_subject" EntityType="studentmonitoringModel.enroll_subject" />
+          <EntitySet Name="log_entrybook" EntityType="studentmonitoringModel.log_entrybook" />
+          <EntitySet Name="log_entrybook_archive" EntityType="studentmonitoringModel.log_entrybook_archive" />
+          <EntitySet Name="sms_inbox" EntityType="studentmonitoringModel.sms_inbox" />
+          <EntitySet Name="sms_inbox_archive" EntityType="studentmonitoringModel.sms_inbox_archive" />
+          <EntitySet Name="sms_networkprovider" EntityType="studentmonitoringModel.sms_networkprovider" />
+          <EntitySet Name="sms_notification" EntityType="studentmonitoringModel.sms_notification" />
+          <EntitySet Name="sms_outbox" EntityType="studentmonitoringModel.sms_outbox" />
+          <EntitySet Name="sms_outbox_archive" EntityType="studentmonitoringModel.sms_outbox_archive" />
+          <EntitySet Name="sms_sent" EntityType="studentmonitoringModel.sms_sent" />
+          <EntitySet Name="sms_sent_archive" EntityType="studentmonitoringModel.sms_sent_archive" />
+          <EntitySet Name="sms_status" EntityType="studentmonitoringModel.sms_status" />
+          <AssociationSet Name="core_barangay_city" Association="studentmonitoringModel.core_barangay_city">
+            <End Role="core_city" EntitySet="core_city" />
+            <End Role="core_barangay" EntitySet="core_barangay" />
+          </AssociationSet>
           <AssociationSet Name="core_barangay_core_student" Association="studentmonitoringModel.core_barangay_core_student">
-            <End Role="core_barangay" EntitySet="core_barangays" />
-            <End Role="core_student" EntitySet="core_students" />
+            <End Role="core_barangay" EntitySet="core_barangay" />
+            <End Role="core_student" EntitySet="core_student" />
+          </AssociationSet>
+          <AssociationSet Name="core_city_province" Association="studentmonitoringModel.core_city_province">
+            <End Role="core_province" EntitySet="core_province" />
+            <End Role="core_city" EntitySet="core_city" />
           </AssociationSet>
           <AssociationSet Name="core_civilstatus_core_student" Association="studentmonitoringModel.core_civilstatus_core_student">
-            <End Role="core_civilstatus" EntitySet="core_civilstatuses" />
-            <End Role="core_student" EntitySet="core_students" />
+            <End Role="core_civilstatus" EntitySet="core_civilstatus" />
+            <End Role="core_student" EntitySet="core_student" />
           </AssociationSet>
-          <AssociationSet Name="core_contact_ibfk_1" Association="studentmonitoringModel.core_contact_ibfk_1">
-            <End Role="core_student" EntitySet="core_students" />
-            <End Role="core_contact" EntitySet="core_contacts" />
+          <AssociationSet Name="core_contact_student" Association="studentmonitoringModel.core_contact_student">
+            <End Role="core_student" EntitySet="core_student" />
+            <End Role="core_contact" EntitySet="core_contact" />
           </AssociationSet>
           <AssociationSet Name="core_gender_core_student" Association="studentmonitoringModel.core_gender_core_student">
-            <End Role="core_gender" EntitySet="core_genders" />
-            <End Role="core_student" EntitySet="core_students" />
+            <End Role="core_gender" EntitySet="core_gender" />
+            <End Role="core_student" EntitySet="core_student" />
           </AssociationSet>
-          <AssociationSet Name="emp_contact_ibfk_1" Association="studentmonitoringModel.emp_contact_ibfk_1">
-            <End Role="emp_employee" EntitySet="emp_employees" />
-            <End Role="emp_contact" EntitySet="emp_contacts" />
+          <AssociationSet Name="emp_contact_employee" Association="studentmonitoringModel.emp_contact_employee">
+            <End Role="emp_employee" EntitySet="emp_employee" />
+            <End Role="emp_contact" EntitySet="emp_contact" />
           </AssociationSet>
           <AssociationSet Name="enroll_employee_schedule" Association="studentmonitoringModel.enroll_employee_schedule">
-            <End Role="emp_employee" EntitySet="emp_employees" />
-            <End Role="enroll_schedule" EntitySet="enroll_schedules" />
+            <End Role="emp_employee" EntitySet="emp_employee" />
+            <End Role="enroll_schedule" EntitySet="enroll_schedule" />
           </AssociationSet>
           <AssociationSet Name="enroll_course_schedule" Association="studentmonitoringModel.enroll_course_schedule">
-            <End Role="enroll_course" EntitySet="enroll_courses" />
-            <End Role="enroll_schedule" EntitySet="enroll_schedules" />
+            <End Role="enroll_course" EntitySet="enroll_course" />
+            <End Role="enroll_schedule" EntitySet="enroll_schedule" />
           </AssociationSet>
-          <AssociationSet Name="enroll_section_ibfk_1" Association="studentmonitoringModel.enroll_section_ibfk_1">
-            <End Role="enroll_course" EntitySet="enroll_courses" />
-            <End Role="enroll_section" EntitySet="enroll_sections" />
+          <AssociationSet Name="enroll_section_course" Association="studentmonitoringModel.enroll_section_course">
+            <End Role="enroll_course" EntitySet="enroll_course" />
+            <End Role="enroll_section" EntitySet="enroll_section" />
           </AssociationSet>
           <AssociationSet Name="enroll_room_schedule" Association="studentmonitoringModel.enroll_room_schedule">
-            <End Role="enroll_room" EntitySet="enroll_rooms" />
-            <End Role="enroll_schedule" EntitySet="enroll_schedules" />
+            <End Role="enroll_room" EntitySet="enroll_room" />
+            <End Role="enroll_schedule" EntitySet="enroll_schedule" />
           </AssociationSet>
           <AssociationSet Name="sms_notification_room" Association="studentmonitoringModel.sms_notification_room">
-            <End Role="enroll_room" EntitySet="enroll_rooms" />
-            <End Role="sms_notification" EntitySet="sms_notifications" />
+            <End Role="enroll_room" EntitySet="enroll_room" />
+            <End Role="sms_notification" EntitySet="sms_notification" />
           </AssociationSet>
           <AssociationSet Name="enroll_section_schedule" Association="studentmonitoringModel.enroll_section_schedule">
-            <End Role="enroll_section" EntitySet="enroll_sections" />
-            <End Role="enroll_schedule" EntitySet="enroll_schedules" />
+            <End Role="enroll_section" EntitySet="enroll_section" />
+            <End Role="enroll_schedule" EntitySet="enroll_schedule" />
           </AssociationSet>
           <AssociationSet Name="enroll_subject_schedule" Association="studentmonitoringModel.enroll_subject_schedule">
-            <End Role="enroll_subject" EntitySet="enroll_subjects" />
-            <End Role="enroll_schedule" EntitySet="enroll_schedules" />
+            <End Role="enroll_subject" EntitySet="enroll_subject" />
+            <End Role="enroll_schedule" EntitySet="enroll_schedule" />
           </AssociationSet>
           <AssociationSet Name="sms_inbox_status" Association="studentmonitoringModel.sms_inbox_status">
-            <End Role="sms_status" EntitySet="sms_statuses" />
-            <End Role="sms_inbox" EntitySet="sms_inboxes" />
+            <End Role="sms_status" EntitySet="sms_status" />
+            <End Role="sms_inbox" EntitySet="sms_inbox" />
           </AssociationSet>
           <AssociationSet Name="sms_inbox_archive_status" Association="studentmonitoringModel.sms_inbox_archive_status">
-            <End Role="sms_status" EntitySet="sms_statuses" />
-            <End Role="sms_inbox_archive" EntitySet="sms_inbox_archives" />
+            <End Role="sms_status" EntitySet="sms_status" />
+            <End Role="sms_inbox_archive" EntitySet="sms_inbox_archive" />
           </AssociationSet>
           <AssociationSet Name="sms_outbox_ibfk_1" Association="studentmonitoringModel.sms_outbox_ibfk_1">
-            <End Role="sms_status" EntitySet="sms_statuses" />
-            <End Role="sms_outbox" EntitySet="sms_outboxes" />
+            <End Role="sms_status" EntitySet="sms_status" />
+            <End Role="sms_outbox" EntitySet="sms_outbox" />
           </AssociationSet>
-          <AssociationSet Name="sms_outbox_archive_ibfk_1" Association="studentmonitoringModel.sms_outbox_archive_ibfk_1">
-            <End Role="sms_outbox_archive" EntitySet="sms_outbox_archives" />
-            <End Role="sms_outbox_archive1" EntitySet="sms_outbox_archives" />
+          <AssociationSet Name="sms_outbox_archive_status" Association="studentmonitoringModel.sms_outbox_archive_status">
+            <End Role="sms_status" EntitySet="sms_status" />
+            <End Role="sms_outbox_archive" EntitySet="sms_outbox_archive" />
           </AssociationSet>
+          <EntitySet Name="vstudentinfoes" EntityType="studentmonitoringModel.vstudentinfo" />
         </EntityContainer>
-        <EntityType Name="core_audittrail">
+        <EntityType Name="audt_audittrail">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="message" Nullable="false" />
+          <Property Type="Boolean" Name="isexception" Nullable="false" />
+          <Property Type="DateTime" Name="datecreated" Nullable="false" />
+        </EntityType>
+        <EntityType Name="audt_log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="tablename" Nullable="false" />
+          <Property Type="Int32" Name="rowid" Nullable="false" />
+          <Property Type="String" Name="command" Nullable="false" />
+          <Property Type="String" Name="savedby" Nullable="false" />
           <Property Type="DateTime" Name="datecreated" Nullable="false" />
         </EntityType>
         <EntityType Name="core_barangay">
@@ -730,9 +844,19 @@
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="name" Nullable="false" />
-          <Property Type="String" Name="city" Nullable="false" />
-          <Property Type="String" Name="province" Nullable="false" />
+          <Property Type="Int32" Name="city_id" Nullable="false" />
+          <NavigationProperty Name="core_city" Relationship="studentmonitoringModel.core_barangay_city" FromRole="core_barangay" ToRole="core_city" />
           <NavigationProperty Name="core_student" Relationship="studentmonitoringModel.core_barangay_core_student" FromRole="core_barangay" ToRole="core_student" />
+        </EntityType>
+        <EntityType Name="core_city">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" Nullable="false" />
+          <Property Type="Int32" Name="province_id" Nullable="false" />
+          <NavigationProperty Name="core_barangay" Relationship="studentmonitoringModel.core_barangay_city" FromRole="core_city" ToRole="core_barangay" />
+          <NavigationProperty Name="core_province" Relationship="studentmonitoringModel.core_city_province" FromRole="core_city" ToRole="core_province" />
         </EntityType>
         <EntityType Name="core_civilstatus">
           <Key>
@@ -749,9 +873,9 @@
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="number" />
           <Property Type="String" Name="emailaddress" />
-          <Property Type="String" Name="remarks" />
+          <Property Type="String" Name="note" />
           <Property Type="Int32" Name="student_id" Nullable="false" />
-          <NavigationProperty Name="core_student" Relationship="studentmonitoringModel.core_contact_ibfk_1" FromRole="core_contact" ToRole="core_student" />
+          <NavigationProperty Name="core_student" Relationship="studentmonitoringModel.core_contact_student" FromRole="core_contact" ToRole="core_student" />
         </EntityType>
         <EntityType Name="core_gender">
           <Key>
@@ -760,6 +884,14 @@
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="name" Nullable="false" />
           <NavigationProperty Name="core_student" Relationship="studentmonitoringModel.core_gender_core_student" FromRole="core_gender" ToRole="core_student" />
+        </EntityType>
+        <EntityType Name="core_province">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" Nullable="false" />
+          <NavigationProperty Name="core_city" Relationship="studentmonitoringModel.core_city_province" FromRole="core_province" ToRole="core_city" />
         </EntityType>
         <EntityType Name="core_student">
           <Key>
@@ -781,12 +913,12 @@
           <Property Type="String" Name="motheroccupation" />
           <Property Type="String" Name="fathername" />
           <Property Type="String" Name="fatheroccupation" />
-          <Property Type="DateTime" Name="datecreated" Nullable="false" />
-          <Property Type="DateTime" Name="dateupdated" Nullable="false" />
+          <Property Type="String" Name="note" />
           <NavigationProperty Name="core_barangay" Relationship="studentmonitoringModel.core_barangay_core_student" FromRole="core_student" ToRole="core_barangay" />
           <NavigationProperty Name="core_civilstatus" Relationship="studentmonitoringModel.core_civilstatus_core_student" FromRole="core_student" ToRole="core_civilstatus" />
-          <NavigationProperty Name="core_contact" Relationship="studentmonitoringModel.core_contact_ibfk_1" FromRole="core_student" ToRole="core_contact" />
+          <NavigationProperty Name="core_contact" Relationship="studentmonitoringModel.core_contact_student" FromRole="core_student" ToRole="core_contact" />
           <NavigationProperty Name="core_gender" Relationship="studentmonitoringModel.core_gender_core_student" FromRole="core_student" ToRole="core_gender" />
+          <Property Type="String" Name="street" />
         </EntityType>
         <EntityType Name="core_systemsettings">
           <Key>
@@ -812,9 +944,9 @@
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="number" />
           <Property Type="String" Name="emailaddress" />
-          <Property Type="String" Name="remarks" />
+          <Property Type="String" Name="note" />
           <Property Type="Int32" Name="employee_id" Nullable="false" />
-          <NavigationProperty Name="emp_employee" Relationship="studentmonitoringModel.emp_contact_ibfk_1" FromRole="emp_contact" ToRole="emp_employee" />
+          <NavigationProperty Name="emp_employee" Relationship="studentmonitoringModel.emp_contact_employee" FromRole="emp_contact" ToRole="emp_employee" />
         </EntityType>
         <EntityType Name="emp_employee">
           <Key>
@@ -831,9 +963,7 @@
           <Property Type="Int32" Name="civilstatus_id" Nullable="false" />
           <Property Type="String" Name="citizenship" Nullable="false" />
           <Property Type="Int32" Name="barangay_id" Nullable="false" />
-          <Property Type="DateTime" Name="datecreated" Nullable="false" />
-          <Property Type="DateTime" Name="dateupdated" Nullable="false" />
-          <NavigationProperty Name="emp_contact" Relationship="studentmonitoringModel.emp_contact_ibfk_1" FromRole="emp_employee" ToRole="emp_contact" />
+          <NavigationProperty Name="emp_contact" Relationship="studentmonitoringModel.emp_contact_employee" FromRole="emp_employee" ToRole="emp_contact" />
           <NavigationProperty Name="enroll_schedule" Relationship="studentmonitoringModel.enroll_employee_schedule" FromRole="emp_employee" ToRole="enroll_schedule" />
         </EntityType>
         <EntityType Name="enroll_course">
@@ -844,7 +974,7 @@
           <Property Type="String" Name="name" Nullable="false" />
           <Property Type="String" Name="code" Nullable="false" />
           <NavigationProperty Name="enroll_schedule" Relationship="studentmonitoringModel.enroll_course_schedule" FromRole="enroll_course" ToRole="enroll_schedule" />
-          <NavigationProperty Name="enroll_section" Relationship="studentmonitoringModel.enroll_section_ibfk_1" FromRole="enroll_course" ToRole="enroll_section" />
+          <NavigationProperty Name="enroll_section" Relationship="studentmonitoringModel.enroll_section_course" FromRole="enroll_course" ToRole="enroll_section" />
         </EntityType>
         <EntityType Name="enroll_room">
           <Key>
@@ -880,7 +1010,7 @@
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="name" Nullable="false" />
           <Property Type="Int32" Name="course_id" Nullable="false" />
-          <NavigationProperty Name="enroll_course" Relationship="studentmonitoringModel.enroll_section_ibfk_1" FromRole="enroll_section" ToRole="enroll_course" />
+          <NavigationProperty Name="enroll_course" Relationship="studentmonitoringModel.enroll_section_course" FromRole="enroll_section" ToRole="enroll_course" />
           <NavigationProperty Name="enroll_schedule" Relationship="studentmonitoringModel.enroll_section_schedule" FromRole="enroll_section" ToRole="enroll_schedule" />
         </EntityType>
         <EntityType Name="enroll_subject">
@@ -899,21 +1029,19 @@
           <Property Type="String" Name="rfid" Nullable="false" />
           <Property Type="DateTime" Name="timein" Nullable="false" />
           <Property Type="DateTime" Name="timeout" Nullable="false" />
-          <Property Type="DateTime" Name="datecreated" Nullable="false" />
-          <Property Type="Boolean" Name="override" Nullable="false" />
+          <Property Type="Boolean" Name="isoverride" Nullable="false" />
         </EntityType>
         <EntityType Name="log_entrybook_archive">
           <Key>
-            <PropertyRef Name="archivedid" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="archivedid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="DateTime" Name="archiveddate" Nullable="false" />
-          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="entrybook_id" Nullable="false" />
           <Property Type="String" Name="rfid" Nullable="false" />
           <Property Type="DateTime" Name="timein" Nullable="false" />
           <Property Type="DateTime" Name="timeout" Nullable="false" />
-          <Property Type="DateTime" Name="datecreated" Nullable="false" />
-          <Property Type="Boolean" Name="override" Nullable="false" />
+          <Property Type="Boolean" Name="isoverride" Nullable="false" />
         </EntityType>
         <EntityType Name="sms_inbox">
           <Key>
@@ -978,17 +1106,16 @@
         </EntityType>
         <EntityType Name="sms_outbox_archive">
           <Key>
-            <PropertyRef Name="archivedid" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="archivedid" Nullable="false" />
-          <Property Type="DateTime" Name="archiveddate" Nullable="false" />
           <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="DateTime" Name="archiveddate" Nullable="false" />
+          <Property Type="Int32" Name="outbox_id" Nullable="false" />
           <Property Type="String" Name="number" Nullable="false" />
           <Property Type="String" Name="message" Nullable="false" />
           <Property Type="Int32" Name="status_id" Nullable="false" />
           <Property Type="Int32" Name="notification_id" />
-          <NavigationProperty Name="sms_outbox_archive1" Relationship="studentmonitoringModel.sms_outbox_archive_ibfk_1" FromRole="sms_outbox_archive" ToRole="sms_outbox_archive1" />
-          <NavigationProperty Name="sms_outbox_archive2" Relationship="studentmonitoringModel.sms_outbox_archive_ibfk_1" FromRole="sms_outbox_archive1" ToRole="sms_outbox_archive" />
+          <NavigationProperty Name="sms_status" Relationship="studentmonitoringModel.sms_outbox_archive_status" FromRole="sms_outbox_archive" ToRole="sms_status" />
         </EntityType>
         <EntityType Name="sms_sent">
           <Key>
@@ -1002,11 +1129,11 @@
         </EntityType>
         <EntityType Name="sms_sent_archive">
           <Key>
-            <PropertyRef Name="archivedid" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="archivedid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="DateTime" Name="archiveddate" Nullable="false" />
-          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="sent_id" Nullable="false" />
           <Property Type="String" Name="number" Nullable="false" />
           <Property Type="DateTime" Name="datecreated" Nullable="false" />
           <Property Type="Int32" Name="notification_id" />
@@ -1020,33 +1147,20 @@
           <NavigationProperty Name="sms_inbox" Relationship="studentmonitoringModel.sms_inbox_status" FromRole="sms_status" ToRole="sms_inbox" />
           <NavigationProperty Name="sms_inbox_archive" Relationship="studentmonitoringModel.sms_inbox_archive_status" FromRole="sms_status" ToRole="sms_inbox_archive" />
           <NavigationProperty Name="sms_outbox" Relationship="studentmonitoringModel.sms_outbox_ibfk_1" FromRole="sms_status" ToRole="sms_outbox" />
+          <NavigationProperty Name="sms_outbox_archive" Relationship="studentmonitoringModel.sms_outbox_archive_status" FromRole="sms_status" ToRole="sms_outbox_archive" />
         </EntityType>
-        <EntityType Name="vstudentinfo">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="number" />
-            <PropertyRef Name="firstname" />
-            <PropertyRef Name="middlename" />
-            <PropertyRef Name="lastname" />
-            <PropertyRef Name="dateofbirth" />
-            <PropertyRef Name="citizenship" />
-            <PropertyRef Name="gender_id" />
-            <PropertyRef Name="gender" />
-            <PropertyRef Name="civilstatus_id" />
-            <PropertyRef Name="civilstatus" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="number" Nullable="false" />
-          <Property Type="String" Name="firstname" Nullable="false" />
-          <Property Type="String" Name="middlename" Nullable="false" />
-          <Property Type="String" Name="lastname" Nullable="false" />
-          <Property Type="DateTime" Name="dateofbirth" Nullable="false" />
-          <Property Type="String" Name="citizenship" Nullable="false" />
-          <Property Type="Int32" Name="gender_id" Nullable="false" />
-          <Property Type="String" Name="gender" Nullable="false" />
-          <Property Type="Int32" Name="civilstatus_id" Nullable="false" />
-          <Property Type="String" Name="civilstatus" Nullable="false" />
-        </EntityType>
+        <Association Name="core_barangay_city">
+          <End Type="studentmonitoringModel.core_city" Role="core_city" Multiplicity="1" />
+          <End Type="studentmonitoringModel.core_barangay" Role="core_barangay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="core_city">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="core_barangay">
+              <PropertyRef Name="city_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="core_barangay_core_student">
           <End Type="studentmonitoringModel.core_barangay" Role="core_barangay" Multiplicity="1" />
           <End Type="studentmonitoringModel.core_student" Role="core_student" Multiplicity="*" />
@@ -1056,6 +1170,18 @@
             </Principal>
             <Dependent Role="core_student">
               <PropertyRef Name="barangay_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="core_city_province">
+          <End Type="studentmonitoringModel.core_province" Role="core_province" Multiplicity="1" />
+          <End Type="studentmonitoringModel.core_city" Role="core_city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="core_province">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="core_city">
+              <PropertyRef Name="province_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1071,7 +1197,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="core_contact_ibfk_1">
+        <Association Name="core_contact_student">
           <End Type="studentmonitoringModel.core_student" Role="core_student" Multiplicity="1" />
           <End Type="studentmonitoringModel.core_contact" Role="core_contact" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1095,7 +1221,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="emp_contact_ibfk_1">
+        <Association Name="emp_contact_employee">
           <End Type="studentmonitoringModel.emp_employee" Role="emp_employee" Multiplicity="1" />
           <End Type="studentmonitoringModel.emp_contact" Role="emp_contact" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1131,7 +1257,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="enroll_section_ibfk_1">
+        <Association Name="enroll_section_course">
           <End Type="studentmonitoringModel.enroll_course" Role="enroll_course" Multiplicity="1" />
           <End Type="studentmonitoringModel.enroll_section" Role="enroll_section" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1227,44 +1353,111 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="sms_outbox_archive_ibfk_1">
-          <End Type="studentmonitoringModel.sms_outbox_archive" Role="sms_outbox_archive" Multiplicity="1" />
-          <End Type="studentmonitoringModel.sms_outbox_archive" Role="sms_outbox_archive1" Multiplicity="*" />
+        <Association Name="sms_outbox_archive_status">
+          <End Type="studentmonitoringModel.sms_status" Role="sms_status" Multiplicity="1" />
+          <End Type="studentmonitoringModel.sms_outbox_archive" Role="sms_outbox_archive" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="sms_outbox_archive">
-              <PropertyRef Name="archivedid" />
+            <Principal Role="sms_status">
+              <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="sms_outbox_archive1">
+            <Dependent Role="sms_outbox_archive">
               <PropertyRef Name="status_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="vstudentinfo">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="number" />
+            <PropertyRef Name="firstname" />
+            <PropertyRef Name="middlename" />
+            <PropertyRef Name="lastname" />
+            <PropertyRef Name="dateofbirth" />
+            <PropertyRef Name="gender_id" />
+            <PropertyRef Name="civilstatus_id" />
+            <PropertyRef Name="citizenship" />
+            <PropertyRef Name="barangay_id" />
+            <PropertyRef Name="civilstatus" />
+            <PropertyRef Name="gender" />
+            <PropertyRef Name="barangay" />
+            <PropertyRef Name="city_id" />
+            <PropertyRef Name="city" />
+            <PropertyRef Name="province_id" />
+            <PropertyRef Name="province" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="number" Nullable="false" />
+          <Property Type="String" Name="rfid" />
+          <Property Type="String" Name="firstname" Nullable="false" />
+          <Property Type="String" Name="middlename" Nullable="false" />
+          <Property Type="String" Name="lastname" Nullable="false" />
+          <Property Type="DateTime" Name="dateofbirth" Nullable="false" />
+          <Property Type="Binary" Name="picture" />
+          <Property Type="Int32" Name="gender_id" Nullable="false" />
+          <Property Type="Int32" Name="civilstatus_id" Nullable="false" />
+          <Property Type="String" Name="citizenship" Nullable="false" />
+          <Property Type="String" Name="street" />
+          <Property Type="Int32" Name="barangay_id" Nullable="false" />
+          <Property Type="String" Name="mothername" />
+          <Property Type="String" Name="motheroccupation" />
+          <Property Type="String" Name="fathername" />
+          <Property Type="String" Name="fatheroccupation" />
+          <Property Type="String" Name="note" />
+          <Property Type="String" Name="civilstatus" Nullable="false" />
+          <Property Type="String" Name="gender" Nullable="false" />
+          <Property Type="String" Name="barangay" Nullable="false" />
+          <Property Type="Int32" Name="city_id" Nullable="false" />
+          <Property Type="String" Name="city" Nullable="false" />
+          <Property Type="Int32" Name="province_id" Nullable="false" />
+          <Property Type="String" Name="province" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="studentmonitoringModelStoreContainer" CdmEntityContainer="studentmonitoringEntities">
-          <EntitySetMapping Name="core_audittrails">
-            <EntityTypeMapping TypeName="studentmonitoringModel.core_audittrail">
-              <MappingFragment StoreEntitySet="core_audittrail">
+          <EntitySetMapping Name="audt_audittrail">
+            <EntityTypeMapping TypeName="studentmonitoringModel.audt_audittrail">
+              <MappingFragment StoreEntitySet="audt_audittrail">
                 <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+                <ScalarProperty Name="isexception" ColumnName="isexception" />
                 <ScalarProperty Name="message" ColumnName="message" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="core_barangays">
+          <EntitySetMapping Name="audt_log">
+            <EntityTypeMapping TypeName="studentmonitoringModel.audt_log">
+              <MappingFragment StoreEntitySet="audt_log">
+                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+                <ScalarProperty Name="savedby" ColumnName="savedby" />
+                <ScalarProperty Name="command" ColumnName="command" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="tablename" ColumnName="tablename" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="core_barangay">
             <EntityTypeMapping TypeName="studentmonitoringModel.core_barangay">
               <MappingFragment StoreEntitySet="core_barangay">
-                <ScalarProperty Name="province" ColumnName="province" />
-                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="core_civilstatuses">
+          <EntitySetMapping Name="core_city">
+            <EntityTypeMapping TypeName="studentmonitoringModel.core_city">
+              <MappingFragment StoreEntitySet="core_city">
+                <ScalarProperty Name="province_id" ColumnName="province_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="core_civilstatus">
             <EntityTypeMapping TypeName="studentmonitoringModel.core_civilstatus">
               <MappingFragment StoreEntitySet="core_civilstatus">
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1272,18 +1465,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="core_contacts">
+          <EntitySetMapping Name="core_contact">
             <EntityTypeMapping TypeName="studentmonitoringModel.core_contact">
               <MappingFragment StoreEntitySet="core_contact">
                 <ScalarProperty Name="student_id" ColumnName="student_id" />
-                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="emailaddress" ColumnName="emailaddress" />
                 <ScalarProperty Name="number" ColumnName="number" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="core_genders">
+          <EntitySetMapping Name="core_gender">
             <EntityTypeMapping TypeName="studentmonitoringModel.core_gender">
               <MappingFragment StoreEntitySet="core_gender">
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1291,11 +1484,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="core_students">
+          <EntitySetMapping Name="core_province">
+            <EntityTypeMapping TypeName="studentmonitoringModel.core_province">
+              <MappingFragment StoreEntitySet="core_province">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="core_student">
             <EntityTypeMapping TypeName="studentmonitoringModel.core_student">
               <MappingFragment StoreEntitySet="core_student">
-                <ScalarProperty Name="dateupdated" ColumnName="dateupdated" />
-                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="fatheroccupation" ColumnName="fatheroccupation" />
                 <ScalarProperty Name="fathername" ColumnName="fathername" />
                 <ScalarProperty Name="motheroccupation" ColumnName="motheroccupation" />
@@ -1315,7 +1516,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="core_systemsettingss">
+          <EntitySetMapping Name="core_systemsettings">
             <EntityTypeMapping TypeName="studentmonitoringModel.core_systemsettings">
               <MappingFragment StoreEntitySet="core_systemsettings">
                 <ScalarProperty Name="value" ColumnName="value" />
@@ -1323,7 +1524,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="core_users">
+          <EntitySetMapping Name="core_user">
             <EntityTypeMapping TypeName="studentmonitoringModel.core_user">
               <MappingFragment StoreEntitySet="core_user">
                 <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
@@ -1334,22 +1535,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="emp_contacts">
+          <EntitySetMapping Name="emp_contact">
             <EntityTypeMapping TypeName="studentmonitoringModel.emp_contact">
               <MappingFragment StoreEntitySet="emp_contact">
                 <ScalarProperty Name="employee_id" ColumnName="employee_id" />
-                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="emailaddress" ColumnName="emailaddress" />
                 <ScalarProperty Name="number" ColumnName="number" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="emp_employees">
+          <EntitySetMapping Name="emp_employee">
             <EntityTypeMapping TypeName="studentmonitoringModel.emp_employee">
               <MappingFragment StoreEntitySet="emp_employee">
-                <ScalarProperty Name="dateupdated" ColumnName="dateupdated" />
-                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
                 <ScalarProperty Name="barangay_id" ColumnName="barangay_id" />
                 <ScalarProperty Name="citizenship" ColumnName="citizenship" />
                 <ScalarProperty Name="civilstatus_id" ColumnName="civilstatus_id" />
@@ -1364,7 +1563,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="enroll_courses">
+          <EntitySetMapping Name="enroll_course">
             <EntityTypeMapping TypeName="studentmonitoringModel.enroll_course">
               <MappingFragment StoreEntitySet="enroll_course">
                 <ScalarProperty Name="code" ColumnName="code" />
@@ -1373,7 +1572,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="enroll_rooms">
+          <EntitySetMapping Name="enroll_room">
             <EntityTypeMapping TypeName="studentmonitoringModel.enroll_room">
               <MappingFragment StoreEntitySet="enroll_room">
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1381,7 +1580,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="enroll_schedules">
+          <EntitySetMapping Name="enroll_schedule">
             <EntityTypeMapping TypeName="studentmonitoringModel.enroll_schedule">
               <MappingFragment StoreEntitySet="enroll_schedule">
                 <ScalarProperty Name="dateend" ColumnName="dateend" />
@@ -1395,7 +1594,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="enroll_sections">
+          <EntitySetMapping Name="enroll_section">
             <EntityTypeMapping TypeName="studentmonitoringModel.enroll_section">
               <MappingFragment StoreEntitySet="enroll_section">
                 <ScalarProperty Name="course_id" ColumnName="course_id" />
@@ -1404,7 +1603,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="enroll_subjects">
+          <EntitySetMapping Name="enroll_subject">
             <EntityTypeMapping TypeName="studentmonitoringModel.enroll_subject">
               <MappingFragment StoreEntitySet="enroll_subject">
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1412,11 +1611,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="log_entrybooks">
+          <EntitySetMapping Name="log_entrybook">
             <EntityTypeMapping TypeName="studentmonitoringModel.log_entrybook">
               <MappingFragment StoreEntitySet="log_entrybook">
-                <ScalarProperty Name="override" ColumnName="override" />
-                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+                <ScalarProperty Name="isoverride" ColumnName="isoverride" />
                 <ScalarProperty Name="timeout" ColumnName="timeout" />
                 <ScalarProperty Name="timein" ColumnName="timein" />
                 <ScalarProperty Name="rfid" ColumnName="rfid" />
@@ -1424,21 +1622,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="log_entrybook_archives">
+          <EntitySetMapping Name="log_entrybook_archive">
             <EntityTypeMapping TypeName="studentmonitoringModel.log_entrybook_archive">
               <MappingFragment StoreEntitySet="log_entrybook_archive">
-                <ScalarProperty Name="override" ColumnName="override" />
-                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+                <ScalarProperty Name="isoverride" ColumnName="isoverride" />
                 <ScalarProperty Name="timeout" ColumnName="timeout" />
                 <ScalarProperty Name="timein" ColumnName="timein" />
                 <ScalarProperty Name="rfid" ColumnName="rfid" />
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="entrybook_id" ColumnName="entrybook_id" />
                 <ScalarProperty Name="archiveddate" ColumnName="archiveddate" />
-                <ScalarProperty Name="archivedid" ColumnName="archivedid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sms_inboxes">
+          <EntitySetMapping Name="sms_inbox">
             <EntityTypeMapping TypeName="studentmonitoringModel.sms_inbox">
               <MappingFragment StoreEntitySet="sms_inbox">
                 <ScalarProperty Name="status_id" ColumnName="status_id" />
@@ -1449,7 +1646,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sms_inbox_archives">
+          <EntitySetMapping Name="sms_inbox_archive">
             <EntityTypeMapping TypeName="studentmonitoringModel.sms_inbox_archive">
               <MappingFragment StoreEntitySet="sms_inbox_archive">
                 <ScalarProperty Name="status_id" ColumnName="status_id" />
@@ -1462,7 +1659,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sms_networkproviders">
+          <EntitySetMapping Name="sms_networkprovider">
             <EntityTypeMapping TypeName="studentmonitoringModel.sms_networkprovider">
               <MappingFragment StoreEntitySet="sms_networkprovider">
                 <ScalarProperty Name="network" ColumnName="network" />
@@ -1471,7 +1668,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sms_notifications">
+          <EntitySetMapping Name="sms_notification">
             <EntityTypeMapping TypeName="studentmonitoringModel.sms_notification">
               <MappingFragment StoreEntitySet="sms_notification">
                 <ScalarProperty Name="datecreated" ColumnName="datecreated" />
@@ -1483,7 +1680,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sms_outboxes">
+          <EntitySetMapping Name="sms_outbox">
             <EntityTypeMapping TypeName="studentmonitoringModel.sms_outbox">
               <MappingFragment StoreEntitySet="sms_outbox">
                 <ScalarProperty Name="notification_id" ColumnName="notification_id" />
@@ -1494,20 +1691,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sms_outbox_archives">
+          <EntitySetMapping Name="sms_outbox_archive">
             <EntityTypeMapping TypeName="studentmonitoringModel.sms_outbox_archive">
               <MappingFragment StoreEntitySet="sms_outbox_archive">
                 <ScalarProperty Name="notification_id" ColumnName="notification_id" />
                 <ScalarProperty Name="status_id" ColumnName="status_id" />
                 <ScalarProperty Name="message" ColumnName="message" />
                 <ScalarProperty Name="number" ColumnName="number" />
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="outbox_id" ColumnName="outbox_id" />
                 <ScalarProperty Name="archiveddate" ColumnName="archiveddate" />
-                <ScalarProperty Name="archivedid" ColumnName="archivedid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sms_sents">
+          <EntitySetMapping Name="sms_sent">
             <EntityTypeMapping TypeName="studentmonitoringModel.sms_sent">
               <MappingFragment StoreEntitySet="sms_sent">
                 <ScalarProperty Name="notification_id" ColumnName="notification_id" />
@@ -1518,19 +1715,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sms_sent_archives">
+          <EntitySetMapping Name="sms_sent_archive">
             <EntityTypeMapping TypeName="studentmonitoringModel.sms_sent_archive">
               <MappingFragment StoreEntitySet="sms_sent_archive">
                 <ScalarProperty Name="notification_id" ColumnName="notification_id" />
                 <ScalarProperty Name="datecreated" ColumnName="datecreated" />
                 <ScalarProperty Name="number" ColumnName="number" />
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sent_id" ColumnName="sent_id" />
                 <ScalarProperty Name="archiveddate" ColumnName="archiveddate" />
-                <ScalarProperty Name="archivedid" ColumnName="archivedid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sms_statuses">
+          <EntitySetMapping Name="sms_status">
             <EntityTypeMapping TypeName="studentmonitoringModel.sms_status">
               <MappingFragment StoreEntitySet="sms_status">
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1538,18 +1735,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vstudentinfos">
+          <EntitySetMapping Name="vstudentinfoes">
             <EntityTypeMapping TypeName="studentmonitoringModel.vstudentinfo">
               <MappingFragment StoreEntitySet="vstudentinfo">
-                <ScalarProperty Name="civilstatus" ColumnName="civilstatus" />
-                <ScalarProperty Name="civilstatus_id" ColumnName="civilstatus_id" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="province_id" ColumnName="province_id" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="barangay" ColumnName="barangay" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
+                <ScalarProperty Name="civilstatus" ColumnName="civilstatus" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="fatheroccupation" ColumnName="fatheroccupation" />
+                <ScalarProperty Name="fathername" ColumnName="fathername" />
+                <ScalarProperty Name="motheroccupation" ColumnName="motheroccupation" />
+                <ScalarProperty Name="mothername" ColumnName="mothername" />
+                <ScalarProperty Name="barangay_id" ColumnName="barangay_id" />
+                <ScalarProperty Name="street" ColumnName="street" />
                 <ScalarProperty Name="citizenship" ColumnName="citizenship" />
+                <ScalarProperty Name="civilstatus_id" ColumnName="civilstatus_id" />
+                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
+                <ScalarProperty Name="picture" ColumnName="picture" />
                 <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
                 <ScalarProperty Name="lastname" ColumnName="lastname" />
                 <ScalarProperty Name="middlename" ColumnName="middlename" />
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="rfid" ColumnName="rfid" />
                 <ScalarProperty Name="number" ColumnName="number" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -1576,130 +1787,144 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="EntityModel" ZoomLevel="47">
-        <EntityTypeShape EntityType="studentmonitoringModel.core_audittrail" Width="1.5" PointX="2.75" PointY="1.75" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="studentmonitoringModel.core_barangay" Width="1.5" PointX="5.75" PointY="10.75" Height="1.9802864583333317" />
-        <EntityTypeShape EntityType="studentmonitoringModel.core_civilstatus" Width="1.5" PointX="5.75" PointY="0.75" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="studentmonitoringModel.core_contact" Width="1.5" PointX="10.25" PointY="10.625" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="studentmonitoringModel.core_gender" Width="1.5" PointX="5.75" PointY="19.125" Height="1.595683593749996" />
-        <EntityTypeShape EntityType="studentmonitoringModel.core_student" Width="1.5" PointX="8" PointY="9.125" Height="5.2494108072916674" />
-        <EntityTypeShape EntityType="studentmonitoringModel.core_systemsettings" Width="1.5" PointX="8.75" PointY="1.75" Height="1.4033821614583353" />
-        <EntityTypeShape EntityType="studentmonitoringModel.core_user" Width="1.5" PointX="8.75" PointY="4.75" Height="1.9802864583333317" />
-        <EntityTypeShape EntityType="studentmonitoringModel.emp_contact" Width="1.5" PointX="3" PointY="4.25" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="studentmonitoringModel.emp_employee" Width="1.5" PointX="0.75" PointY="3.375" Height="3.903300781249996" />
-        <EntityTypeShape EntityType="studentmonitoringModel.enroll_course" Width="1.5" PointX="3.75" PointY="8.125" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="studentmonitoringModel.enroll_room" Width="1.5" PointX="3.75" PointY="10.875" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="studentmonitoringModel.enroll_schedule" Width="1.5" PointX="6" PointY="3.625" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="studentmonitoringModel.enroll_section" Width="1.5" PointX="3.75" PointY="13.375" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="studentmonitoringModel.enroll_subject" Width="1.5" PointX="3.75" PointY="16.125" Height="1.5956835937500067" />
-        <EntityTypeShape EntityType="studentmonitoringModel.log_entrybook" Width="1.5" PointX="10.75" PointY="1.75" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="studentmonitoringModel.log_entrybook_archive" Width="1.5" PointX="0.75" PointY="12.75" Height="2.5571907552083317" />
-        <EntityTypeShape EntityType="studentmonitoringModel.sms_inbox" Width="1.5" PointX="15" PointY="2.25" Height="2.172587890624996" />
-        <EntityTypeShape EntityType="studentmonitoringModel.sms_inbox_archive" Width="1.5" PointX="15" PointY="5.125" Height="2.5571907552083246" />
-        <EntityTypeShape EntityType="studentmonitoringModel.sms_networkprovider" Width="1.5" PointX="12.75" PointY="11.75" Height="1.5956835937500102" />
-        <EntityTypeShape EntityType="studentmonitoringModel.sms_notification" Width="1.5" PointX="6" PointY="15.5" Height="2.364889322916671" />
-        <EntityTypeShape EntityType="studentmonitoringModel.sms_outbox" Width="1.5" PointX="15" PointY="8.5" Height="2.172587890624996" />
-        <EntityTypeShape EntityType="studentmonitoringModel.sms_outbox_archive" Width="1.5" PointX="0.75" PointY="8.75" Height="2.7494921875000102" />
-        <EntityTypeShape EntityType="studentmonitoringModel.sms_sent" Width="1.5" PointX="10.75" PointY="14.75" Height="1.9802864583333264" />
-        <EntityTypeShape EntityType="studentmonitoringModel.sms_sent_archive" Width="1.5" PointX="12.75" PointY="14.75" Height="2.172587890625012" />
-        <EntityTypeShape EntityType="studentmonitoringModel.sms_status" Width="1.5" PointX="12.75" PointY="5.5" Height="1.9802864583333246" />
-        <EntityTypeShape EntityType="studentmonitoringModel.vstudentinfo" Width="1.5" PointX="14.75" PointY="11.75" Height="3.1340950520833246" />
+      <Diagram Name="EntityModel" ZoomLevel="71">
+        <EntityTypeShape EntityType="studentmonitoringModel.audt_audittrail" Width="1.5" PointX="0.75" PointY="8.875" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="studentmonitoringModel.audt_log" Width="1.5" PointX="0.75" PointY="11.875" Height="2.1725878906250102" />
+        <EntityTypeShape EntityType="studentmonitoringModel.core_barangay" Width="1.5" PointX="13.25" PointY="3.75" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="studentmonitoringModel.core_city" Width="1.5" PointX="11" PointY="3.75" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="studentmonitoringModel.core_civilstatus" Width="1.5" PointX="13.25" PointY="0.75" Height="1.595683593749996" />
+        <EntityTypeShape EntityType="studentmonitoringModel.core_contact" Width="1.5" PointX="17.75" PointY="3.625" Height="2.172587890624996" />
+        <EntityTypeShape EntityType="studentmonitoringModel.core_gender" Width="1.5" PointX="13.25" PointY="7.125" Height="1.595683593749996" />
+        <EntityTypeShape EntityType="studentmonitoringModel.core_province" Width="1.5" PointX="8.75" PointY="3.875" Height="1.595683593749996" />
+        <EntityTypeShape EntityType="studentmonitoringModel.core_student" Width="1.5" PointX="15.5" PointY="2.25" Height="5.057109374999996" />
+        <EntityTypeShape EntityType="studentmonitoringModel.core_systemsettings" Width="1.5" PointX="2.75" PointY="1.875" Height="1.4033821614583246" />
+        <EntityTypeShape EntityType="studentmonitoringModel.core_user" Width="1.5" PointX="10.75" PointY="9.875" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="studentmonitoringModel.emp_contact" Width="1.5" PointX="3" PointY="4.375" Height="2.1725878906250102" />
+        <EntityTypeShape EntityType="studentmonitoringModel.emp_employee" Width="1.5" PointX="0.75" PointY="3.75" Height="3.518697916666639" />
+        <EntityTypeShape EntityType="studentmonitoringModel.enroll_course" Width="1.5" PointX="3.75" PointY="8.25" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="studentmonitoringModel.enroll_room" Width="1.5" PointX="3.75" PointY="11" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="studentmonitoringModel.enroll_schedule" Width="1.5" PointX="6" PointY="3.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="studentmonitoringModel.enroll_section" Width="1.5" PointX="3.75" PointY="13.5" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="studentmonitoringModel.enroll_subject" Width="1.5" PointX="3.75" PointY="16.25" Height="1.5956835937499783" />
+        <EntityTypeShape EntityType="studentmonitoringModel.log_entrybook" Width="1.5" PointX="10.75" PointY="12.875" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="studentmonitoringModel.log_entrybook_archive" Width="1.5" PointX="12.75" PointY="9.875" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="studentmonitoringModel.sms_inbox" Width="1.5" PointX="8" PointY="9.5" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="studentmonitoringModel.sms_inbox_archive" Width="1.5" PointX="8" PointY="12.5" Height="2.557190755208353" />
+        <EntityTypeShape EntityType="studentmonitoringModel.sms_networkprovider" Width="1.5" PointX="8.75" PointY="6.875" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="studentmonitoringModel.sms_notification" Width="1.5" PointX="6" PointY="22.625" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="studentmonitoringModel.sms_outbox" Width="1.5" PointX="8" PointY="15.75" Height="2.17258789062498" />
+        <EntityTypeShape EntityType="studentmonitoringModel.sms_outbox_archive" Width="1.5" PointX="8" PointY="18.625" Height="2.557190755208353" />
+        <EntityTypeShape EntityType="studentmonitoringModel.sms_sent" Width="1.5" PointX="12.75" PointY="13.875" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="studentmonitoringModel.sms_sent_archive" Width="1.5" PointX="0.75" PointY="14.875" Height="2.17258789062498" />
+        <EntityTypeShape EntityType="studentmonitoringModel.sms_status" Width="1.5" PointX="5.75" PointY="14.25" Height="2.17258789062498" />
+        <AssociationConnector Association="studentmonitoringModel.core_barangay_city" >
+          <ConnectorPoint PointX="12.5" PointY="4.7401432291666694" />
+          <ConnectorPoint PointX="13.25" PointY="4.7401432291666694" />
+        </AssociationConnector>
         <AssociationConnector Association="studentmonitoringModel.core_barangay_core_student" >
-          <ConnectorPoint PointX="7.25" PointY="11.740143229166666" />
-          <ConnectorPoint PointX="7.322916666666667" PointY="11.740143229166666" />
-          <ConnectorPoint PointX="7.489583333333333" PointY="11.740143229166666" />
-          <ConnectorPoint PointX="8" PointY="11.740143229166666" />
+          <ConnectorPoint PointX="14.75" PointY="4.7401432291666694" />
+          <ConnectorPoint PointX="15.5" PointY="4.7401432291666694" />
+        </AssociationConnector>
+        <AssociationConnector Association="studentmonitoringModel.core_city_province" >
+          <ConnectorPoint PointX="10.25" PointY="4.672841796874998" />
+          <ConnectorPoint PointX="11" PointY="4.672841796874998" />
         </AssociationConnector>
         <AssociationConnector Association="studentmonitoringModel.core_civilstatus_core_student" >
-          <ConnectorPoint PointX="7.25" PointY="1.21875" />
-          <ConnectorPoint PointX="8.34375" PointY="1.21875" />
-          <ConnectorPoint PointX="8.34375" PointY="9.125" />
+          <ConnectorPoint PointX="14.75" PointY="1.4999995" />
+          <ConnectorPoint PointX="16.25" PointY="1.4999995" />
+          <ConnectorPoint PointX="16.25" PointY="2.25" />
         </AssociationConnector>
-        <AssociationConnector Association="studentmonitoringModel.core_contact_ibfk_1" >
-          <ConnectorPoint PointX="9.5" PointY="11.7112939453125" />
-          <ConnectorPoint PointX="10.25" PointY="11.7112939453125" />
+        <AssociationConnector Association="studentmonitoringModel.core_contact_student" >
+          <ConnectorPoint PointX="17" PointY="4.711293945312498" />
+          <ConnectorPoint PointX="17.75" PointY="4.711293945312498" />
         </AssociationConnector>
         <AssociationConnector Association="studentmonitoringModel.core_gender_core_student" >
-          <ConnectorPoint PointX="7.25" PointY="19.922841796874998" />
-          <ConnectorPoint PointX="8.75" PointY="19.922841796874998" />
-          <ConnectorPoint PointX="8.75" PointY="14.374410807291667" />
+          <ConnectorPoint PointX="14.75" PointY="8.0138969843749965" />
+          <ConnectorPoint PointX="16.25" PointY="8.0138969843749965" />
+          <ConnectorPoint PointX="16.25" PointY="7.307109374999996" />
         </AssociationConnector>
-        <AssociationConnector Association="studentmonitoringModel.emp_contact_ibfk_1" >
-          <ConnectorPoint PointX="2.25" PointY="5.3362939453125016" />
-          <ConnectorPoint PointX="3" PointY="5.3362939453125016" />
+        <AssociationConnector Association="studentmonitoringModel.emp_contact_employee" >
+          <ConnectorPoint PointX="2.25" PointY="5.4612939453125051" />
+          <ConnectorPoint PointX="3" PointY="5.4612939453125051" />
         </AssociationConnector>
         <AssociationConnector Association="studentmonitoringModel.enroll_employee_schedule" >
-          <ConnectorPoint PointX="2.25" PointY="6.8143929036458353" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="6.8143929036458344" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="6.8143929036458353" />
-          <ConnectorPoint PointX="5.291666666666667" PointY="6.8143929036458344" />
-          <ConnectorPoint PointX="5.458333333333333" PointY="6.8143929036458353" />
-          <ConnectorPoint PointX="6" PointY="6.8143929036458353" />
+          <ConnectorPoint PointX="2.25" PointY="6.9393929036458246" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="6.9393929036458237" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="6.9393929036458246" />
+          <ConnectorPoint PointX="6" PointY="6.9393929036458246" />
         </AssociationConnector>
         <AssociationConnector Association="studentmonitoringModel.enroll_course_schedule" >
-          <ConnectorPoint PointX="4.90625" PointY="8.125" />
-          <ConnectorPoint PointX="4.90625" PointY="3.90625" />
-          <ConnectorPoint PointX="6" PointY="3.90625" />
+          <ConnectorPoint PointX="4.90625" PointY="8.25" />
+          <ConnectorPoint PointX="4.90625" PointY="4.03125" />
+          <ConnectorPoint PointX="6" PointY="4.03125" />
         </AssociationConnector>
-        <AssociationConnector Association="studentmonitoringModel.enroll_section_ibfk_1" >
-          <ConnectorPoint PointX="3.7511528461538459" PointY="10.105286458333339" />
-          <ConnectorPoint PointX="3.375" PointY="10.481439304487186" />
-          <ConnectorPoint PointX="3.375" PointY="12.998847153846153" />
-          <ConnectorPoint PointX="3.7511528461538459" PointY="13.375" />
+        <AssociationConnector Association="studentmonitoringModel.enroll_section_course" >
+          <ConnectorPoint PointX="5.25" PointY="10.230286458333325" />
+          <ConnectorPoint PointX="5.625" PointY="10.605286458333325" />
+          <ConnectorPoint PointX="5.625" PointY="13.126152846153847" />
+          <ConnectorPoint PointX="5.25" PointY="13.501152846153847" />
         </AssociationConnector>
         <AssociationConnector Association="studentmonitoringModel.enroll_room_schedule" >
-          <ConnectorPoint PointX="5.25" PointY="11.768992513020834" />
-          <ConnectorPoint PointX="5.291666666666667" PointY="11.768992513020834" />
-          <ConnectorPoint PointX="5.458333333333333" PointY="11.768992513020834" />
-          <ConnectorPoint PointX="5.5" PointY="11.768992513020834" />
-          <ConnectorPoint PointX="5.5" PointY="10.5" />
-          <ConnectorPoint PointX="6.75" PointY="10.5" />
-          <ConnectorPoint PointX="6.75" PointY="7.1436979166666674" />
+          <ConnectorPoint PointX="5.25" PointY="11.893992513020834" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="11.893992513020834" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="11.893992513020834" />
+          <ConnectorPoint PointX="6.166666666666667" PointY="11.893992513020834" />
+          <ConnectorPoint PointX="6.333333333333333" PointY="11.893992513020834" />
+          <ConnectorPoint PointX="6.75" PointY="11.893992513020834" />
+          <ConnectorPoint PointX="6.75" PointY="7.2686979166666674" />
         </AssociationConnector>
         <AssociationConnector Association="studentmonitoringModel.sms_notification_room" >
-          <ConnectorPoint PointX="5.25" PointY="12.662985026041667" />
-          <ConnectorPoint PointX="5.3160744349011217" PointY="12.729059460942787" />
-          <ConnectorPoint PointX="5.4339255650988791" PointY="12.846910591140546" />
-          <ConnectorPoint PointX="5.625" PointY="13.037985026041667" />
-          <ConnectorPoint PointX="5.625" PointY="16.682444661458334" />
-          <ConnectorPoint PointX="6" PointY="16.682444661458334" />
+          <ConnectorPoint PointX="5.25" PointY="12.372241269531244" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="12.372241269531244" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="12.372241269531244" />
+          <ConnectorPoint PointX="6.166666666666667" PointY="12.372241269531244" />
+          <ConnectorPoint PointX="6.333333333333333" PointY="12.372241269531244" />
+          <ConnectorPoint PointX="7.40625" PointY="12.372241269531244" />
+          <ConnectorPoint PointX="7.40625" PointY="22.625" />
         </AssociationConnector>
         <AssociationConnector Association="studentmonitoringModel.enroll_section_schedule" >
-          <ConnectorPoint PointX="5.25" PointY="14.365143229166669" />
-          <ConnectorPoint PointX="5.291666666666667" PointY="14.365143229166669" />
-          <ConnectorPoint PointX="5.458333333333333" PointY="14.365143229166669" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="14.365143229166669" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="14.365143229166669" />
-          <ConnectorPoint PointX="7.40625" PointY="14.365143229166669" />
-          <ConnectorPoint PointX="7.40625" PointY="7.1436979166666674" />
+          <ConnectorPoint PointX="5.25" PointY="13.875578923076917" />
+          <ConnectorPoint PointX="6.166666666666667" PointY="13.875578923076917" />
+          <ConnectorPoint PointX="6.333333333333333" PointY="13.875578923076917" />
+          <ConnectorPoint PointX="7.359375" PointY="13.875578923076917" />
+          <ConnectorPoint PointX="7.359375" PointY="7.2686979166666674" />
         </AssociationConnector>
         <AssociationConnector Association="studentmonitoringModel.enroll_subject_schedule" >
-          <ConnectorPoint PointX="4.5" PointY="16.125" />
-          <ConnectorPoint PointX="4.5" PointY="15.605286458333339" />
-          <ConnectorPoint PointX="5.375" PointY="15.605286458333339" />
-          <ConnectorPoint PointX="5.375" PointY="5.3603214518229176" />
-          <ConnectorPoint PointX="6" PointY="5.3603214518229176" />
+          <ConnectorPoint PointX="5.25" PointY="17.165385742187482" />
+          <ConnectorPoint PointX="6.416666666666667" PointY="17.165385742187482" />
+          <ConnectorPoint PointX="6.583333333333333" PointY="17.165385742187482" />
+          <ConnectorPoint PointX="7.453125" PointY="17.165385742187482" />
+          <ConnectorPoint PointX="7.453125" PointY="7.2686979166666674" />
         </AssociationConnector>
         <AssociationConnector Association="studentmonitoringModel.sms_inbox_status" >
-          <ConnectorPoint PointX="13.5" PointY="5.5" />
-          <ConnectorPoint PointX="13.5" PointY="3.336293945312498" />
-          <ConnectorPoint PointX="15" PointY="3.336293945312498" />
+          <ConnectorPoint PointX="6.25" PointY="14.25" />
+          <ConnectorPoint PointX="6.25" PointY="10.586293945312491" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="10.586293945312491" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="10.586293945312491" />
+          <ConnectorPoint PointX="7.276041666666667" PointY="10.586293945312489" />
+          <ConnectorPoint PointX="7.536458333333333" PointY="10.586293945312491" />
+          <ConnectorPoint PointX="8" PointY="10.586293945312491" />
         </AssociationConnector>
         <AssociationConnector Association="studentmonitoringModel.sms_inbox_archive_status" >
-          <ConnectorPoint PointX="14.25" PointY="6.4901432291666623" />
-          <ConnectorPoint PointX="15" PointY="6.4901432291666623" />
+          <ConnectorPoint PointX="7.25" PointY="14.653595377604177" />
+          <ConnectorPoint PointX="7.322916666666667" PointY="14.653595377604177" />
+          <ConnectorPoint PointX="7.536458333333333" PointY="14.653595377604177" />
+          <ConnectorPoint PointX="8" PointY="14.653595377604177" />
         </AssociationConnector>
         <AssociationConnector Association="studentmonitoringModel.sms_outbox_ibfk_1" >
-          <ConnectorPoint PointX="13.5" PointY="7.4802864583333246" />
-          <ConnectorPoint PointX="13.5" PointY="9.586293945312498" />
-          <ConnectorPoint PointX="15" PointY="9.586293945312498" />
+          <ConnectorPoint PointX="7.25" PointY="16.086293945312491" />
+          <ConnectorPoint PointX="7.322916666666667" PointY="16.086293945312491" />
+          <ConnectorPoint PointX="7.536458333333333" PointY="16.086293945312491" />
+          <ConnectorPoint PointX="8" PointY="16.086293945312491" />
         </AssociationConnector>
-        <AssociationConnector Association="studentmonitoringModel.sms_outbox_archive_ibfk_1" >
-          <ConnectorPoint PointX="1.2819230769230767" PointY="11.49949218750001" />
-          <ConnectorPoint PointX="1.2819230769230767" PointY="11.74949218750001" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="11.74949218750001" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="11.49949218750001" />
+        <AssociationConnector Association="studentmonitoringModel.sms_outbox_archive_status" >
+          <ConnectorPoint PointX="6.5" PointY="16.422587890624982" />
+          <ConnectorPoint PointX="6.5" PointY="19.903595377604177" />
+          <ConnectorPoint PointX="7.322916666666667" PointY="19.903595377604177" />
+          <ConnectorPoint PointX="7.489583333333333" PointY="19.903595377604177" />
+          <ConnectorPoint PointX="8" PointY="19.903595377604177" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="studentmonitoringModel.vstudentinfo" Width="1.5" PointX="15.375" PointY="8.75" Height="5.8263151041666674" />
       </Diagram>
     </Diagrams>
   </Designer>

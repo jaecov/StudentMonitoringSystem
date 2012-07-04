@@ -33,6 +33,12 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
+        public virtual string rfid
+        {
+            get;
+            set;
+        }
+    
         public virtual string firstname
         {
             get;
@@ -57,7 +63,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual string citizenship
+        public virtual byte[] picture
         {
             get;
             set;
@@ -69,19 +75,97 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual string gender
-        {
-            get;
-            set;
-        }
-    
         public virtual int civilstatus_id
         {
             get;
             set;
         }
     
+        public virtual string citizenship
+        {
+            get;
+            set;
+        }
+    
+        public virtual string street
+        {
+            get;
+            set;
+        }
+    
+        public virtual int barangay_id
+        {
+            get;
+            set;
+        }
+    
+        public virtual string mothername
+        {
+            get;
+            set;
+        }
+    
+        public virtual string motheroccupation
+        {
+            get;
+            set;
+        }
+    
+        public virtual string fathername
+        {
+            get;
+            set;
+        }
+    
+        public virtual string fatheroccupation
+        {
+            get;
+            set;
+        }
+    
+        public virtual string note
+        {
+            get;
+            set;
+        }
+    
         public virtual string civilstatus
+        {
+            get;
+            set;
+        }
+    
+        public virtual string gender
+        {
+            get;
+            set;
+        }
+    
+        public virtual string barangay
+        {
+            get;
+            set;
+        }
+    
+        public virtual int city_id
+        {
+            get;
+            set;
+        }
+    
+        public virtual string city
+        {
+            get;
+            set;
+        }
+    
+        public virtual int province_id
+        {
+            get;
+            set;
+        }
+    
+        public virtual string province
         {
             get;
             set;

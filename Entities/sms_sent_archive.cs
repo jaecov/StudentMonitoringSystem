@@ -21,7 +21,7 @@ namespace StudentMonitoringSystem.Entities
     {
         #region Primitive Properties
     
-        public virtual int archivedid
+        public virtual int id
         {
             get;
             set;
@@ -33,7 +33,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual int id
+        public virtual int sent_id
         {
             get;
             set;

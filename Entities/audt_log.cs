@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 namespace StudentMonitoringSystem.Entities
 {
     [Serializable]
-    public partial class core_audittrail: BaseObject
+    public partial class audt_log: BaseObject
     {
         #region Primitive Properties
     
@@ -27,7 +27,25 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual string message
+        public virtual string tablename
+        {
+            get;
+            set;
+        }
+    
+        public virtual int rowid
+        {
+            get;
+            set;
+        }
+    
+        public virtual string command
+        {
+            get;
+            set;
+        }
+    
+        public virtual string savedby
         {
             get;
             set;

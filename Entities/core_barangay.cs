@@ -33,20 +33,40 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual string city
+        public virtual int city_id
         {
-            get;
-            set;
+            get { return _city_id; }
+            set
+            {
+                if (_city_id != value)
+                {
+                    if (core_city != null && core_city.id != value)
+                    {
+                        core_city = null;
+                    }
+                    _city_id = value;
+                }
+            }
         }
-    
-        public virtual string province
-        {
-            get;
-            set;
-        }
+        private int _city_id;
 
         #endregion
         #region Navigation Properties
+    
+        public virtual core_city core_city
+        {
+            get { return _core_city; }
+            set
+            {
+                if (!ReferenceEquals(_core_city, value))
+                {
+                    var previousValue = _core_city;
+                    _core_city = value;
+                    Fixupcore_city(previousValue);
+                }
+            }
+        }
+        private core_city _core_city;
     
         public virtual ICollection<core_student> core_student
         {
@@ -82,6 +102,26 @@ namespace StudentMonitoringSystem.Entities
 
         #endregion
         #region Association Fixup
+    
+        private void Fixupcore_city(core_city previousValue)
+        {
+            if (previousValue != null && previousValue.core_barangay.Contains(this))
+            {
+                previousValue.core_barangay.Remove(this);
+            }
+    
+            if (core_city != null)
+            {
+                if (!core_city.core_barangay.Contains(this))
+                {
+                    core_city.core_barangay.Add(this);
+                }
+                if (city_id != core_city.id)
+                {
+                    city_id = core_city.id;
+                }
+            }
+        }
     
         private void Fixupcore_student(object sender, NotifyCollectionChangedEventArgs e)
         {

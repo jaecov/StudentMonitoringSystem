@@ -131,6 +131,38 @@ namespace StudentMonitoringSystem.Entities
             }
         }
         private ICollection<sms_outbox> _sms_outbox;
+    
+        public virtual ICollection<sms_outbox_archive> sms_outbox_archive
+        {
+            get
+            {
+                if (_sms_outbox_archive == null)
+                {
+                    var newCollection = new FixupCollection<sms_outbox_archive>();
+                    newCollection.CollectionChanged += Fixupsms_outbox_archive;
+                    _sms_outbox_archive = newCollection;
+                }
+                return _sms_outbox_archive;
+            }
+            set
+            {
+                if (!ReferenceEquals(_sms_outbox_archive, value))
+                {
+                    var previousValue = _sms_outbox_archive as FixupCollection<sms_outbox_archive>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupsms_outbox_archive;
+                    }
+                    _sms_outbox_archive = value;
+                    var newValue = value as FixupCollection<sms_outbox_archive>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupsms_outbox_archive;
+                    }
+                }
+            }
+        }
+        private ICollection<sms_outbox_archive> _sms_outbox_archive;
 
         #endregion
         #region Association Fixup
@@ -192,6 +224,28 @@ namespace StudentMonitoringSystem.Entities
             if (e.OldItems != null)
             {
                 foreach (sms_outbox item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.sms_status, this))
+                    {
+                        item.sms_status = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupsms_outbox_archive(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (sms_outbox_archive item in e.NewItems)
+                {
+                    item.sms_status = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (sms_outbox_archive item in e.OldItems)
                 {
                     if (ReferenceEquals(item.sms_status, this))
                     {

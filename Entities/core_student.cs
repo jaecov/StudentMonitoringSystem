@@ -33,12 +33,6 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual string rfid
-        {
-            get;
-            set;
-        }
-    
         public virtual string firstname
         {
             get;
@@ -63,7 +57,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual byte[] picture
+        public virtual string picture
         {
             get;
             set;
@@ -104,6 +98,12 @@ namespace StudentMonitoringSystem.Entities
         private int _civilstatus_id;
     
         public virtual string citizenship
+        {
+            get;
+            set;
+        }
+    
+        public virtual string street
         {
             get;
             set;
@@ -151,12 +151,6 @@ namespace StudentMonitoringSystem.Entities
         }
     
         public virtual string note
-        {
-            get;
-            set;
-        }
-    
-        public virtual string street
         {
             get;
             set;
@@ -241,6 +235,38 @@ namespace StudentMonitoringSystem.Entities
             }
         }
         private core_gender _core_gender;
+    
+        public virtual ICollection<core_guardian> core_guardian
+        {
+            get
+            {
+                if (_core_guardian == null)
+                {
+                    var newCollection = new FixupCollection<core_guardian>();
+                    newCollection.CollectionChanged += Fixupcore_guardian;
+                    _core_guardian = newCollection;
+                }
+                return _core_guardian;
+            }
+            set
+            {
+                if (!ReferenceEquals(_core_guardian, value))
+                {
+                    var previousValue = _core_guardian as FixupCollection<core_guardian>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupcore_guardian;
+                    }
+                    _core_guardian = value;
+                    var newValue = value as FixupCollection<core_guardian>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupcore_guardian;
+                    }
+                }
+            }
+        }
+        private ICollection<core_guardian> _core_guardian;
 
         #endregion
         #region Association Fixup
@@ -318,6 +344,28 @@ namespace StudentMonitoringSystem.Entities
             if (e.OldItems != null)
             {
                 foreach (core_contact item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.core_student, this))
+                    {
+                        item.core_student = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupcore_guardian(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (core_guardian item in e.NewItems)
+                {
+                    item.core_student = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (core_guardian item in e.OldItems)
                 {
                     if (ReferenceEquals(item.core_student, this))
                     {

@@ -15,11 +15,15 @@ namespace StudentMonitoringSystem.Presenter.Core
         string Middlename { get; set; }
         string Lastname { get; set; }
         DateTime DateOfBirth { get; set; }
-        int Gender_id { get; set; }
-        int CivilStatus_id { get; set; }
+        int Gender_ID { get; set; }
+        int CivilStatus_ID { get; set; }
         string Citizenship { get; set; }
         string Street { get; set; }
-        int Barangay_id { get; set; }
+        int Barangay_ID { get; set; }
+        int City_ID { get; set; }
+        int Province_ID { get; set; }
+
+        List<core_contact> ContactDataSource { get; set; }
         List<core_civilstatus> CivilStatusDataSource { set; }
         List<core_gender> GenderDataSource { set; }
         List<vstudentinfo> StudentDataSource { set; }

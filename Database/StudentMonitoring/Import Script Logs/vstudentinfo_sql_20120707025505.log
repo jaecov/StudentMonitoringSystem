@@ -1,0 +1,10 @@
+7/7/2012 10:55:05 PM	This log contains information about the import operation of the script 'vstudentinfo.sql' into project 'StudentMonitoring' on computer 'COMPAQ510' by user'compaq.
+7/7/2012 10:55:05 PM	Started importing file: C:\Users\compaq\Desktop\vstudentinfo.sql 
+7/7/2012 10:55:05 PM	File name C:\Users\compaq\Desktop\vstudentinfo.sql (size: 827)
+7/7/2012 10:55:05 PM	Parsing import script
+7/7/2012 10:55:06 PM	Total number of batches in script: 1
+7/7/2012 10:55:06 PM	Total number of statements in script: 1
+7/7/2012 10:55:06 PM	The script was successfully imported into the project.
+7/7/2012 10:55:06 PM	Analyzing schema objects...
+7/7/2012 10:55:06 PM	A summary of the import operation was saved to the log file E:\Program\Repository\Git\StudentMonitoringSystem\Database\StudentMonitoring\Import Script Logs\vstudentinfo_sql_20120707025505.log.
+7/7/2012 10:55:06 PM	Click Finish to continue...

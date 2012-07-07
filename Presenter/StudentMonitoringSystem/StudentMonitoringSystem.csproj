@@ -50,6 +50,9 @@
     <Reference Include="PDUConverter">
       <HintPath>..\..\ReferenceLibraries\PDUConverter.dll</HintPath>
     </Reference>
+    <Reference Include="StudentMonitoringSystem.UserControls">
+      <HintPath>..\..\UserControls\obj\Debug\StudentMonitoringSystem.UserControls.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />

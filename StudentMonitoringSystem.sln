@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{4A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{41CD239D-F384-4F2C-8E26-1543A71E9FF5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{085A9BD9-A438-403D-A8A3-14BF0168127F}"
+EndProject
+Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "StudentMonitoring", "Database\StudentMonitoring\StudentMonitoring.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,20 @@ Global
 		{41CD239D-F384-4F2C-8E26-1543A71E9FF5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{41CD239D-F384-4F2C-8E26-1543A71E9FF5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{41CD239D-F384-4F2C-8E26-1543A71E9FF5}.Release|x86.ActiveCfg = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,5 +77,6 @@ Global
 		{090F5B83-DB64-4180-874D-F17BEB5360B4} = {B5F08773-F313-4BE0-B57B-E9CF25D05F7E}
 		{B5BAA225-E03D-45B5-8ACF-51655B7C3D89} = {B5F08773-F313-4BE0-B57B-E9CF25D05F7E}
 		{41CD239D-F384-4F2C-8E26-1543A71E9FF5} = {4AEA9E15-F7C3-4CAC-BA85-9F2A11A3EF16}
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3} = {085A9BD9-A438-403D-A8A3-14BF0168127F}
 	EndGlobalSection
 EndGlobal

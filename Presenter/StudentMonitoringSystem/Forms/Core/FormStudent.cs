@@ -58,7 +58,7 @@ namespace StudentMonitoringSystem.Forms.Core
             }
         }
 
-        public int CivilStatus_id
+        public int CivilStatus_ID
         {
             get
             {
@@ -85,7 +85,7 @@ namespace StudentMonitoringSystem.Forms.Core
             }
         }
 
-        public int Gender_id
+        public int Gender_ID
         {
             get
             {
@@ -143,7 +143,7 @@ namespace StudentMonitoringSystem.Forms.Core
             }
         }
 
-        public int Barangay_id
+        public int Barangay_ID
         {
             get
             {
@@ -153,8 +153,40 @@ namespace StudentMonitoringSystem.Forms.Core
             }
             set
             {
-                if (cmbBarangay.Items.Count > 0)
+                if (cmbBarangay.Items.Count > 0)                    
                     cmbBarangay.SelectedValue = value;
+
+            }
+        }
+
+        public int City_ID
+        {
+            get
+            {
+                int value = 0;
+                int.TryParse(Convert.ToString(cmbCity.SelectedValue), out value);
+                return value;
+            }
+            set
+            {
+                if (cmbCity.Items.Count > 0)
+                    cmbCity.SelectedValue = value;
+
+            }
+        }
+
+        public int Province_ID
+        {
+            get
+            {
+                int value = 0;
+                int.TryParse(Convert.ToString(cmbProvince.SelectedValue), out value);
+                return value;
+            }
+            set
+            {
+                if (cmbProvince.Items.Count > 0)
+                    cmbProvince.SelectedValue = value;
 
             }
         }
@@ -163,9 +195,11 @@ namespace StudentMonitoringSystem.Forms.Core
         {
             set
             {
-                cmbCivilStatus.DisplayMember = "Name";
-                cmbCivilStatus.ValueMember = "id";
+                value.Insert(0, new core_civilstatus() { id = 0, name = "Select" });
+                cmbCivilStatus.DisplayMember = "name";
+                cmbCivilStatus.ValueMember = "id";                
                 cmbCivilStatus.DataSource = value;
+               
             }
         }
 
@@ -173,7 +207,8 @@ namespace StudentMonitoringSystem.Forms.Core
         {
             set
             {
-                cmbGender.DisplayMember = "Name";
+                value.Insert(0, new core_gender() { id = 0, name = "Select" });
+                cmbGender.DisplayMember = "name";
                 cmbGender.ValueMember = "id";
                 cmbGender.DataSource = value;
             }
@@ -191,7 +226,7 @@ namespace StudentMonitoringSystem.Forms.Core
         {
             set
             {
-                cmbBarangay.DataSource = null;
+                value.Insert(0, new core_barangay() { id = 0, name = "Select" });
                 cmbBarangay.DisplayMember = "name";
                 cmbBarangay.ValueMember = "id";
                 cmbBarangay.DataSource = value;
@@ -202,6 +237,7 @@ namespace StudentMonitoringSystem.Forms.Core
         {
             set
             {
+                value.Insert(0, new core_city() { id = 0, name = "Select" });
                 cmbCity.DisplayMember = "name";
                 cmbCity.ValueMember = "id";
                 cmbCity.DataSource = value;
@@ -212,9 +248,20 @@ namespace StudentMonitoringSystem.Forms.Core
         {
             set
             {
+                value.Insert(0, new core_province() { id = 0, name = "Select" });
                 cmbProvince.DisplayMember = "name";
                 cmbProvince.ValueMember = "id";
                 cmbProvince.DataSource = value;
+            }
+        }
+
+        private List<core_contact> contacts;
+        public List<core_contact> ContactDataSource
+        {
+            get { return contacts; }
+            set {
+                contacts = value;
+                LoadContacts();
             }
         }
 
@@ -253,10 +300,14 @@ namespace StudentMonitoringSystem.Forms.Core
             Firstname = string.Empty;
             Middlename = string.Empty;
             Lastname = string.Empty;
-            Gender_id = 1;
-            CivilStatus_id = 1;
+            Gender_ID = 1;
+            CivilStatus_ID = 1;
             DateOfBirth = DateTime.Now;
             Citizenship = string.Empty;
+            Street = string.Empty;
+            Province_ID = 0;
+            City_ID = 0;
+            Barangay_ID = 0;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -295,6 +346,20 @@ namespace StudentMonitoringSystem.Forms.Core
             }
         }
 
+        private void btnAddContact_Click(object sender, EventArgs e)
+        {
+            core_contact contact = new core_contact();
+            contact.number = txtNumber.Text;
+            contact.emailaddress = txtEmail.Text;
+            contact.note = txtNote.Text;
+            AddContact(contact);
+        }
+
+        private void btnDeleteContact_Click(object sender, EventArgs e)
+        {
+
+        }
+
         #endregion
 
         #region Methods
@@ -328,7 +393,35 @@ namespace StudentMonitoringSystem.Forms.Core
             }
         }
 
+        private void LoadContacts()
+        {
+            lvwContact.Items.Clear();
+            if (ContactDataSource == null)
+                return;
+
+            foreach (var contact in ContactDataSource)
+            {
+                AddContact(contact);                               
+            }
+        }
+
+        private void AddContact(core_contact contact)
+        {
+            ListViewItem item = new ListViewItem();
+            item.Tag = contact.id;
+            item.Text = contact.number;
+            item.SubItems.Add(contact.emailaddress);
+            item.SubItems.Add(contact.note);
+            lvwContact.Items.Add(item); 
+        }
+
         #endregion            
 
+        private void contatUC1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

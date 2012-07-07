@@ -33,12 +33,6 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual string rfid
-        {
-            get;
-            set;
-        }
-    
         public virtual string firstname
         {
             get;
@@ -63,7 +57,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual byte[] picture
+        public virtual string picture
         {
             get;
             set;
@@ -76,6 +70,12 @@ namespace StudentMonitoringSystem.Entities
         }
     
         public virtual int civilstatus_id
+        {
+            get;
+            set;
+        }
+    
+        public virtual string civilstatus
         {
             get;
             set;
@@ -124,12 +124,6 @@ namespace StudentMonitoringSystem.Entities
         }
     
         public virtual string note
-        {
-            get;
-            set;
-        }
-    
-        public virtual string civilstatus
         {
             get;
             set;

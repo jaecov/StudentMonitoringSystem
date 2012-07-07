@@ -27,16 +27,70 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual string code
+        public virtual string name
         {
             get;
             set;
         }
+
+        #endregion
+        #region Navigation Properties
     
-        public virtual string network
+        public virtual ICollection<sms_networkprovidercode> sms_networkprovidercode
         {
-            get;
-            set;
+            get
+            {
+                if (_sms_networkprovidercode == null)
+                {
+                    var newCollection = new FixupCollection<sms_networkprovidercode>();
+                    newCollection.CollectionChanged += Fixupsms_networkprovidercode;
+                    _sms_networkprovidercode = newCollection;
+                }
+                return _sms_networkprovidercode;
+            }
+            set
+            {
+                if (!ReferenceEquals(_sms_networkprovidercode, value))
+                {
+                    var previousValue = _sms_networkprovidercode as FixupCollection<sms_networkprovidercode>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupsms_networkprovidercode;
+                    }
+                    _sms_networkprovidercode = value;
+                    var newValue = value as FixupCollection<sms_networkprovidercode>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupsms_networkprovidercode;
+                    }
+                }
+            }
+        }
+        private ICollection<sms_networkprovidercode> _sms_networkprovidercode;
+
+        #endregion
+        #region Association Fixup
+    
+        private void Fixupsms_networkprovidercode(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (sms_networkprovidercode item in e.NewItems)
+                {
+                    item.sms_networkprovider = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (sms_networkprovidercode item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.sms_networkprovider, this))
+                    {
+                        item.sms_networkprovider = null;
+                    }
+                }
+            }
         }
 
         #endregion

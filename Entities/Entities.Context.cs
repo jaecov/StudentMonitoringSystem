@@ -13,14 +13,14 @@ using System.Data.EntityClient;
 
 namespace StudentMonitoringSystem.Entities
 {
-    public partial class studentmonitoringEntities : ObjectContext
+    public partial class StudentMonitoringEntities : ObjectContext
     {
-    	public const string ConnectionString = "name=studentmonitoringEntities";
-    	public const string ContainerName = "studentmonitoringEntities";
+    	public const string ConnectionString = "name=StudentMonitoringEntities";
+    	public const string ContainerName = "StudentMonitoringEntities";
     
     	#region Constructors
     
-    	public studentmonitoringEntities()
+    	public StudentMonitoringEntities()
     		: base(ConnectionString, ContainerName)
     	{
     		
@@ -29,7 +29,7 @@ namespace StudentMonitoringSystem.Entities
     		OnContextCreated();
     	}
     
-    	public studentmonitoringEntities(string connectionString)
+    	public StudentMonitoringEntities(string connectionString)
     		: base(connectionString, ContainerName)
     	{
     		
@@ -38,7 +38,7 @@ namespace StudentMonitoringSystem.Entities
     		OnContextCreated();
     	}
     
-    	public studentmonitoringEntities(EntityConnection connection)
+    	public StudentMonitoringEntities(EntityConnection connection)
     		: base(connection, ContainerName)
     	{
     		
@@ -52,6 +52,12 @@ namespace StudentMonitoringSystem.Entities
     	#endregion
     
         #region ObjectSet Properties
+    
+    	public ObjectSet<C__RefactorLog> C__RefactorLog
+    	{
+    		get { return _c__RefactorLog  ?? (_c__RefactorLog = CreateObjectSet<C__RefactorLog>("C__RefactorLog")); }
+    	}
+    	private ObjectSet<C__RefactorLog> _c__RefactorLog;
     
     	public ObjectSet<audt_audittrail> audt_audittrail
     	{
@@ -191,6 +197,12 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<sms_networkprovider> _sms_networkprovider;
     
+    	public ObjectSet<sms_networkprovidercode> sms_networkprovidercode
+    	{
+    		get { return _sms_networkprovidercode  ?? (_sms_networkprovidercode = CreateObjectSet<sms_networkprovidercode>("sms_networkprovidercode")); }
+    	}
+    	private ObjectSet<sms_networkprovidercode> _sms_networkprovidercode;
+    
     	public ObjectSet<sms_notification> sms_notification
     	{
     		get { return _sms_notification  ?? (_sms_notification = CreateObjectSet<sms_notification>("sms_notification")); }
@@ -232,6 +244,12 @@ namespace StudentMonitoringSystem.Entities
     		get { return _vstudentinfoes  ?? (_vstudentinfoes = CreateObjectSet<vstudentinfo>("vstudentinfoes")); }
     	}
     	private ObjectSet<vstudentinfo> _vstudentinfoes;
+    
+    	public ObjectSet<core_guardian> core_guardian
+    	{
+    		get { return _core_guardian  ?? (_core_guardian = CreateObjectSet<core_guardian>("core_guardian")); }
+    	}
+    	private ObjectSet<core_guardian> _core_guardian;
 
         #endregion
 
@@ -239,6 +257,11 @@ namespace StudentMonitoringSystem.Entities
     				
     	public ObjectSet<T> GetObjectSet<T>() where T : class    		
     	{							
+    		if(typeof(T) == typeof(C__RefactorLog))
+    		{
+    			return (ObjectSet<T>)(object)C__RefactorLog;
+    		}
+    								
     		if(typeof(T) == typeof(audt_audittrail))
     		{
     			return (ObjectSet<T>)(object)audt_audittrail;
@@ -354,6 +377,11 @@ namespace StudentMonitoringSystem.Entities
     			return (ObjectSet<T>)(object)sms_networkprovider;
     		}
     								
+    		if(typeof(T) == typeof(sms_networkprovidercode))
+    		{
+    			return (ObjectSet<T>)(object)sms_networkprovidercode;
+    		}
+    								
     		if(typeof(T) == typeof(sms_notification))
     		{
     			return (ObjectSet<T>)(object)sms_notification;
@@ -387,6 +415,11 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(vstudentinfo))
     		{
     			return (ObjectSet<T>)(object)vstudentinfoes;
+    		}
+    								
+    		if(typeof(T) == typeof(core_guardian))
+    		{
+    			return (ObjectSet<T>)(object)core_guardian;
     		}
     				
     		return null;

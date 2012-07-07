@@ -45,9 +45,13 @@ namespace StudentMonitoringSystem.Presenter.Core
             View.Firstname = item.firstname;
             View.Middlename = item.middlename;
             View.Lastname = item.lastname;
-            View.Gender_id = item.gender_id;
-            View.CivilStatus_id = item.civilstatus_id;
+            View.Gender_ID = item.gender_id;
+            View.CivilStatus_ID = item.civilstatus_id;
             View.Citizenship = item.citizenship;
+            View.Province_ID = item.province_id;
+            View.City_ID = item.city_id;
+            View.Barangay_ID = item.barangay_id;
+            View.Street = item.street;
         }
 
         public void LoadCityDataSource(int provinceID)
@@ -83,11 +87,11 @@ namespace StudentMonitoringSystem.Presenter.Core
             item.middlename = View.Middlename;
             item.lastname = View.Lastname;
             item.dateofbirth = View.DateOfBirth;
-            item.gender_id = View.Gender_id;
-            item.civilstatus_id = View.CivilStatus_id;
+            item.gender_id = View.Gender_ID;
+            item.civilstatus_id = View.CivilStatus_ID;
             item.citizenship = View.Citizenship;
-            item.barangay_id = View.Barangay_id;
-            item.street = View.Street;
+            item.barangay_id = View.Barangay_ID;
+            item.street = View.Street;           
         }
 
         #endregion

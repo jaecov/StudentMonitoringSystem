@@ -66,9 +66,9 @@ namespace StudentMonitoringSystem.Presenter
 
         #region Context
 
-        private studentmonitoringEntities _context = new studentmonitoringEntities();
+        private StudentMonitoringEntities _context = new StudentMonitoringEntities();
 
-        public studentmonitoringEntities Context
+        public StudentMonitoringEntities Context
         {
             get
             {

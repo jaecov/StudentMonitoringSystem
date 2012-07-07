@@ -1,2 +1,0 @@
-﻿CREATE USER [saa] WITHOUT LOGIN;
-

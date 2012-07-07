@@ -50,6 +50,8 @@
     <Compile Include="Caching.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="Core\ContactPresenter.cs" />
+    <Compile Include="Core\IContact.cs" />
     <Compile Include="Core\StudentPresenter.cs" />
     <Compile Include="IBaseView.cs">
       <SubType>Code</SubType>

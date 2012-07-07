@@ -33,12 +33,6 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public virtual string rfid
-        {
-            get;
-            set;
-        }
-    
         public virtual string firstname
         {
             get;

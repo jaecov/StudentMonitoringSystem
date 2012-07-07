@@ -65,6 +65,9 @@
     <Compile Include="core_gender.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="core_guardian.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="core_province.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -75,6 +78,9 @@
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="core_user.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__RefactorLog.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="emp_contact.cs">
@@ -109,9 +115,9 @@
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel.Designer.cs">
-      <DependentUpon>EntityModel.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>EntityModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="log_entrybook.cs">
       <DependentUpon>Entities.tt</DependentUpon>
@@ -127,6 +133,9 @@
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="sms_networkprovider.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sms_networkprovidercode.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="sms_notification.cs">
@@ -147,7 +156,6 @@
     <Compile Include="sms_status.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\vstudentinformation.cs" />
     <Compile Include="vstudentinfo.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -161,14 +169,17 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Entities.Context.cs</LastGenOutput>
     </None>
-    <EntityDeploy Include="EntityModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EntityModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="Entities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Entities.cs</LastGenOutput>
     </None>
+    <EntityDeploy Include="EntityModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EntityModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

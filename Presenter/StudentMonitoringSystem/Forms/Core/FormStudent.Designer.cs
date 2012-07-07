@@ -47,6 +47,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtNo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -57,8 +58,10 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.CDPictureBox = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.GroupBox5 = new System.Windows.Forms.GroupBox();
+            this.cmbBarangay = new System.Windows.Forms.ComboBox();
             this.cmbCity = new System.Windows.Forms.ComboBox();
             this.cmbProvince = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -70,17 +73,29 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.txtStreet = new System.Windows.Forms.TextBox();
-            this.cmbBarangay = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.GroupBox4 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.lblnetwork = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtNote = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtNumber = new System.Windows.Forms.MaskedTextBox();
+            this.Label48 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.lvwContact = new System.Windows.Forms.ListView();
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.CDPictureBox = new System.Windows.Forms.PictureBox();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.GroupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CDPictureBox)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.GroupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CDPictureBox)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.GroupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtCitizenship
@@ -236,6 +251,10 @@
             this.columnHeader6.Text = "Citizenship";
             this.columnHeader6.Width = 156;
             // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Address";
+            // 
             // txtNo
             // 
             this.txtNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -323,7 +342,7 @@
             this.tabControl1.Location = new System.Drawing.Point(4, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(701, 175);
+            this.tabControl1.Size = new System.Drawing.Size(778, 185);
             this.tabControl1.TabIndex = 206;
             // 
             // tabPage1
@@ -348,10 +367,21 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(693, 149);
+            this.tabPage1.Size = new System.Drawing.Size(770, 159);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Personal Information";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // CDPictureBox
+            // 
+            this.CDPictureBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.CDPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CDPictureBox.Location = new System.Drawing.Point(535, 11);
+            this.CDPictureBox.Name = "CDPictureBox";
+            this.CDPictureBox.Size = new System.Drawing.Size(144, 120);
+            this.CDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.CDPictureBox.TabIndex = 205;
+            this.CDPictureBox.TabStop = false;
             // 
             // tabPage2
             // 
@@ -359,7 +389,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(693, 149);
+            this.tabPage2.Size = new System.Drawing.Size(770, 159);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Adress";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -383,10 +413,19 @@
             this.GroupBox5.Controls.Add(this.txtStreet);
             this.GroupBox5.Location = new System.Drawing.Point(6, 6);
             this.GroupBox5.Name = "GroupBox5";
-            this.GroupBox5.Size = new System.Drawing.Size(668, 137);
+            this.GroupBox5.Size = new System.Drawing.Size(668, 141);
             this.GroupBox5.TabIndex = 216;
             this.GroupBox5.TabStop = false;
             this.GroupBox5.Text = "Address";
+            // 
+            // cmbBarangay
+            // 
+            this.cmbBarangay.FormattingEnabled = true;
+            this.cmbBarangay.Location = new System.Drawing.Point(108, 70);
+            this.cmbBarangay.MaxLength = 100;
+            this.cmbBarangay.Name = "cmbBarangay";
+            this.cmbBarangay.Size = new System.Drawing.Size(337, 21);
+            this.cmbBarangay.TabIndex = 208;
             // 
             // cmbCity
             // 
@@ -498,49 +537,155 @@
             this.txtStreet.Size = new System.Drawing.Size(337, 20);
             this.txtStreet.TabIndex = 12;
             // 
-            // cmbBarangay
-            // 
-            this.cmbBarangay.FormattingEnabled = true;
-            this.cmbBarangay.Location = new System.Drawing.Point(108, 70);
-            this.cmbBarangay.MaxLength = 100;
-            this.cmbBarangay.Name = "cmbBarangay";
-            this.cmbBarangay.Size = new System.Drawing.Size(337, 21);
-            this.cmbBarangay.TabIndex = 208;
-            // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.GroupBox4);
+            this.tabPage3.Controls.Add(this.lvwContact);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(693, 149);
+            this.tabPage3.Size = new System.Drawing.Size(770, 159);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Contacts";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // GroupBox4
+            // 
+            this.GroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.GroupBox4.Controls.Add(this.label20);
+            this.GroupBox4.Controls.Add(this.lblnetwork);
+            this.GroupBox4.Controls.Add(this.label18);
+            this.GroupBox4.Controls.Add(this.txtNote);
+            this.GroupBox4.Controls.Add(this.label17);
+            this.GroupBox4.Controls.Add(this.txtNumber);
+            this.GroupBox4.Controls.Add(this.Label48);
+            this.GroupBox4.Controls.Add(this.txtEmail);
+            this.GroupBox4.Location = new System.Drawing.Point(6, 6);
+            this.GroupBox4.Name = "GroupBox4";
+            this.GroupBox4.Size = new System.Drawing.Size(281, 0);
+            this.GroupBox4.TabIndex = 215;
+            this.GroupBox4.TabStop = false;
+            this.GroupBox4.Text = "Contact Number";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.DimGray;
+            this.label20.Location = new System.Drawing.Point(17, 25);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(49, 13);
+            this.label20.TabIndex = 226;
+            this.label20.Text = "Provider:";
+            // 
+            // lblnetwork
+            // 
+            this.lblnetwork.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblnetwork.Location = new System.Drawing.Point(72, 19);
+            this.lblnetwork.Name = "lblnetwork";
+            this.lblnetwork.Size = new System.Drawing.Size(199, 24);
+            this.lblnetwork.TabIndex = 225;
+            this.lblnetwork.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.DimGray;
+            this.label18.Location = new System.Drawing.Point(17, 102);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(33, 13);
+            this.label18.TabIndex = 224;
+            this.label18.Text = "Note:";
+            // 
+            // txtNote
+            // 
+            this.txtNote.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtNote.Location = new System.Drawing.Point(72, 99);
+            this.txtNote.MaxLength = 100;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(199, 20);
+            this.txtNote.TabIndex = 223;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.Color.DimGray;
+            this.label17.Location = new System.Drawing.Point(17, 49);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(47, 13);
+            this.label17.TabIndex = 222;
+            this.label17.Text = "Number:";
+            // 
+            // txtNumber
+            // 
+            this.txtNumber.Location = new System.Drawing.Point(72, 49);
+            this.txtNumber.Mask = "####-#######";
+            this.txtNumber.Name = "txtNumber";
+            this.txtNumber.PromptChar = ' ';
+            this.txtNumber.Size = new System.Drawing.Size(199, 20);
+            this.txtNumber.TabIndex = 10;
+            // 
+            // Label48
+            // 
+            this.Label48.AutoSize = true;
+            this.Label48.ForeColor = System.Drawing.Color.DimGray;
+            this.Label48.Location = new System.Drawing.Point(17, 76);
+            this.Label48.Name = "Label48";
+            this.Label48.Size = new System.Drawing.Size(35, 13);
+            this.Label48.TabIndex = 221;
+            this.Label48.Text = "Email:";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtEmail.Location = new System.Drawing.Point(72, 73);
+            this.txtEmail.MaxLength = 100;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(199, 20);
+            this.txtEmail.TabIndex = 11;
+            // 
+            // lvwContact
+            // 
+            this.lvwContact.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwContact.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.lvwContact.FullRowSelect = true;
+            this.lvwContact.GridLines = true;
+            this.lvwContact.Location = new System.Drawing.Point(333, 6);
+            this.lvwContact.Name = "lvwContact";
+            this.lvwContact.Size = new System.Drawing.Size(437, 0);
+            this.lvwContact.TabIndex = 0;
+            this.lvwContact.UseCompatibleStateImageBehavior = false;
+            this.lvwContact.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Number";
+            this.columnHeader8.Width = 147;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Email Address";
+            this.columnHeader9.Width = 148;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Note";
+            this.columnHeader10.Width = 123;
             // 
             // tabPage4
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(693, 149);
+            this.tabPage4.Size = new System.Drawing.Size(770, 151);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Guardian and Parent";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // CDPictureBox
-            // 
-            this.CDPictureBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.CDPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CDPictureBox.Location = new System.Drawing.Point(535, 11);
-            this.CDPictureBox.Name = "CDPictureBox";
-            this.CDPictureBox.Size = new System.Drawing.Size(144, 120);
-            this.CDPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.CDPictureBox.TabIndex = 205;
-            this.CDPictureBox.TabStop = false;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Address";
             // 
             // FormStudent
             // 
@@ -548,8 +693,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 394);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.lvwStudent);
             this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this.lvwStudent);
             this.Name = "FormStudent";
             this.TabText = "Student";
             this.Text = "Student";
@@ -558,10 +703,13 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CDPictureBox)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.GroupBox5.ResumeLayout(false);
             this.GroupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CDPictureBox)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.GroupBox4.ResumeLayout(false);
+            this.GroupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -615,6 +763,19 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ListView lvwContact;
+        internal System.Windows.Forms.GroupBox GroupBox4;
+        internal System.Windows.Forms.MaskedTextBox txtNumber;
+        internal System.Windows.Forms.Label Label48;
+        internal System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        internal System.Windows.Forms.Label label18;
+        internal System.Windows.Forms.TextBox txtNote;
+        internal System.Windows.Forms.Label label17;
+        internal System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblnetwork;
 
       
 

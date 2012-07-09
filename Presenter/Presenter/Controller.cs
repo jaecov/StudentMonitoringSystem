@@ -21,6 +21,8 @@ namespace StudentMonitoringSystem.Presenter
 
         #region GET
 
+        private string sync = "sync";
+
         public virtual ObjectSet<T> GetObject<T>() where T : BaseObject
         {
             return _context.GetObjectSet<T>();
@@ -38,6 +40,7 @@ namespace StudentMonitoringSystem.Presenter
             return null;
         }
 
+
         #endregion
 
         #region CRUD
@@ -45,21 +48,21 @@ namespace StudentMonitoringSystem.Presenter
         public virtual T CreateObject<T>(T data) where T : BaseObject
         {
             _context.GetObjectSet<T>().AddObject(data);
-            this.Save();
+            this.Save<T>();
             return data;
         }
-        
+
         public virtual T UpdateObject<T>(T data) where T : BaseObject
         {
             _context.GetObjectSet<T>().ApplyCurrentValues(data);
-            this.Save();
+            this.Save<T>();
             return data;
         }
 
         public virtual void DeleteObject<T>(T data) where T : BaseObject
         {
             _context.DeleteObject(data);
-            this.Save();
+            this.Save<T>();
         }
 
         #endregion
@@ -76,12 +79,49 @@ namespace StudentMonitoringSystem.Presenter
             }
         }
 
-        public int Save()
+        public int Save<T>() where T : BaseObject
         {
+            string token = typeof(T).Name;
+            cachemanager.RemoveData(token);
+
             return _context.SaveChanges();
         }
 
         #endregion
 
+        #region Caching
+
+        private SmsCacheManager cachemanager = new SmsCacheManager();
+        private static List<string> _cacheList = null;
+
+        private List<string> CacheList
+        {
+            get
+            {
+                if (_cacheList != null)
+                    return _cacheList;
+
+                _cacheList = new List<string>();
+
+                IController controller = new Controller();
+                var cachelist = controller.GetObject<core_systemsettings>().Where(c => c.key == "cache").FirstOrDefault();
+                if (cachelist == null)
+                    return null;
+
+                var tokens = cachelist.value.Split(new char[] { ',' });
+                if (tokens == null || tokens.Count() == 0)
+                    return null;
+
+                foreach (var item in tokens)
+                {
+                    if (item.Trim().Length > 0)
+                        _cacheList.Add(item);
+                }
+
+                return _cacheList;
+            }
+        }
+
+        #endregion
     }
 }

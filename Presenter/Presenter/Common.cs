@@ -14,7 +14,8 @@ namespace StudentMonitoringSystem.Presenter
             DeleteSuceeded,
             SaveFailed,
             UpdateFailed,
-            DeleteFailed
+            DeleteFailed,
+            ValidationFailed
         }
 
         public static string Message(Result result)
@@ -39,6 +40,9 @@ namespace StudentMonitoringSystem.Presenter
                     break;
                 case Result.DeleteFailed:
                     msg = "Failed to delete record."; 
+                    break;
+                case Result.ValidationFailed:
+                    msg = "Validation failed.";
                     break;
                 default:
                     msg = "No result found.";

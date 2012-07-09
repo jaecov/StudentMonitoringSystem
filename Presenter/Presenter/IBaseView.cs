@@ -6,6 +6,6 @@ namespace StudentMonitoringSystem.Presenter
 {
     public interface IBaseView
     {
-        void Notify(Common.Result result, Exception ex);        
+        void Notify(Common.Result result, List<string> messages);
     }
 }

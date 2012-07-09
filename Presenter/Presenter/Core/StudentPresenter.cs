@@ -23,7 +23,7 @@ namespace StudentMonitoringSystem.Presenter.Core
         {
             View.CivilStatusDataSource = Controller.GetObject<core_civilstatus>().ToList();
             View.GenderDataSource = Controller.GetObject<core_gender>().ToList();
-            View.ProvinceDataSource = Controller.GetObject<core_province>().ToList(); 
+            View.ProvinceDataSource = Controller.GetObject<core_province>().ToList();
             LoadStudentDataSource();
             //View.Number = Common.GenerateNewNumber();
 
@@ -66,12 +66,12 @@ namespace StudentMonitoringSystem.Presenter.Core
                 var items = Controller.GetObject<core_city>().ToList();
                 View.CityDataSource = items;
             }
-            
+
         }
 
         public void LoadBarangayDataSource(int cityID)
         {
-            var items = Controller.GetObject<core_barangay>().Where(c=>c.city_id == cityID).ToList();
+            var items = Controller.GetObject<core_barangay>().Where(c => c.city_id == cityID).ToList();
             View.BarangayDataSource = items;
         }
 
@@ -91,7 +91,7 @@ namespace StudentMonitoringSystem.Presenter.Core
             item.civilstatus_id = View.CivilStatus_ID;
             item.citizenship = View.Citizenship;
             item.barangay_id = View.Barangay_ID;
-            item.street = View.Street;           
+            item.street = View.Street;
         }
 
         #endregion
@@ -115,7 +115,7 @@ namespace StudentMonitoringSystem.Presenter.Core
                 }
                 catch (Exception ex)
                 {
-                    View.Notify(Common.Result.DeleteFailed, ex);
+                    View.Notify(Common.Result.DeleteFailed, new List<string> { ex.ToString() });
                 }
             }
             return false;
@@ -140,6 +140,12 @@ namespace StudentMonitoringSystem.Presenter.Core
         {
             try
             {
+                if (BrokenRules.Count > 0)
+                {
+                    View.Notify(Common.Result.ValidationFailed, BrokenRules);
+                    return;
+                }
+
                 core_student item;
                 item = new core_student();
                 GetValues(ref item);
@@ -149,7 +155,7 @@ namespace StudentMonitoringSystem.Presenter.Core
             }
             catch (Exception ex)
             {
-                View.Notify(Common.Result.SaveFailed, ex);
+                View.Notify(Common.Result.SaveFailed, new List<string> { ex.ToString() });
             }
         }
 
@@ -157,6 +163,12 @@ namespace StudentMonitoringSystem.Presenter.Core
         {
             try
             {
+                if (BrokenRules.Count > 0)
+                {
+                    View.Notify(Common.Result.ValidationFailed, BrokenRules);
+                    return;
+                }
+
                 core_student item;
                 item = Controller.GetObjectItemByColumnID<core_student>(View.ID);
                 if (item == null)
@@ -168,12 +180,26 @@ namespace StudentMonitoringSystem.Presenter.Core
             }
             catch (Exception ex)
             {
-                View.Notify(Common.Result.UpdateFailed, ex);
+                View.Notify(Common.Result.UpdateFailed, new List<string> { ex.ToString() });
             }
         }
 
         #endregion
 
+        #region Validation
 
+        public List<string> BrokenRules
+        {
+            get
+            {
+                List<string> broken = new List<string>();
+                if (View.Gender_ID == 0) broken.Add("Gender is required.");
+                if (View.Barangay_ID == 0) broken.Add("Barangay is required.");
+                if (View.CivilStatus_ID == 0) broken.Add("Civil status is required.");
+
+                return broken;
+            }
+        }
+        #endregion
     }
 }

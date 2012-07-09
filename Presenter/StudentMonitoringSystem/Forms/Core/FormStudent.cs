@@ -153,7 +153,7 @@ namespace StudentMonitoringSystem.Forms.Core
             }
             set
             {
-                if (cmbBarangay.Items.Count > 0)                    
+                if (cmbBarangay.Items.Count > 0)
                     cmbBarangay.SelectedValue = value;
 
             }
@@ -197,9 +197,9 @@ namespace StudentMonitoringSystem.Forms.Core
             {
                 value.Insert(0, new core_civilstatus() { id = 0, name = "Select" });
                 cmbCivilStatus.DisplayMember = "name";
-                cmbCivilStatus.ValueMember = "id";                
+                cmbCivilStatus.ValueMember = "id";
                 cmbCivilStatus.DataSource = value;
-               
+
             }
         }
 
@@ -221,7 +221,7 @@ namespace StudentMonitoringSystem.Forms.Core
                 LoadStudents(value);
             }
         }
-        
+
         public List<core_barangay> BarangayDataSource
         {
             set
@@ -259,7 +259,8 @@ namespace StudentMonitoringSystem.Forms.Core
         public List<core_contact> ContactDataSource
         {
             get { return contacts; }
-            set {
+            set
+            {
                 contacts = value;
                 LoadContacts();
             }
@@ -269,10 +270,20 @@ namespace StudentMonitoringSystem.Forms.Core
 
         #region BaseView
 
-        public void Notify(Common.Result result, Exception ex)
+        public void Notify(Common.Result result, List<string> messages)
         {
-            string msg = Common.Message(result);
-            MessageBox.Show(msg);
+            if (result == Common.Result.ValidationFailed)
+            {
+                StringBuilder validationmsgs = new StringBuilder();
+                string msg = Common.Message(result);
+
+                MessageBox.Show(msg);
+            }
+            else
+            {
+                string msg = Common.Message(result);
+                MessageBox.Show(msg);
+            }
         }
 
         #endregion
@@ -320,12 +331,12 @@ namespace StudentMonitoringSystem.Forms.Core
         {
             if (Confirm("Do you want to delete? Click OK to proceed"))
             {
-             var result =  Presenter.Delete();
-             if (result)
-             {
-                 btnReset_Click(sender, e);
-             }
-            }           
+                var result = Presenter.Delete();
+                if (result)
+                {
+                    btnReset_Click(sender, e);
+                }
+            }
         }
 
         private void cmbProvince_SelectedIndexChanged(object sender, EventArgs e)
@@ -401,7 +412,7 @@ namespace StudentMonitoringSystem.Forms.Core
 
             foreach (var contact in ContactDataSource)
             {
-                AddContact(contact);                               
+                AddContact(contact);
             }
         }
 
@@ -412,16 +423,16 @@ namespace StudentMonitoringSystem.Forms.Core
             item.Text = contact.number;
             item.SubItems.Add(contact.emailaddress);
             item.SubItems.Add(contact.note);
-            lvwContact.Items.Add(item); 
+            lvwContact.Items.Add(item);
         }
 
-        #endregion            
+        #endregion
 
         private void contatUC1_Load(object sender, EventArgs e)
         {
 
         }
 
-       
+
     }
 }

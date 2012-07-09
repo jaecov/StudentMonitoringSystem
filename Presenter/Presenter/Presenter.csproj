@@ -53,6 +53,7 @@
     <Compile Include="Core\ContactPresenter.cs" />
     <Compile Include="Core\IContact.cs" />
     <Compile Include="Core\StudentPresenter.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="IBaseView.cs">
       <SubType>Code</SubType>
     </Compile>

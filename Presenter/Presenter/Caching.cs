@@ -29,20 +29,33 @@ namespace StudentMonitoringSystem.Presenter
         
         public virtual void AddData(string key, object data)
         {
-            cache.Add(key, data, ExpirationPolicy);
+            if (!cache.Contains(key))
+            {
+                cache.Add(key, data, ExpirationPolicy);
+            }
         }
 
         public virtual object GetData(string key)
         {
-            return cache.Get(key);
+            if (cache.Contains(key))
+            {
+                return cache.Get(key);
+            }
+            else
+            {
+                return null;
+            }            
         }
 
         public virtual void RemoveData(string key)
         {
-            cache.Remove(key);
+            if (cache.Contains(key))
+            {
+                cache.Remove(key);
+            }
         }
         
         #endregion
-
+        
     }
 }

@@ -133,6 +133,7 @@
             // 
             // EmployeeInformationToolStripMenuItem
             // 
+            this.EmployeeInformationToolStripMenuItem.Image = global::StudentMonitoringSystem.Properties.Resources.student;
             this.EmployeeInformationToolStripMenuItem.Name = "EmployeeInformationToolStripMenuItem";
             this.EmployeeInformationToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.EmployeeInformationToolStripMenuItem.Text = "Employee Information";

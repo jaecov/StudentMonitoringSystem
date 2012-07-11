@@ -54,7 +54,7 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
 
 #>
 
-    <#=PropertyVirtualModifier(Accessibility.ForProperty(edmProperty))#> <#=code.Escape(edmProperty.TypeUsage)#> <#=code.Escape(edmProperty)#>
+    <#=Accessibility.ForProperty(edmProperty)#> <#if(code.Escape(edmProperty).ToString() == "id"){Write("override");}#> <#=code.Escape(edmProperty.TypeUsage)#> <#=code.Escape(edmProperty)#>
     {
 <#
         if (isForeignKey)

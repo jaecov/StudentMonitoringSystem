@@ -156,6 +156,9 @@
     <Compile Include="sms_status.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="vemployeeinfo.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="vstudentinfo.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

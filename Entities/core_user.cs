@@ -21,31 +21,31 @@ namespace StudentMonitoringSystem.Entities
     {
         #region Primitive Properties
     
-        public virtual int id
+        public override int id
         {
             get;
             set;
         }
     
-        public virtual string username
+        public  string username
         {
             get;
             set;
         }
     
-        public virtual string password
+        public  string password
         {
             get;
             set;
         }
     
-        public virtual string name
+        public  string name
         {
             get;
             set;
         }
     
-        public virtual bool isdeleted
+        public  bool isdeleted
         {
             get;
             set;

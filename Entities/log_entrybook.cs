@@ -21,31 +21,31 @@ namespace StudentMonitoringSystem.Entities
     {
         #region Primitive Properties
     
-        public virtual int id
+        public override int id
         {
             get;
             set;
         }
     
-        public virtual string rfid
+        public  string rfid
         {
             get;
             set;
         }
     
-        public virtual System.DateTime timein
+        public  System.DateTime timein
         {
             get;
             set;
         }
     
-        public virtual System.DateTime timeout
+        public  System.DateTime timeout
         {
             get;
             set;
         }
     
-        public virtual bool isoverride
+        public  bool isoverride
         {
             get;
             set;

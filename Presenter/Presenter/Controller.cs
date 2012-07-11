@@ -21,25 +21,37 @@ namespace StudentMonitoringSystem.Presenter
 
         #region GET
 
-        private string sync = "sync";
+        private string _sync = "sync";
 
-        public virtual ObjectSet<T> GetObject<T>() where T : BaseObject
+        public virtual IQueryable<T> GetObject<T>() where T : BaseObject
         {
-            return _context.GetObjectSet<T>();
+            string entity = typeof(T).Name;
+            if (CacheList.Contains(entity))
+            {
+                object data = _cachemanager.GetData(entity);
+                if (data == null)
+                {
+                    lock (_sync)
+                    {
+                        if (data == null)
+                        {
+                            data = _context.GetObjectSet<T>().ToList().AsQueryable();
+                            _cachemanager.AddData(entity, data);
+                        }
+                    }
+                }
+                return data as IQueryable<T>;
+            }
+            else
+            {
+                return _context.GetObjectSet<T>() as IQueryable<T>;
+            }
         }
 
         public virtual T GetObjectItemByColumnID<T>(int id) where T : BaseObject
         {
-            var list = _context.GetObjectSet<T>().Where(c => c.id == id);
-
-            if (list != null && list.Count() > 0)
-            {
-                return list.FirstOrDefault();
-            }
-
-            return null;
+            return GetObject<T>().Where(c => c.id == id).FirstOrDefault();
         }
-
 
         #endregion
 
@@ -82,7 +94,7 @@ namespace StudentMonitoringSystem.Presenter
         public int Save<T>() where T : BaseObject
         {
             string token = typeof(T).Name;
-            cachemanager.RemoveData(token);
+            _cachemanager.RemoveData(token);
 
             return _context.SaveChanges();
         }
@@ -91,7 +103,7 @@ namespace StudentMonitoringSystem.Presenter
 
         #region Caching
 
-        private SmsCacheManager cachemanager = new SmsCacheManager();
+        private SmsCacheManager _cachemanager = new SmsCacheManager();
         private static List<string> _cacheList = null;
 
         private List<string> CacheList

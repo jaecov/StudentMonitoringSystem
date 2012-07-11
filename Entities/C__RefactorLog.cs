@@ -21,7 +21,7 @@ namespace StudentMonitoringSystem.Entities
     {
         #region Primitive Properties
     
-        public virtual System.Guid OperationKey
+        public  System.Guid OperationKey
         {
             get;
             set;

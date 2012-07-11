@@ -21,61 +21,79 @@ namespace StudentMonitoringSystem.Entities
     {
         #region Primitive Properties
     
-        public virtual int id
+        public override int id
         {
             get;
             set;
         }
     
-        public virtual string number
+        public  string number
         {
             get;
             set;
         }
     
-        public virtual string firstname
+        public  string firstname
         {
             get;
             set;
         }
     
-        public virtual string middlename
+        public  string middlename
         {
             get;
             set;
         }
     
-        public virtual string lastname
+        public  string lastname
         {
             get;
             set;
         }
     
-        public virtual System.DateTime dateofbirth
+        public  System.DateTime dateofbirth
         {
             get;
             set;
         }
     
-        public virtual int gender_id
+        public  int gender_id
         {
             get;
             set;
         }
     
-        public virtual int civilstatus_id
+        public  int civilstatus_id
         {
             get;
             set;
         }
     
-        public virtual string citizenship
+        public  string citizenship
         {
             get;
             set;
         }
     
-        public virtual int barangay_id
+        public  string street
+        {
+            get;
+            set;
+        }
+    
+        public  int barangay_id
+        {
+            get;
+            set;
+        }
+    
+        public  string picture
+        {
+            get;
+            set;
+        }
+    
+        public  string note
         {
             get;
             set;

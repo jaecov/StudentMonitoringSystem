@@ -365,16 +365,19 @@ PRINT N'Creating [dbo].[emp_employee]...';
 
 GO
 CREATE TABLE [dbo].[emp_employee] (
-    [id]             INT           IDENTITY (1, 1) NOT NULL,
-    [number]         VARCHAR (50)  NOT NULL,
-    [firstname]      VARCHAR (50)  NOT NULL,
-    [middlename]     VARCHAR (50)  NOT NULL,
-    [lastname]       VARCHAR (50)  NOT NULL,
-    [dateofbirth]    DATETIME      NOT NULL,
-    [gender_id]      INT           NOT NULL,
-    [civilstatus_id] INT           NOT NULL,
-    [citizenship]    VARCHAR (100) NOT NULL,
-    [barangay_id]    INT           NOT NULL,
+    [id]             INT            IDENTITY (1, 1) NOT NULL,
+    [number]         VARCHAR (50)   NOT NULL,
+    [firstname]      VARCHAR (50)   NOT NULL,
+    [middlename]     VARCHAR (50)   NOT NULL,
+    [lastname]       VARCHAR (50)   NOT NULL,
+    [dateofbirth]    DATETIME       NOT NULL,
+    [gender_id]      INT            NOT NULL,
+    [civilstatus_id] INT            NOT NULL,
+    [citizenship]    VARCHAR (100)  NOT NULL,
+    [street]         VARCHAR (100)  NULL,
+    [barangay_id]    INT            NOT NULL,
+    [picture]        VARCHAR (1000) NULL,
+    [note]           VARCHAR (100)  NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
@@ -986,6 +989,44 @@ ALTER TABLE [dbo].[sms_outbox_archive] WITH NOCHECK
     ADD CONSTRAINT [sms_outbox_archive_status] FOREIGN KEY ([status_id]) REFERENCES [dbo].[sms_status] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
+GO
+PRINT N'Creating [dbo].[vemployeeinfo]...';
+
+
+GO
+-- =============================================
+-- Script Template
+-- =============================================
+
+CREATE VIEW [dbo].[vemployeeinfo]
+AS
+SELECT     
+emp.id
+, emp.number
+, emp.firstname
+, emp.middlename
+, emp.lastname
+, emp.dateofbirth
+, emp.gender_id
+, emp.civilstatus_id
+, cs.name as civilstatus
+, emp.citizenship
+, emp.street
+, emp.barangay_id
+, emp.note
+, gn.name AS gender
+, bg.name AS barangay
+, bg.city_id
+, ct.name AS city
+, ct.province_id
+, pr.name AS province
+
+FROM dbo.emp_employee emp
+INNER JOIN dbo.core_civilstatus cs on emp.civilstatus_id = cs.id
+INNER JOIN dbo.core_gender gn ON emp.gender_id = gn.id 
+INNER JOIN dbo.core_barangay bg ON emp.barangay_id = bg.id 
+INNER JOIN dbo.core_city ct ON bg.city_id = ct.id 
+INNER JOIN dbo.core_province pr ON ct.province_id = pr.id;
 GO
 PRINT N'Creating [dbo].[vstudentinfo]...';
 

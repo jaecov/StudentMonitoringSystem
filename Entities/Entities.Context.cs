@@ -131,12 +131,6 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<emp_contact> _emp_contact;
     
-    	public ObjectSet<emp_employee> emp_employee
-    	{
-    		get { return _emp_employee  ?? (_emp_employee = CreateObjectSet<emp_employee>("emp_employee")); }
-    	}
-    	private ObjectSet<emp_employee> _emp_employee;
-    
     	public ObjectSet<enroll_course> enroll_course
     	{
     		get { return _enroll_course  ?? (_enroll_course = CreateObjectSet<enroll_course>("enroll_course")); }
@@ -250,6 +244,18 @@ namespace StudentMonitoringSystem.Entities
     		get { return _core_guardian  ?? (_core_guardian = CreateObjectSet<core_guardian>("core_guardian")); }
     	}
     	private ObjectSet<core_guardian> _core_guardian;
+    
+    	public ObjectSet<emp_employee> emp_employee
+    	{
+    		get { return _emp_employee  ?? (_emp_employee = CreateObjectSet<emp_employee>("emp_employee")); }
+    	}
+    	private ObjectSet<emp_employee> _emp_employee;
+    
+    	public ObjectSet<vemployeeinfo> vemployeeinfoes
+    	{
+    		get { return _vemployeeinfoes  ?? (_vemployeeinfoes = CreateObjectSet<vemployeeinfo>("vemployeeinfoes")); }
+    	}
+    	private ObjectSet<vemployeeinfo> _vemployeeinfoes;
 
         #endregion
 
@@ -320,11 +326,6 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(emp_contact))
     		{
     			return (ObjectSet<T>)(object)emp_contact;
-    		}
-    								
-    		if(typeof(T) == typeof(emp_employee))
-    		{
-    			return (ObjectSet<T>)(object)emp_employee;
     		}
     								
     		if(typeof(T) == typeof(enroll_course))
@@ -420,6 +421,16 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(core_guardian))
     		{
     			return (ObjectSet<T>)(object)core_guardian;
+    		}
+    								
+    		if(typeof(T) == typeof(emp_employee))
+    		{
+    			return (ObjectSet<T>)(object)emp_employee;
+    		}
+    								
+    		if(typeof(T) == typeof(vemployeeinfo))
+    		{
+    			return (ObjectSet<T>)(object)vemployeeinfoes;
     		}
     				
     		return null;

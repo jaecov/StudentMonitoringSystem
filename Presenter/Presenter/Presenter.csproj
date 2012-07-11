@@ -47,7 +47,11 @@
     <Compile Include="BasePresenter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Caching.cs" />
+    <Compile Include="Employee\ContactPresenter.cs" />
+    <Compile Include="Employee\IContact.cs" />
+    <Compile Include="Employee\IEmployee.cs" />
+    <Compile Include="Employee\EmployeePresenter.cs" />
+    <Compile Include="SmsCacheManager.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Core\ContactPresenter.cs" />

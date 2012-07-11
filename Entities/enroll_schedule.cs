@@ -21,13 +21,13 @@ namespace StudentMonitoringSystem.Entities
     {
         #region Primitive Properties
     
-        public virtual int id
+        public override int id
         {
             get;
             set;
         }
     
-        public virtual int course_id
+        public  int course_id
         {
             get { return _course_id; }
             set
@@ -44,7 +44,7 @@ namespace StudentMonitoringSystem.Entities
         }
         private int _course_id;
     
-        public virtual int section_id
+        public  int section_id
         {
             get { return _section_id; }
             set
@@ -61,7 +61,7 @@ namespace StudentMonitoringSystem.Entities
         }
         private int _section_id;
     
-        public virtual int employee_id
+        public  int employee_id
         {
             get { return _employee_id; }
             set
@@ -78,7 +78,7 @@ namespace StudentMonitoringSystem.Entities
         }
         private int _employee_id;
     
-        public virtual int subject_id
+        public  int subject_id
         {
             get { return _subject_id; }
             set
@@ -95,7 +95,7 @@ namespace StudentMonitoringSystem.Entities
         }
         private int _subject_id;
     
-        public virtual int room_id
+        public  int room_id
         {
             get { return _room_id; }
             set
@@ -112,13 +112,13 @@ namespace StudentMonitoringSystem.Entities
         }
         private int _room_id;
     
-        public virtual System.DateTime datestart
+        public  System.DateTime datestart
         {
             get;
             set;
         }
     
-        public virtual System.DateTime dateend
+        public  System.DateTime dateend
         {
             get;
             set;
@@ -126,21 +126,6 @@ namespace StudentMonitoringSystem.Entities
 
         #endregion
         #region Navigation Properties
-    
-        public virtual emp_employee emp_employee
-        {
-            get { return _emp_employee; }
-            set
-            {
-                if (!ReferenceEquals(_emp_employee, value))
-                {
-                    var previousValue = _emp_employee;
-                    _emp_employee = value;
-                    Fixupemp_employee(previousValue);
-                }
-            }
-        }
-        private emp_employee _emp_employee;
     
         public virtual enroll_course enroll_course
         {
@@ -201,29 +186,24 @@ namespace StudentMonitoringSystem.Entities
             }
         }
         private enroll_subject _enroll_subject;
-
-        #endregion
-        #region Association Fixup
     
-        private void Fixupemp_employee(emp_employee previousValue)
+        public virtual emp_employee emp_employee
         {
-            if (previousValue != null && previousValue.enroll_schedule.Contains(this))
+            get { return _emp_employee; }
+            set
             {
-                previousValue.enroll_schedule.Remove(this);
-            }
-    
-            if (emp_employee != null)
-            {
-                if (!emp_employee.enroll_schedule.Contains(this))
+                if (!ReferenceEquals(_emp_employee, value))
                 {
-                    emp_employee.enroll_schedule.Add(this);
-                }
-                if (employee_id != emp_employee.id)
-                {
-                    employee_id = emp_employee.id;
+                    var previousValue = _emp_employee;
+                    _emp_employee = value;
+                    Fixupemp_employee(previousValue);
                 }
             }
         }
+        private emp_employee _emp_employee;
+
+        #endregion
+        #region Association Fixup
     
         private void Fixupenroll_course(enroll_course previousValue)
         {
@@ -301,6 +281,26 @@ namespace StudentMonitoringSystem.Entities
                 if (subject_id != enroll_subject.id)
                 {
                     subject_id = enroll_subject.id;
+                }
+            }
+        }
+    
+        private void Fixupemp_employee(emp_employee previousValue)
+        {
+            if (previousValue != null && previousValue.enroll_schedule.Contains(this))
+            {
+                previousValue.enroll_schedule.Remove(this);
+            }
+    
+            if (emp_employee != null)
+            {
+                if (!emp_employee.enroll_schedule.Contains(this))
+                {
+                    emp_employee.enroll_schedule.Add(this);
+                }
+                if (employee_id != emp_employee.id)
+                {
+                    employee_id = emp_employee.id;
                 }
             }
         }

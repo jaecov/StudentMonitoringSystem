@@ -21,25 +21,25 @@ namespace StudentMonitoringSystem.Entities
     {
         #region Primitive Properties
     
-        public virtual int id
+        public override int id
         {
             get;
             set;
         }
     
-        public virtual string message
+        public  string message
         {
             get;
             set;
         }
     
-        public virtual bool isexception
+        public  bool isexception
         {
             get;
             set;
         }
     
-        public virtual System.DateTime datecreated
+        public  System.DateTime datecreated
         {
             get;
             set;

@@ -21,49 +21,49 @@ namespace StudentMonitoringSystem.Entities
     {
         #region Primitive Properties
     
-        public virtual int id
+        public override int id
         {
             get;
             set;
         }
     
-        public virtual string number
+        public  string number
         {
             get;
             set;
         }
     
-        public virtual string firstname
+        public  string firstname
         {
             get;
             set;
         }
     
-        public virtual string middlename
+        public  string middlename
         {
             get;
             set;
         }
     
-        public virtual string lastname
+        public  string lastname
         {
             get;
             set;
         }
     
-        public virtual System.DateTime dateofbirth
+        public  System.DateTime dateofbirth
         {
             get;
             set;
         }
     
-        public virtual string picture
+        public  string picture
         {
             get;
             set;
         }
     
-        public virtual int gender_id
+        public  int gender_id
         {
             get { return _gender_id; }
             set
@@ -80,7 +80,7 @@ namespace StudentMonitoringSystem.Entities
         }
         private int _gender_id;
     
-        public virtual int civilstatus_id
+        public  int civilstatus_id
         {
             get { return _civilstatus_id; }
             set
@@ -97,19 +97,19 @@ namespace StudentMonitoringSystem.Entities
         }
         private int _civilstatus_id;
     
-        public virtual string citizenship
+        public  string citizenship
         {
             get;
             set;
         }
     
-        public virtual string street
+        public  string street
         {
             get;
             set;
         }
     
-        public virtual int barangay_id
+        public  int barangay_id
         {
             get { return _barangay_id; }
             set
@@ -126,31 +126,31 @@ namespace StudentMonitoringSystem.Entities
         }
         private int _barangay_id;
     
-        public virtual string mothername
+        public  string mothername
         {
             get;
             set;
         }
     
-        public virtual string motheroccupation
+        public  string motheroccupation
         {
             get;
             set;
         }
     
-        public virtual string fathername
+        public  string fathername
         {
             get;
             set;
         }
     
-        public virtual string fatheroccupation
+        public  string fatheroccupation
         {
             get;
             set;
         }
     
-        public virtual string note
+        public  string note
         {
             get;
             set;

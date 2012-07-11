@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 namespace StudentMonitoringSystem.Entities
 {
     [Serializable]
-    public partial class vstudentinfo: BaseObject
+    public partial class vemployeeinfo: BaseObject
     {
         #region Primitive Properties
     
@@ -57,12 +57,6 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string picture
-        {
-            get;
-            set;
-        }
-    
         public  int gender_id
         {
             get;
@@ -94,30 +88,6 @@ namespace StudentMonitoringSystem.Entities
         }
     
         public  int barangay_id
-        {
-            get;
-            set;
-        }
-    
-        public  string mothername
-        {
-            get;
-            set;
-        }
-    
-        public  string motheroccupation
-        {
-            get;
-            set;
-        }
-    
-        public  string fathername
-        {
-            get;
-            set;
-        }
-    
-        public  string fatheroccupation
         {
             get;
             set;

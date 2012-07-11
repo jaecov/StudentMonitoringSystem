@@ -21,37 +21,37 @@ namespace StudentMonitoringSystem.Entities
     {
         #region Primitive Properties
     
-        public virtual int id
+        public override int id
         {
             get;
             set;
         }
     
-        public virtual string tablename
+        public  string tablename
         {
             get;
             set;
         }
     
-        public virtual int rowid
+        public  int rowid
         {
             get;
             set;
         }
     
-        public virtual string command
+        public  string command
         {
             get;
             set;
         }
     
-        public virtual string savedby
+        public  string savedby
         {
             get;
             set;
         }
     
-        public virtual System.DateTime datecreated
+        public  System.DateTime datecreated
         {
             get;
             set;

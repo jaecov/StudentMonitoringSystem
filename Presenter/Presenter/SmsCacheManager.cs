@@ -4,24 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Caching;
 using System.Collections;
+using StudentMonitoringSystem.Entities;
 
 namespace StudentMonitoringSystem.Presenter
 {
     public class SmsCacheManager
     {
-        private  ObjectCache cache = MemoryCache.Default;
-        private static CacheItemPolicy policy = null;
-
+        private  ObjectCache _cache = MemoryCache.Default;
+        private static CacheItemPolicy _policy = null;
+        
         public CacheItemPolicy ExpirationPolicy
         {
             get
             {
-                if (policy == null)
+                if (_policy == null)
                 {
-                    policy = new CacheItemPolicy();
-                    policy.SlidingExpiration = new TimeSpan(1, 0, 0); // 1hr,0min,0sec                    
+                    _policy = new CacheItemPolicy();
+                    _policy.SlidingExpiration = new TimeSpan(1, 0, 0); // 1hr,0min,0sec                    
                 }
-                return policy;
+                return _policy;
             }
         }
 
@@ -29,17 +30,17 @@ namespace StudentMonitoringSystem.Presenter
         
         public virtual void AddData(string key, object data)
         {
-            if (!cache.Contains(key))
+            if (!_cache.Contains(key))
             {
-                cache.Add(key, data, ExpirationPolicy);
+                _cache.Add(key, data, ExpirationPolicy);
             }
         }
 
         public virtual object GetData(string key)
         {
-            if (cache.Contains(key))
+            if (_cache.Contains(key))
             {
-                return cache.Get(key);
+                return _cache.Get(key);
             }
             else
             {
@@ -49,9 +50,9 @@ namespace StudentMonitoringSystem.Presenter
 
         public virtual void RemoveData(string key)
         {
-            if (cache.Contains(key))
+            if (_cache.Contains(key))
             {
-                cache.Remove(key);
+                _cache.Remove(key);
             }
         }
         

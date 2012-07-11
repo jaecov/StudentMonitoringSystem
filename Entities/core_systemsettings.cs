@@ -21,13 +21,13 @@ namespace StudentMonitoringSystem.Entities
     {
         #region Primitive Properties
     
-        public virtual string key
+        public  string key
         {
             get;
             set;
         }
     
-        public virtual string value
+        public  string value
         {
             get;
             set;

@@ -10,7 +10,7 @@ namespace StudentMonitoringSystem.Presenter
 {
     public partial interface IController
     {
-        ObjectSet<T> GetObject<T>() where T : BaseObject;
+        IQueryable<T> GetObject<T>() where T : BaseObject;
         T GetObjectItemByColumnID<T>(int id) where T : BaseObject; 
         T CreateObject<T>(T data) where T : BaseObject;
         T UpdateObject<T>(T data) where T : BaseObject;

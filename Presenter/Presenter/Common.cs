@@ -7,12 +7,19 @@ namespace StudentMonitoringSystem.Presenter
 {
     public class Common
     {
+        public enum Operation
+        {
+            Insert,
+            Update,
+            Delete
+        }
+
         public enum Result
         {
-            SaveSucceeded,
+            InsertSucceeded,
             UpdateSuceeded,
             DeleteSuceeded,
-            SaveFailed,
+            InsertFailed,
             UpdateFailed,
             DeleteFailed,
             ValidationFailed
@@ -23,23 +30,23 @@ namespace StudentMonitoringSystem.Presenter
             string msg;
             switch (result)
             {
-                case Result.SaveSucceeded:
-                    msg = "New record successfully created."; 
+                case Result.InsertSucceeded:
+                    msg = "New record successfully created.";
                     break;
                 case Result.UpdateSuceeded:
-                    msg = "Existing record successfully updated."; 
+                    msg = "Existing record successfully updated.";
                     break;
                 case Result.DeleteSuceeded:
-                    msg = "Record successfully deleted."; 
+                    msg = "Record successfully deleted.";
                     break;
-                case Result.SaveFailed:
-                    msg = "Failed to create new record."; 
+                case Result.InsertFailed:
+                    msg = "Failed to create new record.";
                     break;
                 case Result.UpdateFailed:
-                    msg = "Failed to update existing record."; 
+                    msg = "Failed to update existing record.";
                     break;
                 case Result.DeleteFailed:
-                    msg = "Failed to delete record."; 
+                    msg = "Failed to delete record.";
                     break;
                 case Result.ValidationFailed:
                     msg = "Validation failed.";

@@ -16,11 +16,14 @@ namespace StudentMonitoringSystem.Forms.Employee
     public partial class FormEmployee : WeifenLuo.WinFormsUI.Docking.DockContent, IEmployee
     {
 
+        FormContact formContact;
+
         #region Constructor
 
         public FormEmployee()
         {
             Presenter = new EmployeePresenter(this);
+            formContact = new FormContact(this);
             InitializeComponent();
         }
 
@@ -255,17 +258,6 @@ namespace StudentMonitoringSystem.Forms.Employee
             }
         }
 
-        private List<emp_contact> contacts;
-        public List<emp_contact> ContactDataSource
-        {
-            get { return contacts; }
-            set
-            {
-                contacts = value;
-                LoadContacts();
-            }
-        }
-
         #endregion
 
         #region BaseView
@@ -274,10 +266,15 @@ namespace StudentMonitoringSystem.Forms.Employee
         {
             if (result == Common.Result.ValidationFailed)
             {
-                StringBuilder validationmsgs = new StringBuilder();
-                string msg = Common.Message(result);
-
-                MessageBox.Show(msg);
+                string title = Common.Message(result);
+                string msg = string.Empty;
+                int count = 1;
+                foreach (var item in messages)
+                {
+                    msg += string.Format("{0}.{1}\n", count, item);
+                    count += 1;
+                }
+                MessageBox.Show(msg, title);
             }
             else
             {
@@ -302,38 +299,66 @@ namespace StudentMonitoringSystem.Forms.Employee
 
             int id = (int)lvwEmployee.SelectedItems[0].Tag;
             Presenter.LoadEmployeeInfo(id);
+            formContact.LoadContacts();
+            formContact.Reset();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            ID = 0;
-            Number = Common.GenerateNewNumber();
-            Firstname = string.Empty;
-            Middlename = string.Empty;
-            Lastname = string.Empty;
-            Gender_ID = 1;
-            CivilStatus_ID = 1;
-            DateOfBirth = DateTime.Now;
-            Citizenship = string.Empty;
-            Street = string.Empty;
-            Province_ID = 0;
-            City_ID = 0;
-            Barangay_ID = 0;
+            if (SelectedTab == Tab.Contact)
+            {
+                formContact.Reset();
+            }
+            else
+            {
+                ID = 0;
+                Number = Common.GenerateNewNumber();
+                Firstname = string.Empty;
+                Middlename = string.Empty;
+                Lastname = string.Empty;
+                Gender_ID = 1;
+                CivilStatus_ID = 1;
+                DateOfBirth = DateTime.Now;
+                Citizenship = string.Empty;
+                Street = string.Empty;
+                Province_ID = 0;
+                City_ID = 0;
+                Barangay_ID = 0;
+
+                formContact.LoadContacts();
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (Confirm("Do you want to save? Click OK to proceed."))
-                Presenter.Save();
+            var ask = Confirm("Do you want to save? Click OK to proceed.");
+
+            if (ask)
+            {
+                if (SelectedTab == Tab.Contact)
+                {
+                    formContact.Save();
+                }
+                else
+                {
+                    Presenter.Save();
+                }
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (Confirm("Do you want to delete? Click OK to proceed"))
+            var ask = Confirm("Do you want to delete? Click OK to proceed");
+
+            if (ask)
             {
-                var result = Presenter.Delete();
-                if (result)
+                if (SelectedTab == Tab.Contact)
                 {
+                    formContact.Delete();
+                }
+                else
+                {
+                    Presenter.Delete();
                     btnReset_Click(sender, e);
                 }
             }
@@ -357,33 +382,39 @@ namespace StudentMonitoringSystem.Forms.Employee
             }
         }
 
-        private void btnAddContact_Click(object sender, EventArgs e)
+        private void lvwContact_SelectedIndexChanged(object sender, EventArgs e)
         {
-            emp_contact contact = new emp_contact();
-            contact.number = txtNumber.Text;
-            contact.emailaddress = txtEmail.Text;
-            contact.note = txtContactNote.Text;
-            AddContact(contact);
-        }
+            if (lvwContact.SelectedItems.Count == 0)
+                return;
 
-        private void btnDeleteContact_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAddContact_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDeleteContact_Click_1(object sender, EventArgs e)
-        {
-
+            int id = (int)lvwContact.SelectedItems[0].Tag;
+            formContact.LoadContactInfo(id);
         }
 
         #endregion
 
         #region Methods
+
+        enum Tab
+        {
+            EmployeeInfo = 0,
+            Contact = 1
+        }
+
+        private Tab SelectedTab
+        {
+            get
+            {
+                if (this.tabControl1.SelectedTab == tabContact)
+                {
+                    return Tab.Contact;
+                }
+                else
+                {
+                    return Tab.EmployeeInfo;
+                }
+            }
+        }
 
         private bool Confirm(string msg, string title = "Confirm")
         {
@@ -414,28 +445,141 @@ namespace StudentMonitoringSystem.Forms.Employee
             }
         }
 
-        private void LoadContacts()
-        {
-            lvwContact.Items.Clear();
-            if (ContactDataSource == null)
-                return;
+        #endregion
 
-            foreach (var contact in ContactDataSource)
+        #region Contact
+
+        protected class FormContact : IContact
+        {
+            FormEmployee parent;
+            public FormContact(FormEmployee emp)
             {
-                AddContact(contact);
+                Presenter = new ContactPresenter(this);
+                parent = emp;
             }
-        }
 
-        private void AddContact(emp_contact contact)
-        {
-            ListViewItem item = new ListViewItem();
-            item.Tag = contact.id;
-            item.Text = contact.number;
-            item.SubItems.Add(contact.emailaddress);
-            item.SubItems.Add(contact.note);
-            lvwContact.Items.Add(item);
+            public ContactPresenter Presenter
+            { get; set; }
+
+            #region IContact
+
+            public int ID
+            {
+                get;
+                set;
+            }
+
+            public string Number
+            {
+                get
+                {
+                    return parent.txtNumber.Text;
+                }
+                set
+                {
+                    parent.txtNumber.Text = value;
+                }
+            }
+
+            public string Emailaddress
+            {
+                get
+                {
+                    return parent.txtEmail.Text;
+                }
+                set
+                {
+                    parent.txtEmail.Text = value;
+                }
+            }
+
+            public string Note
+            {
+                get
+                {
+                    return parent.txtContactNote.Text;
+                }
+                set
+                {
+                    parent.txtContactNote.Text = value;
+                }
+            }
+
+            public int Employee_id
+            {
+                get { return parent.ID; }
+            }
+
+            public List<emp_contact> ContactDataSource
+            {
+                set
+                {
+                    parent.lvwContact.Items.Clear();
+                    if (value == null)
+                        return;
+
+                    foreach (var contact in value)
+                    {
+                        ListViewItem item = new ListViewItem();
+                        item.Tag = contact.id;
+                        item.Text = contact.number;
+                        item.SubItems.Add(contact.emailaddress);
+                        item.SubItems.Add(contact.note);
+                        parent.lvwContact.Items.Add(item);
+                    }
+                }
+            }
+
+            public void Notify(Common.Result result, List<string> messages)
+            {
+                parent.Notify(result, messages);
+            }
+
+            #endregion
+
+            #region Methods
+
+            public void Reset()
+            {
+                this.ID = 0;
+                this.Number = string.Empty;
+                this.Emailaddress = string.Empty;
+                this.Note = string.Empty;
+            }
+
+            public void LoadContacts()
+            {               
+                Presenter.LoadItems();
+            }
+
+            public void LoadContactInfo(int id)
+            {
+                Presenter.LoadContactInfo(id);
+            }
+
+            public void Save()
+            {
+                Presenter.Save();
+            }
+
+            public void Delete()
+            {
+                Presenter.Delete();
+                Reset();
+            }
+
+            #endregion
         }
 
         #endregion
+
+        private void txtNumber_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtNumber.Text.Trim().Length >= 5)
+            {
+                lblNetwork.Text = Presenter.GetProvider(txtNumber.Text.Trim().Substring(0, 4));
+            }
+        }
+
     }
 }

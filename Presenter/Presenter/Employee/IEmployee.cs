@@ -23,7 +23,6 @@ namespace StudentMonitoringSystem.Presenter.Employee
         int City_ID { get; set; }
         int Province_ID { get; set; }
 
-        List<emp_contact> ContactDataSource { get; set; }
         List<core_civilstatus> CivilStatusDataSource { set; }
         List<core_gender> GenderDataSource { set; }
         List<vemployeeinfo> EmployeeDataSource { set; }

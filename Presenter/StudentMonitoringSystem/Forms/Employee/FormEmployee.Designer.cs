@@ -73,12 +73,10 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.txtStreet = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnDeleteContact = new System.Windows.Forms.Button();
-            this.btnAddContact = new System.Windows.Forms.Button();
+            this.tabContact = new System.Windows.Forms.TabPage();
             this.GroupBox4 = new System.Windows.Forms.GroupBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.lblnetwork = new System.Windows.Forms.Label();
+            this.lblNetwork = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.txtContactNote = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -95,7 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.CDPictureBox)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.GroupBox5.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabContact.SuspendLayout();
             this.GroupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -338,7 +336,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabContact);
             this.tabControl1.Location = new System.Drawing.Point(4, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -537,46 +535,24 @@
             this.txtStreet.Size = new System.Drawing.Size(337, 20);
             this.txtStreet.TabIndex = 12;
             // 
-            // tabPage3
+            // tabContact
             // 
-            this.tabPage3.Controls.Add(this.btnDeleteContact);
-            this.tabPage3.Controls.Add(this.btnAddContact);
-            this.tabPage3.Controls.Add(this.GroupBox4);
-            this.tabPage3.Controls.Add(this.lvwContact);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(770, 159);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Contacts";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteContact
-            // 
-            this.btnDeleteContact.Location = new System.Drawing.Point(304, 70);
-            this.btnDeleteContact.Name = "btnDeleteContact";
-            this.btnDeleteContact.Size = new System.Drawing.Size(42, 23);
-            this.btnDeleteContact.TabIndex = 217;
-            this.btnDeleteContact.Text = "-";
-            this.btnDeleteContact.UseVisualStyleBackColor = true;
-            this.btnDeleteContact.Click += new System.EventHandler(this.btnDeleteContact_Click_1);
-            // 
-            // btnAddContact
-            // 
-            this.btnAddContact.Location = new System.Drawing.Point(304, 43);
-            this.btnAddContact.Name = "btnAddContact";
-            this.btnAddContact.Size = new System.Drawing.Size(42, 23);
-            this.btnAddContact.TabIndex = 216;
-            this.btnAddContact.Text = "+";
-            this.btnAddContact.UseVisualStyleBackColor = true;
-            this.btnAddContact.Click += new System.EventHandler(this.btnAddContact_Click_1);
+            this.tabContact.Controls.Add(this.GroupBox4);
+            this.tabContact.Controls.Add(this.lvwContact);
+            this.tabContact.Location = new System.Drawing.Point(4, 22);
+            this.tabContact.Name = "tabContact";
+            this.tabContact.Padding = new System.Windows.Forms.Padding(3);
+            this.tabContact.Size = new System.Drawing.Size(770, 159);
+            this.tabContact.TabIndex = 2;
+            this.tabContact.Text = "Contacts";
+            this.tabContact.UseVisualStyleBackColor = true;
             // 
             // GroupBox4
             // 
             this.GroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.GroupBox4.Controls.Add(this.label20);
-            this.GroupBox4.Controls.Add(this.lblnetwork);
+            this.GroupBox4.Controls.Add(this.lblNetwork);
             this.GroupBox4.Controls.Add(this.label18);
             this.GroupBox4.Controls.Add(this.txtContactNote);
             this.GroupBox4.Controls.Add(this.label17);
@@ -600,14 +576,14 @@
             this.label20.TabIndex = 226;
             this.label20.Text = "Provider:";
             // 
-            // lblnetwork
+            // lblNetwork
             // 
-            this.lblnetwork.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblnetwork.Location = new System.Drawing.Point(72, 19);
-            this.lblnetwork.Name = "lblnetwork";
-            this.lblnetwork.Size = new System.Drawing.Size(199, 24);
-            this.lblnetwork.TabIndex = 225;
-            this.lblnetwork.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNetwork.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblNetwork.Location = new System.Drawing.Point(72, 19);
+            this.lblNetwork.Name = "lblNetwork";
+            this.lblNetwork.Size = new System.Drawing.Size(199, 24);
+            this.lblNetwork.TabIndex = 225;
+            this.lblNetwork.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label18
             // 
@@ -646,6 +622,7 @@
             this.txtNumber.PromptChar = ' ';
             this.txtNumber.Size = new System.Drawing.Size(199, 20);
             this.txtNumber.TabIndex = 10;
+            this.txtNumber.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNumber_KeyUp);
             // 
             // Label48
             // 
@@ -677,12 +654,13 @@
             this.columnHeader10});
             this.lvwContact.FullRowSelect = true;
             this.lvwContact.GridLines = true;
-            this.lvwContact.Location = new System.Drawing.Point(354, 6);
+            this.lvwContact.Location = new System.Drawing.Point(313, 6);
             this.lvwContact.Name = "lvwContact";
-            this.lvwContact.Size = new System.Drawing.Size(413, 131);
+            this.lvwContact.Size = new System.Drawing.Size(454, 131);
             this.lvwContact.TabIndex = 0;
             this.lvwContact.UseCompatibleStateImageBehavior = false;
             this.lvwContact.View = System.Windows.Forms.View.Details;
+            this.lvwContact.SelectedIndexChanged += new System.EventHandler(this.lvwContact_SelectedIndexChanged);
             // 
             // columnHeader8
             // 
@@ -719,7 +697,7 @@
             this.tabPage2.ResumeLayout(false);
             this.GroupBox5.ResumeLayout(false);
             this.GroupBox5.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
+            this.tabContact.ResumeLayout(false);
             this.GroupBox4.ResumeLayout(false);
             this.GroupBox4.PerformLayout();
             this.ResumeLayout(false);
@@ -772,11 +750,10 @@
         internal System.Windows.Forms.Label label16;
         internal System.Windows.Forms.TextBox txtStreet;
         internal System.Windows.Forms.ComboBox cmbBarangay;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabContact;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ListView lvwContact;
         internal System.Windows.Forms.GroupBox GroupBox4;
-        internal System.Windows.Forms.MaskedTextBox txtNumber;
         internal System.Windows.Forms.Label Label48;
         internal System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.ColumnHeader columnHeader8;
@@ -786,9 +763,8 @@
         internal System.Windows.Forms.TextBox txtContactNote;
         internal System.Windows.Forms.Label label17;
         internal System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label lblnetwork;
-        private System.Windows.Forms.Button btnDeleteContact;
-        private System.Windows.Forms.Button btnAddContact;
+        internal System.Windows.Forms.Label lblNetwork;
+        internal System.Windows.Forms.MaskedTextBox txtNumber;
 
       
 

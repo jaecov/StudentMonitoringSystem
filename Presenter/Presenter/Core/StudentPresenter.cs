@@ -151,11 +151,11 @@ namespace StudentMonitoringSystem.Presenter.Core
                 GetValues(ref item);
                 var result = Controller.CreateObject<core_student>(item);
                 View.ID = result.id;
-                View.Notify(Common.Result.SaveSucceeded, null);
+                View.Notify(Common.Result.InsertSucceeded, null);
             }
             catch (Exception ex)
             {
-                View.Notify(Common.Result.SaveFailed, new List<string> { ex.ToString() });
+                View.Notify(Common.Result.InsertFailed, new List<string> { ex.ToString() });
             }
         }
 

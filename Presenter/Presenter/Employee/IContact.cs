@@ -7,13 +7,13 @@ using System.Collections;
 
 namespace StudentMonitoringSystem.Presenter.Employee
 {
-    public interface IContact:IBaseView
+    public interface IContact : IBaseView
     {
         int ID { get; set; }
         string Number { get; set; }
         string Emailaddress { get; set; }
-        string ContactNote { get; set; }
-        int Employee_id { get;}
+        string Note { get; set; }
+        int Employee_id { get; }
         List<emp_contact> ContactDataSource { set; }
     }
 }

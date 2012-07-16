@@ -94,6 +94,14 @@ namespace StudentMonitoringSystem.Presenter.Employee
             item.street = View.Street;
         }
 
+        public string GetProvider(string code)
+        {
+            var prov = (from network in Controller.GetObject<sms_networkprovider>()
+                        join networkCode in Controller.GetObject<sms_networkprovidercode>() on network.id equals networkCode.networkprovider_id
+                        where networkCode.code == code
+                        select network.name).FirstOrDefault();
+            return prov;
+        }
         #endregion
 
         #region CRUD
@@ -140,9 +148,10 @@ namespace StudentMonitoringSystem.Presenter.Employee
         {
             try
             {
-                if (BrokenRules.Count > 0)
+                List<string> brokenRules = BrokenRules(Common.Operation.Insert);
+                if (brokenRules.Count > 0)
                 {
-                    View.Notify(Common.Result.ValidationFailed, BrokenRules);
+                    View.Notify(Common.Result.ValidationFailed, brokenRules);
                     return;
                 }
 
@@ -151,11 +160,11 @@ namespace StudentMonitoringSystem.Presenter.Employee
                 GetValues(ref item);
                 var result = Controller.CreateObject<emp_employee>(item);
                 View.ID = result.id;
-                View.Notify(Common.Result.SaveSucceeded, null);
+                View.Notify(Common.Result.InsertSucceeded, null);
             }
             catch (Exception ex)
             {
-                View.Notify(Common.Result.SaveFailed, new List<string> { ex.ToString() });
+                View.Notify(Common.Result.InsertFailed, new List<string> { ex.ToString() });
             }
         }
 
@@ -163,9 +172,10 @@ namespace StudentMonitoringSystem.Presenter.Employee
         {
             try
             {
-                if (BrokenRules.Count > 0)
+                List<string> brokenRules = BrokenRules(Common.Operation.Update);
+                if (brokenRules.Count > 0)
                 {
-                    View.Notify(Common.Result.ValidationFailed, BrokenRules);
+                    View.Notify(Common.Result.ValidationFailed, brokenRules);
                     return;
                 }
 
@@ -188,17 +198,33 @@ namespace StudentMonitoringSystem.Presenter.Employee
 
         #region Validation
 
-        public List<string> BrokenRules
+        public List<string> BrokenRules(Common.Operation operation)
         {
-            get
+            List<string> brokenRules = new List<string>();
+            switch (operation)
             {
-                List<string> broken = new List<string>();
-                if (View.Gender_ID == 0) broken.Add("Gender is required.");
-                if (View.Barangay_ID == 0) broken.Add("Barangay is required.");
-                if (View.CivilStatus_ID == 0) broken.Add("Civil status is required.");
+                case Common.Operation.Insert:
+                    if (View.Gender_ID == 0) brokenRules.Add("Gender is required.");
+                    if (View.Barangay_ID == 0) brokenRules.Add("Barangay is required.");
+                    if (View.CivilStatus_ID == 0) brokenRules.Add("Civil status is required.");
+                    break;
 
-                return broken;
-            }
+                case Common.Operation.Update:
+                    if (View.ID == 0) brokenRules.Add("Select employee first.");
+                    if (View.Gender_ID == 0) brokenRules.Add("Gender is required.");
+                    if (View.Barangay_ID == 0) brokenRules.Add("Barangay is required.");
+                    if (View.CivilStatus_ID == 0) brokenRules.Add("Civil status is required.");
+                    break;
+
+                case Common.Operation.Delete:
+                    if (View.ID == 0) brokenRules.Add("Select employee first.");
+                    break;
+
+                default:
+                    break;
+            }         
+
+            return brokenRules;
         }
         #endregion
     }

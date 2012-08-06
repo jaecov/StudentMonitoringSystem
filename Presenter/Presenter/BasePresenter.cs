@@ -11,6 +11,6 @@ namespace StudentMonitoringSystem.Presenter
     {
         protected BasePresenter() { Controller = new Controller(); }        
         protected IController Controller { get; set; }
-        public TView View { get; set; }
+        public TView View { get; set; }       
     }
 }

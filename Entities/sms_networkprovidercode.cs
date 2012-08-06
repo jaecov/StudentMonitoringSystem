@@ -27,7 +27,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string code
+        public  string name
         {
             get;
             set;

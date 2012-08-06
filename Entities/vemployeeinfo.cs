@@ -93,6 +93,12 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
+        public  string picture
+        {
+            get;
+            set;
+        }
+    
         public  string note
         {
             get;

@@ -127,21 +127,6 @@ namespace StudentMonitoringSystem.Entities
         #endregion
         #region Navigation Properties
     
-        public virtual enroll_course enroll_course
-        {
-            get { return _enroll_course; }
-            set
-            {
-                if (!ReferenceEquals(_enroll_course, value))
-                {
-                    var previousValue = _enroll_course;
-                    _enroll_course = value;
-                    Fixupenroll_course(previousValue);
-                }
-            }
-        }
-        private enroll_course _enroll_course;
-    
         public virtual enroll_room enroll_room
         {
             get { return _enroll_room; }
@@ -201,29 +186,24 @@ namespace StudentMonitoringSystem.Entities
             }
         }
         private emp_employee _emp_employee;
-
-        #endregion
-        #region Association Fixup
     
-        private void Fixupenroll_course(enroll_course previousValue)
+        public virtual enroll_course enroll_course
         {
-            if (previousValue != null && previousValue.enroll_schedule.Contains(this))
+            get { return _enroll_course; }
+            set
             {
-                previousValue.enroll_schedule.Remove(this);
-            }
-    
-            if (enroll_course != null)
-            {
-                if (!enroll_course.enroll_schedule.Contains(this))
+                if (!ReferenceEquals(_enroll_course, value))
                 {
-                    enroll_course.enroll_schedule.Add(this);
-                }
-                if (course_id != enroll_course.id)
-                {
-                    course_id = enroll_course.id;
+                    var previousValue = _enroll_course;
+                    _enroll_course = value;
+                    Fixupenroll_course(previousValue);
                 }
             }
         }
+        private enroll_course _enroll_course;
+
+        #endregion
+        #region Association Fixup
     
         private void Fixupenroll_room(enroll_room previousValue)
         {
@@ -301,6 +281,26 @@ namespace StudentMonitoringSystem.Entities
                 if (employee_id != emp_employee.id)
                 {
                     employee_id = emp_employee.id;
+                }
+            }
+        }
+    
+        private void Fixupenroll_course(enroll_course previousValue)
+        {
+            if (previousValue != null && previousValue.enroll_schedule.Contains(this))
+            {
+                previousValue.enroll_schedule.Remove(this);
+            }
+    
+            if (enroll_course != null)
+            {
+                if (!enroll_course.enroll_schedule.Contains(this))
+                {
+                    enroll_course.enroll_schedule.Add(this);
+                }
+                if (course_id != enroll_course.id)
+                {
+                    course_id = enroll_course.id;
                 }
             }
         }

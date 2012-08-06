@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using StudentMonitoringSystem.Entities;
+using System.Data.Objects;
 
 namespace StudentMonitoringSystem.Forms
 {
-    public partial class FormTest :  WeifenLuo.WinFormsUI.Docking.DockContent
+    public partial class FormTest : WeifenLuo.WinFormsUI.Docking.DockContent
     {
         public FormTest()
         {
@@ -22,9 +23,11 @@ namespace StudentMonitoringSystem.Forms
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void CalculateTotalPages()
         {
-         
+
         }
+        
+       
     }
 }

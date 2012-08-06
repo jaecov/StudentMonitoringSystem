@@ -48,7 +48,11 @@
             this.CourseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NetworkProviderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.networkProviderCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SmartTagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BarangayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.provinceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AdministratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserAuditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +86,7 @@
             this.HelpToolStripMenuItem});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(568, 24);
+            this.MenuStrip.Size = new System.Drawing.Size(738, 24);
             this.MenuStrip.TabIndex = 6;
             this.MenuStrip.Text = "MenuStrip";
             // 
@@ -105,7 +109,7 @@
             this.StudentIDToolStripMenuItem});
             this.StudentToolStripMenuItem.Image = global::StudentMonitoringSystem.Properties.Resources.student;
             this.StudentToolStripMenuItem.Name = "StudentToolStripMenuItem";
-            this.StudentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.StudentToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.StudentToolStripMenuItem.Text = "&Student";
             // 
             // studentmonitoringToolStripMenuItem
@@ -128,7 +132,7 @@
             this.EmployeeInformationToolStripMenuItem,
             this.EmployeeIDToolStripMenuItem});
             this.EmployeeToolStripMenuItem.Name = "EmployeeToolStripMenuItem";
-            this.EmployeeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.EmployeeToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.EmployeeToolStripMenuItem.Text = "Employee";
             // 
             // EmployeeInformationToolStripMenuItem
@@ -205,7 +209,11 @@
             this.CourseToolStripMenuItem,
             this.ScheduleToolStripMenuItem,
             this.NetworkProviderToolStripMenuItem,
-            this.SmartTagsToolStripMenuItem});
+            this.networkProviderCodeToolStripMenuItem,
+            this.SmartTagsToolStripMenuItem,
+            this.BarangayToolStripMenuItem,
+            this.cityToolStripMenuItem,
+            this.provinceToolStripMenuItem});
             this.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem";
             this.MaintenanceToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.MaintenanceToolStripMenuItem.Text = "Maintenance";
@@ -213,26 +221,56 @@
             // CourseToolStripMenuItem
             // 
             this.CourseToolStripMenuItem.Name = "CourseToolStripMenuItem";
-            this.CourseToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.CourseToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.CourseToolStripMenuItem.Text = "Course and Section";
+            this.CourseToolStripMenuItem.Click += new System.EventHandler(this.CourseToolStripMenuItem_Click);
             // 
             // ScheduleToolStripMenuItem
             // 
             this.ScheduleToolStripMenuItem.Name = "ScheduleToolStripMenuItem";
-            this.ScheduleToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.ScheduleToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.ScheduleToolStripMenuItem.Text = "Section Schedule";
             // 
             // NetworkProviderToolStripMenuItem
             // 
             this.NetworkProviderToolStripMenuItem.Name = "NetworkProviderToolStripMenuItem";
-            this.NetworkProviderToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.NetworkProviderToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.NetworkProviderToolStripMenuItem.Text = "Network Provider";
+            this.NetworkProviderToolStripMenuItem.Click += new System.EventHandler(this.NetworkProviderToolStripMenuItem_Click);
+            // 
+            // networkProviderCodeToolStripMenuItem
+            // 
+            this.networkProviderCodeToolStripMenuItem.Name = "networkProviderCodeToolStripMenuItem";
+            this.networkProviderCodeToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.networkProviderCodeToolStripMenuItem.Text = "Network Provider Code";
+            this.networkProviderCodeToolStripMenuItem.Click += new System.EventHandler(this.networkProviderCodeToolStripMenuItem_Click);
             // 
             // SmartTagsToolStripMenuItem
             // 
             this.SmartTagsToolStripMenuItem.Name = "SmartTagsToolStripMenuItem";
-            this.SmartTagsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.SmartTagsToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.SmartTagsToolStripMenuItem.Text = "Smart Tags";
+            // 
+            // BarangayToolStripMenuItem
+            // 
+            this.BarangayToolStripMenuItem.Name = "BarangayToolStripMenuItem";
+            this.BarangayToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.BarangayToolStripMenuItem.Text = "Barangay";
+            this.BarangayToolStripMenuItem.Click += new System.EventHandler(this.BarangayToolStripMenuItem_Click);
+            // 
+            // cityToolStripMenuItem
+            // 
+            this.cityToolStripMenuItem.Name = "cityToolStripMenuItem";
+            this.cityToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.cityToolStripMenuItem.Text = "City";
+            this.cityToolStripMenuItem.Click += new System.EventHandler(this.cityToolStripMenuItem_Click);
+            // 
+            // provinceToolStripMenuItem
+            // 
+            this.provinceToolStripMenuItem.Name = "provinceToolStripMenuItem";
+            this.provinceToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.provinceToolStripMenuItem.Text = "Province";
+            this.provinceToolStripMenuItem.Click += new System.EventHandler(this.provinceToolStripMenuItem_Click);
             // 
             // AdministratorToolStripMenuItem
             // 
@@ -344,14 +382,14 @@
             this.DockPanel1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DockPanel1.Location = new System.Drawing.Point(0, 24);
             this.DockPanel1.Name = "DockPanel1";
-            this.DockPanel1.Size = new System.Drawing.Size(568, 238);
+            this.DockPanel1.Size = new System.Drawing.Size(738, 359);
             this.DockPanel1.TabIndex = 8;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 262);
+            this.ClientSize = new System.Drawing.Size(738, 383);
             this.Controls.Add(this.DockPanel1);
             this.Controls.Add(this.MenuStrip);
             this.IsMdiContainer = true;
@@ -404,5 +442,9 @@
         internal System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem1;
         internal System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         internal WeifenLuo.WinFormsUI.Docking.DockPanel DockPanel1;
+        private System.Windows.Forms.ToolStripMenuItem BarangayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem provinceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem networkProviderCodeToolStripMenuItem;
     }
 }

@@ -22,6 +22,8 @@ namespace StudentMonitoringSystem.Presenter.Employee
         int Barangay_ID { get; set; }
         int City_ID { get; set; }
         int Province_ID { get; set; }
+        string Note { get; set; }
+        string Picture { get; set; }
 
         List<core_civilstatus> CivilStatusDataSource { set; }
         List<core_gender> GenderDataSource { set; }

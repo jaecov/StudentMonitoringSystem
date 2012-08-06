@@ -125,6 +125,7 @@
     <Compile Include="log_entrybook_archive.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Partial\vemployeeinfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sms_inbox.cs">
       <DependentUpon>Entities.tt</DependentUpon>
@@ -156,7 +157,16 @@
     <Compile Include="sms_status.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="vbarangayinfo.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vcityinfo.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="vemployeeinfo.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vnetworkprovidercodeinfo.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="vstudentinfo.cs">

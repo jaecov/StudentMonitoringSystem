@@ -39,7 +39,7 @@ namespace StudentMonitoringSystem.Presenter.Employee
             var item = Controller.GetObjectItemByColumnID<vemployeeinfo>(id);
             if (item == null)
                 return;
-
+            
             View.ID = id;
             View.Number = item.number;
             View.Firstname = item.firstname;
@@ -52,6 +52,8 @@ namespace StudentMonitoringSystem.Presenter.Employee
             View.City_ID = item.city_id;
             View.Barangay_ID = item.barangay_id;
             View.Street = item.street;
+            View.Note = item.note;
+            View.Picture = item.picture;
         }
 
         public void LoadCityDataSource(int provinceID)
@@ -92,13 +94,15 @@ namespace StudentMonitoringSystem.Presenter.Employee
             item.citizenship = View.Citizenship;
             item.barangay_id = View.Barangay_ID;
             item.street = View.Street;
+            item.note = View.Note;
+            item.picture = View.Picture;
         }
 
         public string GetProvider(string code)
         {
             var prov = (from network in Controller.GetObject<sms_networkprovider>()
                         join networkCode in Controller.GetObject<sms_networkprovidercode>() on network.id equals networkCode.networkprovider_id
-                        where networkCode.code == code
+                        where networkCode.name == code
                         select network.name).FirstOrDefault();
             return prov;
         }

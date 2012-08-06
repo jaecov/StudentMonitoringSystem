@@ -50,9 +50,6 @@
     <Reference Include="PDUConverter">
       <HintPath>..\..\ReferenceLibraries\PDUConverter.dll</HintPath>
     </Reference>
-    <Reference Include="StudentMonitoringSystem.UserControls">
-      <HintPath>..\..\UserControls\obj\Debug\StudentMonitoringSystem.UserControls.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
@@ -64,11 +61,33 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.UI, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="TelerikCommon, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="WeifenLuo.WinFormsUI.Docking">
       <HintPath>..\..\ReferenceLibraries\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Core\FormProvince.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Core\FormProvince.Designer.cs">
+      <DependentUpon>FormProvince.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Core\FormCity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Core\FormCity.Designer.cs">
+      <DependentUpon>FormCity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Core\FormBarangay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Core\FormBarangay.Designer.cs">
+      <DependentUpon>FormBarangay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Core\FormStudent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,11 +100,29 @@
     <Compile Include="Forms\Employee\FormEmployee.Designer.cs">
       <DependentUpon>FormEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Enroll\FormCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Enroll\FormCourse.Designer.cs">
+      <DependentUpon>FormCourse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormTest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SMS\FormNetworkProviderCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SMS\FormNetworkProviderCode.Designer.cs">
+      <DependentUpon>FormNetworkProviderCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SMS\FormNetworkProvider.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SMS\FormNetworkProvider.Designer.cs">
+      <DependentUpon>FormNetworkProvider.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SMS\Inbox.cs">
       <SubType>Form</SubType>
@@ -113,11 +150,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Core\FormProvince.resx">
+      <DependentUpon>FormProvince.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Core\FormCity.resx">
+      <DependentUpon>FormCity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Core\FormBarangay.resx">
+      <DependentUpon>FormBarangay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Core\FormStudent.resx">
       <DependentUpon>FormStudent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Employee\FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Enroll\FormCourse.resx">
+      <DependentUpon>FormCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SMS\FormNetworkProviderCode.resx">
+      <DependentUpon>FormNetworkProviderCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SMS\FormNetworkProvider.resx">
+      <DependentUpon>FormNetworkProvider.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SMS\SendSMS.resx">
       <DependentUpon>SendSMS.cs</DependentUpon>
@@ -142,6 +197,8 @@
       <DependentUpon>FormTest.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vbarangayinfo.datasource" />
+    <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vcityinfo.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -131,12 +131,6 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<emp_contact> _emp_contact;
     
-    	public ObjectSet<enroll_course> enroll_course
-    	{
-    		get { return _enroll_course  ?? (_enroll_course = CreateObjectSet<enroll_course>("enroll_course")); }
-    	}
-    	private ObjectSet<enroll_course> _enroll_course;
-    
     	public ObjectSet<enroll_room> enroll_room
     	{
     		get { return _enroll_room  ?? (_enroll_room = CreateObjectSet<enroll_room>("enroll_room")); }
@@ -190,12 +184,6 @@ namespace StudentMonitoringSystem.Entities
     		get { return _sms_networkprovider  ?? (_sms_networkprovider = CreateObjectSet<sms_networkprovider>("sms_networkprovider")); }
     	}
     	private ObjectSet<sms_networkprovider> _sms_networkprovider;
-    
-    	public ObjectSet<sms_networkprovidercode> sms_networkprovidercode
-    	{
-    		get { return _sms_networkprovidercode  ?? (_sms_networkprovidercode = CreateObjectSet<sms_networkprovidercode>("sms_networkprovidercode")); }
-    	}
-    	private ObjectSet<sms_networkprovidercode> _sms_networkprovidercode;
     
     	public ObjectSet<sms_notification> sms_notification
     	{
@@ -256,6 +244,36 @@ namespace StudentMonitoringSystem.Entities
     		get { return _vemployeeinfoes  ?? (_vemployeeinfoes = CreateObjectSet<vemployeeinfo>("vemployeeinfoes")); }
     	}
     	private ObjectSet<vemployeeinfo> _vemployeeinfoes;
+    
+    	public ObjectSet<vbarangayinfo> vbarangayinfoes
+    	{
+    		get { return _vbarangayinfoes  ?? (_vbarangayinfoes = CreateObjectSet<vbarangayinfo>("vbarangayinfoes")); }
+    	}
+    	private ObjectSet<vbarangayinfo> _vbarangayinfoes;
+    
+    	public ObjectSet<vcityinfo> vcityinfoes
+    	{
+    		get { return _vcityinfoes  ?? (_vcityinfoes = CreateObjectSet<vcityinfo>("vcityinfoes")); }
+    	}
+    	private ObjectSet<vcityinfo> _vcityinfoes;
+    
+    	public ObjectSet<sms_networkprovidercode> sms_networkprovidercode
+    	{
+    		get { return _sms_networkprovidercode  ?? (_sms_networkprovidercode = CreateObjectSet<sms_networkprovidercode>("sms_networkprovidercode")); }
+    	}
+    	private ObjectSet<sms_networkprovidercode> _sms_networkprovidercode;
+    
+    	public ObjectSet<vnetworkprovidercodeinfo> vnetworkprovidercodeinfoes
+    	{
+    		get { return _vnetworkprovidercodeinfoes  ?? (_vnetworkprovidercodeinfoes = CreateObjectSet<vnetworkprovidercodeinfo>("vnetworkprovidercodeinfoes")); }
+    	}
+    	private ObjectSet<vnetworkprovidercodeinfo> _vnetworkprovidercodeinfoes;
+    
+    	public ObjectSet<enroll_course> enroll_course
+    	{
+    		get { return _enroll_course  ?? (_enroll_course = CreateObjectSet<enroll_course>("enroll_course")); }
+    	}
+    	private ObjectSet<enroll_course> _enroll_course;
 
         #endregion
 
@@ -328,11 +346,6 @@ namespace StudentMonitoringSystem.Entities
     			return (ObjectSet<T>)(object)emp_contact;
     		}
     								
-    		if(typeof(T) == typeof(enroll_course))
-    		{
-    			return (ObjectSet<T>)(object)enroll_course;
-    		}
-    								
     		if(typeof(T) == typeof(enroll_room))
     		{
     			return (ObjectSet<T>)(object)enroll_room;
@@ -376,11 +389,6 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(sms_networkprovider))
     		{
     			return (ObjectSet<T>)(object)sms_networkprovider;
-    		}
-    								
-    		if(typeof(T) == typeof(sms_networkprovidercode))
-    		{
-    			return (ObjectSet<T>)(object)sms_networkprovidercode;
     		}
     								
     		if(typeof(T) == typeof(sms_notification))
@@ -431,6 +439,31 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(vemployeeinfo))
     		{
     			return (ObjectSet<T>)(object)vemployeeinfoes;
+    		}
+    								
+    		if(typeof(T) == typeof(vbarangayinfo))
+    		{
+    			return (ObjectSet<T>)(object)vbarangayinfoes;
+    		}
+    								
+    		if(typeof(T) == typeof(vcityinfo))
+    		{
+    			return (ObjectSet<T>)(object)vcityinfoes;
+    		}
+    								
+    		if(typeof(T) == typeof(sms_networkprovidercode))
+    		{
+    			return (ObjectSet<T>)(object)sms_networkprovidercode;
+    		}
+    								
+    		if(typeof(T) == typeof(vnetworkprovidercodeinfo))
+    		{
+    			return (ObjectSet<T>)(object)vnetworkprovidercodeinfoes;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_course))
+    		{
+    			return (ObjectSet<T>)(object)enroll_course;
     		}
     				
     		return null;

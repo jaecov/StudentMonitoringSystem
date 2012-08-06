@@ -73,5 +73,12 @@ namespace StudentMonitoringSystem.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap Webcam_icon {
+            get {
+                object obj = ResourceManager.GetObject("Webcam_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -323,8 +323,8 @@ PRINT N'Creating [dbo].[core_systemsettings]...';
 
 GO
 CREATE TABLE [dbo].[core_systemsettings] (
-    [key]   VARCHAR (100) NOT NULL,
-    [value] VARCHAR (100) NOT NULL,
+    [key]   VARCHAR (100)  NOT NULL,
+    [value] VARCHAR (8000) NOT NULL,
     PRIMARY KEY CLUSTERED ([key] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
@@ -388,7 +388,7 @@ PRINT N'Creating [dbo].[enroll_course]...';
 
 GO
 CREATE TABLE [dbo].[enroll_course] (
-    [id]   INT           NOT NULL,
+    [id]   INT           IDENTITY (1, 1) NOT NULL,
     [name] VARCHAR (100) NOT NULL,
     [code] VARCHAR (100) NOT NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
@@ -532,7 +532,7 @@ PRINT N'Creating [dbo].[sms_networkprovidercode]...';
 GO
 CREATE TABLE [dbo].[sms_networkprovidercode] (
     [id]                 INT         IDENTITY (1, 1) NOT NULL,
-    [code]               VARCHAR (4) NOT NULL,
+    [name]               VARCHAR (4) NOT NULL,
     [networkprovider_id] INT         NOT NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
@@ -990,6 +990,35 @@ ALTER TABLE [dbo].[sms_outbox_archive] WITH NOCHECK
 
 
 GO
+PRINT N'Creating [dbo].[vbarangayinfo]...';
+
+
+GO
+
+create view [dbo].[vbarangayinfo]
+AS
+SELECT 
+ b.id
+,b.name
+,b.city_id
+,c.name as city
+FROM dbo.core_barangay b
+inner join dbo.core_city c on b.city_id = c.id
+GO
+PRINT N'Creating [dbo].[vcityinfo]...';
+
+
+GO
+create view vcityinfo
+AS
+SELECT 
+ c.id
+,c.name
+,c.province_id
+,p.name as province
+FROM dbo.core_city c
+inner join dbo.core_province p on c.province_id = p.id
+GO
 PRINT N'Creating [dbo].[vemployeeinfo]...';
 
 
@@ -1013,6 +1042,7 @@ emp.id
 , emp.citizenship
 , emp.street
 , emp.barangay_id
+, emp.picture
 , emp.note
 , gn.name AS gender
 , bg.name AS barangay
@@ -1027,6 +1057,20 @@ INNER JOIN dbo.core_gender gn ON emp.gender_id = gn.id
 INNER JOIN dbo.core_barangay bg ON emp.barangay_id = bg.id 
 INNER JOIN dbo.core_city ct ON bg.city_id = ct.id 
 INNER JOIN dbo.core_province pr ON ct.province_id = pr.id;
+GO
+PRINT N'Creating [dbo].[vnetworkprovidercodeinfo]...';
+
+
+GO
+create view vnetworkprovidercodeinfo
+AS
+SELECT 
+ c.id
+,c.name
+,c.networkprovider_id
+,p.name as networkprovider
+FROM dbo.sms_networkprovidercode c
+inner join dbo.sms_networkprovider p on c.networkprovider_id = p.id
 GO
 PRINT N'Creating [dbo].[vstudentinfo]...';
 
@@ -1128,6 +1172,16 @@ INSERT INTO [dbo].[sms_networkprovider](ID,NAME) VALUES(3,'Smart / Talk N Text')
 INSERT INTO [dbo].[sms_networkprovider](ID,NAME) VALUES(4,'Red Mobile')
 SET IDENTITY_INSERT [dbo].[sms_networkprovider] OFF
 
+SET IDENTITY_INSERT [dbo].[sms_networkprovidercode] ON
+INSERT INTO [dbo].[sms_networkprovidercode](ID,name,networkprovider_id) VALUES(1,'0915',2)
+INSERT INTO [dbo].[sms_networkprovidercode](ID,name,networkprovider_id) VALUES(2,'0916',2)
+INSERT INTO [dbo].[sms_networkprovidercode](ID,name,networkprovider_id) VALUES(3,'0917',2)
+INSERT INTO [dbo].[sms_networkprovidercode](ID,name,networkprovider_id) VALUES(4,'0927',2)
+INSERT INTO [dbo].[sms_networkprovidercode](ID,name,networkprovider_id) VALUES(5,'0918',3)
+INSERT INTO [dbo].[sms_networkprovidercode](ID,name,networkprovider_id) VALUES(6,'0919',3)
+INSERT INTO [dbo].[sms_networkprovidercode](ID,name,networkprovider_id) VALUES(7,'0910',3)
+SET IDENTITY_INSERT [dbo].[sms_networkprovidercode] OFF
+
 SET IDENTITY_INSERT [dbo].[sms_status] ON
 INSERT INTO [dbo].[sms_status](ID,NAME) VALUES(1,'Unread')
 INSERT INTO [dbo].[sms_status](ID,NAME) VALUES(2,'Read')
@@ -1154,7 +1208,7 @@ INSERT INTO [dbo].[core_barangay](ID,NAME, city_id) VALUES(1,'Brgy. Pinmilapil',
 INSERT INTO [dbo].[core_barangay](ID,NAME, city_id) VALUES(2,'Brgy. Olympia',2)
 SET IDENTITY_INSERT [dbo].[core_barangay] OFF
 
-INSERT INTO [dbo].[core_systemsettings] VALUES('cache','core_barangay,core_city,core_province,core_civilstatus,core_systemsettings,core_gender,sms_status')
+INSERT INTO [dbo].[core_systemsettings] VALUES('cache','core_barangay,core_city,core_province,core_civilstatus,core_systemsettings,core_gender,sms_status,sms_networkprovidercode,sms_networkprovider')
 
 
 

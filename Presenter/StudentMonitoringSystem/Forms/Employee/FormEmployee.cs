@@ -16,8 +16,6 @@ namespace StudentMonitoringSystem.Forms.Employee
     public partial class FormEmployee : WeifenLuo.WinFormsUI.Docking.DockContent, IEmployee
     {
 
-        FormContact formContact;
-
         #region Constructor
 
         public FormEmployee()
@@ -32,6 +30,12 @@ namespace StudentMonitoringSystem.Forms.Employee
             get;
             set;
         }
+
+        #endregion
+
+        #region Variables
+
+        FormContact formContact;
 
         #endregion
 
@@ -134,6 +138,32 @@ namespace StudentMonitoringSystem.Forms.Employee
             set { dteDateOfBirth.Value = value; }
         }
 
+        public string Note
+        {
+            get
+            {
+                return txtNote.Text;
+            }
+            set
+            {
+                txtNote.Text = value;
+            }
+        }
+
+        string picture;
+        public string Picture
+        {
+            get
+            {
+                return picture;
+            }
+            set
+            {
+                picture = value;
+                pctEmployee.ImageLocation = picture;
+            }
+        }
+
         public string Street
         {
             get
@@ -221,7 +251,7 @@ namespace StudentMonitoringSystem.Forms.Employee
         {
             set
             {
-                LoadEmployees(value);
+                grdEmployee.DataSource = value;
             }
         }
 
@@ -292,12 +322,27 @@ namespace StudentMonitoringSystem.Forms.Employee
             Presenter.LoadItems();
         }
 
-        private void lvwEmployee_SelectedIndexChanged(object sender, EventArgs e)
+        private void txtNumber_KeyUp(object sender, KeyEventArgs e)
         {
-            if (lvwEmployee.SelectedItems.Count == 0)
+            if (txtNumber.Text.Trim().Length >= 5)
+            {
+                lblNetwork.Text = Presenter.GetProvider(txtNumber.Text.Trim().Substring(0, 4));
+            }
+        }
+
+        private void grdEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex <= -1)
                 return;
 
-            int id = (int)lvwEmployee.SelectedItems[0].Tag;
+            if (grdEmployee.CurrentRow == null)
+                return;
+
+            var data = grdEmployee.CurrentRow.DataBoundItem as vemployeeinfo;
+            if (data == null)
+                return;
+
+            int id = data.id;
             Presenter.LoadEmployeeInfo(id);
             formContact.LoadContacts();
             formContact.Reset();
@@ -324,6 +369,8 @@ namespace StudentMonitoringSystem.Forms.Employee
                 Province_ID = 0;
                 City_ID = 0;
                 Barangay_ID = 0;
+                Note = string.Empty;
+                Picture = string.Empty;
 
                 formContact.LoadContacts();
             }
@@ -382,13 +429,39 @@ namespace StudentMonitoringSystem.Forms.Employee
             }
         }
 
-        private void lvwContact_SelectedIndexChanged(object sender, EventArgs e)
+        private void grdContact_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (lvwContact.SelectedItems.Count == 0)
+            if (e.ColumnIndex <= -1 || e.RowIndex <= -1)
                 return;
 
-            int id = (int)lvwContact.SelectedItems[0].Tag;
+            if (grdContact.CurrentRow == null)
+                return;
+
+            var data = grdContact.CurrentRow.DataBoundItem as emp_contact;
+            if (data == null)
+                return;
+
+            int id = data.id;
             formContact.LoadContactInfo(id);
+        }
+
+        private void btnWebcam_Click(object sender, EventArgs e)
+        {
+            string filename = string.Empty;
+            Picture = filename;
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Bitmap |*.bmp | JPG|*.jpg | GIF|*.gif | All Files|*.*";          
+            openFileDialog.FileName = "";
+                        
+            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+             
+                Picture = openFileDialog.FileName;              
+            }
         }
 
         #endregion
@@ -425,161 +498,122 @@ namespace StudentMonitoringSystem.Forms.Employee
                 return false;
         }
 
-        private void LoadEmployees(List<vemployeeinfo> list)
-        {
-            lvwEmployee.Items.Clear();
-            ListViewItem item = null;
-
-            foreach (var emp in list)
-            {
-                item = new ListViewItem();
-                item.Tag = emp.id;
-                item.Text = emp.number;
-                item.SubItems.Add(string.Format("{0}, {1} {2}", emp.lastname, emp.firstname, emp.middlename));
-                item.SubItems.Add(emp.gender);
-                item.SubItems.Add(emp.civilstatus);
-                item.SubItems.Add(emp.dateofbirth.ToString());
-                item.SubItems.Add(emp.citizenship);
-                item.SubItems.Add(string.Format("{0} {1}, {2}, {3}", emp.street, emp.barangay, emp.city, emp.province));
-                lvwEmployee.Items.Add(item);
-            }
-        }
-
         #endregion
 
-        #region Contact
-
-        protected class FormContact : IContact
-        {
-            FormEmployee parent;
-            public FormContact(FormEmployee emp)
-            {
-                Presenter = new ContactPresenter(this);
-                parent = emp;
-            }
-
-            public ContactPresenter Presenter
-            { get; set; }
-
-            #region IContact
-
-            public int ID
-            {
-                get;
-                set;
-            }
-
-            public string Number
-            {
-                get
-                {
-                    return parent.txtNumber.Text;
-                }
-                set
-                {
-                    parent.txtNumber.Text = value;
-                }
-            }
-
-            public string Emailaddress
-            {
-                get
-                {
-                    return parent.txtEmail.Text;
-                }
-                set
-                {
-                    parent.txtEmail.Text = value;
-                }
-            }
-
-            public string Note
-            {
-                get
-                {
-                    return parent.txtContactNote.Text;
-                }
-                set
-                {
-                    parent.txtContactNote.Text = value;
-                }
-            }
-
-            public int Employee_id
-            {
-                get { return parent.ID; }
-            }
-
-            public List<emp_contact> ContactDataSource
-            {
-                set
-                {
-                    parent.lvwContact.Items.Clear();
-                    if (value == null)
-                        return;
-
-                    foreach (var contact in value)
-                    {
-                        ListViewItem item = new ListViewItem();
-                        item.Tag = contact.id;
-                        item.Text = contact.number;
-                        item.SubItems.Add(contact.emailaddress);
-                        item.SubItems.Add(contact.note);
-                        parent.lvwContact.Items.Add(item);
-                    }
-                }
-            }
-
-            public void Notify(Common.Result result, List<string> messages)
-            {
-                parent.Notify(result, messages);
-            }
-
-            #endregion
-
-            #region Methods
-
-            public void Reset()
-            {
-                this.ID = 0;
-                this.Number = string.Empty;
-                this.Emailaddress = string.Empty;
-                this.Note = string.Empty;
-            }
-
-            public void LoadContacts()
-            {               
-                Presenter.LoadItems();
-            }
-
-            public void LoadContactInfo(int id)
-            {
-                Presenter.LoadContactInfo(id);
-            }
-
-            public void Save()
-            {
-                Presenter.Save();
-            }
-
-            public void Delete()
-            {
-                Presenter.Delete();
-                Reset();
-            }
-
-            #endregion
-        }
-
-        #endregion
-
-        private void txtNumber_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (txtNumber.Text.Trim().Length >= 5)
-            {
-                lblNetwork.Text = Presenter.GetProvider(txtNumber.Text.Trim().Substring(0, 4));
-            }
-        }
 
     }
+
+    #region Contact
+
+    public class FormContact : IContact
+    {
+        FormEmployee parent;
+        public FormContact(FormEmployee emp)
+        {
+            Presenter = new ContactPresenter(this);
+            parent = emp;
+        }
+
+        public ContactPresenter Presenter
+        { get; set; }
+
+        #region IContact
+
+        public int ID
+        {
+            get;
+            set;
+        }
+
+        public string Number
+        {
+            get
+            {
+                return parent.txtNumber.Text;
+            }
+            set
+            {
+                parent.txtNumber.Text = value;
+            }
+        }
+
+        public string Emailaddress
+        {
+            get
+            {
+                return parent.txtEmail.Text;
+            }
+            set
+            {
+                parent.txtEmail.Text = value;
+            }
+        }
+
+        public string Note
+        {
+            get
+            {
+                return parent.txtContactNote.Text;
+            }
+            set
+            {
+                parent.txtContactNote.Text = value;
+            }
+        }
+
+        public int Employee_id
+        {
+            get { return parent.ID; }
+        }
+
+        public List<emp_contact> ContactDataSource
+        {
+            set
+            {
+                parent.grdContact.DataSource = value;
+            }
+        }
+
+        public void Notify(Common.Result result, List<string> messages)
+        {
+            parent.Notify(result, messages);
+        }
+
+        #endregion
+
+        #region Methods
+
+        public void Reset()
+        {
+            this.ID = 0;
+            this.Number = string.Empty;
+            this.Emailaddress = string.Empty;
+            this.Note = string.Empty;
+        }
+
+        public void LoadContacts()
+        {
+            Presenter.LoadItems();
+        }
+
+        public void LoadContactInfo(int id)
+        {
+            Presenter.LoadContactInfo(id);
+        }
+
+        public void Save()
+        {
+            Presenter.Save();
+        }
+
+        public void Delete()
+        {
+            Presenter.Delete();
+            Reset();
+        }
+
+        #endregion
+    }
+
+    #endregion
 }

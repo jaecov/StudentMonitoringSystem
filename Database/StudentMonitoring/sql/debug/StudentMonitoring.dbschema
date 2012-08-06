@@ -2062,7 +2062,7 @@
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
-									<Property Name="Length" Value="100" />
+									<Property Name="Length" Value="8000" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[varchar]" />
@@ -2524,6 +2524,7 @@
 				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[enroll_course].[id]">
 						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
@@ -3569,7 +3570,7 @@
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[sms_networkprovidercode].[code]">
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[sms_networkprovidercode].[name]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
@@ -4252,6 +4253,177 @@
 			</Relationship>
 			<AttachedAnnotation Disambiguator="28" />
 		</Element>
+		<Element Type="ISql100View" Name="[dbo].[vbarangayinfo]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="QueryScript">
+				<Value><![CDATA[
+SELECT 
+ b.id
+,b.name
+,b.city_id
+,c.name as city
+FROM dbo.core_barangay b
+inner join dbo.core_city c on b.city_id = c.id]]></Value>
+			</Property>
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vbarangayinfo].[id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[core_barangay].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vbarangayinfo].[name]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[core_barangay].[name]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vbarangayinfo].[city_id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[core_barangay].[city_id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vbarangayinfo].[city]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[core_city].[name]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="QueryDependencies">
+				<Entry>
+					<References Name="[dbo].[core_barangay]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_city]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_barangay].[city_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_city].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_barangay].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_barangay].[name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_city].[name]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="2" />
+				<Property Name="Length" Value="167" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="&#xD;&#xA;create view [dbo].[vbarangayinfo]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql100View" Name="[dbo].[vcityinfo]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="QueryScript">
+				<Value><![CDATA[
+SELECT 
+ c.id
+,c.name
+,c.province_id
+,p.name as province
+FROM dbo.core_city c
+inner join dbo.core_province p on c.province_id = p.id]]></Value>
+			</Property>
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vcityinfo].[id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[core_city].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vcityinfo].[name]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[core_city].[name]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vcityinfo].[province_id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[core_city].[province_id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vcityinfo].[province]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[core_province].[name]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="QueryDependencies">
+				<Entry>
+					<References Name="[dbo].[core_city]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_province]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_city].[province_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_province].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_city].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_city].[name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_province].[name]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="165" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="create view vcityinfo&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="ISql100View" Name="[dbo].[vemployeeinfo]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Property Name="QueryScript">
@@ -4269,6 +4441,7 @@ emp.id
 , emp.citizenship
 , emp.street
 , emp.barangay_id
+, emp.picture
 , emp.note
 , gn.name AS gender
 , bg.name AS barangay
@@ -4389,6 +4562,15 @@ INNER JOIN dbo.core_province pr ON ct.province_id = pr.id]]></Value>
 						<Relationship Name="ExpressionDependencies">
 							<Entry>
 								<References Name="[dbo].[emp_employee].[barangay_id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vemployeeinfo].[picture]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[emp_employee].[picture]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -4548,6 +4730,9 @@ INNER JOIN dbo.core_province pr ON ct.province_id = pr.id]]></Value>
 					<References Name="[dbo].[emp_employee].[barangay_id]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[emp_employee].[picture]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[emp_employee].[note]" />
 				</Entry>
 				<Entry>
@@ -4568,11 +4753,96 @@ INNER JOIN dbo.core_province pr ON ct.province_id = pr.id]]></Value>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="122" />
-				<Property Name="Length" Value="836" />
+				<Property Name="Length" Value="851" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Script Template&#xD;&#xA;-- =============================================&#xD;&#xA;&#xD;&#xA;CREATE VIEW [dbo].[vemployeeinfo]&#xD;&#xA;AS" />
 				<Property Name="FooterContents" Value=";" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql100View" Name="[dbo].[vnetworkprovidercodeinfo]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="QueryScript">
+				<Value><![CDATA[
+SELECT 
+ c.id
+,c.name
+,c.networkprovider_id
+,p.name as networkprovider
+FROM dbo.sms_networkprovidercode c
+inner join dbo.sms_networkprovider p on c.networkprovider_id = p.id]]></Value>
+			</Property>
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vnetworkprovidercodeinfo].[id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[sms_networkprovidercode].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vnetworkprovidercodeinfo].[name]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[sms_networkprovidercode].[name]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vnetworkprovidercodeinfo].[networkprovider_id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[sms_networkprovidercode].[networkprovider_id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vnetworkprovidercodeinfo].[networkprovider]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[sms_networkprovider].[name]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="QueryDependencies">
+				<Entry>
+					<References Name="[dbo].[sms_networkprovidercode]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[sms_networkprovider]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[sms_networkprovidercode].[networkprovider_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[sms_networkprovider].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[sms_networkprovidercode].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[sms_networkprovidercode].[name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[sms_networkprovider].[name]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="221" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="create view vnetworkprovidercodeinfo&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="ISql100View" Name="[dbo].[vstudentinfo]">

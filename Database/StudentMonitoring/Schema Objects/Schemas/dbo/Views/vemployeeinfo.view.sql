@@ -17,6 +17,7 @@ emp.id
 , emp.citizenship
 , emp.street
 , emp.barangay_id
+, emp.picture
 , emp.note
 , gn.name AS gender
 , bg.name AS barangay

@@ -53,21 +53,6 @@ namespace StudentMonitoringSystem.Entities
         #endregion
         #region Navigation Properties
     
-        public virtual enroll_course enroll_course
-        {
-            get { return _enroll_course; }
-            set
-            {
-                if (!ReferenceEquals(_enroll_course, value))
-                {
-                    var previousValue = _enroll_course;
-                    _enroll_course = value;
-                    Fixupenroll_course(previousValue);
-                }
-            }
-        }
-        private enroll_course _enroll_course;
-    
         public virtual ICollection<enroll_schedule> enroll_schedule
         {
             get
@@ -99,6 +84,21 @@ namespace StudentMonitoringSystem.Entities
             }
         }
         private ICollection<enroll_schedule> _enroll_schedule;
+    
+        public virtual enroll_course enroll_course
+        {
+            get { return _enroll_course; }
+            set
+            {
+                if (!ReferenceEquals(_enroll_course, value))
+                {
+                    var previousValue = _enroll_course;
+                    _enroll_course = value;
+                    Fixupenroll_course(previousValue);
+                }
+            }
+        }
+        private enroll_course _enroll_course;
 
         #endregion
         #region Association Fixup

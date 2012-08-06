@@ -42,38 +42,6 @@ namespace StudentMonitoringSystem.Entities
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<enroll_schedule> enroll_schedule
-        {
-            get
-            {
-                if (_enroll_schedule == null)
-                {
-                    var newCollection = new FixupCollection<enroll_schedule>();
-                    newCollection.CollectionChanged += Fixupenroll_schedule;
-                    _enroll_schedule = newCollection;
-                }
-                return _enroll_schedule;
-            }
-            set
-            {
-                if (!ReferenceEquals(_enroll_schedule, value))
-                {
-                    var previousValue = _enroll_schedule as FixupCollection<enroll_schedule>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupenroll_schedule;
-                    }
-                    _enroll_schedule = value;
-                    var newValue = value as FixupCollection<enroll_schedule>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupenroll_schedule;
-                    }
-                }
-            }
-        }
-        private ICollection<enroll_schedule> _enroll_schedule;
-    
         public virtual ICollection<enroll_section> enroll_section
         {
             get
@@ -105,31 +73,41 @@ namespace StudentMonitoringSystem.Entities
             }
         }
         private ICollection<enroll_section> _enroll_section;
-
-        #endregion
-        #region Association Fixup
     
-        private void Fixupenroll_schedule(object sender, NotifyCollectionChangedEventArgs e)
+        public virtual ICollection<enroll_schedule> enroll_schedule
         {
-            if (e.NewItems != null)
+            get
             {
-                foreach (enroll_schedule item in e.NewItems)
+                if (_enroll_schedule == null)
                 {
-                    item.enroll_course = this;
+                    var newCollection = new FixupCollection<enroll_schedule>();
+                    newCollection.CollectionChanged += Fixupenroll_schedule;
+                    _enroll_schedule = newCollection;
                 }
+                return _enroll_schedule;
             }
-    
-            if (e.OldItems != null)
+            set
             {
-                foreach (enroll_schedule item in e.OldItems)
+                if (!ReferenceEquals(_enroll_schedule, value))
                 {
-                    if (ReferenceEquals(item.enroll_course, this))
+                    var previousValue = _enroll_schedule as FixupCollection<enroll_schedule>;
+                    if (previousValue != null)
                     {
-                        item.enroll_course = null;
+                        previousValue.CollectionChanged -= Fixupenroll_schedule;
+                    }
+                    _enroll_schedule = value;
+                    var newValue = value as FixupCollection<enroll_schedule>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupenroll_schedule;
                     }
                 }
             }
         }
+        private ICollection<enroll_schedule> _enroll_schedule;
+
+        #endregion
+        #region Association Fixup
     
         private void Fixupenroll_section(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -144,6 +122,28 @@ namespace StudentMonitoringSystem.Entities
             if (e.OldItems != null)
             {
                 foreach (enroll_section item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.enroll_course, this))
+                    {
+                        item.enroll_course = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupenroll_schedule(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (enroll_schedule item in e.NewItems)
+                {
+                    item.enroll_course = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (enroll_schedule item in e.OldItems)
                 {
                     if (ReferenceEquals(item.enroll_course, this))
                     {

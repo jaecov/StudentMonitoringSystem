@@ -6,11 +6,11 @@ using StudentMonitoringSystem.Entities;
 
 namespace StudentMonitoringSystem.Presenter.Enroll
 {
-    public class CoursePresenter : BasePresenter<ICourse>
+    public class SectionPresenter : BasePresenter<ISection>
     {
         #region Constructor
 
-        public CoursePresenter(ICourse view)
+        public SectionPresenter(ISection view)
         {
             View = view;
         }
@@ -21,18 +21,24 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
         public void LoadItems()
         {            
-            View.CourseDataSource = Controller.GetObject<enroll_course>().ToList();           
+            View.CourseDataSource = Controller.GetObject<enroll_course>().ToList();
+            LoadSectionDataSource();
         }
 
-        public void LoadCourseInfo(int id)
+        public void LoadSectionDataSource()
         {
-            var item = Controller.GetObjectItemByColumnID<enroll_course>(id);
+            View.SectionDataSource = Controller.GetObject<vsectioninfo>().ToList();
+        }
+
+        public void LoadSectionInfo(int id)
+        {
+            var item = Controller.GetObjectItemByColumnID<enroll_section>(id);
             if (item == null)
                 return;
 
             View.ID = id;
             View.Name = item.name;
-            View.Code = item.code;
+            View.Course_ID = item.course_id;
         }
 
         #endregion
@@ -50,11 +56,11 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
             try
             {
-                var item = Controller.GetObjectItemByColumnID<enroll_course>(View.ID);
+                var item = Controller.GetObjectItemByColumnID<enroll_section>(View.ID);
                 if (item == null)
                     return false;
 
-                Controller.DeleteObject<enroll_course>(item);
+                Controller.DeleteObject<enroll_section>(item);
                 LoadItems();
                 View.Notify(Common.Result.DeleteSuceeded, null);
                 return true;
@@ -70,17 +76,17 @@ namespace StudentMonitoringSystem.Presenter.Enroll
         {
             if (View.ID == 0)
             {
-                CreateCourse();
+                CreateSection();
             }
             else
             {
-                UpdateCourse();
+                UpdateSection();
             }
 
-            LoadItems();
+            LoadSectionDataSource();
         }
 
-        private void CreateCourse()
+        private void CreateSection()
         {
             try
             {
@@ -91,10 +97,11 @@ namespace StudentMonitoringSystem.Presenter.Enroll
                     return;
                 }
 
-                var item = new enroll_course();
+                var item = new enroll_section();
                 item.name = View.Name;
-                item.code = View.Code;
-                var result = Controller.CreateObject<enroll_course>(item);
+                item.course_id = View.Course_ID;
+
+                var result = Controller.CreateObject<enroll_section>(item);
                 View.ID = result.id;
                 View.Notify(Common.Result.InsertSucceeded, null);
             }
@@ -104,7 +111,7 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             }
         }
 
-        private void UpdateCourse()
+        private void UpdateSection()
         {
             try
             {
@@ -115,13 +122,14 @@ namespace StudentMonitoringSystem.Presenter.Enroll
                     return;
                 }
 
-                var item = Controller.GetObjectItemByColumnID<enroll_course>(View.ID);
+                var item = Controller.GetObjectItemByColumnID<enroll_section>(View.ID);
                 if (item == null)
                     return;
 
                 item.name = View.Name;
-                item.code = View.Code;
-                Controller.UpdateObject<enroll_course>(item);
+                item.course_id = View.Course_ID;
+
+                Controller.UpdateObject<enroll_section>(item);
                 View.Notify(Common.Result.UpdateSuceeded, null);
             }
             catch (Exception ex)
@@ -141,13 +149,13 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             {
                 case Common.Operation.Insert:
                     if (View.Name == string.Empty) brokenRules.Add("Name is required.");
-                    if (View.Code == string.Empty) brokenRules.Add("Code is required.");
+                    if (View.Course_ID == 0) brokenRules.Add("Course is required.");
                     break;
 
                 case Common.Operation.Update:
                     if (View.ID == 0) brokenRules.Add("Select record first.");
                     if (View.Name == string.Empty) brokenRules.Add("Name is required.");
-                    if (View.Code == string.Empty) brokenRules.Add("Code is required.");
+                    if (View.Course_ID == 0) brokenRules.Add("Course is required.");
                     break;
 
                 case Common.Operation.Delete:

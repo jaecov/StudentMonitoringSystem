@@ -6,11 +6,11 @@ using StudentMonitoringSystem.Entities;
 
 namespace StudentMonitoringSystem.Presenter.Enroll
 {
-    public class CoursePresenter : BasePresenter<ICourse>
+    public class RoomPresenter : BasePresenter<IRoom>
     {
         #region Constructor
 
-        public CoursePresenter(ICourse view)
+        public RoomPresenter(IRoom view)
         {
             View = view;
         }
@@ -21,18 +21,18 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
         public void LoadItems()
         {            
-            View.CourseDataSource = Controller.GetObject<enroll_course>().ToList();           
+            View.RoomDataSource = Controller.GetObject<enroll_room>().ToList();           
         }
 
-        public void LoadCourseInfo(int id)
+        public void LoadRoomInfo(int id)
         {
-            var item = Controller.GetObjectItemByColumnID<enroll_course>(id);
+            var item = Controller.GetObjectItemByColumnID<enroll_room>(id);
             if (item == null)
                 return;
 
             View.ID = id;
             View.Name = item.name;
-            View.Code = item.code;
+            View.Note = item.note;
         }
 
         #endregion
@@ -50,11 +50,11 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
             try
             {
-                var item = Controller.GetObjectItemByColumnID<enroll_course>(View.ID);
+                var item = Controller.GetObjectItemByColumnID<enroll_room>(View.ID);
                 if (item == null)
                     return false;
 
-                Controller.DeleteObject<enroll_course>(item);
+                Controller.DeleteObject<enroll_room>(item);
                 LoadItems();
                 View.Notify(Common.Result.DeleteSuceeded, null);
                 return true;
@@ -70,17 +70,17 @@ namespace StudentMonitoringSystem.Presenter.Enroll
         {
             if (View.ID == 0)
             {
-                CreateCourse();
+                CreateRoom();
             }
             else
             {
-                UpdateCourse();
+                UpdateRoom();
             }
 
             LoadItems();
         }
 
-        private void CreateCourse()
+        private void CreateRoom()
         {
             try
             {
@@ -91,10 +91,10 @@ namespace StudentMonitoringSystem.Presenter.Enroll
                     return;
                 }
 
-                var item = new enroll_course();
+                var item = new enroll_room();
                 item.name = View.Name;
-                item.code = View.Code;
-                var result = Controller.CreateObject<enroll_course>(item);
+                item.note = View.Note;
+                var result = Controller.CreateObject<enroll_room>(item);
                 View.ID = result.id;
                 View.Notify(Common.Result.InsertSucceeded, null);
             }
@@ -104,7 +104,7 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             }
         }
 
-        private void UpdateCourse()
+        private void UpdateRoom()
         {
             try
             {
@@ -115,13 +115,13 @@ namespace StudentMonitoringSystem.Presenter.Enroll
                     return;
                 }
 
-                var item = Controller.GetObjectItemByColumnID<enroll_course>(View.ID);
+                var item = Controller.GetObjectItemByColumnID<enroll_room>(View.ID);
                 if (item == null)
                     return;
 
                 item.name = View.Name;
-                item.code = View.Code;
-                Controller.UpdateObject<enroll_course>(item);
+                item.note = View.Note;
+                Controller.UpdateObject<enroll_room>(item);
                 View.Notify(Common.Result.UpdateSuceeded, null);
             }
             catch (Exception ex)
@@ -140,14 +140,12 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             switch (operation)
             {
                 case Common.Operation.Insert:
-                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");
-                    if (View.Code == string.Empty) brokenRules.Add("Code is required.");
+                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");                    
                     break;
 
                 case Common.Operation.Update:
                     if (View.ID == 0) brokenRules.Add("Select record first.");
-                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");
-                    if (View.Code == string.Empty) brokenRules.Add("Code is required.");
+                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");                    
                     break;
 
                 case Common.Operation.Delete:

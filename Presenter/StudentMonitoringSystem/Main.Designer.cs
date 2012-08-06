@@ -46,6 +46,7 @@
             this.SystemSettingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CourseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NetworkProviderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.networkProviderCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,6 +54,8 @@
             this.BarangayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.provinceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.civilStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.genderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AdministratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserAuditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +71,7 @@
             this.HelpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.roomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -207,13 +211,17 @@
             // 
             this.MaintenanceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CourseToolStripMenuItem,
+            this.sectionToolStripMenuItem,
             this.ScheduleToolStripMenuItem,
             this.NetworkProviderToolStripMenuItem,
             this.networkProviderCodeToolStripMenuItem,
             this.SmartTagsToolStripMenuItem,
             this.BarangayToolStripMenuItem,
             this.cityToolStripMenuItem,
-            this.provinceToolStripMenuItem});
+            this.provinceToolStripMenuItem,
+            this.civilStatusToolStripMenuItem,
+            this.genderToolStripMenuItem,
+            this.roomToolStripMenuItem});
             this.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem";
             this.MaintenanceToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.MaintenanceToolStripMenuItem.Text = "Maintenance";
@@ -224,6 +232,13 @@
             this.CourseToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.CourseToolStripMenuItem.Text = "Course and Section";
             this.CourseToolStripMenuItem.Click += new System.EventHandler(this.CourseToolStripMenuItem_Click);
+            // 
+            // sectionToolStripMenuItem
+            // 
+            this.sectionToolStripMenuItem.Name = "sectionToolStripMenuItem";
+            this.sectionToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.sectionToolStripMenuItem.Text = "Section";
+            this.sectionToolStripMenuItem.Click += new System.EventHandler(this.sectionToolStripMenuItem_Click);
             // 
             // ScheduleToolStripMenuItem
             // 
@@ -271,6 +286,20 @@
             this.provinceToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.provinceToolStripMenuItem.Text = "Province";
             this.provinceToolStripMenuItem.Click += new System.EventHandler(this.provinceToolStripMenuItem_Click);
+            // 
+            // civilStatusToolStripMenuItem
+            // 
+            this.civilStatusToolStripMenuItem.Name = "civilStatusToolStripMenuItem";
+            this.civilStatusToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.civilStatusToolStripMenuItem.Text = "Civil Status";
+            this.civilStatusToolStripMenuItem.Click += new System.EventHandler(this.civilStatusToolStripMenuItem_Click);
+            // 
+            // genderToolStripMenuItem
+            // 
+            this.genderToolStripMenuItem.Name = "genderToolStripMenuItem";
+            this.genderToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.genderToolStripMenuItem.Text = "Gender";
+            this.genderToolStripMenuItem.Click += new System.EventHandler(this.genderToolStripMenuItem_Click);
             // 
             // AdministratorToolStripMenuItem
             // 
@@ -385,6 +414,13 @@
             this.DockPanel1.Size = new System.Drawing.Size(738, 359);
             this.DockPanel1.TabIndex = 8;
             // 
+            // roomToolStripMenuItem
+            // 
+            this.roomToolStripMenuItem.Name = "roomToolStripMenuItem";
+            this.roomToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.roomToolStripMenuItem.Text = "Room";
+            this.roomToolStripMenuItem.Click += new System.EventHandler(this.roomToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,5 +482,9 @@
         private System.Windows.Forms.ToolStripMenuItem cityToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem provinceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem networkProviderCodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem civilStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem genderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem roomToolStripMenuItem;
     }
 }

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using StudentMonitoringSystem.Entities;
 
-namespace StudentMonitoringSystem.Presenter.Enroll
+namespace StudentMonitoringSystem.Presenter.Core
 {
-    public class CoursePresenter : BasePresenter<ICourse>
+    public class GenderPresenter : BasePresenter<IGender>
     {
         #region Constructor
 
-        public CoursePresenter(ICourse view)
+        public GenderPresenter(IGender view)
         {
             View = view;
         }
@@ -21,18 +21,17 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
         public void LoadItems()
         {            
-            View.CourseDataSource = Controller.GetObject<enroll_course>().ToList();           
+            View.GenderDataSource = Controller.GetObject<core_gender>().ToList();           
         }
 
-        public void LoadCourseInfo(int id)
+        public void LoadGenderInfo(int id)
         {
-            var item = Controller.GetObjectItemByColumnID<enroll_course>(id);
+            var item = Controller.GetObjectItemByColumnID<core_gender>(id);
             if (item == null)
                 return;
 
             View.ID = id;
-            View.Name = item.name;
-            View.Code = item.code;
+            View.Name = item.name;    
         }
 
         #endregion
@@ -50,11 +49,11 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
             try
             {
-                var item = Controller.GetObjectItemByColumnID<enroll_course>(View.ID);
+                var item = Controller.GetObjectItemByColumnID<core_gender>(View.ID);
                 if (item == null)
                     return false;
 
-                Controller.DeleteObject<enroll_course>(item);
+                Controller.DeleteObject<core_gender>(item);
                 LoadItems();
                 View.Notify(Common.Result.DeleteSuceeded, null);
                 return true;
@@ -70,17 +69,17 @@ namespace StudentMonitoringSystem.Presenter.Enroll
         {
             if (View.ID == 0)
             {
-                CreateCourse();
+                CreateGender();
             }
             else
             {
-                UpdateCourse();
+                UpdateGender();
             }
 
             LoadItems();
         }
 
-        private void CreateCourse()
+        private void CreateGender()
         {
             try
             {
@@ -91,10 +90,10 @@ namespace StudentMonitoringSystem.Presenter.Enroll
                     return;
                 }
 
-                var item = new enroll_course();
+                var item = new core_gender();
                 item.name = View.Name;
-                item.code = View.Code;
-                var result = Controller.CreateObject<enroll_course>(item);
+
+                var result = Controller.CreateObject<core_gender>(item);
                 View.ID = result.id;
                 View.Notify(Common.Result.InsertSucceeded, null);
             }
@@ -104,7 +103,7 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             }
         }
 
-        private void UpdateCourse()
+        private void UpdateGender()
         {
             try
             {
@@ -115,13 +114,13 @@ namespace StudentMonitoringSystem.Presenter.Enroll
                     return;
                 }
 
-                var item = Controller.GetObjectItemByColumnID<enroll_course>(View.ID);
+                var item = Controller.GetObjectItemByColumnID<core_gender>(View.ID);
                 if (item == null)
                     return;
 
                 item.name = View.Name;
-                item.code = View.Code;
-                Controller.UpdateObject<enroll_course>(item);
+
+                Controller.UpdateObject<core_gender>(item);
                 View.Notify(Common.Result.UpdateSuceeded, null);
             }
             catch (Exception ex)
@@ -141,13 +140,11 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             {
                 case Common.Operation.Insert:
                     if (View.Name == string.Empty) brokenRules.Add("Name is required.");
-                    if (View.Code == string.Empty) brokenRules.Add("Code is required.");
                     break;
 
                 case Common.Operation.Update:
                     if (View.ID == 0) brokenRules.Add("Select record first.");
                     if (View.Name == string.Empty) brokenRules.Add("Name is required.");
-                    if (View.Code == string.Empty) brokenRules.Add("Code is required.");
                     break;
 
                 case Common.Operation.Delete:

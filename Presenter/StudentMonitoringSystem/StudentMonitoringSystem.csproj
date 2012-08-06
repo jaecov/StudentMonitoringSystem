@@ -70,6 +70,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Core\FormGender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Core\FormGender.Designer.cs">
+      <DependentUpon>FormGender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Core\FormCivilStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Core\FormCivilStatus.Designer.cs">
+      <DependentUpon>FormCivilStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Core\FormProvince.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +111,18 @@
     </Compile>
     <Compile Include="Forms\Employee\FormEmployee.Designer.cs">
       <DependentUpon>FormEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Enroll\FormRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Enroll\FormRoom.Designer.cs">
+      <DependentUpon>FormRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Enroll\FormSection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Enroll\FormSection.Designer.cs">
+      <DependentUpon>FormSection.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Enroll\FormCourse.cs">
       <SubType>Form</SubType>
@@ -150,6 +174,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Core\FormGender.resx">
+      <DependentUpon>FormGender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Core\FormCivilStatus.resx">
+      <DependentUpon>FormCivilStatus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Core\FormProvince.resx">
       <DependentUpon>FormProvince.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,6 +194,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Employee\FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Enroll\FormRoom.resx">
+      <DependentUpon>FormRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Enroll\FormSection.resx">
+      <DependentUpon>FormSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Enroll\FormCourse.resx">
       <DependentUpon>FormCourse.cs</DependentUpon>

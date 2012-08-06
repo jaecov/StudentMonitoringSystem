@@ -131,24 +131,6 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<emp_contact> _emp_contact;
     
-    	public ObjectSet<enroll_room> enroll_room
-    	{
-    		get { return _enroll_room  ?? (_enroll_room = CreateObjectSet<enroll_room>("enroll_room")); }
-    	}
-    	private ObjectSet<enroll_room> _enroll_room;
-    
-    	public ObjectSet<enroll_schedule> enroll_schedule
-    	{
-    		get { return _enroll_schedule  ?? (_enroll_schedule = CreateObjectSet<enroll_schedule>("enroll_schedule")); }
-    	}
-    	private ObjectSet<enroll_schedule> _enroll_schedule;
-    
-    	public ObjectSet<enroll_section> enroll_section
-    	{
-    		get { return _enroll_section  ?? (_enroll_section = CreateObjectSet<enroll_section>("enroll_section")); }
-    	}
-    	private ObjectSet<enroll_section> _enroll_section;
-    
     	public ObjectSet<enroll_subject> enroll_subject
     	{
     		get { return _enroll_subject  ?? (_enroll_subject = CreateObjectSet<enroll_subject>("enroll_subject")); }
@@ -274,6 +256,30 @@ namespace StudentMonitoringSystem.Entities
     		get { return _enroll_course  ?? (_enroll_course = CreateObjectSet<enroll_course>("enroll_course")); }
     	}
     	private ObjectSet<enroll_course> _enroll_course;
+    
+    	public ObjectSet<vsectioninfo> vsectioninfoes
+    	{
+    		get { return _vsectioninfoes  ?? (_vsectioninfoes = CreateObjectSet<vsectioninfo>("vsectioninfoes")); }
+    	}
+    	private ObjectSet<vsectioninfo> _vsectioninfoes;
+    
+    	public ObjectSet<enroll_section> enroll_section
+    	{
+    		get { return _enroll_section  ?? (_enroll_section = CreateObjectSet<enroll_section>("enroll_section")); }
+    	}
+    	private ObjectSet<enroll_section> _enroll_section;
+    
+    	public ObjectSet<enroll_room> enroll_room
+    	{
+    		get { return _enroll_room  ?? (_enroll_room = CreateObjectSet<enroll_room>("enroll_room")); }
+    	}
+    	private ObjectSet<enroll_room> _enroll_room;
+    
+    	public ObjectSet<enroll_schedule> enroll_schedule
+    	{
+    		get { return _enroll_schedule  ?? (_enroll_schedule = CreateObjectSet<enroll_schedule>("enroll_schedule")); }
+    	}
+    	private ObjectSet<enroll_schedule> _enroll_schedule;
 
         #endregion
 
@@ -344,21 +350,6 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(emp_contact))
     		{
     			return (ObjectSet<T>)(object)emp_contact;
-    		}
-    								
-    		if(typeof(T) == typeof(enroll_room))
-    		{
-    			return (ObjectSet<T>)(object)enroll_room;
-    		}
-    								
-    		if(typeof(T) == typeof(enroll_schedule))
-    		{
-    			return (ObjectSet<T>)(object)enroll_schedule;
-    		}
-    								
-    		if(typeof(T) == typeof(enroll_section))
-    		{
-    			return (ObjectSet<T>)(object)enroll_section;
     		}
     								
     		if(typeof(T) == typeof(enroll_subject))
@@ -464,6 +455,26 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(enroll_course))
     		{
     			return (ObjectSet<T>)(object)enroll_course;
+    		}
+    								
+    		if(typeof(T) == typeof(vsectioninfo))
+    		{
+    			return (ObjectSet<T>)(object)vsectioninfoes;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_section))
+    		{
+    			return (ObjectSet<T>)(object)enroll_section;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_room))
+    		{
+    			return (ObjectSet<T>)(object)enroll_room;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_schedule))
+    		{
+    			return (ObjectSet<T>)(object)enroll_schedule;
     		}
     				
     		return null;

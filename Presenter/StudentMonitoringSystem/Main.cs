@@ -80,15 +80,39 @@ namespace StudentMonitoringSystem
             ShowForm(form);
         }
 
+        private void sectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormSection();
+            ShowForm(form);
+        }
+
+        private void civilStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormCivilStatus();
+            ShowForm(form);
+        }
+
+        private void genderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormGender();
+            ShowForm(form);
+        }
+
+        private void roomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormRoom();
+            ShowForm(form);
+        }
+
         #endregion
-        
+
         #region Methods
 
         private void ShowForm(WeifenLuo.WinFormsUI.Docking.DockContent form)
         {
             var dockform = DockPanel1.Contents.Where(c => (c as Form).Text == form.Text).FirstOrDefault();
             if (dockform == null)
-            {                
+            {
                 form.Show(this.DockPanel1);
                 form.Activate();
             }
@@ -99,6 +123,12 @@ namespace StudentMonitoringSystem
         }
 
         #endregion
+
+      
+
+
+
+
 
     }
 }

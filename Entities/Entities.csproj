@@ -169,6 +169,9 @@
     <Compile Include="vnetworkprovidercodeinfo.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="vsectioninfo.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="vstudentinfo.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

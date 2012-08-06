@@ -403,6 +403,7 @@ GO
 CREATE TABLE [dbo].[enroll_room] (
     [id]   INT           IDENTITY (1, 1) NOT NULL,
     [name] VARCHAR (100) NOT NULL,
+    [note] VARCHAR (100) NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
@@ -413,14 +414,15 @@ PRINT N'Creating [dbo].[enroll_schedule]...';
 
 GO
 CREATE TABLE [dbo].[enroll_schedule] (
-    [id]          INT      IDENTITY (1, 1) NOT NULL,
-    [course_id]   INT      NOT NULL,
-    [section_id]  INT      NOT NULL,
-    [employee_id] INT      NOT NULL,
-    [subject_id]  INT      NOT NULL,
-    [room_id]     INT      NOT NULL,
-    [datestart]   DATETIME NOT NULL,
-    [dateend]     DATETIME NOT NULL,
+    [id]          INT           IDENTITY (1, 1) NOT NULL,
+    [course_id]   INT           NOT NULL,
+    [section_id]  INT           NOT NULL,
+    [employee_id] INT           NOT NULL,
+    [subject_id]  INT           NOT NULL,
+    [room_id]     INT           NOT NULL,
+    [datestart]   DATETIME      NOT NULL,
+    [dateend]     DATETIME      NOT NULL,
+    [note]        VARCHAR (100) NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
@@ -431,7 +433,7 @@ PRINT N'Creating [dbo].[enroll_section]...';
 
 GO
 CREATE TABLE [dbo].[enroll_section] (
-    [id]        INT           NOT NULL,
+    [id]        INT           IDENTITY (1, 1) NOT NULL,
     [name]      VARCHAR (100) NOT NULL,
     [course_id] INT           NOT NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
@@ -1071,6 +1073,24 @@ SELECT
 ,p.name as networkprovider
 FROM dbo.sms_networkprovidercode c
 inner join dbo.sms_networkprovider p on c.networkprovider_id = p.id
+GO
+PRINT N'Creating [dbo].[vsectioninfo]...';
+
+
+GO
+
+CREATE View vsectioninfo
+as
+
+SELECT
+S.id,
+S.name,
+S.course_id,
+C.name AS course_name,
+c.code as course_code
+
+FROM enroll_section S
+INNER JOIN enroll_course C ON S.course_id = C.id
 GO
 PRINT N'Creating [dbo].[vstudentinfo]...';
 

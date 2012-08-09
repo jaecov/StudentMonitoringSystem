@@ -141,7 +141,7 @@
             this.cmbCity.Name = "cmbCity";
             this.cmbCity.Size = new System.Drawing.Size(529, 21);
             this.cmbCity.TabIndex = 213;
-            this.cmbCity.ValueMember = "id";
+            this.cmbCity.ValueMember = "id";            
             // 
             // Label22
             // 

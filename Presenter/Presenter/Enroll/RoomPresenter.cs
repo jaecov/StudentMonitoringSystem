@@ -117,7 +117,9 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
                 var item = Controller.GetObjectItemByColumnID<enroll_room>(View.ID);
                 if (item == null)
-                    return;
+                {
+                    throw new Exception("Can not update.Item not found.");
+                }
 
                 item.name = View.Name;
                 item.note = View.Note;

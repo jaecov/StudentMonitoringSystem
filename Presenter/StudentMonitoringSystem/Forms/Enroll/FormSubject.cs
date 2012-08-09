@@ -12,19 +12,19 @@ using StudentMonitoringSystem.Presenter;
 
 namespace StudentMonitoringSystem.Forms.Enroll
 {
-    public partial class FormSection : WeifenLuo.WinFormsUI.Docking.DockContent, ISection
+    public partial class FormSubject : WeifenLuo.WinFormsUI.Docking.DockContent, ISubject
     {
         #region Constructor
 
-        public FormSection()
+        public FormSubject()
         {           
             InitializeComponent();
-            grdSection.AutoGenerateColumns = false;
-            Presenter = new SectionPresenter(this);
+            grdSubject.AutoGenerateColumns = false;
+            Presenter = new SubjectPresenter(this);
             Name = string.Empty;
         }
 
-        public SectionPresenter Presenter
+        public SubjectPresenter Presenter
         {
             get;
             set;
@@ -34,25 +34,25 @@ namespace StudentMonitoringSystem.Forms.Enroll
 
         #region Events
 
-        private void FormSection_Load(object sender, EventArgs e)
+        private void FormSubject_Load(object sender, EventArgs e)
         {
             Presenter.LoadItems();
         }
 
-        private void grdSection_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void grdSubject_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex <= -1)
                 return;
 
-            if (grdSection.CurrentRow == null)
+            if (grdSubject.CurrentRow == null)
                 return;
 
-            var data = grdSection.CurrentRow.DataBoundItem as enroll_section;
+            var data = grdSubject.CurrentRow.DataBoundItem as enroll_subject;
             if (data == null)
                 return;
 
             int id = data.id;
-            Presenter.LoadSectionInfo(id);
+            Presenter.LoadSubjectInfo(id);
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -92,7 +92,7 @@ namespace StudentMonitoringSystem.Forms.Enroll
 
         #endregion
 
-        #region ISection
+        #region ISubject
 
         public int ID
         {
@@ -106,12 +106,18 @@ namespace StudentMonitoringSystem.Forms.Enroll
             set { txtName.Text = value; }
         }
 
-        public new string Note
+        public string Note
         {
-            get { return txtNote.Text; }
-            set { txtNote.Text = value; }
+            get
+            {
+                return txtNote.Text;
+            }
+            set
+            {
+                txtNote.Text = value;
+            }
         }
-        
+
         public void Notify(Common.Result result, List<string> messages)
         {
             if (result == Common.Result.ValidationFailed)
@@ -133,15 +139,14 @@ namespace StudentMonitoringSystem.Forms.Enroll
             }
         }
 
-        public List<enroll_section> SectionDataSource
+        public List<enroll_subject> SubjectDataSource
         {
             set
             {
-                sectionBindingSource.DataSource = value;
+                SubjectinfoBindingSource.DataSource = value;
             }
         }
-      
+       
         #endregion       
-
     }
 }

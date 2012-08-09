@@ -56,6 +56,8 @@
             this.provinceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.civilStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.genderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.roomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AdministratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserAuditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +73,7 @@
             this.HelpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.roomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scheduleToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -221,7 +223,9 @@
             this.provinceToolStripMenuItem,
             this.civilStatusToolStripMenuItem,
             this.genderToolStripMenuItem,
-            this.roomToolStripMenuItem});
+            this.roomToolStripMenuItem,
+            this.subjectToolStripMenuItem,
+            this.scheduleToolStripMenuItem2});
             this.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem";
             this.MaintenanceToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.MaintenanceToolStripMenuItem.Text = "Maintenance";
@@ -300,6 +304,20 @@
             this.genderToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.genderToolStripMenuItem.Text = "Gender";
             this.genderToolStripMenuItem.Click += new System.EventHandler(this.genderToolStripMenuItem_Click);
+            // 
+            // roomToolStripMenuItem
+            // 
+            this.roomToolStripMenuItem.Name = "roomToolStripMenuItem";
+            this.roomToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.roomToolStripMenuItem.Text = "Room";
+            this.roomToolStripMenuItem.Click += new System.EventHandler(this.roomToolStripMenuItem_Click);
+            // 
+            // subjectToolStripMenuItem
+            // 
+            this.subjectToolStripMenuItem.Name = "subjectToolStripMenuItem";
+            this.subjectToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.subjectToolStripMenuItem.Text = "Subject";
+            this.subjectToolStripMenuItem.Click += new System.EventHandler(this.subjectToolStripMenuItem_Click);
             // 
             // AdministratorToolStripMenuItem
             // 
@@ -414,12 +432,12 @@
             this.DockPanel1.Size = new System.Drawing.Size(738, 359);
             this.DockPanel1.TabIndex = 8;
             // 
-            // roomToolStripMenuItem
+            // scheduleToolStripMenuItem2
             // 
-            this.roomToolStripMenuItem.Name = "roomToolStripMenuItem";
-            this.roomToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.roomToolStripMenuItem.Text = "Room";
-            this.roomToolStripMenuItem.Click += new System.EventHandler(this.roomToolStripMenuItem_Click);
+            this.scheduleToolStripMenuItem2.Name = "scheduleToolStripMenuItem2";
+            this.scheduleToolStripMenuItem2.Size = new System.Drawing.Size(197, 22);
+            this.scheduleToolStripMenuItem2.Text = "Schedule";
+            this.scheduleToolStripMenuItem2.Click += new System.EventHandler(this.scheduleToolStripMenuItem2_Click);
             // 
             // Main
             // 
@@ -486,5 +504,7 @@
         private System.Windows.Forms.ToolStripMenuItem civilStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem genderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem roomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem subjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scheduleToolStripMenuItem2;
     }
 }

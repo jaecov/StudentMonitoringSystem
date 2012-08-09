@@ -124,7 +124,9 @@ namespace StudentMonitoringSystem.Presenter.SMS
 
                 var item = Controller.GetObjectItemByColumnID<sms_networkprovidercode>(View.ID);
                 if (item == null)
-                    return;
+                {
+                    throw new Exception("Can not update.Item not found.");
+                }
 
                 item.name = View.Name;
                 item.networkprovider_id = View.NetworkProvider_ID;

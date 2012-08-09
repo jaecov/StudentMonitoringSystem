@@ -172,7 +172,9 @@ namespace StudentMonitoringSystem.Presenter.Core
                 core_student item;
                 item = Controller.GetObjectItemByColumnID<core_student>(View.ID);
                 if (item == null)
-                    return;
+                {
+                    throw new Exception("Can not update.Item not found.");
+                }
 
                 GetValues(ref item);
                 Controller.UpdateObject<core_student>(item);

@@ -130,7 +130,9 @@ namespace StudentMonitoringSystem.Presenter.Employee
                 emp_contact item;
                 item = Controller.GetObjectItemByColumnID<emp_contact>(View.ID);
                 if (item == null)
-                    return;
+                {
+                    throw new Exception("Can not update.Item not found.");
+                }
 
                 GetValues(ref item);
                 Controller.UpdateObject<emp_contact>(item);

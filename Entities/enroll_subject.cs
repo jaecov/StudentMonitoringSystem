@@ -32,6 +32,12 @@ namespace StudentMonitoringSystem.Entities
             get;
             set;
         }
+    
+        public  string note
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

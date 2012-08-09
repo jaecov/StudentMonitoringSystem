@@ -104,6 +104,18 @@ namespace StudentMonitoringSystem
             ShowForm(form);
         }
 
+        private void subjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormSubject();
+            ShowForm(form);
+        }
+
+        private void scheduleToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            var form = new FormSchedule();
+            ShowForm(form);
+        }
+
         #endregion
 
         #region Methods
@@ -124,11 +136,7 @@ namespace StudentMonitoringSystem
 
         #endregion
 
-      
-
-
-
-
+       
 
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtCitizenship = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -84,6 +85,8 @@
             this.emailaddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employeeidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empemployeeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emp_contactBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -96,27 +99,29 @@
             this.Label48 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.grdEmployee = new System.Windows.Forms.DataGridView();
-            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateofbirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.civilstatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.citizenship = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.middlename = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gender_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.civilstatus_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.street = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.barangay_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.barangay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.city_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.city = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.province_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.province = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.middlenameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateofbirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genderidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.civilstatusidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.civilstatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.citizenshipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.streetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.barangayidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.barangayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cityidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.provinceidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.provinceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vemployeeinfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GroupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -124,7 +129,9 @@
             this.tabPage2.SuspendLayout();
             this.tabContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emp_contactBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdEmployee)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vemployeeinfoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCitizenship
@@ -667,6 +674,7 @@
             this.grdContact.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdContact.AutoGenerateColumns = false;
             this.grdContact.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdContact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdContact.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -674,7 +682,9 @@
             this.numberDataGridViewTextBoxColumn,
             this.emailaddressDataGridViewTextBoxColumn,
             this.noteDataGridViewTextBoxColumn,
-            this.employeeidDataGridViewTextBoxColumn});
+            this.employeeidDataGridViewTextBoxColumn,
+            this.empemployeeDataGridViewTextBoxColumn});
+            this.grdContact.DataSource = this.emp_contactBindingSource;
             this.grdContact.Location = new System.Drawing.Point(336, 8);
             this.grdContact.Name = "grdContact";
             this.grdContact.ReadOnly = true;
@@ -719,6 +729,19 @@
             this.employeeidDataGridViewTextBoxColumn.Name = "employeeidDataGridViewTextBoxColumn";
             this.employeeidDataGridViewTextBoxColumn.ReadOnly = true;
             this.employeeidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // empemployeeDataGridViewTextBoxColumn
+            // 
+            this.empemployeeDataGridViewTextBoxColumn.DataPropertyName = "emp_employee";
+            this.empemployeeDataGridViewTextBoxColumn.HeaderText = "emp_employee";
+            this.empemployeeDataGridViewTextBoxColumn.Name = "empemployeeDataGridViewTextBoxColumn";
+            this.empemployeeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.empemployeeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // emp_contactBindingSource
+            // 
+            this.emp_contactBindingSource.AllowNew = false;
+            this.emp_contactBindingSource.DataSource = typeof(StudentMonitoringSystem.Entities.emp_contact);
             // 
             // label30
             // 
@@ -834,30 +857,33 @@
             this.grdEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdEmployee.AutoGenerateColumns = false;
             this.grdEmployee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.number,
-            this.fullname,
-            this.gender,
-            this.dateofbirth,
-            this.civilstatus,
-            this.citizenship,
-            this.address,
-            this.note,
-            this.firstname,
-            this.middlename,
-            this.lastname,
-            this.gender_id,
-            this.civilstatus_id,
-            this.street,
-            this.barangay_id,
-            this.barangay,
-            this.city_id,
-            this.city,
-            this.province_id,
-            this.province,
-            this.id});
+            this.idDataGridViewTextBoxColumn1,
+            this.numberDataGridViewTextBoxColumn1,
+            this.fullnameDataGridViewTextBoxColumn,
+            this.addressDataGridViewTextBoxColumn,
+            this.firstnameDataGridViewTextBoxColumn,
+            this.middlenameDataGridViewTextBoxColumn,
+            this.lastnameDataGridViewTextBoxColumn,
+            this.dateofbirthDataGridViewTextBoxColumn,
+            this.genderidDataGridViewTextBoxColumn,
+            this.civilstatusidDataGridViewTextBoxColumn,
+            this.civilstatusDataGridViewTextBoxColumn,
+            this.citizenshipDataGridViewTextBoxColumn,
+            this.streetDataGridViewTextBoxColumn,
+            this.barangayidDataGridViewTextBoxColumn,
+            this.pictureDataGridViewTextBoxColumn,
+            this.genderDataGridViewTextBoxColumn,
+            this.noteDataGridViewTextBoxColumn1,
+            this.barangayDataGridViewTextBoxColumn,
+            this.cityidDataGridViewTextBoxColumn,
+            this.cityDataGridViewTextBoxColumn,
+            this.provinceidDataGridViewTextBoxColumn,
+            this.provinceDataGridViewTextBoxColumn});
+            this.grdEmployee.DataSource = this.vemployeeinfoBindingSource;
             this.grdEmployee.Location = new System.Drawing.Point(4, 233);
             this.grdEmployee.Name = "grdEmployee";
             this.grdEmployee.ReadOnly = true;
@@ -866,165 +892,178 @@
             this.grdEmployee.TabIndex = 207;
             this.grdEmployee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdEmployee_CellClick);
             // 
-            // number
+            // idDataGridViewTextBoxColumn1
             // 
-            this.number.DataPropertyName = "number";
-            this.number.HeaderText = "number";
-            this.number.Name = "number";
-            this.number.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn1.Visible = false;
             // 
-            // fullname
+            // numberDataGridViewTextBoxColumn1
             // 
-            this.fullname.DataPropertyName = "fullname";
-            this.fullname.HeaderText = "fullname";
-            this.fullname.Name = "fullname";
-            this.fullname.ReadOnly = true;
+            this.numberDataGridViewTextBoxColumn1.DataPropertyName = "number";
+            this.numberDataGridViewTextBoxColumn1.HeaderText = "Number";
+            this.numberDataGridViewTextBoxColumn1.Name = "numberDataGridViewTextBoxColumn1";
+            this.numberDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // gender
+            // fullnameDataGridViewTextBoxColumn
             // 
-            this.gender.DataPropertyName = "gender";
-            this.gender.HeaderText = "gender";
-            this.gender.Name = "gender";
-            this.gender.ReadOnly = true;
+            this.fullnameDataGridViewTextBoxColumn.DataPropertyName = "fullname";
+            this.fullnameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.fullnameDataGridViewTextBoxColumn.Name = "fullnameDataGridViewTextBoxColumn";
+            this.fullnameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // dateofbirth
+            // addressDataGridViewTextBoxColumn
             // 
-            this.dateofbirth.DataPropertyName = "dateofbirth";
-            this.dateofbirth.HeaderText = "dateofbirth";
-            this.dateofbirth.Name = "dateofbirth";
-            this.dateofbirth.ReadOnly = true;
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // civilstatus
+            // firstnameDataGridViewTextBoxColumn
             // 
-            this.civilstatus.DataPropertyName = "civilstatus";
-            this.civilstatus.HeaderText = "civilstatus";
-            this.civilstatus.Name = "civilstatus";
-            this.civilstatus.ReadOnly = true;
+            this.firstnameDataGridViewTextBoxColumn.DataPropertyName = "firstname";
+            this.firstnameDataGridViewTextBoxColumn.HeaderText = "firstname";
+            this.firstnameDataGridViewTextBoxColumn.Name = "firstnameDataGridViewTextBoxColumn";
+            this.firstnameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.firstnameDataGridViewTextBoxColumn.Visible = false;
             // 
-            // citizenship
+            // middlenameDataGridViewTextBoxColumn
             // 
-            this.citizenship.DataPropertyName = "citizenship";
-            this.citizenship.HeaderText = "citizenship";
-            this.citizenship.Name = "citizenship";
-            this.citizenship.ReadOnly = true;
+            this.middlenameDataGridViewTextBoxColumn.DataPropertyName = "middlename";
+            this.middlenameDataGridViewTextBoxColumn.HeaderText = "middlename";
+            this.middlenameDataGridViewTextBoxColumn.Name = "middlenameDataGridViewTextBoxColumn";
+            this.middlenameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.middlenameDataGridViewTextBoxColumn.Visible = false;
             // 
-            // address
+            // lastnameDataGridViewTextBoxColumn
             // 
-            this.address.DataPropertyName = "address";
-            this.address.HeaderText = "address";
-            this.address.Name = "address";
-            this.address.ReadOnly = true;
+            this.lastnameDataGridViewTextBoxColumn.DataPropertyName = "lastname";
+            this.lastnameDataGridViewTextBoxColumn.HeaderText = "lastname";
+            this.lastnameDataGridViewTextBoxColumn.Name = "lastnameDataGridViewTextBoxColumn";
+            this.lastnameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lastnameDataGridViewTextBoxColumn.Visible = false;
             // 
-            // note
+            // dateofbirthDataGridViewTextBoxColumn
             // 
-            this.note.DataPropertyName = "note";
-            this.note.HeaderText = "note";
-            this.note.Name = "note";
-            this.note.ReadOnly = true;
+            this.dateofbirthDataGridViewTextBoxColumn.DataPropertyName = "dateofbirth";
+            this.dateofbirthDataGridViewTextBoxColumn.HeaderText = "Date Of Birth";
+            this.dateofbirthDataGridViewTextBoxColumn.Name = "dateofbirthDataGridViewTextBoxColumn";
+            this.dateofbirthDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // firstname
+            // genderidDataGridViewTextBoxColumn
             // 
-            this.firstname.DataPropertyName = "firstname";
-            this.firstname.HeaderText = "firstname";
-            this.firstname.Name = "firstname";
-            this.firstname.ReadOnly = true;
-            this.firstname.Visible = false;
+            this.genderidDataGridViewTextBoxColumn.DataPropertyName = "gender_id";
+            this.genderidDataGridViewTextBoxColumn.HeaderText = "gender_id";
+            this.genderidDataGridViewTextBoxColumn.Name = "genderidDataGridViewTextBoxColumn";
+            this.genderidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.genderidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // middlename
+            // civilstatusidDataGridViewTextBoxColumn
             // 
-            this.middlename.DataPropertyName = "middlename";
-            this.middlename.HeaderText = "middlename";
-            this.middlename.Name = "middlename";
-            this.middlename.ReadOnly = true;
-            this.middlename.Visible = false;
+            this.civilstatusidDataGridViewTextBoxColumn.DataPropertyName = "civilstatus_id";
+            this.civilstatusidDataGridViewTextBoxColumn.HeaderText = "civilstatus_id";
+            this.civilstatusidDataGridViewTextBoxColumn.Name = "civilstatusidDataGridViewTextBoxColumn";
+            this.civilstatusidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.civilstatusidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // lastname
+            // civilstatusDataGridViewTextBoxColumn
             // 
-            this.lastname.DataPropertyName = "lastname";
-            this.lastname.HeaderText = "lastname";
-            this.lastname.Name = "lastname";
-            this.lastname.ReadOnly = true;
-            this.lastname.Visible = false;
+            this.civilstatusDataGridViewTextBoxColumn.DataPropertyName = "civilstatus";
+            this.civilstatusDataGridViewTextBoxColumn.HeaderText = "Civil Status";
+            this.civilstatusDataGridViewTextBoxColumn.Name = "civilstatusDataGridViewTextBoxColumn";
+            this.civilstatusDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // gender_id
+            // citizenshipDataGridViewTextBoxColumn
             // 
-            this.gender_id.DataPropertyName = "gender_id";
-            this.gender_id.HeaderText = "gender_id";
-            this.gender_id.Name = "gender_id";
-            this.gender_id.ReadOnly = true;
-            this.gender_id.Visible = false;
+            this.citizenshipDataGridViewTextBoxColumn.DataPropertyName = "citizenship";
+            this.citizenshipDataGridViewTextBoxColumn.HeaderText = "Citizenship";
+            this.citizenshipDataGridViewTextBoxColumn.Name = "citizenshipDataGridViewTextBoxColumn";
+            this.citizenshipDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // civilstatus_id
+            // streetDataGridViewTextBoxColumn
             // 
-            this.civilstatus_id.DataPropertyName = "civilstatus_id";
-            this.civilstatus_id.HeaderText = "civilstatus_id";
-            this.civilstatus_id.Name = "civilstatus_id";
-            this.civilstatus_id.ReadOnly = true;
-            this.civilstatus_id.Visible = false;
+            this.streetDataGridViewTextBoxColumn.DataPropertyName = "street";
+            this.streetDataGridViewTextBoxColumn.HeaderText = "street";
+            this.streetDataGridViewTextBoxColumn.Name = "streetDataGridViewTextBoxColumn";
+            this.streetDataGridViewTextBoxColumn.ReadOnly = true;
+            this.streetDataGridViewTextBoxColumn.Visible = false;
             // 
-            // street
+            // barangayidDataGridViewTextBoxColumn
             // 
-            this.street.DataPropertyName = "street";
-            this.street.HeaderText = "street";
-            this.street.Name = "street";
-            this.street.ReadOnly = true;
-            this.street.Visible = false;
+            this.barangayidDataGridViewTextBoxColumn.DataPropertyName = "barangay_id";
+            this.barangayidDataGridViewTextBoxColumn.HeaderText = "barangay_id";
+            this.barangayidDataGridViewTextBoxColumn.Name = "barangayidDataGridViewTextBoxColumn";
+            this.barangayidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.barangayidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // barangay_id
+            // pictureDataGridViewTextBoxColumn
             // 
-            this.barangay_id.DataPropertyName = "barangay_id";
-            this.barangay_id.HeaderText = "barangay_id";
-            this.barangay_id.Name = "barangay_id";
-            this.barangay_id.ReadOnly = true;
-            this.barangay_id.Visible = false;
+            this.pictureDataGridViewTextBoxColumn.DataPropertyName = "picture";
+            this.pictureDataGridViewTextBoxColumn.HeaderText = "picture";
+            this.pictureDataGridViewTextBoxColumn.Name = "pictureDataGridViewTextBoxColumn";
+            this.pictureDataGridViewTextBoxColumn.ReadOnly = true;
+            this.pictureDataGridViewTextBoxColumn.Visible = false;
             // 
-            // barangay
+            // genderDataGridViewTextBoxColumn
             // 
-            this.barangay.DataPropertyName = "barangay";
-            this.barangay.HeaderText = "barangay";
-            this.barangay.Name = "barangay";
-            this.barangay.ReadOnly = true;
-            this.barangay.Visible = false;
+            this.genderDataGridViewTextBoxColumn.DataPropertyName = "gender";
+            this.genderDataGridViewTextBoxColumn.HeaderText = "Gender";
+            this.genderDataGridViewTextBoxColumn.Name = "genderDataGridViewTextBoxColumn";
+            this.genderDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // city_id
+            // noteDataGridViewTextBoxColumn1
             // 
-            this.city_id.DataPropertyName = "city_id";
-            this.city_id.HeaderText = "city_id";
-            this.city_id.Name = "city_id";
-            this.city_id.ReadOnly = true;
-            this.city_id.Visible = false;
+            this.noteDataGridViewTextBoxColumn1.DataPropertyName = "note";
+            this.noteDataGridViewTextBoxColumn1.HeaderText = "Note";
+            this.noteDataGridViewTextBoxColumn1.Name = "noteDataGridViewTextBoxColumn1";
+            this.noteDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // city
+            // barangayDataGridViewTextBoxColumn
             // 
-            this.city.DataPropertyName = "city";
-            this.city.HeaderText = "city";
-            this.city.Name = "city";
-            this.city.ReadOnly = true;
-            this.city.Visible = false;
+            this.barangayDataGridViewTextBoxColumn.DataPropertyName = "barangay";
+            this.barangayDataGridViewTextBoxColumn.HeaderText = "barangay";
+            this.barangayDataGridViewTextBoxColumn.Name = "barangayDataGridViewTextBoxColumn";
+            this.barangayDataGridViewTextBoxColumn.ReadOnly = true;
+            this.barangayDataGridViewTextBoxColumn.Visible = false;
             // 
-            // province_id
+            // cityidDataGridViewTextBoxColumn
             // 
-            this.province_id.DataPropertyName = "province_id";
-            this.province_id.HeaderText = "province_id";
-            this.province_id.Name = "province_id";
-            this.province_id.ReadOnly = true;
-            this.province_id.Visible = false;
+            this.cityidDataGridViewTextBoxColumn.DataPropertyName = "city_id";
+            this.cityidDataGridViewTextBoxColumn.HeaderText = "city_id";
+            this.cityidDataGridViewTextBoxColumn.Name = "cityidDataGridViewTextBoxColumn";
+            this.cityidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cityidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // province
+            // cityDataGridViewTextBoxColumn
             // 
-            this.province.DataPropertyName = "province";
-            this.province.HeaderText = "province";
-            this.province.Name = "province";
-            this.province.ReadOnly = true;
-            this.province.Visible = false;
+            this.cityDataGridViewTextBoxColumn.DataPropertyName = "city";
+            this.cityDataGridViewTextBoxColumn.HeaderText = "city";
+            this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
+            this.cityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cityDataGridViewTextBoxColumn.Visible = false;
             // 
-            // id
+            // provinceidDataGridViewTextBoxColumn
             // 
-            this.id.DataPropertyName = "id";
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
+            this.provinceidDataGridViewTextBoxColumn.DataPropertyName = "province_id";
+            this.provinceidDataGridViewTextBoxColumn.HeaderText = "province_id";
+            this.provinceidDataGridViewTextBoxColumn.Name = "provinceidDataGridViewTextBoxColumn";
+            this.provinceidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.provinceidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // provinceDataGridViewTextBoxColumn
+            // 
+            this.provinceDataGridViewTextBoxColumn.DataPropertyName = "province";
+            this.provinceDataGridViewTextBoxColumn.HeaderText = "province";
+            this.provinceDataGridViewTextBoxColumn.Name = "provinceDataGridViewTextBoxColumn";
+            this.provinceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.provinceDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // vemployeeinfoBindingSource
+            // 
+            this.vemployeeinfoBindingSource.AllowNew = false;
+            this.vemployeeinfoBindingSource.DataSource = typeof(StudentMonitoringSystem.Entities.vemployeeinfo);
             // 
             // FormEmployee
             // 
@@ -1048,7 +1087,9 @@
             this.tabContact.ResumeLayout(false);
             this.tabContact.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emp_contactBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdEmployee)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vemployeeinfoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1114,36 +1155,40 @@
         internal System.Windows.Forms.Label label29;
         private System.Windows.Forms.DataGridView grdEmployee;
         public System.Windows.Forms.DataGridView grdContact;
+        internal System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox txtNote;
+        private System.Windows.Forms.Label label32;
+        internal System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.BindingSource vemployeeinfoBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullnameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn firstnameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn middlenameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastnameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateofbirthDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn genderidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn civilstatusidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn civilstatusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn citizenshipDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn streetDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn barangayidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pictureDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn barangayDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cityidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn provinceidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn provinceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailaddressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn employeeidDataGridViewTextBoxColumn;
-        internal System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox txtNote;
-        private System.Windows.Forms.DataGridViewTextBoxColumn number;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateofbirth;
-        private System.Windows.Forms.DataGridViewTextBoxColumn civilstatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn citizenship;
-        private System.Windows.Forms.DataGridViewTextBoxColumn address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn note;
-        private System.Windows.Forms.DataGridViewTextBoxColumn firstname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn middlename;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lastname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gender_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn civilstatus_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn street;
-        private System.Windows.Forms.DataGridViewTextBoxColumn barangay_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn barangay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn city_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn city;
-        private System.Windows.Forms.DataGridViewTextBoxColumn province_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn province;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.Label label32;
-        internal System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.DataGridViewTextBoxColumn empemployeeDataGridViewTextBoxColumn;
+        public System.Windows.Forms.BindingSource emp_contactBindingSource;
 
       
 

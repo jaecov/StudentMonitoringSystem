@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 namespace StudentMonitoringSystem.Entities
 {
     [Serializable]
-    public partial class vemployeeinfo: BaseObject
+    public partial class vscheduleinfo: BaseObject
     {
         #region Primitive Properties
     
@@ -27,79 +27,49 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string number
+        public  int course_id
         {
             get;
             set;
         }
     
-        public  string firstname
+        public  int section_id
         {
             get;
             set;
         }
     
-        public  string middlename
+        public  int employee_id
         {
             get;
             set;
         }
     
-        public  string lastname
+        public  int subject_id
         {
             get;
             set;
         }
     
-        public  string fullname
+        public  int room_id
         {
             get;
             set;
         }
     
-        public  System.DateTime dateofbirth
+        public  int day_id
         {
             get;
             set;
         }
     
-        public  int gender_id
+        public  System.DateTime datestart
         {
             get;
             set;
         }
     
-        public  int civilstatus_id
-        {
-            get;
-            set;
-        }
-    
-        public  string civilstatus
-        {
-            get;
-            set;
-        }
-    
-        public  string citizenship
-        {
-            get;
-            set;
-        }
-    
-        public  string street
-        {
-            get;
-            set;
-        }
-    
-        public  int barangay_id
-        {
-            get;
-            set;
-        }
-    
-        public  string picture
+        public  System.DateTime dateend
         {
             get;
             set;
@@ -111,43 +81,73 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string gender
+        public  string section
         {
             get;
             set;
         }
     
-        public  string barangay
+        public  string emp_number
         {
             get;
             set;
         }
     
-        public  int city_id
+        public  string emp_firstname
         {
             get;
             set;
         }
     
-        public  string city
+        public  string emp_middlename
         {
             get;
             set;
         }
     
-        public  int province_id
+        public  string emp_lastname
         {
             get;
             set;
         }
     
-        public  string province
+        public  string emp_picture
         {
             get;
             set;
         }
     
-        public  string address
+        public  string subject
+        {
+            get;
+            set;
+        }
+    
+        public  string room
+        {
+            get;
+            set;
+        }
+    
+        public  string day_code
+        {
+            get;
+            set;
+        }
+    
+        public  string day
+        {
+            get;
+            set;
+        }
+    
+        public  string course_name
+        {
+            get;
+            set;
+        }
+    
+        public  string course_code
         {
             get;
             set;

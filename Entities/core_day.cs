@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 namespace StudentMonitoringSystem.Entities
 {
     [Serializable]
-    public partial class enroll_course: BaseObject
+    public partial class core_day: BaseObject
     {
         #region Primitive Properties
     
@@ -27,13 +27,13 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string name
+        public  string code
         {
             get;
             set;
         }
     
-        public  string code
+        public  string name
         {
             get;
             set;
@@ -83,7 +83,7 @@ namespace StudentMonitoringSystem.Entities
             {
                 foreach (enroll_schedule item in e.NewItems)
                 {
-                    item.enroll_course = this;
+                    item.core_day = this;
                 }
             }
     
@@ -91,9 +91,9 @@ namespace StudentMonitoringSystem.Entities
             {
                 foreach (enroll_schedule item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.enroll_course, this))
+                    if (ReferenceEquals(item.core_day, this))
                     {
-                        item.enroll_course = null;
+                        item.core_day = null;
                     }
                 }
             }

@@ -173,12 +173,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\emp_contact_employee.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_section_course.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_course_schedule.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_employee_schedule.fkey.sql">
       <SubType>Code</SubType>
     </Build>
@@ -317,7 +311,16 @@
     <Build Include="Schema Objects\Schemas\dbo\Views\vnetworkprovidercodeinfo.view.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Views\vsectioninfo.view.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Views\vscheduleinfo.view.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\core_day.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_day_schedule.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_course_schedule.fkey.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

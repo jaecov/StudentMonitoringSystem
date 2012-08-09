@@ -251,6 +251,19 @@ CREATE TABLE [dbo].[core_contact] (
 
 
 GO
+PRINT N'Creating [dbo].[core_day]...';
+
+
+GO
+CREATE TABLE [dbo].[core_day] (
+    [id]   INT          IDENTITY (1, 1) NOT NULL,
+    [code] VARCHAR (3)  NOT NULL,
+    [name] VARCHAR (10) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
+);
+
+
+GO
 PRINT N'Creating [dbo].[core_gender]...';
 
 
@@ -420,6 +433,7 @@ CREATE TABLE [dbo].[enroll_schedule] (
     [employee_id] INT           NOT NULL,
     [subject_id]  INT           NOT NULL,
     [room_id]     INT           NOT NULL,
+    [day_id]      INT           NOT NULL,
     [datestart]   DATETIME      NOT NULL,
     [dateend]     DATETIME      NOT NULL,
     [note]        VARCHAR (100) NULL,
@@ -433,9 +447,9 @@ PRINT N'Creating [dbo].[enroll_section]...';
 
 GO
 CREATE TABLE [dbo].[enroll_section] (
-    [id]        INT           IDENTITY (1, 1) NOT NULL,
-    [name]      VARCHAR (100) NOT NULL,
-    [course_id] INT           NOT NULL,
+    [id]   INT           IDENTITY (1, 1) NOT NULL,
+    [name] VARCHAR (100) NOT NULL,
+    [note] VARCHAR (100) NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
@@ -448,6 +462,7 @@ GO
 CREATE TABLE [dbo].[enroll_subject] (
     [id]   INT           IDENTITY (1, 1) NOT NULL,
     [name] VARCHAR (100) NOT NULL,
+    [note] VARCHAR (100) NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
@@ -893,6 +908,15 @@ ALTER TABLE [dbo].[enroll_schedule] WITH NOCHECK
 
 
 GO
+PRINT N'Creating enroll_day_schedule...';
+
+
+GO
+ALTER TABLE [dbo].[enroll_schedule] WITH NOCHECK
+    ADD CONSTRAINT [enroll_day_schedule] FOREIGN KEY ([day_id]) REFERENCES [dbo].[core_day] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
 PRINT N'Creating enroll_employee_schedule...';
 
 
@@ -926,15 +950,6 @@ PRINT N'Creating enroll_subject_schedule...';
 GO
 ALTER TABLE [dbo].[enroll_schedule] WITH NOCHECK
     ADD CONSTRAINT [enroll_subject_schedule] FOREIGN KEY ([subject_id]) REFERENCES [dbo].[enroll_subject] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-GO
-PRINT N'Creating enroll_section_course...';
-
-
-GO
-ALTER TABLE [dbo].[enroll_section] WITH NOCHECK
-    ADD CONSTRAINT [enroll_section_course] FOREIGN KEY ([course_id]) REFERENCES [dbo].[enroll_course] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -1025,18 +1040,17 @@ PRINT N'Creating [dbo].[vemployeeinfo]...';
 
 
 GO
--- =============================================
--- Script Template
--- =============================================
 
-CREATE VIEW [dbo].[vemployeeinfo]
+
+create VIEW [dbo].[vemployeeinfo]
 AS
 SELECT     
-emp.id
+  emp.id
 , emp.number
 , emp.firstname
 , emp.middlename
 , emp.lastname
+, emp.lastname + ', ' + emp.firstname + ' ' + isnull(emp.middlename,'') as fullname
 , emp.dateofbirth
 , emp.gender_id
 , emp.civilstatus_id
@@ -1052,6 +1066,7 @@ emp.id
 , ct.name AS city
 , ct.province_id
 , pr.name AS province
+, isnull(emp.street,'') + ' ' + bg.name + ' ' + ct.name + ' ' + pr.name  as [address]
 
 FROM dbo.emp_employee emp
 INNER JOIN dbo.core_civilstatus cs on emp.civilstatus_id = cs.id
@@ -1074,23 +1089,47 @@ SELECT
 FROM dbo.sms_networkprovidercode c
 inner join dbo.sms_networkprovider p on c.networkprovider_id = p.id
 GO
-PRINT N'Creating [dbo].[vsectioninfo]...';
+PRINT N'Creating [dbo].[vscheduleinfo]...';
 
 
 GO
 
-CREATE View vsectioninfo
+
+CREATE view vscheduleinfo
 as
 
 SELECT
-S.id,
-S.name,
-S.course_id,
-C.name AS course_name,
-c.code as course_code
+SCHED.id,
+SCHED.course_id,
+SCHED.section_id,
+SCHED.employee_id,
+SCHED.subject_id,
+SCHED.room_id,
+SCHED.day_id,
+SCHED.datestart,
+SCHED.dateend,
+SCHED.note,
 
-FROM enroll_section S
-INNER JOIN enroll_course C ON S.course_id = C.id
+SC.name AS section,
+EMP.number as emp_number,
+EMP.firstname as emp_firstname,
+EMP.middlename as emp_middlename,
+EMP.lastname as emp_lastname,
+EMP.picture as emp_picture,
+SBJ.name as [subject],
+RM.name as room,
+DY.code as day_code,
+DY.name as [day],
+CRS.name as course_name,
+CRS.code as course_code
+
+FROM enroll_schedule SCHED 
+INNER JOIN enroll_section SC ON SCHED.section_id = SC.id
+INNER JOIN emp_employee EMP ON SCHED.employee_id = EMP.id
+INNER JOIN enroll_subject SBJ ON SCHED.subject_id = SBJ.id
+INNER JOIN enroll_room RM ON SCHED.room_id = RM.id
+INNER JOIN core_day DY ON SCHED.day_id = DY.id
+INNER JOIN enroll_course CRS ON SCHED.course_id = CRS.id
 GO
 PRINT N'Creating [dbo].[vstudentinfo]...';
 
@@ -1171,6 +1210,16 @@ INSERT INTO [dbo].[core_civilstatus](ID,NAME) VALUES(1,'Single')
 INSERT INTO [dbo].[core_civilstatus](ID,NAME) VALUES(2,'Married')
 INSERT INTO [dbo].[core_civilstatus](ID,NAME) VALUES(3,'Widowed')
 SET IDENTITY_INSERT [dbo].[core_civilstatus] OFF
+
+SET IDENTITY_INSERT [dbo].[core_day] ON
+INSERT INTO [dbo].[core_day](id,code,name) VALUES(1,'MON','Monday')
+INSERT INTO [dbo].[core_day](id,code,name) VALUES(2,'TUE','Tuesday')
+INSERT INTO [dbo].[core_day](id,code,name) VALUES(3,'WED','Wednesday')
+INSERT INTO [dbo].[core_day](id,code,name) VALUES(4,'THU','Thursday')
+INSERT INTO [dbo].[core_day](id,code,name) VALUES(5,'FRI','Friday')
+INSERT INTO [dbo].[core_day](id,code,name) VALUES(6,'SAT','Saturday')
+INSERT INTO [dbo].[core_day](id,code,name) VALUES(7,'SUN','Sunday')
+SET IDENTITY_INSERT [dbo].[core_day] OFF
 -- =============================================
 -- Script Template
 -- =============================================
@@ -1262,6 +1311,8 @@ ALTER TABLE [dbo].[emp_contact] WITH CHECK CHECK CONSTRAINT [emp_contact_employe
 
 ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_course_schedule];
 
+ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_day_schedule];
+
 ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_employee_schedule];
 
 ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_room_schedule];
@@ -1269,8 +1320,6 @@ ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_room_sch
 ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_section_schedule];
 
 ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_subject_schedule];
-
-ALTER TABLE [dbo].[enroll_section] WITH CHECK CHECK CONSTRAINT [enroll_section_course];
 
 ALTER TABLE [dbo].[sms_inbox] WITH CHECK CHECK CONSTRAINT [sms_inbox_status];
 

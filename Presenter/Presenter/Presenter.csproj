@@ -61,6 +61,10 @@
     <Compile Include="Employee\IContact.cs" />
     <Compile Include="Employee\IEmployee.cs" />
     <Compile Include="Employee\EmployeePresenter.cs" />
+    <Compile Include="Enroll\ISchedule.cs" />
+    <Compile Include="Enroll\SchedulePresenter.cs" />
+    <Compile Include="Enroll\ISubject.cs" />
+    <Compile Include="Enroll\SubjectPresenter.cs" />
     <Compile Include="Enroll\RoomPresenter.cs" />
     <Compile Include="Enroll\IRoom.cs" />
     <Compile Include="Enroll\SectionPresenter.cs" />

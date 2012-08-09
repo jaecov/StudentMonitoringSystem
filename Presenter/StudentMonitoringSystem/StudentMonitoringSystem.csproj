@@ -112,6 +112,18 @@
     <Compile Include="Forms\Employee\FormEmployee.Designer.cs">
       <DependentUpon>FormEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Enroll\FormSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Enroll\FormSchedule.Designer.cs">
+      <DependentUpon>FormSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Enroll\FormSubject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Enroll\FormSubject.Designer.cs">
+      <DependentUpon>FormSubject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Enroll\FormRoom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +207,12 @@
     <EmbeddedResource Include="Forms\Employee\FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Enroll\FormSchedule.resx">
+      <DependentUpon>FormSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Enroll\FormSubject.resx">
+      <DependentUpon>FormSubject.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Enroll\FormRoom.resx">
       <DependentUpon>FormRoom.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,8 +251,12 @@
       <DependentUpon>FormTest.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.emp_contact.datasource" />
+    <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.enroll_section.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vbarangayinfo.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vcityinfo.datasource" />
+    <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vemployeeinfo.datasource" />
+    <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vscheduleinfo.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

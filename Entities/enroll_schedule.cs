@@ -112,6 +112,23 @@ namespace StudentMonitoringSystem.Entities
         }
         private int _room_id;
     
+        public  int day_id
+        {
+            get { return _day_id; }
+            set
+            {
+                if (_day_id != value)
+                {
+                    if (core_day != null && core_day.id != value)
+                    {
+                        core_day = null;
+                    }
+                    _day_id = value;
+                }
+            }
+        }
+        private int _day_id;
+    
         public  System.DateTime datestart
         {
             get;
@@ -132,6 +149,21 @@ namespace StudentMonitoringSystem.Entities
 
         #endregion
         #region Navigation Properties
+    
+        public virtual core_day core_day
+        {
+            get { return _core_day; }
+            set
+            {
+                if (!ReferenceEquals(_core_day, value))
+                {
+                    var previousValue = _core_day;
+                    _core_day = value;
+                    Fixupcore_day(previousValue);
+                }
+            }
+        }
+        private core_day _core_day;
     
         public virtual emp_employee emp_employee
         {
@@ -210,6 +242,26 @@ namespace StudentMonitoringSystem.Entities
 
         #endregion
         #region Association Fixup
+    
+        private void Fixupcore_day(core_day previousValue)
+        {
+            if (previousValue != null && previousValue.enroll_schedule.Contains(this))
+            {
+                previousValue.enroll_schedule.Remove(this);
+            }
+    
+            if (core_day != null)
+            {
+                if (!core_day.enroll_schedule.Contains(this))
+                {
+                    core_day.enroll_schedule.Add(this);
+                }
+                if (day_id != core_day.id)
+                {
+                    day_id = core_day.id;
+                }
+            }
+        }
     
         private void Fixupemp_employee(emp_employee previousValue)
         {

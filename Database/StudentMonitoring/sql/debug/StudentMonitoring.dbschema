@@ -575,25 +575,6 @@
 					<Element Type="ISqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[enroll_room].[id]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[enroll_room]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="31" />
-		</Element>
-		<Element Type="ISql100PrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="ISqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
 								<References Name="[dbo].[enroll_schedule].[id]" />
 							</Entry>
 						</Relationship>
@@ -605,7 +586,45 @@
 					<References Name="[dbo].[enroll_schedule]" />
 				</Entry>
 			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="31" />
+		</Element>
+		<Element Type="ISql100PrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="ISqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[enroll_room].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[enroll_room]" />
+				</Entry>
+			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="32" />
+		</Element>
+		<Element Type="ISql100PrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="ISqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[core_day].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[core_day]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="33" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -621,7 +640,7 @@
 					<References Name="[dbo].[sms_notification].[remarks]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="33" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="34" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -637,7 +656,7 @@
 					<References Name="[dbo].[sms_outbox].[notification_id]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="34" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="35" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -653,7 +672,7 @@
 					<References Name="[dbo].[sms_outbox_archive].[notification_id]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="35" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="36" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -669,7 +688,7 @@
 					<References Name="[dbo].[sms_sent].[notification_id]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="36" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="37" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -685,7 +704,7 @@
 					<References Name="[dbo].[sms_sent_archive].[notification_id]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="37" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="38" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -701,7 +720,7 @@
 					<References Name="[dbo].[core_student].[street]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="38" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="39" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -717,7 +736,7 @@
 					<References Name="[dbo].[core_student].[mothername]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="39" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="40" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -733,7 +752,7 @@
 					<References Name="[dbo].[core_student].[motheroccupation]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="40" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="41" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -749,7 +768,7 @@
 					<References Name="[dbo].[core_student].[fathername]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="41" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="42" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -765,7 +784,7 @@
 					<References Name="[dbo].[core_student].[fatheroccupation]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="42" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="43" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -781,7 +800,7 @@
 					<References Name="[dbo].[core_student].[note]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="43" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="44" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -797,7 +816,7 @@
 					<References Name="[dbo].[core_contact].[number]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="44" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="45" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -813,7 +832,7 @@
 					<References Name="[dbo].[core_contact].[emailaddress]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="45" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="46" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -829,7 +848,7 @@
 					<References Name="[dbo].[core_contact].[note]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="46" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="47" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -845,7 +864,7 @@
 					<References Name="[dbo].[emp_contact].[number]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="47" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="48" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -861,7 +880,7 @@
 					<References Name="[dbo].[emp_contact].[emailaddress]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="48" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="49" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -877,7 +896,7 @@
 					<References Name="[dbo].[emp_contact].[note]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="49" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="50" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -893,7 +912,7 @@
 					<References Name="[dbo].[core_guardian].[number]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="50" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="51" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -909,7 +928,7 @@
 					<References Name="[dbo].[core_guardian].[emailaddress]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="51" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="52" />
 		</Element>
 		<Element Type="ISql90DefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -925,7 +944,7 @@
 					<References Name="[dbo].[core_guardian].[note]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="52" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="53" />
 		</Element>
 		<Element Type="ISql90Route" Name="[AutoCreatedLocal]">
 			<Property Name="Address" Value="LOCAL" />
@@ -1412,7 +1431,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="44" />
+						<AttachedAnnotation Disambiguator="45" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1429,7 +1448,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="45" />
+						<AttachedAnnotation Disambiguator="46" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1446,7 +1465,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="46" />
+						<AttachedAnnotation Disambiguator="47" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1494,6 +1513,68 @@
 					<References Name="[dbo].[core_student]" />
 				</Entry>
 			</Relationship>
+		</Element>
+		<Element Type="ISql100Table" Name="[dbo].[core_day]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[core_day].[id]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[core_day].[code]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="3" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[core_day].[name]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="33" />
 		</Element>
 		<Element Type="ISql100Table" Name="[dbo].[core_gender]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1596,7 +1677,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="50" />
+						<AttachedAnnotation Disambiguator="51" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1613,7 +1694,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="51" />
+						<AttachedAnnotation Disambiguator="52" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1663,7 +1744,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="52" />
+						<AttachedAnnotation Disambiguator="53" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -1924,7 +2005,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="38" />
+						<AttachedAnnotation Disambiguator="39" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1957,7 +2038,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="39" />
+						<AttachedAnnotation Disambiguator="40" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1974,7 +2055,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="40" />
+						<AttachedAnnotation Disambiguator="41" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1991,7 +2072,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="41" />
+						<AttachedAnnotation Disambiguator="42" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2008,7 +2089,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="42" />
+						<AttachedAnnotation Disambiguator="43" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2025,7 +2106,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="43" />
+						<AttachedAnnotation Disambiguator="44" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -2210,7 +2291,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="47" />
+						<AttachedAnnotation Disambiguator="48" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2227,7 +2308,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="48" />
+						<AttachedAnnotation Disambiguator="49" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2244,7 +2325,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="49" />
+						<AttachedAnnotation Disambiguator="50" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2602,6 +2683,28 @@
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[enroll_day_schedule]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[day_id]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[enroll_schedule]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[core_day].[id]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[core_day]" />
+				</Entry>
+			</Relationship>
+		</Element>
 		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[enroll_employee_schedule]">
 			<Relationship Name="Columns">
 				<Entry>
@@ -2683,7 +2786,7 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="31" />
+			<AttachedAnnotation Disambiguator="32" />
 		</Element>
 		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[enroll_room_schedule]">
 			<Relationship Name="Columns">
@@ -2808,6 +2911,22 @@
 					</Element>
 				</Entry>
 				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[enroll_schedule].[day_id]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[enroll_schedule].[datestart]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
@@ -2861,7 +2980,7 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="32" />
+			<AttachedAnnotation Disambiguator="31" />
 		</Element>
 		<Element Type="ISql100Table" Name="[dbo].[enroll_section]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -2901,14 +3020,14 @@
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[enroll_section].[course_id]">
-						<Property Name="IsNullable" Value="False" />
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[enroll_section].[note]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="100" />
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -2923,28 +3042,6 @@
 				</Entry>
 			</Relationship>
 			<AttachedAnnotation Disambiguator="22" />
-		</Element>
-		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[enroll_section_course]">
-			<Relationship Name="Columns">
-				<Entry>
-					<References Name="[dbo].[enroll_section].[course_id]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[enroll_section]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignColumns">
-				<Entry>
-					<References Name="[dbo].[enroll_course].[id]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignTable">
-				<Entry>
-					<References Name="[dbo].[enroll_course]" />
-				</Entry>
-			</Relationship>
 		</Element>
 		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[enroll_section_schedule]">
 			<Relationship Name="Columns">
@@ -2991,6 +3088,22 @@
 				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[enroll_subject].[name]">
 						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[enroll_subject].[note]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
@@ -3711,7 +3824,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="33" />
+						<AttachedAnnotation Disambiguator="34" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -3859,7 +3972,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="34" />
+						<AttachedAnnotation Disambiguator="35" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -3984,7 +4097,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="35" />
+						<AttachedAnnotation Disambiguator="36" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -4121,7 +4234,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="36" />
+						<AttachedAnnotation Disambiguator="37" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -4230,7 +4343,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="37" />
+						<AttachedAnnotation Disambiguator="38" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -4462,11 +4575,12 @@ inner join dbo.core_province p on c.province_id = p.id]]></Value>
 			<Property Name="QueryScript">
 				<Value><![CDATA[
 SELECT     
-emp.id
+  emp.id
 , emp.number
 , emp.firstname
 , emp.middlename
 , emp.lastname
+, emp.lastname + ', ' + emp.firstname + ' ' + isnull(emp.middlename,'') as fullname
 , emp.dateofbirth
 , emp.gender_id
 , emp.civilstatus_id
@@ -4482,6 +4596,7 @@ emp.id
 , ct.name AS city
 , ct.province_id
 , pr.name AS province
+, isnull(emp.street,'') + ' ' + bg.name + ' ' + ct.name + ' ' + pr.name  as [address]
 
 FROM dbo.emp_employee emp
 INNER JOIN dbo.core_civilstatus cs on emp.civilstatus_id = cs.id
@@ -4535,6 +4650,9 @@ INNER JOIN dbo.core_province pr ON ct.province_id = pr.id]]></Value>
 							</Entry>
 						</Relationship>
 					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vemployeeinfo].[fullname]" />
 				</Entry>
 				<Entry>
 					<Element Type="ISql90ComputedColumn" Name="[dbo].[vemployeeinfo].[dateofbirth]">
@@ -4671,6 +4789,9 @@ INNER JOIN dbo.core_province pr ON ct.province_id = pr.id]]></Value>
 						</Relationship>
 					</Element>
 				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vemployeeinfo].[address]" />
+				</Entry>
 			</Relationship>
 			<Relationship Name="Owner">
 				<Entry>
@@ -4783,13 +4904,22 @@ INNER JOIN dbo.core_province pr ON ct.province_id = pr.id]]></Value>
 				<Entry>
 					<References Name="[dbo].[core_province].[name]" />
 				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_barangay].[name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_city].[name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_province].[name]" />
+				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="CreateOffset" Value="122" />
-				<Property Name="Length" Value="851" />
+				<Property Name="CreateOffset" Value="4" />
+				<Property Name="Length" Value="907" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Script Template&#xD;&#xA;-- =============================================&#xD;&#xA;&#xD;&#xA;CREATE VIEW [dbo].[vemployeeinfo]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="&#xD;&#xA;&#xD;&#xA;create VIEW [dbo].[vemployeeinfo]&#xD;&#xA;AS" />
 				<Property Name="FooterContents" Value=";" />
 			</Annotation>
 		</Element>
@@ -4878,33 +5008,137 @@ inner join dbo.sms_networkprovider p on c.networkprovider_id = p.id]]></Value>
 				<Property Name="HeaderContents" Value="create view vnetworkprovidercodeinfo&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
-		<Element Type="ISql100View" Name="[dbo].[vsectioninfo]">
+		<Element Type="ISql100View" Name="[dbo].[vscheduleinfo]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Property Name="QueryScript">
 				<Value><![CDATA[
 
 SELECT
-S.id,
-S.name,
-S.course_id,
-C.name AS course_name,
-c.code as course_code
+SCHED.id,
+SCHED.course_id,
+SCHED.section_id,
+SCHED.employee_id,
+SCHED.subject_id,
+SCHED.room_id,
+SCHED.day_id,
+SCHED.datestart,
+SCHED.dateend,
+SCHED.note,
 
-FROM enroll_section S
-INNER JOIN enroll_course C ON S.course_id = C.id]]></Value>
+SC.name AS section,
+EMP.number as emp_number,
+EMP.firstname as emp_firstname,
+EMP.middlename as emp_middlename,
+EMP.lastname as emp_lastname,
+EMP.picture as emp_picture,
+SBJ.name as [subject],
+RM.name as room,
+DY.code as day_code,
+DY.name as [day],
+CRS.name as course_name,
+CRS.code as course_code
+
+FROM enroll_schedule SCHED 
+INNER JOIN enroll_section SC ON SCHED.section_id = SC.id
+INNER JOIN emp_employee EMP ON SCHED.employee_id = EMP.id
+INNER JOIN enroll_subject SBJ ON SCHED.subject_id = SBJ.id
+INNER JOIN enroll_room RM ON SCHED.room_id = RM.id
+INNER JOIN core_day DY ON SCHED.day_id = DY.id
+INNER JOIN enroll_course CRS ON SCHED.course_id = CRS.id]]></Value>
 			</Property>
 			<Relationship Name="Columns">
 				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[vsectioninfo].[id]">
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[id]">
 						<Relationship Name="ExpressionDependencies">
 							<Entry>
-								<References Name="[dbo].[enroll_section].[id]" />
+								<References Name="[dbo].[enroll_schedule].[id]" />
 							</Entry>
 						</Relationship>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[vsectioninfo].[name]">
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[course_id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[enroll_schedule].[course_id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[section_id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[enroll_schedule].[section_id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[employee_id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[enroll_schedule].[employee_id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[subject_id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[enroll_schedule].[subject_id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[room_id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[enroll_schedule].[room_id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[day_id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[enroll_schedule].[day_id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[datestart]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[enroll_schedule].[datestart]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[dateend]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[enroll_schedule].[dateend]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[note]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[enroll_schedule].[note]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[section]">
 						<Relationship Name="ExpressionDependencies">
 							<Entry>
 								<References Name="[dbo].[enroll_section].[name]" />
@@ -4913,16 +5147,88 @@ INNER JOIN enroll_course C ON S.course_id = C.id]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[vsectioninfo].[course_id]">
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[emp_number]">
 						<Relationship Name="ExpressionDependencies">
 							<Entry>
-								<References Name="[dbo].[enroll_section].[course_id]" />
+								<References Name="[dbo].[emp_employee].[number]" />
 							</Entry>
 						</Relationship>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[vsectioninfo].[course_name]">
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[emp_firstname]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[emp_employee].[firstname]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[emp_middlename]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[emp_employee].[middlename]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[emp_lastname]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[emp_employee].[lastname]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[emp_picture]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[emp_employee].[picture]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[subject]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[enroll_subject].[name]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[room]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[enroll_room].[name]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[day_code]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[core_day].[code]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[day]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[core_day].[name]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[course_name]">
 						<Relationship Name="ExpressionDependencies">
 							<Entry>
 								<References Name="[dbo].[enroll_course].[name]" />
@@ -4931,7 +5237,7 @@ INNER JOIN enroll_course C ON S.course_id = C.id]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[vsectioninfo].[course_code]">
+					<Element Type="ISql90ComputedColumn" Name="[dbo].[vscheduleinfo].[course_code]">
 						<Relationship Name="ExpressionDependencies">
 							<Entry>
 								<References Name="[dbo].[enroll_course].[code]" />
@@ -4947,22 +5253,118 @@ INNER JOIN enroll_course C ON S.course_id = C.id]]></Value>
 			</Relationship>
 			<Relationship Name="QueryDependencies">
 				<Entry>
+					<References Name="[dbo].[enroll_schedule]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[enroll_section]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[enroll_course]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[enroll_section].[course_id]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[enroll_course].[id]" />
+					<References Name="[dbo].[enroll_schedule].[section_id]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[enroll_section].[id]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[emp_employee]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[employee_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[emp_employee].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_subject]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[subject_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_subject].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_room]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[room_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_room].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_day]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[day_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_day].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_course]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[course_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_course].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[section_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[employee_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[subject_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[room_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[day_id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[datestart]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[dateend]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_schedule].[note]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[enroll_section].[name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[emp_employee].[number]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[emp_employee].[firstname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[emp_employee].[middlename]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[emp_employee].[lastname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[emp_employee].[picture]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_subject].[name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[enroll_room].[name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_day].[code]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[core_day].[name]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[enroll_course].[name]" />
@@ -4972,11 +5374,11 @@ INNER JOIN enroll_course C ON S.course_id = C.id]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="CreateOffset" Value="2" />
-				<Property Name="Length" Value="192" />
+				<Property Name="CreateOffset" Value="4" />
+				<Property Name="Length" Value="886" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="&#xD;&#xA;CREATE View vsectioninfo&#xD;&#xA;as" />
+				<Property Name="HeaderContents" Value="&#xD;&#xA;&#xD;&#xA;CREATE view vscheduleinfo&#xD;&#xA;as" />
 			</Annotation>
 		</Element>
 		<Element Type="ISql100View" Name="[dbo].[vstudentinfo]">

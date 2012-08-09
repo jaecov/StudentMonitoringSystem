@@ -23,6 +23,7 @@ namespace StudentMonitoringSystem.Forms.Employee
             Presenter = new EmployeePresenter(this);
             formContact = new FormContact(this);
             InitializeComponent();
+            grdEmployee.AutoGenerateColumns = false;
         }
 
         public EmployeePresenter Presenter
@@ -251,7 +252,7 @@ namespace StudentMonitoringSystem.Forms.Employee
         {
             set
             {
-                grdEmployee.DataSource = value;
+                vemployeeinfoBindingSource.DataSource = value;
             }
         }
 
@@ -361,8 +362,8 @@ namespace StudentMonitoringSystem.Forms.Employee
                 Firstname = string.Empty;
                 Middlename = string.Empty;
                 Lastname = string.Empty;
-                Gender_ID = 1;
-                CivilStatus_ID = 1;
+                Gender_ID = 0;
+                CivilStatus_ID = 0;
                 DateOfBirth = DateTime.Now;
                 Citizenship = string.Empty;
                 Street = string.Empty;
@@ -570,7 +571,7 @@ namespace StudentMonitoringSystem.Forms.Employee
         {
             set
             {
-                parent.grdContact.DataSource = value;
+                parent.emp_contactBindingSource.DataSource = value;
             }
         }
 

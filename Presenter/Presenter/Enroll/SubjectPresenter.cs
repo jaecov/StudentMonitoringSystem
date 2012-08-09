@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using StudentMonitoringSystem.Entities;
 
-namespace StudentMonitoringSystem.Presenter.Core
+namespace StudentMonitoringSystem.Presenter.Enroll
 {
-    public class BarangayPresenter : BasePresenter<IBarangay>
+    public class SubjectPresenter : BasePresenter<ISubject>
     {
         #region Constructor
 
-        public BarangayPresenter(IBarangay view)
+        public SubjectPresenter(ISubject view)
         {
             View = view;
         }
@@ -20,25 +20,19 @@ namespace StudentMonitoringSystem.Presenter.Core
         #region Load
 
         public void LoadItems()
-        {
-            View.CityDataSource = Controller.GetObject<core_city>().ToList();
-            LoadBarangayDataSource();
+        {            
+            View.SubjectDataSource = Controller.GetObject<enroll_subject>().ToList();           
         }
 
-        public void LoadBarangayDataSource()
+        public void LoadSubjectInfo(int id)
         {
-            View.BarangayDataSource = Controller.GetObject<vbarangayinfo>().ToList();
-        }
-
-        public void LoadBarangayInfo(int id)
-        {
-            var item = Controller.GetObjectItemByColumnID<core_barangay>(id);
+            var item = Controller.GetObjectItemByColumnID<enroll_subject>(id);
             if (item == null)
                 return;
 
             View.ID = id;
             View.Name = item.name;
-            View.City_ID = item.city_id;
+            View.Note = item.note;
         }
 
         #endregion
@@ -56,11 +50,11 @@ namespace StudentMonitoringSystem.Presenter.Core
 
             try
             {
-                var item = Controller.GetObjectItemByColumnID<core_barangay>(View.ID);
+                var item = Controller.GetObjectItemByColumnID<enroll_subject>(View.ID);
                 if (item == null)
                     return false;
 
-                Controller.DeleteObject<core_barangay>(item);
+                Controller.DeleteObject<enroll_subject>(item);
                 LoadItems();
                 View.Notify(Common.Result.DeleteSuceeded, null);
                 return true;
@@ -76,17 +70,17 @@ namespace StudentMonitoringSystem.Presenter.Core
         {
             if (View.ID == 0)
             {
-                CreateBarangay();
+                CreateSubject();
             }
             else
             {
-                UpdateBarangay();
+                UpdateSubject();
             }
 
-            LoadBarangayDataSource();
+            LoadItems();
         }
 
-        private void CreateBarangay()
+        private void CreateSubject()
         {
             try
             {
@@ -97,11 +91,10 @@ namespace StudentMonitoringSystem.Presenter.Core
                     return;
                 }
 
-                core_barangay item = new core_barangay();
+                var item = new enroll_subject();
                 item.name = View.Name;
-                item.city_id = View.City_ID;
-
-                var result = Controller.CreateObject<core_barangay>(item);
+                item.note = View.Note;
+                var result = Controller.CreateObject<enroll_subject>(item);
                 View.ID = result.id;
                 View.Notify(Common.Result.InsertSucceeded, null);
             }
@@ -111,7 +104,7 @@ namespace StudentMonitoringSystem.Presenter.Core
             }
         }
 
-        private void UpdateBarangay()
+        private void UpdateSubject()
         {
             try
             {
@@ -122,16 +115,15 @@ namespace StudentMonitoringSystem.Presenter.Core
                     return;
                 }
 
-                var item = Controller.GetObjectItemByColumnID<core_barangay>(View.ID);
+                var item = Controller.GetObjectItemByColumnID<enroll_subject>(View.ID);
                 if (item == null)
                 {
                     throw new Exception("Can not update.Item not found.");
                 }
 
                 item.name = View.Name;
-                item.city_id = View.City_ID;
-
-                Controller.UpdateObject<core_barangay>(item);
+                item.note = View.Note;
+                Controller.UpdateObject<enroll_subject>(item);
                 View.Notify(Common.Result.UpdateSuceeded, null);
             }
             catch (Exception ex)
@@ -150,14 +142,12 @@ namespace StudentMonitoringSystem.Presenter.Core
             switch (operation)
             {
                 case Common.Operation.Insert:
-                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");
-                    if (View.City_ID == 0) brokenRules.Add("City is required.");
+                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");                    
                     break;
 
                 case Common.Operation.Update:
                     if (View.ID == 0) brokenRules.Add("Select record first.");
-                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");
-                    if (View.City_ID == 0) brokenRules.Add("City is required.");
+                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");                    
                     break;
 
                 case Common.Operation.Delete:

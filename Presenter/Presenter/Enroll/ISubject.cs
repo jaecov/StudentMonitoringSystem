@@ -7,11 +7,11 @@ using System.Collections;
 
 namespace StudentMonitoringSystem.Presenter.Enroll
 {
-    public interface ISection : IBaseView
+    public interface ISubject : IBaseView
     {
         int ID { get; set; }
         string Name { get; set; }
         string Note { get; set; }
-        List<enroll_section> SectionDataSource { set; }
+        List<enroll_subject> SubjectDataSource { set; }
     }
 }

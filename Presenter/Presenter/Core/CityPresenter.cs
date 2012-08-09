@@ -124,7 +124,9 @@ namespace StudentMonitoringSystem.Presenter.Core
 
                 var item = Controller.GetObjectItemByColumnID<core_city>(View.ID);
                 if (item == null)
-                    return;
+                {
+                    throw new Exception("Can not update.Item not found.");
+                }
 
                 item.name = View.Name;
                 item.province_id = View.Province_ID;

@@ -20,14 +20,8 @@ namespace StudentMonitoringSystem.Presenter.Enroll
         #region Load
 
         public void LoadItems()
-        {            
-            View.CourseDataSource = Controller.GetObject<enroll_course>().ToList();
-            LoadSectionDataSource();
-        }
-
-        public void LoadSectionDataSource()
         {
-            View.SectionDataSource = Controller.GetObject<vsectioninfo>().ToList();
+            View.SectionDataSource = Controller.GetObject<enroll_section>().ToList();
         }
 
         public void LoadSectionInfo(int id)
@@ -38,7 +32,7 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
             View.ID = id;
             View.Name = item.name;
-            View.Course_ID = item.course_id;
+            View.Note = item.note;
         }
 
         #endregion
@@ -82,8 +76,7 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             {
                 UpdateSection();
             }
-
-            LoadSectionDataSource();
+            LoadItems();
         }
 
         private void CreateSection()
@@ -99,7 +92,7 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
                 var item = new enroll_section();
                 item.name = View.Name;
-                item.course_id = View.Course_ID;
+                item.note = View.Note;
 
                 var result = Controller.CreateObject<enroll_section>(item);
                 View.ID = result.id;
@@ -124,10 +117,12 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
                 var item = Controller.GetObjectItemByColumnID<enroll_section>(View.ID);
                 if (item == null)
-                    return;
+                {
+                    throw new Exception("Can not update.Item not found.");
+                }
 
                 item.name = View.Name;
-                item.course_id = View.Course_ID;
+                item.note = View.Note;
 
                 Controller.UpdateObject<enroll_section>(item);
                 View.Notify(Common.Result.UpdateSuceeded, null);
@@ -148,14 +143,12 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             switch (operation)
             {
                 case Common.Operation.Insert:
-                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");
-                    if (View.Course_ID == 0) brokenRules.Add("Course is required.");
+                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");                   
                     break;
 
                 case Common.Operation.Update:
                     if (View.ID == 0) brokenRules.Add("Select record first.");
                     if (View.Name == string.Empty) brokenRules.Add("Name is required.");
-                    if (View.Course_ID == 0) brokenRules.Add("Course is required.");
                     break;
 
                 case Common.Operation.Delete:

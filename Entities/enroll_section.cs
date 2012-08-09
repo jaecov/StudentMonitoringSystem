@@ -33,40 +33,14 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  int course_id
+        public  string note
         {
-            get { return _course_id; }
-            set
-            {
-                if (_course_id != value)
-                {
-                    if (enroll_course != null && enroll_course.id != value)
-                    {
-                        enroll_course = null;
-                    }
-                    _course_id = value;
-                }
-            }
+            get;
+            set;
         }
-        private int _course_id;
 
         #endregion
         #region Navigation Properties
-    
-        public virtual enroll_course enroll_course
-        {
-            get { return _enroll_course; }
-            set
-            {
-                if (!ReferenceEquals(_enroll_course, value))
-                {
-                    var previousValue = _enroll_course;
-                    _enroll_course = value;
-                    Fixupenroll_course(previousValue);
-                }
-            }
-        }
-        private enroll_course _enroll_course;
     
         public virtual ICollection<enroll_schedule> enroll_schedule
         {
@@ -102,26 +76,6 @@ namespace StudentMonitoringSystem.Entities
 
         #endregion
         #region Association Fixup
-    
-        private void Fixupenroll_course(enroll_course previousValue)
-        {
-            if (previousValue != null && previousValue.enroll_section.Contains(this))
-            {
-                previousValue.enroll_section.Remove(this);
-            }
-    
-            if (enroll_course != null)
-            {
-                if (!enroll_course.enroll_section.Contains(this))
-                {
-                    enroll_course.enroll_section.Add(this);
-                }
-                if (course_id != enroll_course.id)
-                {
-                    course_id = enroll_course.id;
-                }
-            }
-        }
     
         private void Fixupenroll_schedule(object sender, NotifyCollectionChangedEventArgs e)
         {

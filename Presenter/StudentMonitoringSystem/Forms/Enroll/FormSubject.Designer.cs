@@ -1,6 +1,6 @@
 ﻿namespace StudentMonitoringSystem.Forms.Enroll
 {
-    partial class FormRoom
+    partial class FormSubject
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.grdRoom = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdSubject = new System.Windows.Forms.DataGridView();
             this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoominfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.Label22 = new System.Windows.Forms.Label();
@@ -43,47 +40,36 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.grdRoom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RoominfoBindingSource)).BeginInit();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubjectinfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.grdSubject)).BeginInit();
             this.GroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SubjectinfoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // grdRoom
+            // grdSubject
             // 
-            this.grdRoom.AllowUserToAddRows = false;
-            this.grdRoom.AllowUserToDeleteRows = false;
-            this.grdRoom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.grdSubject.AllowUserToAddRows = false;
+            this.grdSubject.AllowUserToDeleteRows = false;
+            this.grdSubject.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdRoom.AutoGenerateColumns = false;
-            this.grdRoom.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.grdRoom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdRoom.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdSubject.AutoGenerateColumns = false;
+            this.grdSubject.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdSubject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdSubject.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.note});
-            this.grdRoom.DataSource = this.RoominfoBindingSource;
-            this.grdRoom.Location = new System.Drawing.Point(3, 110);
-            this.grdRoom.Name = "grdRoom";
-            this.grdRoom.ReadOnly = true;
-            this.grdRoom.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdRoom.Size = new System.Drawing.Size(799, 260);
-            this.grdRoom.TabIndex = 208;
-            this.grdRoom.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdRoom_CellClick);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.grdSubject.DataSource = this.SubjectinfoBindingSource;
+            this.grdSubject.Location = new System.Drawing.Point(3, 110);
+            this.grdSubject.Name = "grdSubject";
+            this.grdSubject.ReadOnly = true;
+            this.grdSubject.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdSubject.Size = new System.Drawing.Size(799, 260);
+            this.grdSubject.TabIndex = 208;
+            this.grdSubject.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdSubject_CellClick);
             // 
             // note
             // 
@@ -91,10 +77,6 @@
             this.note.HeaderText = "Note";
             this.note.Name = "note";
             this.note.ReadOnly = true;
-            // 
-            // RoominfoBindingSource
-            // 
-            this.RoominfoBindingSource.DataSource = typeof(StudentMonitoringSystem.Entities.enroll_room);
             // 
             // txtName
             // 
@@ -180,7 +162,25 @@
             this.txtNote.Size = new System.Drawing.Size(529, 20);
             this.txtNote.TabIndex = 218;
             // 
-            // FormRoom
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // SubjectinfoBindingSource
+            // 
+            this.SubjectinfoBindingSource.DataSource = typeof(StudentMonitoringSystem.Entities.enroll_subject);
+            // 
+            // FormSubject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -191,15 +191,15 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.Label22);
             this.Controls.Add(this.txtName);
-            this.Controls.Add(this.grdRoom);
-            this.Name = "FormRoom";
-            this.TabText = "Room";
+            this.Controls.Add(this.grdSubject);
+            this.Name = "FormSubject";
+            this.TabText = "Subject";
             this.Tag = "";
-            this.Text = "Room";
-            this.Load += new System.EventHandler(this.FormRoom_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.grdRoom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RoominfoBindingSource)).EndInit();
+            this.Text = "Subject";
+            this.Load += new System.EventHandler(this.FormSubject_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.grdSubject)).EndInit();
             this.GroupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SubjectinfoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,10 +214,10 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.DataGridView grdRoom;
-        private System.Windows.Forms.BindingSource RoominfoBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RoomDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RoomidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridView grdSubject;
+        private System.Windows.Forms.BindingSource SubjectinfoBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectidDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;

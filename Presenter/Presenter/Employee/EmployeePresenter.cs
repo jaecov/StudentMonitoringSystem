@@ -186,7 +186,9 @@ namespace StudentMonitoringSystem.Presenter.Employee
                 emp_employee item;
                 item = Controller.GetObjectItemByColumnID<emp_employee>(View.ID);
                 if (item == null)
-                    return;
+                {
+                    throw new Exception("Can not update.Item not found.");
+                }
 
                 GetValues(ref item);
                 Controller.UpdateObject<emp_employee>(item);
@@ -209,15 +211,18 @@ namespace StudentMonitoringSystem.Presenter.Employee
             {
                 case Common.Operation.Insert:
                     if (View.Gender_ID == 0) brokenRules.Add("Gender is required.");
-                    if (View.Barangay_ID == 0) brokenRules.Add("Barangay is required.");
+                    if (View.Citizenship == string.Empty) brokenRules.Add("Citizenship is required.");
                     if (View.CivilStatus_ID == 0) brokenRules.Add("Civil status is required.");
+                    if (View.Barangay_ID == 0) brokenRules.Add("Barangay is required.");                 
                     break;
 
                 case Common.Operation.Update:
                     if (View.ID == 0) brokenRules.Add("Select employee first.");
+                    if (View.Citizenship == string.Empty) brokenRules.Add("Citizenship is required.");
                     if (View.Gender_ID == 0) brokenRules.Add("Gender is required.");
-                    if (View.Barangay_ID == 0) brokenRules.Add("Barangay is required.");
                     if (View.CivilStatus_ID == 0) brokenRules.Add("Civil status is required.");
+                    if (View.Barangay_ID == 0) brokenRules.Add("Barangay is required.");
+                 
                     break;
 
                 case Common.Operation.Delete:

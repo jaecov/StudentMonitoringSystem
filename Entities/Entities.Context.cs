@@ -95,11 +95,23 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<core_contact> _core_contact;
     
+    	public ObjectSet<core_day> core_day
+    	{
+    		get { return _core_day  ?? (_core_day = CreateObjectSet<core_day>("core_day")); }
+    	}
+    	private ObjectSet<core_day> _core_day;
+    
     	public ObjectSet<core_gender> core_gender
     	{
     		get { return _core_gender  ?? (_core_gender = CreateObjectSet<core_gender>("core_gender")); }
     	}
     	private ObjectSet<core_gender> _core_gender;
+    
+    	public ObjectSet<core_guardian> core_guardian
+    	{
+    		get { return _core_guardian  ?? (_core_guardian = CreateObjectSet<core_guardian>("core_guardian")); }
+    	}
+    	private ObjectSet<core_guardian> _core_guardian;
     
     	public ObjectSet<core_province> core_province
     	{
@@ -130,6 +142,36 @@ namespace StudentMonitoringSystem.Entities
     		get { return _emp_contact  ?? (_emp_contact = CreateObjectSet<emp_contact>("emp_contact")); }
     	}
     	private ObjectSet<emp_contact> _emp_contact;
+    
+    	public ObjectSet<emp_employee> emp_employee
+    	{
+    		get { return _emp_employee  ?? (_emp_employee = CreateObjectSet<emp_employee>("emp_employee")); }
+    	}
+    	private ObjectSet<emp_employee> _emp_employee;
+    
+    	public ObjectSet<enroll_course> enroll_course
+    	{
+    		get { return _enroll_course  ?? (_enroll_course = CreateObjectSet<enroll_course>("enroll_course")); }
+    	}
+    	private ObjectSet<enroll_course> _enroll_course;
+    
+    	public ObjectSet<enroll_room> enroll_room
+    	{
+    		get { return _enroll_room  ?? (_enroll_room = CreateObjectSet<enroll_room>("enroll_room")); }
+    	}
+    	private ObjectSet<enroll_room> _enroll_room;
+    
+    	public ObjectSet<enroll_schedule> enroll_schedule
+    	{
+    		get { return _enroll_schedule  ?? (_enroll_schedule = CreateObjectSet<enroll_schedule>("enroll_schedule")); }
+    	}
+    	private ObjectSet<enroll_schedule> _enroll_schedule;
+    
+    	public ObjectSet<enroll_section> enroll_section
+    	{
+    		get { return _enroll_section  ?? (_enroll_section = CreateObjectSet<enroll_section>("enroll_section")); }
+    	}
+    	private ObjectSet<enroll_section> _enroll_section;
     
     	public ObjectSet<enroll_subject> enroll_subject
     	{
@@ -167,6 +209,12 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<sms_networkprovider> _sms_networkprovider;
     
+    	public ObjectSet<sms_networkprovidercode> sms_networkprovidercode
+    	{
+    		get { return _sms_networkprovidercode  ?? (_sms_networkprovidercode = CreateObjectSet<sms_networkprovidercode>("sms_networkprovidercode")); }
+    	}
+    	private ObjectSet<sms_networkprovidercode> _sms_networkprovidercode;
+    
     	public ObjectSet<sms_notification> sms_notification
     	{
     		get { return _sms_notification  ?? (_sms_notification = CreateObjectSet<sms_notification>("sms_notification")); }
@@ -203,30 +251,6 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<sms_status> _sms_status;
     
-    	public ObjectSet<vstudentinfo> vstudentinfoes
-    	{
-    		get { return _vstudentinfoes  ?? (_vstudentinfoes = CreateObjectSet<vstudentinfo>("vstudentinfoes")); }
-    	}
-    	private ObjectSet<vstudentinfo> _vstudentinfoes;
-    
-    	public ObjectSet<core_guardian> core_guardian
-    	{
-    		get { return _core_guardian  ?? (_core_guardian = CreateObjectSet<core_guardian>("core_guardian")); }
-    	}
-    	private ObjectSet<core_guardian> _core_guardian;
-    
-    	public ObjectSet<emp_employee> emp_employee
-    	{
-    		get { return _emp_employee  ?? (_emp_employee = CreateObjectSet<emp_employee>("emp_employee")); }
-    	}
-    	private ObjectSet<emp_employee> _emp_employee;
-    
-    	public ObjectSet<vemployeeinfo> vemployeeinfoes
-    	{
-    		get { return _vemployeeinfoes  ?? (_vemployeeinfoes = CreateObjectSet<vemployeeinfo>("vemployeeinfoes")); }
-    	}
-    	private ObjectSet<vemployeeinfo> _vemployeeinfoes;
-    
     	public ObjectSet<vbarangayinfo> vbarangayinfoes
     	{
     		get { return _vbarangayinfoes  ?? (_vbarangayinfoes = CreateObjectSet<vbarangayinfo>("vbarangayinfoes")); }
@@ -239,11 +263,11 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<vcityinfo> _vcityinfoes;
     
-    	public ObjectSet<sms_networkprovidercode> sms_networkprovidercode
+    	public ObjectSet<vemployeeinfo> vemployeeinfoes
     	{
-    		get { return _sms_networkprovidercode  ?? (_sms_networkprovidercode = CreateObjectSet<sms_networkprovidercode>("sms_networkprovidercode")); }
+    		get { return _vemployeeinfoes  ?? (_vemployeeinfoes = CreateObjectSet<vemployeeinfo>("vemployeeinfoes")); }
     	}
-    	private ObjectSet<sms_networkprovidercode> _sms_networkprovidercode;
+    	private ObjectSet<vemployeeinfo> _vemployeeinfoes;
     
     	public ObjectSet<vnetworkprovidercodeinfo> vnetworkprovidercodeinfoes
     	{
@@ -251,35 +275,17 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<vnetworkprovidercodeinfo> _vnetworkprovidercodeinfoes;
     
-    	public ObjectSet<enroll_course> enroll_course
+    	public ObjectSet<vscheduleinfo> vscheduleinfoes
     	{
-    		get { return _enroll_course  ?? (_enroll_course = CreateObjectSet<enroll_course>("enroll_course")); }
+    		get { return _vscheduleinfoes  ?? (_vscheduleinfoes = CreateObjectSet<vscheduleinfo>("vscheduleinfoes")); }
     	}
-    	private ObjectSet<enroll_course> _enroll_course;
+    	private ObjectSet<vscheduleinfo> _vscheduleinfoes;
     
-    	public ObjectSet<vsectioninfo> vsectioninfoes
+    	public ObjectSet<vstudentinfo> vstudentinfoes
     	{
-    		get { return _vsectioninfoes  ?? (_vsectioninfoes = CreateObjectSet<vsectioninfo>("vsectioninfoes")); }
+    		get { return _vstudentinfoes  ?? (_vstudentinfoes = CreateObjectSet<vstudentinfo>("vstudentinfoes")); }
     	}
-    	private ObjectSet<vsectioninfo> _vsectioninfoes;
-    
-    	public ObjectSet<enroll_section> enroll_section
-    	{
-    		get { return _enroll_section  ?? (_enroll_section = CreateObjectSet<enroll_section>("enroll_section")); }
-    	}
-    	private ObjectSet<enroll_section> _enroll_section;
-    
-    	public ObjectSet<enroll_room> enroll_room
-    	{
-    		get { return _enroll_room  ?? (_enroll_room = CreateObjectSet<enroll_room>("enroll_room")); }
-    	}
-    	private ObjectSet<enroll_room> _enroll_room;
-    
-    	public ObjectSet<enroll_schedule> enroll_schedule
-    	{
-    		get { return _enroll_schedule  ?? (_enroll_schedule = CreateObjectSet<enroll_schedule>("enroll_schedule")); }
-    	}
-    	private ObjectSet<enroll_schedule> _enroll_schedule;
+    	private ObjectSet<vstudentinfo> _vstudentinfoes;
 
         #endregion
 
@@ -322,9 +328,19 @@ namespace StudentMonitoringSystem.Entities
     			return (ObjectSet<T>)(object)core_contact;
     		}
     								
+    		if(typeof(T) == typeof(core_day))
+    		{
+    			return (ObjectSet<T>)(object)core_day;
+    		}
+    								
     		if(typeof(T) == typeof(core_gender))
     		{
     			return (ObjectSet<T>)(object)core_gender;
+    		}
+    								
+    		if(typeof(T) == typeof(core_guardian))
+    		{
+    			return (ObjectSet<T>)(object)core_guardian;
     		}
     								
     		if(typeof(T) == typeof(core_province))
@@ -350,6 +366,31 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(emp_contact))
     		{
     			return (ObjectSet<T>)(object)emp_contact;
+    		}
+    								
+    		if(typeof(T) == typeof(emp_employee))
+    		{
+    			return (ObjectSet<T>)(object)emp_employee;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_course))
+    		{
+    			return (ObjectSet<T>)(object)enroll_course;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_room))
+    		{
+    			return (ObjectSet<T>)(object)enroll_room;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_schedule))
+    		{
+    			return (ObjectSet<T>)(object)enroll_schedule;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_section))
+    		{
+    			return (ObjectSet<T>)(object)enroll_section;
     		}
     								
     		if(typeof(T) == typeof(enroll_subject))
@@ -382,6 +423,11 @@ namespace StudentMonitoringSystem.Entities
     			return (ObjectSet<T>)(object)sms_networkprovider;
     		}
     								
+    		if(typeof(T) == typeof(sms_networkprovidercode))
+    		{
+    			return (ObjectSet<T>)(object)sms_networkprovidercode;
+    		}
+    								
     		if(typeof(T) == typeof(sms_notification))
     		{
     			return (ObjectSet<T>)(object)sms_notification;
@@ -412,26 +458,6 @@ namespace StudentMonitoringSystem.Entities
     			return (ObjectSet<T>)(object)sms_status;
     		}
     								
-    		if(typeof(T) == typeof(vstudentinfo))
-    		{
-    			return (ObjectSet<T>)(object)vstudentinfoes;
-    		}
-    								
-    		if(typeof(T) == typeof(core_guardian))
-    		{
-    			return (ObjectSet<T>)(object)core_guardian;
-    		}
-    								
-    		if(typeof(T) == typeof(emp_employee))
-    		{
-    			return (ObjectSet<T>)(object)emp_employee;
-    		}
-    								
-    		if(typeof(T) == typeof(vemployeeinfo))
-    		{
-    			return (ObjectSet<T>)(object)vemployeeinfoes;
-    		}
-    								
     		if(typeof(T) == typeof(vbarangayinfo))
     		{
     			return (ObjectSet<T>)(object)vbarangayinfoes;
@@ -442,9 +468,9 @@ namespace StudentMonitoringSystem.Entities
     			return (ObjectSet<T>)(object)vcityinfoes;
     		}
     								
-    		if(typeof(T) == typeof(sms_networkprovidercode))
+    		if(typeof(T) == typeof(vemployeeinfo))
     		{
-    			return (ObjectSet<T>)(object)sms_networkprovidercode;
+    			return (ObjectSet<T>)(object)vemployeeinfoes;
     		}
     								
     		if(typeof(T) == typeof(vnetworkprovidercodeinfo))
@@ -452,29 +478,14 @@ namespace StudentMonitoringSystem.Entities
     			return (ObjectSet<T>)(object)vnetworkprovidercodeinfoes;
     		}
     								
-    		if(typeof(T) == typeof(enroll_course))
+    		if(typeof(T) == typeof(vscheduleinfo))
     		{
-    			return (ObjectSet<T>)(object)enroll_course;
+    			return (ObjectSet<T>)(object)vscheduleinfoes;
     		}
     								
-    		if(typeof(T) == typeof(vsectioninfo))
+    		if(typeof(T) == typeof(vstudentinfo))
     		{
-    			return (ObjectSet<T>)(object)vsectioninfoes;
-    		}
-    								
-    		if(typeof(T) == typeof(enroll_section))
-    		{
-    			return (ObjectSet<T>)(object)enroll_section;
-    		}
-    								
-    		if(typeof(T) == typeof(enroll_room))
-    		{
-    			return (ObjectSet<T>)(object)enroll_room;
-    		}
-    								
-    		if(typeof(T) == typeof(enroll_schedule))
-    		{
-    			return (ObjectSet<T>)(object)enroll_schedule;
+    			return (ObjectSet<T>)(object)vstudentinfoes;
     		}
     				
     		return null;

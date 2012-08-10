@@ -89,12 +89,6 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<core_civilstatus> _core_civilstatus;
     
-    	public ObjectSet<core_contact> core_contact
-    	{
-    		get { return _core_contact  ?? (_core_contact = CreateObjectSet<core_contact>("core_contact")); }
-    	}
-    	private ObjectSet<core_contact> _core_contact;
-    
     	public ObjectSet<core_day> core_day
     	{
     		get { return _core_day  ?? (_core_day = CreateObjectSet<core_day>("core_day")); }
@@ -281,6 +275,12 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<vscheduleinfo> _vscheduleinfoes;
     
+    	public ObjectSet<core_contact> core_contact
+    	{
+    		get { return _core_contact  ?? (_core_contact = CreateObjectSet<core_contact>("core_contact")); }
+    	}
+    	private ObjectSet<core_contact> _core_contact;
+    
     	public ObjectSet<vstudentinfo> vstudentinfoes
     	{
     		get { return _vstudentinfoes  ?? (_vstudentinfoes = CreateObjectSet<vstudentinfo>("vstudentinfoes")); }
@@ -321,11 +321,6 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(core_civilstatus))
     		{
     			return (ObjectSet<T>)(object)core_civilstatus;
-    		}
-    								
-    		if(typeof(T) == typeof(core_contact))
-    		{
-    			return (ObjectSet<T>)(object)core_contact;
     		}
     								
     		if(typeof(T) == typeof(core_day))
@@ -481,6 +476,11 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(vscheduleinfo))
     		{
     			return (ObjectSet<T>)(object)vscheduleinfoes;
+    		}
+    								
+    		if(typeof(T) == typeof(core_contact))
+    		{
+    			return (ObjectSet<T>)(object)core_contact;
     		}
     								
     		if(typeof(T) == typeof(vstudentinfo))

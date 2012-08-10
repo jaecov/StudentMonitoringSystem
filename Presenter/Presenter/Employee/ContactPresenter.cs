@@ -22,7 +22,7 @@ namespace StudentMonitoringSystem.Presenter.Employee
         public void LoadItems()
         {
             View.ContactDataSource = Controller.GetObject<emp_contact>()
-                                               .Where(c => c.employee_id == View.Employee_id)
+                                               .Where(c => c.employee_id == View.Employee_ID)
                                                .ToList();
         }
 
@@ -33,7 +33,7 @@ namespace StudentMonitoringSystem.Presenter.Employee
         private void GetValues(ref emp_contact item)
         {
             item.id = View.ID;
-            item.employee_id = View.Employee_id;
+            item.employee_id = View.Employee_ID;
             item.number = View.Number;
             item.emailaddress = View.Emailaddress;
             item.note = View.Note;
@@ -154,7 +154,7 @@ namespace StudentMonitoringSystem.Presenter.Employee
             switch (operation)
             {
                 case Common.Operation.Insert:
-                    if (View.Employee_id == 0)
+                    if (View.Employee_ID == 0)
                         brokenRules.Add("Save employee information first.");
 
                     if (View.Number.Trim().Replace("-", "") == string.Empty && View.Emailaddress == string.Empty)
@@ -162,7 +162,7 @@ namespace StudentMonitoringSystem.Presenter.Employee
                     break;
 
                 case Common.Operation.Update:
-                    if (View.Employee_id == 0)
+                    if (View.Employee_ID == 0)
                         brokenRules.Add("Save employee information first.");
 
                     if (View.ID == 0)

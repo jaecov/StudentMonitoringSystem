@@ -22,8 +22,9 @@ namespace StudentMonitoringSystem.Presenter.Core
         int Barangay_ID { get; set; }
         int City_ID { get; set; }
         int Province_ID { get; set; }
+        string Note { get; set; }
+        string Picture { get; set; }
 
-        List<core_contact> ContactDataSource { get; set; }
         List<core_civilstatus> CivilStatusDataSource { set; }
         List<core_gender> GenderDataSource { set; }
         List<vstudentinfo> StudentDataSource { set; }

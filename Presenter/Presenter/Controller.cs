@@ -44,6 +44,7 @@ namespace StudentMonitoringSystem.Presenter
             }
             else
             {
+                _context = new StudentMonitoringEntities();
                 return _context.GetObjectSet<T>() as IQueryable<T>;
             }
         }

@@ -139,7 +139,7 @@
             this.txtCitizenship.Location = new System.Drawing.Point(374, 105);
             this.txtCitizenship.Name = "txtCitizenship";
             this.txtCitizenship.Size = new System.Drawing.Size(167, 20);
-            this.txtCitizenship.TabIndex = 25;
+            this.txtCitizenship.TabIndex = 7;
             // 
             // label6
             // 
@@ -166,7 +166,7 @@
             this.cmbCivilStatus.Location = new System.Drawing.Point(375, 45);
             this.cmbCivilStatus.Name = "cmbCivilStatus";
             this.cmbCivilStatus.Size = new System.Drawing.Size(167, 21);
-            this.cmbCivilStatus.TabIndex = 22;
+            this.cmbCivilStatus.TabIndex = 5;
             // 
             // label4
             // 
@@ -182,21 +182,21 @@
             this.txtLastname.Location = new System.Drawing.Point(89, 105);
             this.txtLastname.Name = "txtLastname";
             this.txtLastname.Size = new System.Drawing.Size(167, 20);
-            this.txtLastname.TabIndex = 18;
+            this.txtLastname.TabIndex = 3;
             // 
             // txtMiddlename
             // 
             this.txtMiddlename.Location = new System.Drawing.Point(89, 77);
             this.txtMiddlename.Name = "txtMiddlename";
             this.txtMiddlename.Size = new System.Drawing.Size(167, 20);
-            this.txtMiddlename.TabIndex = 17;
+            this.txtMiddlename.TabIndex = 2;
             // 
             // txtFirstname
             // 
             this.txtFirstname.Location = new System.Drawing.Point(89, 45);
             this.txtFirstname.Name = "txtFirstname";
             this.txtFirstname.Size = new System.Drawing.Size(167, 20);
-            this.txtFirstname.TabIndex = 16;
+            this.txtFirstname.TabIndex = 1;
             // 
             // label3
             // 
@@ -232,7 +232,7 @@
             this.cmbGender.Location = new System.Drawing.Point(374, 14);
             this.cmbGender.Name = "cmbGender";
             this.cmbGender.Size = new System.Drawing.Size(167, 21);
-            this.cmbGender.TabIndex = 26;
+            this.cmbGender.TabIndex = 4;
             // 
             // txtNo
             // 
@@ -240,7 +240,7 @@
             this.txtNo.Location = new System.Drawing.Point(89, 14);
             this.txtNo.Name = "txtNo";
             this.txtNo.Size = new System.Drawing.Size(167, 20);
-            this.txtNo.TabIndex = 29;
+            this.txtNo.TabIndex = 0;
             // 
             // label7
             // 
@@ -266,7 +266,7 @@
             this.dteDateOfBirth.Location = new System.Drawing.Point(381, 77);
             this.dteDateOfBirth.Name = "dteDateOfBirth";
             this.dteDateOfBirth.Size = new System.Drawing.Size(160, 20);
-            this.dteDateOfBirth.TabIndex = 31;
+            this.dteDateOfBirth.TabIndex = 6;
             // 
             // GroupBox1
             // 
@@ -277,7 +277,7 @@
             this.GroupBox1.Location = new System.Drawing.Point(788, 12);
             this.GroupBox1.Name = "GroupBox1";
             this.GroupBox1.Size = new System.Drawing.Size(95, 185);
-            this.GroupBox1.TabIndex = 198;
+            this.GroupBox1.TabIndex = 1;
             this.GroupBox1.TabStop = false;
             // 
             // btnDelete
@@ -285,7 +285,7 @@
             this.btnDelete.Location = new System.Drawing.Point(8, 77);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(81, 23);
-            this.btnDelete.TabIndex = 39;
+            this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "&Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -295,7 +295,7 @@
             this.btnReset.Location = new System.Drawing.Point(6, 19);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(81, 23);
-            this.btnReset.TabIndex = 38;
+            this.btnReset.TabIndex = 0;
             this.btnReset.Text = "&Reset";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -305,7 +305,7 @@
             this.btnSave.Location = new System.Drawing.Point(6, 48);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(81, 23);
-            this.btnSave.TabIndex = 33;
+            this.btnSave.TabIndex = 1;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -321,7 +321,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(778, 185);
-            this.tabControl1.TabIndex = 206;
+            this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -366,7 +366,7 @@
             this.btnBrowse.Location = new System.Drawing.Point(583, 96);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(32, 32);
-            this.btnBrowse.TabIndex = 216;
+            this.btnBrowse.TabIndex = 9;
             this.btnBrowse.Text = "...........";
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
@@ -386,7 +386,7 @@
             this.btnWebcam.Location = new System.Drawing.Point(582, 47);
             this.btnWebcam.Name = "btnWebcam";
             this.btnWebcam.Size = new System.Drawing.Size(32, 32);
-            this.btnWebcam.TabIndex = 206;
+            this.btnWebcam.TabIndex = 8;
             this.btnWebcam.UseVisualStyleBackColor = true;
             this.btnWebcam.Click += new System.EventHandler(this.btnWebcam_Click);
             // 
@@ -524,7 +524,7 @@
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(241, 119);
-            this.txtNote.TabIndex = 221;
+            this.txtNote.TabIndex = 4;
             // 
             // cmbBarangay
             // 
@@ -533,7 +533,7 @@
             this.cmbBarangay.MaxLength = 100;
             this.cmbBarangay.Name = "cmbBarangay";
             this.cmbBarangay.Size = new System.Drawing.Size(337, 21);
-            this.cmbBarangay.TabIndex = 220;
+            this.cmbBarangay.TabIndex = 2;
             // 
             // cmbCity
             // 
@@ -543,7 +543,7 @@
             this.cmbCity.MaxLength = 100;
             this.cmbCity.Name = "cmbCity";
             this.cmbCity.Size = new System.Drawing.Size(337, 21);
-            this.cmbCity.TabIndex = 211;
+            this.cmbCity.TabIndex = 1;
             this.cmbCity.SelectedIndexChanged += new System.EventHandler(this.cmbCity_SelectedIndexChanged);
             // 
             // cmbProvince
@@ -554,7 +554,7 @@
             this.cmbProvince.MaxLength = 100;
             this.cmbProvince.Name = "cmbProvince";
             this.cmbProvince.Size = new System.Drawing.Size(337, 21);
-            this.cmbProvince.TabIndex = 210;
+            this.cmbProvince.TabIndex = 0;
             this.cmbProvince.SelectedIndexChanged += new System.EventHandler(this.cmbProvince_SelectedIndexChanged);
             // 
             // label9
@@ -643,7 +643,7 @@
             this.txtStreet.MaxLength = 100;
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.Size = new System.Drawing.Size(337, 20);
-            this.txtStreet.TabIndex = 209;
+            this.txtStreet.TabIndex = 3;
             // 
             // tabContact
             // 
@@ -889,7 +889,7 @@
             this.grdEmployee.ReadOnly = true;
             this.grdEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdEmployee.Size = new System.Drawing.Size(889, 149);
-            this.grdEmployee.TabIndex = 207;
+            this.grdEmployee.TabIndex = 2;
             this.grdEmployee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdEmployee_CellClick);
             // 
             // idDataGridViewTextBoxColumn1

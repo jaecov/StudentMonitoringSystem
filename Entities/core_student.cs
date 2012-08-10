@@ -189,38 +189,6 @@ namespace StudentMonitoringSystem.Entities
         }
         private core_civilstatus _core_civilstatus;
     
-        public virtual ICollection<core_contact> core_contact
-        {
-            get
-            {
-                if (_core_contact == null)
-                {
-                    var newCollection = new FixupCollection<core_contact>();
-                    newCollection.CollectionChanged += Fixupcore_contact;
-                    _core_contact = newCollection;
-                }
-                return _core_contact;
-            }
-            set
-            {
-                if (!ReferenceEquals(_core_contact, value))
-                {
-                    var previousValue = _core_contact as FixupCollection<core_contact>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupcore_contact;
-                    }
-                    _core_contact = value;
-                    var newValue = value as FixupCollection<core_contact>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupcore_contact;
-                    }
-                }
-            }
-        }
-        private ICollection<core_contact> _core_contact;
-    
         public virtual core_gender core_gender
         {
             get { return _core_gender; }
@@ -267,6 +235,38 @@ namespace StudentMonitoringSystem.Entities
             }
         }
         private ICollection<core_guardian> _core_guardian;
+    
+        public virtual ICollection<core_contact> core_contact
+        {
+            get
+            {
+                if (_core_contact == null)
+                {
+                    var newCollection = new FixupCollection<core_contact>();
+                    newCollection.CollectionChanged += Fixupcore_contact;
+                    _core_contact = newCollection;
+                }
+                return _core_contact;
+            }
+            set
+            {
+                if (!ReferenceEquals(_core_contact, value))
+                {
+                    var previousValue = _core_contact as FixupCollection<core_contact>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupcore_contact;
+                    }
+                    _core_contact = value;
+                    var newValue = value as FixupCollection<core_contact>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupcore_contact;
+                    }
+                }
+            }
+        }
+        private ICollection<core_contact> _core_contact;
 
         #endregion
         #region Association Fixup
@@ -331,28 +331,6 @@ namespace StudentMonitoringSystem.Entities
             }
         }
     
-        private void Fixupcore_contact(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (core_contact item in e.NewItems)
-                {
-                    item.core_student = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (core_contact item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.core_student, this))
-                    {
-                        item.core_student = null;
-                    }
-                }
-            }
-        }
-    
         private void Fixupcore_guardian(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
@@ -366,6 +344,28 @@ namespace StudentMonitoringSystem.Entities
             if (e.OldItems != null)
             {
                 foreach (core_guardian item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.core_student, this))
+                    {
+                        item.core_student = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupcore_contact(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (core_contact item in e.NewItems)
+                {
+                    item.core_student = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (core_contact item in e.OldItems)
                 {
                     if (ReferenceEquals(item.core_student, this))
                     {

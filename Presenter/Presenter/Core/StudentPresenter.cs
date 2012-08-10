@@ -52,6 +52,8 @@ namespace StudentMonitoringSystem.Presenter.Core
             View.City_ID = item.city_id;
             View.Barangay_ID = item.barangay_id;
             View.Street = item.street;
+            View.Note = item.note;
+            View.Picture = item.picture;
         }
 
         public void LoadCityDataSource(int provinceID)
@@ -79,6 +81,15 @@ namespace StudentMonitoringSystem.Presenter.Core
 
         #region Get
 
+        public string GetProvider(string code)
+        {
+            var prov = (from network in Controller.GetObject<sms_networkprovider>()
+                        join networkCode in Controller.GetObject<sms_networkprovidercode>() on network.id equals networkCode.networkprovider_id
+                        where networkCode.name == code
+                        select network.name).FirstOrDefault();
+            return prov;
+        }
+
         private void GetValues(ref core_student item)
         {
             item.id = View.ID;
@@ -92,6 +103,8 @@ namespace StudentMonitoringSystem.Presenter.Core
             item.citizenship = View.Citizenship;
             item.barangay_id = View.Barangay_ID;
             item.street = View.Street;
+            item.note = View.Note;
+            item.picture = View.Picture;
         }
 
         #endregion

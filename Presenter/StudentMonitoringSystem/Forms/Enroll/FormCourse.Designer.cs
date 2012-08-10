@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.grdCourse = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CourseinfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -41,9 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdCourse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CourseinfoBindingSource)).BeginInit();
             this.GroupBox1.SuspendLayout();
@@ -71,6 +71,27 @@
             this.grdCourse.Size = new System.Drawing.Size(799, 260);
             this.grdCourse.TabIndex = 208;
             this.grdCourse.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdCourse_CellClick);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // code
+            // 
+            this.code.DataPropertyName = "code";
+            this.code.HeaderText = "Code";
+            this.code.Name = "code";
+            this.code.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // CourseinfoBindingSource
             // 
@@ -108,9 +129,9 @@
             this.GroupBox1.Controls.Add(this.btnDelete);
             this.GroupBox1.Controls.Add(this.btnReset);
             this.GroupBox1.Controls.Add(this.btnSave);
-            this.GroupBox1.Location = new System.Drawing.Point(707, 0);
+            this.GroupBox1.Location = new System.Drawing.Point(706, 0);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(95, 104);
+            this.GroupBox1.Size = new System.Drawing.Size(96, 104);
             this.GroupBox1.TabIndex = 217;
             this.GroupBox1.TabStop = false;
             // 
@@ -169,27 +190,6 @@
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(529, 20);
             this.txtCode.TabIndex = 218;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // code
-            // 
-            this.code.DataPropertyName = "code";
-            this.code.HeaderText = "Code";
-            this.code.Name = "code";
-            this.code.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // FormCourse
             // 

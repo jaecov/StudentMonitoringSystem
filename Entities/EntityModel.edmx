@@ -288,7 +288,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="number" Type="varchar" MaxLength="11" />
+          <Property Name="number" Type="varchar" MaxLength="15" />
           <Property Name="emailaddress" Type="varchar" MaxLength="100" />
           <Property Name="note" Type="varchar" MaxLength="100" />
           <Property Name="student_id" Type="int" Nullable="false" />
@@ -1010,7 +1010,6 @@
           <EntitySet Name="core_barangay" EntityType="StudentMonitoringModel.core_barangay" />
           <EntitySet Name="core_city" EntityType="StudentMonitoringModel.core_city" />
           <EntitySet Name="core_civilstatus" EntityType="StudentMonitoringModel.core_civilstatus" />
-          <EntitySet Name="core_contact" EntityType="StudentMonitoringModel.core_contact" />
           <EntitySet Name="core_day" EntityType="StudentMonitoringModel.core_day" />
           <EntitySet Name="core_gender" EntityType="StudentMonitoringModel.core_gender" />
           <EntitySet Name="core_guardian" EntityType="StudentMonitoringModel.core_guardian" />
@@ -1042,7 +1041,6 @@
           <EntitySet Name="vemployeeinfoes" EntityType="StudentMonitoringModel.vemployeeinfo" />
           <EntitySet Name="vnetworkprovidercodeinfoes" EntityType="StudentMonitoringModel.vnetworkprovidercodeinfo" />
           <EntitySet Name="vscheduleinfoes" EntityType="StudentMonitoringModel.vscheduleinfo" />
-          <EntitySet Name="vstudentinfoes" EntityType="StudentMonitoringModel.vstudentinfo" />
           <AssociationSet Name="core_barangay_city" Association="StudentMonitoringModel.core_barangay_city">
             <End Role="core_city" EntitySet="core_city" />
             <End Role="core_barangay" EntitySet="core_barangay" />
@@ -1058,10 +1056,6 @@
           <AssociationSet Name="core_civilstatus_core_student" Association="StudentMonitoringModel.core_civilstatus_core_student">
             <End Role="core_civilstatus" EntitySet="core_civilstatus" />
             <End Role="core_student" EntitySet="core_student" />
-          </AssociationSet>
-          <AssociationSet Name="core_contact_student" Association="StudentMonitoringModel.core_contact_student">
-            <End Role="core_student" EntitySet="core_student" />
-            <End Role="core_contact" EntitySet="core_contact" />
           </AssociationSet>
           <AssociationSet Name="enroll_day_schedule" Association="StudentMonitoringModel.enroll_day_schedule">
             <End Role="core_day" EntitySet="core_day" />
@@ -1123,6 +1117,12 @@
             <End Role="sms_status" EntitySet="sms_status" />
             <End Role="sms_outbox_archive" EntitySet="sms_outbox_archive" />
           </AssociationSet>
+          <EntitySet Name="core_contact" EntityType="StudentMonitoringModel.core_contact" />
+          <AssociationSet Name="core_contact_student" Association="StudentMonitoringModel.core_contact_student">
+            <End Role="core_student" EntitySet="core_student" />
+            <End Role="core_contact" EntitySet="core_contact" />
+          </AssociationSet>
+          <EntitySet Name="vstudentinfoes" EntityType="StudentMonitoringModel.vstudentinfo" />
         </EntityContainer>
         <EntityType Name="C__RefactorLog">
           <Key>
@@ -1177,17 +1177,6 @@
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="core_student" Relationship="StudentMonitoringModel.core_civilstatus_core_student" FromRole="core_civilstatus" ToRole="core_student" />
-        </EntityType>
-        <EntityType Name="core_contact">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="number" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="emailaddress" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="note" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="student_id" Nullable="false" />
-          <NavigationProperty Name="core_student" Relationship="StudentMonitoringModel.core_contact_student" FromRole="core_contact" ToRole="core_student" />
         </EntityType>
         <EntityType Name="core_day">
           <Key>
@@ -1249,9 +1238,9 @@
           <Property Type="String" Name="note" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="core_barangay" Relationship="StudentMonitoringModel.core_barangay_core_student" FromRole="core_student" ToRole="core_barangay" />
           <NavigationProperty Name="core_civilstatus" Relationship="StudentMonitoringModel.core_civilstatus_core_student" FromRole="core_student" ToRole="core_civilstatus" />
-          <NavigationProperty Name="core_contact" Relationship="StudentMonitoringModel.core_contact_student" FromRole="core_student" ToRole="core_contact" />
           <NavigationProperty Name="core_gender" Relationship="StudentMonitoringModel.core_gender_core_student" FromRole="core_student" ToRole="core_gender" />
           <NavigationProperty Name="core_guardian" Relationship="StudentMonitoringModel.core_guardian_student" FromRole="core_student" ToRole="core_guardian" />
+          <NavigationProperty Name="core_contact" Relationship="StudentMonitoringModel.core_contact_student" FromRole="core_student" ToRole="core_contact" />
         </EntityType>
         <EntityType Name="core_systemsettings">
           <Key>
@@ -1623,51 +1612,6 @@
           <Property Type="String" Name="course_name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="course_code" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="vstudentinfo">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="number" />
-            <PropertyRef Name="firstname" />
-            <PropertyRef Name="middlename" />
-            <PropertyRef Name="lastname" />
-            <PropertyRef Name="dateofbirth" />
-            <PropertyRef Name="gender_id" />
-            <PropertyRef Name="civilstatus_id" />
-            <PropertyRef Name="civilstatus" />
-            <PropertyRef Name="citizenship" />
-            <PropertyRef Name="barangay_id" />
-            <PropertyRef Name="gender" />
-            <PropertyRef Name="barangay" />
-            <PropertyRef Name="city_id" />
-            <PropertyRef Name="city" />
-            <PropertyRef Name="province_id" />
-            <PropertyRef Name="province" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="number" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="firstname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="middlename" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="lastname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="dateofbirth" Nullable="false" />
-          <Property Type="String" Name="picture" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="gender_id" Nullable="false" />
-          <Property Type="Int32" Name="civilstatus_id" Nullable="false" />
-          <Property Type="String" Name="civilstatus" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="citizenship" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="street" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="barangay_id" Nullable="false" />
-          <Property Type="String" Name="mothername" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="motheroccupation" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="fathername" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="fatheroccupation" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="note" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="gender" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="barangay" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="city_id" Nullable="false" />
-          <Property Type="String" Name="city" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="province_id" Nullable="false" />
-          <Property Type="String" Name="province" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         <Association Name="core_barangay_city">
           <End Type="StudentMonitoringModel.core_city" Role="core_city" Multiplicity="1" />
           <End Type="StudentMonitoringModel.core_barangay" Role="core_barangay" Multiplicity="*" />
@@ -1713,18 +1657,6 @@
             </Principal>
             <Dependent Role="core_student">
               <PropertyRef Name="civilstatus_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="core_contact_student">
-          <End Type="StudentMonitoringModel.core_student" Role="core_student" Multiplicity="1" />
-          <End Type="StudentMonitoringModel.core_contact" Role="core_contact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="core_student">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="core_contact">
-              <PropertyRef Name="student_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1908,6 +1840,74 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="core_contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="number" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="emailaddress" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="note" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="student_id" Nullable="false" />
+          <NavigationProperty Name="core_student" Relationship="StudentMonitoringModel.core_contact_student" FromRole="core_contact" ToRole="core_student" />
+        </EntityType>
+        <Association Name="core_contact_student">
+          <End Type="StudentMonitoringModel.core_student" Role="core_student" Multiplicity="1" />
+          <End Type="StudentMonitoringModel.core_contact" Role="core_contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="core_student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="core_contact">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vstudentinfo">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="number" />
+            <PropertyRef Name="firstname" />
+            <PropertyRef Name="middlename" />
+            <PropertyRef Name="lastname" />
+            <PropertyRef Name="dateofbirth" />
+            <PropertyRef Name="gender_id" />
+            <PropertyRef Name="civilstatus_id" />
+            <PropertyRef Name="civilstatus" />
+            <PropertyRef Name="citizenship" />
+            <PropertyRef Name="barangay_id" />
+            <PropertyRef Name="gender" />
+            <PropertyRef Name="barangay" />
+            <PropertyRef Name="city_id" />
+            <PropertyRef Name="city" />
+            <PropertyRef Name="province_id" />
+            <PropertyRef Name="province" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="number" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="firstname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="middlename" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="lastname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="dateofbirth" Nullable="false" />
+          <Property Type="String" Name="picture" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="gender_id" Nullable="false" />
+          <Property Type="Int32" Name="civilstatus_id" Nullable="false" />
+          <Property Type="String" Name="civilstatus" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="citizenship" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="street" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="barangay_id" Nullable="false" />
+          <Property Type="String" Name="mothername" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="motheroccupation" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="fathername" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="fatheroccupation" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="note" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gender" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="barangay" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="city_id" Nullable="false" />
+          <Property Type="String" Name="city" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="province_id" Nullable="false" />
+          <Property Type="String" Name="province" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1965,17 +1965,6 @@
             <EntityTypeMapping TypeName="StudentMonitoringModel.core_civilstatus">
               <MappingFragment StoreEntitySet="core_civilstatus">
                 <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="core_contact">
-            <EntityTypeMapping TypeName="StudentMonitoringModel.core_contact">
-              <MappingFragment StoreEntitySet="core_contact">
-                <ScalarProperty Name="student_id" ColumnName="student_id" />
-                <ScalarProperty Name="note" ColumnName="note" />
-                <ScalarProperty Name="emailaddress" ColumnName="emailaddress" />
-                <ScalarProperty Name="number" ColumnName="number" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2359,6 +2348,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="core_contact">
+            <EntityTypeMapping TypeName="StudentMonitoringModel.core_contact">
+              <MappingFragment StoreEntitySet="core_contact">
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="emailaddress" ColumnName="emailaddress" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="vstudentinfoes">
             <EntityTypeMapping TypeName="StudentMonitoringModel.vstudentinfo">
               <MappingFragment StoreEntitySet="vstudentinfo">
@@ -2417,7 +2417,6 @@
         <EntityTypeShape EntityType="StudentMonitoringModel.core_barangay" Width="1.5" PointX="10.25" PointY="9.75" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="StudentMonitoringModel.core_city" Width="1.5" PointX="8" PointY="9.75" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="StudentMonitoringModel.core_civilstatus" Width="1.5" PointX="10.25" PointY="6.75" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.core_contact" Width="1.5" PointX="14.75" PointY="8.125" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="StudentMonitoringModel.core_day" Width="1.5" PointX="3.75" PointY="7.25" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="StudentMonitoringModel.core_gender" Width="1.5" PointX="10.25" PointY="13.125" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="StudentMonitoringModel.core_guardian" Width="1.5" PointX="14.75" PointY="11" Height="2.3648893229166674" />
@@ -2449,7 +2448,6 @@
         <EntityTypeShape EntityType="StudentMonitoringModel.vemployeeinfo" Width="1.5" PointX="8.75" PointY="15.75" Height="5.2494108072916674" />
         <EntityTypeShape EntityType="StudentMonitoringModel.vnetworkprovidercodeinfo" Width="1.5" PointX="10.75" PointY="15.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="StudentMonitoringModel.vscheduleinfo" Width="1.5" PointX="0.75" PointY="16.75" Height="5.2494108072916674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.vstudentinfo" Width="1.5" PointX="16.75" PointY="3.75" Height="5.6340136718749818" />
         <AssociationConnector Association="StudentMonitoringModel.core_barangay_city" >
           <ConnectorPoint PointX="9.5" PointY="10.740143229166662" />
           <ConnectorPoint PointX="10.25" PointY="10.740143229166662" />
@@ -2467,10 +2465,6 @@
           <ConnectorPoint PointX="13.25" PointY="7.4374995" />
           <ConnectorPoint PointX="13.25" PointY="8.125" />
         </AssociationConnector>
-        <AssociationConnector Association="StudentMonitoringModel.core_contact_student" >
-          <ConnectorPoint PointX="14" PointY="9.2112939453124909" />
-          <ConnectorPoint PointX="14.75" PointY="9.2112939453124909" />
-        </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.enroll_day_schedule" >
           <ConnectorPoint PointX="5.25" PointY="8.1439925130208337" />
           <ConnectorPoint PointX="5.291666666666667" PointY="8.1439925130208319" />
@@ -2480,8 +2474,10 @@
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.core_gender_core_student" >
           <ConnectorPoint PointX="11.75" PointY="14.047547700520823" />
+          <ConnectorPoint PointX="12.510416666666666" PointY="14.047547700520823" />
+          <ConnectorPoint PointX="12.677083333333334" PointY="14.047547700520823" />
           <ConnectorPoint PointX="13.25" PointY="14.047547700520823" />
-          <ConnectorPoint PointX="13.25" PointY="13.374410807291667" />
+          <ConnectorPoint PointX="13.25" PointY="13.374410807291666" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.core_guardian_student" >
           <ConnectorPoint PointX="14" PointY="12.182444661458334" />
@@ -2557,6 +2553,13 @@
           <ConnectorPoint PointX="13.5" PointY="25.903595377604177" />
           <ConnectorPoint PointX="15" PointY="25.903595377604177" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="StudentMonitoringModel.core_contact" Width="1.5" PointX="14.75" PointY="28.625" Height="2.172587890624996" />
+        <AssociationConnector Association="StudentMonitoringModel.core_contact_student" >
+          <ConnectorPoint PointX="12.59375" PointY="13.374410807291666" />
+          <ConnectorPoint PointX="12.59375" PointY="29.711293945312498" />
+          <ConnectorPoint PointX="14.75" PointY="29.711293945312498" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="StudentMonitoringModel.vstudentinfo" Width="1.5" PointX="17.375" PointY="3.75" Height="5.634013671874996" />
       </Diagram>
     </Diagrams>
   </Designer>

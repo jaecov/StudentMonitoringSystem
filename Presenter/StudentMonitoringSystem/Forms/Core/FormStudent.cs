@@ -21,7 +21,9 @@ namespace StudentMonitoringSystem.Forms.Core
         public FormStudent()
         {
             Presenter = new StudentPresenter(this);
+            formContact = new FormContact(this);
             InitializeComponent();
+            grdStudent.AutoGenerateColumns = false;
         }
 
         public StudentPresenter Presenter
@@ -29,6 +31,12 @@ namespace StudentMonitoringSystem.Forms.Core
             get;
             set;
         }
+
+        #endregion
+
+        #region Variables
+
+        FormContact formContact;
 
         #endregion
 
@@ -131,6 +139,32 @@ namespace StudentMonitoringSystem.Forms.Core
             set { dteDateOfBirth.Value = value; }
         }
 
+        public string Note
+        {
+            get
+            {
+                return txtNote.Text;
+            }
+            set
+            {
+                txtNote.Text = value;
+            }
+        }
+
+        string picture;
+        public string Picture
+        {
+            get
+            {
+                return picture;
+            }
+            set
+            {
+                picture = value;
+                pctStudent.ImageLocation = picture;
+            }
+        }
+
         public string Street
         {
             get
@@ -171,7 +205,6 @@ namespace StudentMonitoringSystem.Forms.Core
             {
                 if (cmbCity.Items.Count > 0)
                     cmbCity.SelectedValue = value;
-
             }
         }
 
@@ -187,7 +220,6 @@ namespace StudentMonitoringSystem.Forms.Core
             {
                 if (cmbProvince.Items.Count > 0)
                     cmbProvince.SelectedValue = value;
-
             }
         }
 
@@ -199,7 +231,6 @@ namespace StudentMonitoringSystem.Forms.Core
                 cmbCivilStatus.DisplayMember = "name";
                 cmbCivilStatus.ValueMember = "id";
                 cmbCivilStatus.DataSource = value;
-
             }
         }
 
@@ -218,7 +249,7 @@ namespace StudentMonitoringSystem.Forms.Core
         {
             set
             {
-                LoadStudents(value);
+                vstudentinfoBindingSource.DataSource = value;
             }
         }
 
@@ -255,29 +286,19 @@ namespace StudentMonitoringSystem.Forms.Core
             }
         }
 
-        private List<core_contact> contacts;
-        public List<core_contact> ContactDataSource
-        {
-            get { return contacts; }
-            set
-            {
-                contacts = value;
-                LoadContacts();
-            }
-        }
-
-        #endregion
-
-        #region BaseView
-
         public void Notify(Common.Result result, List<string> messages)
         {
             if (result == Common.Result.ValidationFailed)
             {
-                StringBuilder validationmsgs = new StringBuilder();
-                string msg = Common.Message(result);
-
-                MessageBox.Show(msg);
+                string title = Common.Message(result);
+                string msg = string.Empty;
+                int count = 1;
+                foreach (var item in messages)
+                {
+                    msg += string.Format("{0}.{1}\n", count, item);
+                    count += 1;
+                }
+                MessageBox.Show(msg, title);
             }
             else
             {
@@ -295,45 +316,90 @@ namespace StudentMonitoringSystem.Forms.Core
             Presenter.LoadItems();
         }
 
-        private void lvwStudent_SelectedIndexChanged(object sender, EventArgs e)
+        private void txtNumber_KeyUp(object sender, KeyEventArgs e)
         {
-            if (lvwStudent.SelectedItems.Count == 0)
+            if (txtNumber.Text.Trim().Length >= 5)
+            {
+                lblNetwork.Text = Presenter.GetProvider(txtNumber.Text.Trim().Substring(0, 4));
+            }
+        }
+
+        private void grdStudent_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex <= -1)
                 return;
 
-            int id = (int)lvwStudent.SelectedItems[0].Tag;
+            if (grdStudent.CurrentRow == null)
+                return;
+
+            var data = grdStudent.CurrentRow.DataBoundItem as vstudentinfo;
+            if (data == null)
+                return;
+
+            int id = data.id;
             Presenter.LoadStudentInfo(id);
+            formContact.LoadContacts();
+            formContact.Reset();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            ID = 0;
-            Number = Common.GenerateNewNumber();
-            Firstname = string.Empty;
-            Middlename = string.Empty;
-            Lastname = string.Empty;
-            Gender_ID = 1;
-            CivilStatus_ID = 1;
-            DateOfBirth = DateTime.Now;
-            Citizenship = string.Empty;
-            Street = string.Empty;
-            Province_ID = 0;
-            City_ID = 0;
-            Barangay_ID = 0;
+            if (SelectedTab == Tab.Contact)
+            {
+                formContact.Reset();
+            }
+            else
+            {
+                ID = 0;
+                Number = Common.GenerateNewNumber();
+                Firstname = string.Empty;
+                Middlename = string.Empty;
+                Lastname = string.Empty;
+                Gender_ID = 0;
+                CivilStatus_ID = 0;
+                DateOfBirth = DateTime.Now;
+                Citizenship = string.Empty;
+                Street = string.Empty;
+                Province_ID = 0;
+                City_ID = 0;
+                Barangay_ID = 0;
+                Note = string.Empty;
+                Picture = string.Empty;
+
+                formContact.LoadContacts();
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (Confirm("Do you want to save? Click OK to proceed."))
-                Presenter.Save();
+            var ask = Confirm("Do you want to save? Click OK to proceed.");
+
+            if (ask)
+            {
+                if (SelectedTab == Tab.Contact)
+                {
+                    formContact.Save();
+                }
+                else
+                {
+                    Presenter.Save();
+                }
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (Confirm("Do you want to delete? Click OK to proceed"))
+            var ask = Confirm("Do you want to delete? Click OK to proceed");
+
+            if (ask)
             {
-                var result = Presenter.Delete();
-                if (result)
+                if (SelectedTab == Tab.Contact)
                 {
+                    formContact.Delete();
+                }
+                else
+                {
+                    Presenter.Delete();
                     btnReset_Click(sender, e);
                 }
             }
@@ -357,23 +423,64 @@ namespace StudentMonitoringSystem.Forms.Core
             }
         }
 
-        private void btnAddContact_Click(object sender, EventArgs e)
+        private void grdContact_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            core_contact contact = new core_contact();
-            contact.number = txtNumber.Text;
-            contact.emailaddress = txtEmail.Text;
-            contact.note = txtNote.Text;
-            AddContact(contact);
+            if (e.ColumnIndex <= -1 || e.RowIndex <= -1)
+                return;
+
+            if (grdContact.CurrentRow == null)
+                return;
+
+            var data = grdContact.CurrentRow.DataBoundItem as core_contact;
+            if (data == null)
+                return;
+
+            int id = data.id;
+            formContact.LoadContactInfo(id);
+            txtNumber_KeyUp(null, null);
+        }
+               
+        private void btnWebcam_Click(object sender, EventArgs e)
+        {  
         }
 
-        private void btnDeleteContact_Click(object sender, EventArgs e)
+        private void btnBrowse_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Bitmap |*.bmp | JPG|*.jpg | GIF|*.gif | All Files|*.*";
+            openFileDialog.FileName = "";
 
+            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+
+                Picture = openFileDialog.FileName;
+            }
         }
 
         #endregion
 
         #region Methods
+
+        enum Tab
+        {
+            StudentInfo = 0,
+            Contact = 1
+        }
+
+        private Tab SelectedTab
+        {
+            get
+            {
+                if (this.tabControl1.SelectedTab == tabContact)
+                {
+                    return Tab.Contact;
+                }
+                else
+                {
+                    return Tab.StudentInfo;
+                }
+            }
+        }
 
         private bool Confirm(string msg, string title = "Confirm")
         {
@@ -384,55 +491,121 @@ namespace StudentMonitoringSystem.Forms.Core
                 return false;
         }
 
-        private void LoadStudents(List<vstudentinfo> list)
-        {
-            lvwStudent.Items.Clear();
-            ListViewItem item = null;
+        #endregion
 
-            foreach (var student in list)
+    }
+    
+    #region Contact
+
+    public class FormContact : IContact
+    {
+        FormStudent parent;
+        public FormContact(FormStudent emp)
+        {
+            Presenter = new ContactPresenter(this);
+            parent = emp;
+        }
+
+        public ContactPresenter Presenter
+        { get; set; }
+
+        #region IContact
+
+        public int ID
+        {
+            get;
+            set;
+        }
+
+        public string Number
+        {
+            get
             {
-                item = new ListViewItem();
-                item.Tag = student.id;
-                item.Text = student.number;
-                item.SubItems.Add(string.Format("{0}, {1} {2}", student.lastname, student.firstname, student.middlename));
-                item.SubItems.Add(student.gender);
-                item.SubItems.Add(student.civilstatus);
-                item.SubItems.Add(student.dateofbirth.ToString());
-                item.SubItems.Add(student.citizenship);
-                item.SubItems.Add(string.Format("{0} {1}, {2}, {3}", student.street, student.barangay, student.city, student.province));
-                lvwStudent.Items.Add(item);
+                return parent.txtNumber.Text;
+            }
+            set
+            {
+                parent.txtNumber.Text = value;
             }
         }
 
-        private void LoadContacts()
+        public string Emailaddress
         {
-            lvwContact.Items.Clear();
-            if (ContactDataSource == null)
-                return;
-
-            foreach (var contact in ContactDataSource)
+            get
             {
-                AddContact(contact);
+                return parent.txtEmail.Text;
+            }
+            set
+            {
+                parent.txtEmail.Text = value;
             }
         }
 
-        private void AddContact(core_contact contact)
+        public string Note
         {
-            ListViewItem item = new ListViewItem();
-            item.Tag = contact.id;
-            item.Text = contact.number;
-            item.SubItems.Add(contact.emailaddress);
-            item.SubItems.Add(contact.note);
-            lvwContact.Items.Add(item);
+            get
+            {
+                return parent.txtContactNote.Text;
+            }
+            set
+            {
+                parent.txtContactNote.Text = value;
+            }
+        }
+
+        public int Student_ID
+        {
+            get { return parent.ID; }
+        }
+
+        public List<core_contact> ContactDataSource
+        {
+            set
+            {
+                parent.corecontactBindingSource.DataSource = value;
+            }
+        }
+
+        public void Notify(Common.Result result, List<string> messages)
+        {
+            parent.Notify(result, messages);
         }
 
         #endregion
 
-        private void contatUC1_Load(object sender, EventArgs e)
-        {
+        #region Methods
 
+        public void Reset()
+        {
+            this.ID = 0;
+            this.Number = string.Empty;
+            this.Emailaddress = string.Empty;
+            this.Note = string.Empty;
         }
 
+        public void LoadContacts()
+        {
+            Presenter.LoadItems();
+        }
 
+        public void LoadContactInfo(int id)
+        {
+            Presenter.LoadContactInfo(id);
+        }
+
+        public void Save()
+        {
+            Presenter.Save();
+        }
+
+        public void Delete()
+        {
+            Presenter.Delete();
+            Reset();
+        }
+
+        #endregion
     }
+
+    #endregion
 }

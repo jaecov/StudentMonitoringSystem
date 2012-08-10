@@ -289,10 +289,6 @@ namespace StudentMonitoringSystem.Forms.Employee
             }
         }
 
-        #endregion
-
-        #region BaseView
-
         public void Notify(Common.Result result, List<string> messages)
         {
             if (result == Common.Result.ValidationFailed)
@@ -444,6 +440,7 @@ namespace StudentMonitoringSystem.Forms.Employee
 
             int id = data.id;
             formContact.LoadContactInfo(id);
+            txtNumber_KeyUp(null, null);
         }
 
         private void btnWebcam_Click(object sender, EventArgs e)
@@ -562,7 +559,7 @@ namespace StudentMonitoringSystem.Forms.Employee
             }
         }
 
-        public int Employee_id
+        public int Employee_ID
         {
             get { return parent.ID; }
         }

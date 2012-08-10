@@ -13,7 +13,7 @@ namespace StudentMonitoringSystem.Presenter.Employee
         string Number { get; set; }
         string Emailaddress { get; set; }
         string Note { get; set; }
-        int Employee_id { get; }
+        int Employee_ID { get; }
         List<emp_contact> ContactDataSource { set; }
     }
 }

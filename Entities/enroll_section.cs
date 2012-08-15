@@ -38,9 +38,105 @@ namespace StudentMonitoringSystem.Entities
             get;
             set;
         }
+    
+        public  int course_id
+        {
+            get { return _course_id; }
+            set
+            {
+                if (_course_id != value)
+                {
+                    if (enroll_course != null && enroll_course.id != value)
+                    {
+                        enroll_course = null;
+                    }
+                    _course_id = value;
+                }
+            }
+        }
+        private int _course_id;
+    
+        public  int level_id
+        {
+            get { return _level_id; }
+            set
+            {
+                if (_level_id != value)
+                {
+                    if (enroll_level != null && enroll_level.id != value)
+                    {
+                        enroll_level = null;
+                    }
+                    _level_id = value;
+                }
+            }
+        }
+        private int _level_id;
 
         #endregion
         #region Navigation Properties
+    
+        public virtual enroll_course enroll_course
+        {
+            get { return _enroll_course; }
+            set
+            {
+                if (!ReferenceEquals(_enroll_course, value))
+                {
+                    var previousValue = _enroll_course;
+                    _enroll_course = value;
+                    Fixupenroll_course(previousValue);
+                }
+            }
+        }
+        private enroll_course _enroll_course;
+    
+        public virtual ICollection<enroll_enrolledyear> enroll_enrolledyear
+        {
+            get
+            {
+                if (_enroll_enrolledyear == null)
+                {
+                    var newCollection = new FixupCollection<enroll_enrolledyear>();
+                    newCollection.CollectionChanged += Fixupenroll_enrolledyear;
+                    _enroll_enrolledyear = newCollection;
+                }
+                return _enroll_enrolledyear;
+            }
+            set
+            {
+                if (!ReferenceEquals(_enroll_enrolledyear, value))
+                {
+                    var previousValue = _enroll_enrolledyear as FixupCollection<enroll_enrolledyear>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupenroll_enrolledyear;
+                    }
+                    _enroll_enrolledyear = value;
+                    var newValue = value as FixupCollection<enroll_enrolledyear>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupenroll_enrolledyear;
+                    }
+                }
+            }
+        }
+        private ICollection<enroll_enrolledyear> _enroll_enrolledyear;
+    
+        public virtual enroll_level enroll_level
+        {
+            get { return _enroll_level; }
+            set
+            {
+                if (!ReferenceEquals(_enroll_level, value))
+                {
+                    var previousValue = _enroll_level;
+                    _enroll_level = value;
+                    Fixupenroll_level(previousValue);
+                }
+            }
+        }
+        private enroll_level _enroll_level;
     
         public virtual ICollection<enroll_schedule> enroll_schedule
         {
@@ -76,6 +172,68 @@ namespace StudentMonitoringSystem.Entities
 
         #endregion
         #region Association Fixup
+    
+        private void Fixupenroll_course(enroll_course previousValue)
+        {
+            if (previousValue != null && previousValue.enroll_section.Contains(this))
+            {
+                previousValue.enroll_section.Remove(this);
+            }
+    
+            if (enroll_course != null)
+            {
+                if (!enroll_course.enroll_section.Contains(this))
+                {
+                    enroll_course.enroll_section.Add(this);
+                }
+                if (course_id != enroll_course.id)
+                {
+                    course_id = enroll_course.id;
+                }
+            }
+        }
+    
+        private void Fixupenroll_level(enroll_level previousValue)
+        {
+            if (previousValue != null && previousValue.enroll_section.Contains(this))
+            {
+                previousValue.enroll_section.Remove(this);
+            }
+    
+            if (enroll_level != null)
+            {
+                if (!enroll_level.enroll_section.Contains(this))
+                {
+                    enroll_level.enroll_section.Add(this);
+                }
+                if (level_id != enroll_level.id)
+                {
+                    level_id = enroll_level.id;
+                }
+            }
+        }
+    
+        private void Fixupenroll_enrolledyear(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (enroll_enrolledyear item in e.NewItems)
+                {
+                    item.enroll_section = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (enroll_enrolledyear item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.enroll_section, this))
+                    {
+                        item.enroll_section = null;
+                    }
+                }
+            }
+        }
     
         private void Fixupenroll_schedule(object sender, NotifyCollectionChangedEventArgs e)
         {

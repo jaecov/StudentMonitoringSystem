@@ -54,6 +54,14 @@ namespace StudentMonitoringSystem.Presenter.Core
             View.Street = item.street;
             View.Note = item.note;
             View.Picture = item.picture;
+            View.FatherName = item.fathername;
+            View.FatherAddress = item.fatheraddress;
+            View.FatherContactNumber = item.fathercontactnumber;
+            View.FatherOccupation = item.fatheroccupation;
+            View.MotherName = item.mothername;
+            View.MotherAddress = item.motheraddress;
+            View.MotherContactNumber = item.mothercontactnumber;
+            View.MotherOccupation = item.motheroccupation;
         }
 
         public void LoadCityDataSource(int provinceID)
@@ -105,6 +113,14 @@ namespace StudentMonitoringSystem.Presenter.Core
             item.street = View.Street;
             item.note = View.Note;
             item.picture = View.Picture;
+            item.fathername = View.FatherName;
+            item.fatheraddress = View.FatherAddress;
+            item.fathercontactnumber = View.FatherContactNumber;
+            item.fatheroccupation = View.FatherOccupation;
+            item.mothername = View.MotherName;
+            item.motheraddress = View.MotherAddress;
+            item.mothercontactnumber = View.MotherContactNumber;
+            item.motheroccupation = View.MotherOccupation;
         }
 
         #endregion

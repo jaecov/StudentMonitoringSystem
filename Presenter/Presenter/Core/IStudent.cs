@@ -21,7 +21,15 @@ namespace StudentMonitoringSystem.Presenter.Core
         string Street { get; set; }
         int Barangay_ID { get; set; }
         int City_ID { get; set; }
-        int Province_ID { get; set; }
+        int Province_ID { get; set; }      
+        string FatherName { get; set; }
+        string FatherOccupation { get; set; }
+        string FatherAddress { get; set; }
+        string FatherContactNumber { get; set; }
+        string MotherName { get; set; }
+        string MotherOccupation { get; set; }
+        string MotherAddress { get; set; }
+        string MotherContactNumber { get; set; }
         string Note { get; set; }
         string Picture { get; set; }
 
@@ -31,5 +39,6 @@ namespace StudentMonitoringSystem.Presenter.Core
         List<core_barangay> BarangayDataSource { set; }
         List<core_city> CityDataSource { set; }
         List<core_province> ProvinceDataSource { set; }
+        List<core_guardian> GuardianDataSource { set; }
     }
 }

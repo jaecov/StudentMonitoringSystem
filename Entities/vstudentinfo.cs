@@ -75,7 +75,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string civilstatus
+        public  string civilstatus_name
         {
             get;
             set;
@@ -99,13 +99,43 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string mothername
+        public  string note
         {
             get;
             set;
         }
     
-        public  string motheroccupation
+        public  string gender_name
+        {
+            get;
+            set;
+        }
+    
+        public  string barangay_name
+        {
+            get;
+            set;
+        }
+    
+        public  int city_id
+        {
+            get;
+            set;
+        }
+    
+        public  string city_name
+        {
+            get;
+            set;
+        }
+    
+        public  int province_id
+        {
+            get;
+            set;
+        }
+    
+        public  string province_name
         {
             get;
             set;
@@ -123,43 +153,37 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string note
+        public  string fathercontactnumber
         {
             get;
             set;
         }
     
-        public  string gender
+        public  string fatheraddress
         {
             get;
             set;
         }
     
-        public  string barangay
+        public  string mothername
         {
             get;
             set;
         }
     
-        public  int city_id
+        public  string motheroccupation
         {
             get;
             set;
         }
     
-        public  string city
+        public  string mothercontactnumber
         {
             get;
             set;
         }
     
-        public  int province_id
-        {
-            get;
-            set;
-        }
-    
-        public  string province
+        public  string motheraddress
         {
             get;
             set;

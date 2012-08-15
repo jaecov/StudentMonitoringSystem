@@ -47,7 +47,7 @@ namespace StudentMonitoringSystem.Forms.Enroll
             if (grdSection.CurrentRow == null)
                 return;
 
-            var data = grdSection.CurrentRow.DataBoundItem as enroll_section;
+            var data = grdSection.CurrentRow.DataBoundItem as vsectioninfo;
             if (data == null)
                 return;
 
@@ -106,6 +106,36 @@ namespace StudentMonitoringSystem.Forms.Enroll
             set { txtName.Text = value; }
         }
 
+        public int Course_ID
+        {
+            get
+            {
+                int value = 0;
+                int.TryParse(Convert.ToString(cmbCourse.SelectedValue), out value);
+                return value;
+            }
+            set
+            {
+                if (cmbCourse.Items.Count > 0)
+                    cmbCourse.SelectedValue = value;
+            }
+        }
+
+        public int Level_ID
+        {
+            get
+            {
+                int value = 0;
+                int.TryParse(Convert.ToString(cmbLevel.SelectedValue), out value);
+                return value;
+            }
+            set
+            {
+                if (cmbLevel.Items.Count > 0)
+                    cmbLevel.SelectedValue = value;
+            }
+        }
+
         public new string Note
         {
             get { return txtNote.Text; }
@@ -133,11 +163,33 @@ namespace StudentMonitoringSystem.Forms.Enroll
             }
         }
 
-        public List<enroll_section> SectionDataSource
+        public List<vsectioninfo> SectionDataSource
         {
             set
             {
-                sectionBindingSource.DataSource = value;
+                this.vsectioninfoBindingSource.DataSource = value;
+            }
+        }
+
+        public List<enroll_course> CourseDataSource
+        {
+            set
+            {
+                value.Insert(0, new enroll_course() { id = 0, name = "Select" });
+                cmbCourse.DisplayMember = "name";
+                cmbCourse.ValueMember = "id";
+                cmbCourse.DataSource = value;
+            }
+        }
+
+        public List<enroll_level> LevelDataSource
+        {
+            set
+            {
+                value.Insert(0, new enroll_level() { id = 0, name = "Select" });
+                cmbLevel.DisplayMember = "name";
+                cmbLevel.ValueMember = "id";
+                cmbLevel.DataSource = value;
             }
         }
       

@@ -242,7 +242,7 @@ PRINT N'Creating [dbo].[core_contact]...';
 GO
 CREATE TABLE [dbo].[core_contact] (
     [id]           INT           IDENTITY (1, 1) NOT NULL,
-    [number]       VARCHAR (11)  NULL,
+    [number]       VARCHAR (15)  NULL,
     [emailaddress] VARCHAR (100) NULL,
     [note]         VARCHAR (100) NULL,
     [student_id]   INT           NOT NULL,
@@ -282,9 +282,11 @@ PRINT N'Creating [dbo].[core_guardian]...';
 GO
 CREATE TABLE [dbo].[core_guardian] (
     [id]           INT           IDENTITY (1, 1) NOT NULL,
-    [number]       VARCHAR (11)  NULL,
-    [emailaddress] VARCHAR (100) NULL,
+    [name]         VARCHAR (100) NOT NULL,
+    [address]      VARCHAR (100) NULL,
     [relationship] VARCHAR (50)  NOT NULL,
+    [number]       VARCHAR (15)  NULL,
+    [emailaddress] VARCHAR (100) NULL,
     [student_id]   INT           NOT NULL,
     [note]         VARCHAR (100) NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
@@ -309,23 +311,27 @@ PRINT N'Creating [dbo].[core_student]...';
 
 GO
 CREATE TABLE [dbo].[core_student] (
-    [id]               INT            IDENTITY (1, 1) NOT NULL,
-    [number]           VARCHAR (50)   NOT NULL,
-    [firstname]        VARCHAR (50)   NOT NULL,
-    [middlename]       VARCHAR (50)   NOT NULL,
-    [lastname]         VARCHAR (50)   NOT NULL,
-    [dateofbirth]      DATE           NOT NULL,
-    [picture]          VARCHAR (1000) NULL,
-    [gender_id]        INT            NOT NULL,
-    [civilstatus_id]   INT            NOT NULL,
-    [citizenship]      VARCHAR (50)   NOT NULL,
-    [street]           VARCHAR (100)  NULL,
-    [barangay_id]      INT            NOT NULL,
-    [mothername]       VARCHAR (100)  NULL,
-    [motheroccupation] VARCHAR (100)  NULL,
-    [fathername]       VARCHAR (100)  NULL,
-    [fatheroccupation] VARCHAR (100)  NULL,
-    [note]             VARCHAR (100)  NULL,
+    [id]                  INT            IDENTITY (1, 1) NOT NULL,
+    [number]              VARCHAR (50)   NOT NULL,
+    [firstname]           VARCHAR (50)   NOT NULL,
+    [middlename]          VARCHAR (50)   NOT NULL,
+    [lastname]            VARCHAR (50)   NOT NULL,
+    [dateofbirth]         DATE           NOT NULL,
+    [picture]             VARCHAR (1000) NULL,
+    [gender_id]           INT            NOT NULL,
+    [civilstatus_id]      INT            NOT NULL,
+    [citizenship]         VARCHAR (50)   NOT NULL,
+    [street]              VARCHAR (100)  NULL,
+    [barangay_id]         INT            NOT NULL,
+    [mothername]          VARCHAR (100)  NULL,
+    [motheroccupation]    VARCHAR (100)  NULL,
+    [mothercontactnumber] VARCHAR (11)   NULL,
+    [motheraddress]       VARCHAR (100)  NULL,
+    [fathername]          VARCHAR (100)  NULL,
+    [fatheroccupation]    VARCHAR (100)  NULL,
+    [fathercontactnumber] VARCHAR (11)   NULL,
+    [fatheraddress]       VARCHAR (100)  NULL,
+    [note]                VARCHAR (100)  NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
@@ -409,6 +415,35 @@ CREATE TABLE [dbo].[enroll_course] (
 
 
 GO
+PRINT N'Creating [dbo].[enroll_enrolledyear]...';
+
+
+GO
+CREATE TABLE [dbo].[enroll_enrolledyear] (
+    [id]            INT           IDENTITY (1, 1) NOT NULL,
+    [level_id]      INT           NOT NULL,
+    [schoolyear_id] INT           NOT NULL,
+    [semester_id]   INT           NOT NULL,
+    [course_id]     INT           NOT NULL,
+    [section_id]    INT           NOT NULL,
+    [note]          VARCHAR (100) NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
+);
+
+
+GO
+PRINT N'Creating [dbo].[enroll_level]...';
+
+
+GO
+CREATE TABLE [dbo].[enroll_level] (
+    [id]   INT         IDENTITY (1, 1) NOT NULL,
+    [name] VARCHAR (9) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
+);
+
+
+GO
 PRINT N'Creating [dbo].[enroll_room]...';
 
 
@@ -428,7 +463,6 @@ PRINT N'Creating [dbo].[enroll_schedule]...';
 GO
 CREATE TABLE [dbo].[enroll_schedule] (
     [id]          INT           IDENTITY (1, 1) NOT NULL,
-    [course_id]   INT           NOT NULL,
     [section_id]  INT           NOT NULL,
     [employee_id] INT           NOT NULL,
     [subject_id]  INT           NOT NULL,
@@ -442,13 +476,40 @@ CREATE TABLE [dbo].[enroll_schedule] (
 
 
 GO
+PRINT N'Creating [dbo].[enroll_schoolyear]...';
+
+
+GO
+CREATE TABLE [dbo].[enroll_schoolyear] (
+    [id]   INT         IDENTITY (1, 1) NOT NULL,
+    [name] VARCHAR (9) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
+);
+
+
+GO
 PRINT N'Creating [dbo].[enroll_section]...';
 
 
 GO
 CREATE TABLE [dbo].[enroll_section] (
+    [id]        INT           IDENTITY (1, 1) NOT NULL,
+    [name]      VARCHAR (100) NOT NULL,
+    [note]      VARCHAR (100) NULL,
+    [course_id] INT           NOT NULL,
+    [level_id]  INT           NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
+);
+
+
+GO
+PRINT N'Creating [dbo].[enroll_semester]...';
+
+
+GO
+CREATE TABLE [dbo].[enroll_semester] (
     [id]   INT           IDENTITY (1, 1) NOT NULL,
-    [name] VARCHAR (100) NOT NULL,
+    [name] VARCHAR (50)  NOT NULL,
     [note] VARCHAR (100) NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
@@ -461,6 +522,7 @@ PRINT N'Creating [dbo].[enroll_subject]...';
 GO
 CREATE TABLE [dbo].[enroll_subject] (
     [id]   INT           IDENTITY (1, 1) NOT NULL,
+    [code] VARCHAR (100) NOT NULL,
     [name] VARCHAR (100) NOT NULL,
     [note] VARCHAR (100) NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
@@ -678,87 +740,6 @@ PRINT N'Creating On column: number...';
 
 
 GO
-ALTER TABLE [dbo].[core_guardian]
-    ADD DEFAULT (NULL) FOR [number];
-
-
-GO
-PRINT N'Creating On column: emailaddress...';
-
-
-GO
-ALTER TABLE [dbo].[core_guardian]
-    ADD DEFAULT (NULL) FOR [emailaddress];
-
-
-GO
-PRINT N'Creating On column: note...';
-
-
-GO
-ALTER TABLE [dbo].[core_guardian]
-    ADD DEFAULT (NULL) FOR [note];
-
-
-GO
-PRINT N'Creating On column: street...';
-
-
-GO
-ALTER TABLE [dbo].[core_student]
-    ADD DEFAULT (NULL) FOR [street];
-
-
-GO
-PRINT N'Creating On column: mothername...';
-
-
-GO
-ALTER TABLE [dbo].[core_student]
-    ADD DEFAULT (NULL) FOR [mothername];
-
-
-GO
-PRINT N'Creating On column: motheroccupation...';
-
-
-GO
-ALTER TABLE [dbo].[core_student]
-    ADD DEFAULT (NULL) FOR [motheroccupation];
-
-
-GO
-PRINT N'Creating On column: fathername...';
-
-
-GO
-ALTER TABLE [dbo].[core_student]
-    ADD DEFAULT (NULL) FOR [fathername];
-
-
-GO
-PRINT N'Creating On column: fatheroccupation...';
-
-
-GO
-ALTER TABLE [dbo].[core_student]
-    ADD DEFAULT (NULL) FOR [fatheroccupation];
-
-
-GO
-PRINT N'Creating On column: note...';
-
-
-GO
-ALTER TABLE [dbo].[core_student]
-    ADD DEFAULT (NULL) FOR [note];
-
-
-GO
-PRINT N'Creating On column: number...';
-
-
-GO
 ALTER TABLE [dbo].[emp_contact]
     ADD DEFAULT (NULL) FOR [number];
 
@@ -827,183 +808,237 @@ ALTER TABLE [dbo].[sms_sent_archive]
 
 
 GO
-PRINT N'Creating core_barangay_city...';
+PRINT N'Creating core_barangay_core_city...';
 
 
 GO
 ALTER TABLE [dbo].[core_barangay] WITH NOCHECK
-    ADD CONSTRAINT [core_barangay_city] FOREIGN KEY ([city_id]) REFERENCES [dbo].[core_city] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [core_barangay_core_city] FOREIGN KEY ([city_id]) REFERENCES [dbo].[core_city] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating core_city_province...';
+PRINT N'Creating core_city_core_province...';
 
 
 GO
 ALTER TABLE [dbo].[core_city] WITH NOCHECK
-    ADD CONSTRAINT [core_city_province] FOREIGN KEY ([province_id]) REFERENCES [dbo].[core_province] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [core_city_core_province] FOREIGN KEY ([province_id]) REFERENCES [dbo].[core_province] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating core_contact_student...';
+PRINT N'Creating core_contact_core_student...';
 
 
 GO
 ALTER TABLE [dbo].[core_contact] WITH NOCHECK
-    ADD CONSTRAINT [core_contact_student] FOREIGN KEY ([student_id]) REFERENCES [dbo].[core_student] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [core_contact_core_student] FOREIGN KEY ([student_id]) REFERENCES [dbo].[core_student] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating core_guardian_student...';
+PRINT N'Creating core_guardian_core_student...';
 
 
 GO
 ALTER TABLE [dbo].[core_guardian] WITH NOCHECK
-    ADD CONSTRAINT [core_guardian_student] FOREIGN KEY ([student_id]) REFERENCES [dbo].[core_student] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [core_guardian_core_student] FOREIGN KEY ([student_id]) REFERENCES [dbo].[core_student] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating core_barangay_core_student...';
-
-
-GO
-ALTER TABLE [dbo].[core_student] WITH NOCHECK
-    ADD CONSTRAINT [core_barangay_core_student] FOREIGN KEY ([barangay_id]) REFERENCES [dbo].[core_barangay] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-GO
-PRINT N'Creating core_civilstatus_core_student...';
+PRINT N'Creating core_student_core_barangay...';
 
 
 GO
 ALTER TABLE [dbo].[core_student] WITH NOCHECK
-    ADD CONSTRAINT [core_civilstatus_core_student] FOREIGN KEY ([civilstatus_id]) REFERENCES [dbo].[core_civilstatus] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [core_student_core_barangay] FOREIGN KEY ([barangay_id]) REFERENCES [dbo].[core_barangay] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating core_gender_core_student...';
+PRINT N'Creating core_student_core_civilstatus...';
 
 
 GO
 ALTER TABLE [dbo].[core_student] WITH NOCHECK
-    ADD CONSTRAINT [core_gender_core_student] FOREIGN KEY ([gender_id]) REFERENCES [dbo].[core_gender] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [core_student_core_civilstatus] FOREIGN KEY ([civilstatus_id]) REFERENCES [dbo].[core_civilstatus] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating emp_contact_employee...';
+PRINT N'Creating core_student_core_gender...';
+
+
+GO
+ALTER TABLE [dbo].[core_student] WITH NOCHECK
+    ADD CONSTRAINT [core_student_core_gender] FOREIGN KEY ([gender_id]) REFERENCES [dbo].[core_gender] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating emp_contact_emp_employee...';
 
 
 GO
 ALTER TABLE [dbo].[emp_contact] WITH NOCHECK
-    ADD CONSTRAINT [emp_contact_employee] FOREIGN KEY ([employee_id]) REFERENCES [dbo].[emp_employee] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [emp_contact_emp_employee] FOREIGN KEY ([employee_id]) REFERENCES [dbo].[emp_employee] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating enroll_course_schedule...';
+PRINT N'Creating enroll_enrolledyear_enroll_course...';
+
+
+GO
+ALTER TABLE [dbo].[enroll_enrolledyear] WITH NOCHECK
+    ADD CONSTRAINT [enroll_enrolledyear_enroll_course] FOREIGN KEY ([course_id]) REFERENCES [dbo].[enroll_course] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating enroll_enrolledyear_enroll_level...';
+
+
+GO
+ALTER TABLE [dbo].[enroll_enrolledyear] WITH NOCHECK
+    ADD CONSTRAINT [enroll_enrolledyear_enroll_level] FOREIGN KEY ([level_id]) REFERENCES [dbo].[enroll_level] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating enroll_enrolledyear_enroll_schoolyear...';
+
+
+GO
+ALTER TABLE [dbo].[enroll_enrolledyear] WITH NOCHECK
+    ADD CONSTRAINT [enroll_enrolledyear_enroll_schoolyear] FOREIGN KEY ([schoolyear_id]) REFERENCES [dbo].[enroll_schoolyear] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating enroll_enrolledyear_enroll_section...';
+
+
+GO
+ALTER TABLE [dbo].[enroll_enrolledyear] WITH NOCHECK
+    ADD CONSTRAINT [enroll_enrolledyear_enroll_section] FOREIGN KEY ([section_id]) REFERENCES [dbo].[enroll_section] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating enroll_enrolledyear_enroll_semester...';
+
+
+GO
+ALTER TABLE [dbo].[enroll_enrolledyear] WITH NOCHECK
+    ADD CONSTRAINT [enroll_enrolledyear_enroll_semester] FOREIGN KEY ([semester_id]) REFERENCES [dbo].[enroll_semester] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating enroll_schedule_enroll_day...';
 
 
 GO
 ALTER TABLE [dbo].[enroll_schedule] WITH NOCHECK
-    ADD CONSTRAINT [enroll_course_schedule] FOREIGN KEY ([course_id]) REFERENCES [dbo].[enroll_course] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [enroll_schedule_enroll_day] FOREIGN KEY ([day_id]) REFERENCES [dbo].[core_day] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating enroll_day_schedule...';
-
-
-GO
-ALTER TABLE [dbo].[enroll_schedule] WITH NOCHECK
-    ADD CONSTRAINT [enroll_day_schedule] FOREIGN KEY ([day_id]) REFERENCES [dbo].[core_day] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-GO
-PRINT N'Creating enroll_employee_schedule...';
+PRINT N'Creating enroll_schedule_enroll_employee...';
 
 
 GO
 ALTER TABLE [dbo].[enroll_schedule] WITH NOCHECK
-    ADD CONSTRAINT [enroll_employee_schedule] FOREIGN KEY ([employee_id]) REFERENCES [dbo].[emp_employee] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [enroll_schedule_enroll_employee] FOREIGN KEY ([employee_id]) REFERENCES [dbo].[emp_employee] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating enroll_room_schedule...';
-
-
-GO
-ALTER TABLE [dbo].[enroll_schedule] WITH NOCHECK
-    ADD CONSTRAINT [enroll_room_schedule] FOREIGN KEY ([room_id]) REFERENCES [dbo].[enroll_room] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-GO
-PRINT N'Creating enroll_section_schedule...';
+PRINT N'Creating enroll_schedule_enroll_room...';
 
 
 GO
 ALTER TABLE [dbo].[enroll_schedule] WITH NOCHECK
-    ADD CONSTRAINT [enroll_section_schedule] FOREIGN KEY ([section_id]) REFERENCES [dbo].[enroll_section] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [enroll_schedule_enroll_room] FOREIGN KEY ([room_id]) REFERENCES [dbo].[enroll_room] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating enroll_subject_schedule...';
+PRINT N'Creating enroll_schedule_enroll_section...';
 
 
 GO
 ALTER TABLE [dbo].[enroll_schedule] WITH NOCHECK
-    ADD CONSTRAINT [enroll_subject_schedule] FOREIGN KEY ([subject_id]) REFERENCES [dbo].[enroll_subject] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [enroll_schedule_enroll_section] FOREIGN KEY ([section_id]) REFERENCES [dbo].[enroll_section] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating sms_inbox_status...';
+PRINT N'Creating enroll_schedule_enroll_subject...';
+
+
+GO
+ALTER TABLE [dbo].[enroll_schedule] WITH NOCHECK
+    ADD CONSTRAINT [enroll_schedule_enroll_subject] FOREIGN KEY ([subject_id]) REFERENCES [dbo].[enroll_subject] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating enroll_section_enroll_course...';
+
+
+GO
+ALTER TABLE [dbo].[enroll_section] WITH NOCHECK
+    ADD CONSTRAINT [enroll_section_enroll_course] FOREIGN KEY ([course_id]) REFERENCES [dbo].[enroll_course] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating enroll_section_enroll_level...';
+
+
+GO
+ALTER TABLE [dbo].[enroll_section] WITH NOCHECK
+    ADD CONSTRAINT [enroll_section_enroll_level] FOREIGN KEY ([level_id]) REFERENCES [dbo].[enroll_level] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating sms_inbox_sms_status...';
 
 
 GO
 ALTER TABLE [dbo].[sms_inbox] WITH NOCHECK
-    ADD CONSTRAINT [sms_inbox_status] FOREIGN KEY ([status_id]) REFERENCES [dbo].[sms_status] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [sms_inbox_sms_status] FOREIGN KEY ([status_id]) REFERENCES [dbo].[sms_status] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating sms_inbox_archive_status...';
+PRINT N'Creating sms_inbox_archive_sms_status...';
 
 
 GO
 ALTER TABLE [dbo].[sms_inbox_archive] WITH NOCHECK
-    ADD CONSTRAINT [sms_inbox_archive_status] FOREIGN KEY ([status_id]) REFERENCES [dbo].[sms_status] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [sms_inbox_archive_sms_status] FOREIGN KEY ([status_id]) REFERENCES [dbo].[sms_status] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating sms_networkcode_networkprovider...';
+PRINT N'Creating sms_networkcode_sms_networkprovider...';
 
 
 GO
 ALTER TABLE [dbo].[sms_networkprovidercode] WITH NOCHECK
-    ADD CONSTRAINT [sms_networkcode_networkprovider] FOREIGN KEY ([networkprovider_id]) REFERENCES [dbo].[sms_networkprovider] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [sms_networkcode_sms_networkprovider] FOREIGN KEY ([networkprovider_id]) REFERENCES [dbo].[sms_networkprovider] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating sms_notification_room...';
+PRINT N'Creating sms_notification_enroll_room...';
 
 
 GO
 ALTER TABLE [dbo].[sms_notification] WITH NOCHECK
-    ADD CONSTRAINT [sms_notification_room] FOREIGN KEY ([room_id]) REFERENCES [dbo].[enroll_room] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [sms_notification_enroll_room] FOREIGN KEY ([room_id]) REFERENCES [dbo].[enroll_room] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating sms_outbox_status...';
+PRINT N'Creating sms_outbox_sms_status...';
 
 
 GO
 ALTER TABLE [dbo].[sms_outbox] WITH NOCHECK
-    ADD CONSTRAINT [sms_outbox_status] FOREIGN KEY ([status_id]) REFERENCES [dbo].[sms_status] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [sms_outbox_sms_status] FOREIGN KEY ([status_id]) REFERENCES [dbo].[sms_status] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
-PRINT N'Creating sms_outbox_archive_status...';
+PRINT N'Creating sms_outbox_archive_sms_status...';
 
 
 GO
 ALTER TABLE [dbo].[sms_outbox_archive] WITH NOCHECK
-    ADD CONSTRAINT [sms_outbox_archive_status] FOREIGN KEY ([status_id]) REFERENCES [dbo].[sms_status] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ADD CONSTRAINT [sms_outbox_archive_sms_status] FOREIGN KEY ([status_id]) REFERENCES [dbo].[sms_status] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -1018,7 +1053,7 @@ SELECT
  b.id
 ,b.name
 ,b.city_id
-,c.name as city
+,c.name as city_name
 FROM dbo.core_barangay b
 inner join dbo.core_city c on b.city_id = c.id
 GO
@@ -1032,7 +1067,7 @@ SELECT
  c.id
 ,c.name
 ,c.province_id
-,p.name as province
+,p.name as province_name
 FROM dbo.core_city c
 inner join dbo.core_province p on c.province_id = p.id
 GO
@@ -1054,18 +1089,18 @@ SELECT
 , emp.dateofbirth
 , emp.gender_id
 , emp.civilstatus_id
-, cs.name as civilstatus
+, cs.name as civilstatus_name
 , emp.citizenship
 , emp.street
 , emp.barangay_id
 , emp.picture
 , emp.note
-, gn.name AS gender
-, bg.name AS barangay
+, gn.name AS gender_name
+, bg.name AS barangay_name
 , bg.city_id
-, ct.name AS city
+, ct.name AS city_name
 , ct.province_id
-, pr.name AS province
+, pr.name AS province_name
 , isnull(emp.street,'') + ' ' + bg.name + ' ' + ct.name + ' ' + pr.name  as [address]
 
 FROM dbo.emp_employee emp
@@ -1074,6 +1109,36 @@ INNER JOIN dbo.core_gender gn ON emp.gender_id = gn.id
 INNER JOIN dbo.core_barangay bg ON emp.barangay_id = bg.id 
 INNER JOIN dbo.core_city ct ON bg.city_id = ct.id 
 INNER JOIN dbo.core_province pr ON ct.province_id = pr.id;
+GO
+PRINT N'Creating [dbo].[venrolledyearinfo]...';
+
+
+GO
+-- =============================================
+-- Script Template
+-- =============================================
+
+CREATE view venrolledyearinfo
+as
+
+SELECT 
+EY.id,
+EY.note,
+EY.level_id,
+EY.schoolyear_id,
+EY.course_id,
+EY.section_id,
+LVL.name AS [level_name],
+SY.name as [schoolyear_name],
+C.code as [course_code],
+C.name as [course_name],
+SC.name as [section_name]
+
+FROM enroll_enrolledyear EY
+INNER JOIN enroll_level LVL ON EY.level_id = LVL.id
+INNER JOIN enroll_schoolyear SY ON EY.schoolyear_id = SY.id
+INNER JOIN enroll_course C ON EY.course_id = C.id
+INNER JOIN enroll_section SC ON EY.section_id = SC.id
 GO
 PRINT N'Creating [dbo].[vnetworkprovidercodeinfo]...';
 
@@ -1085,7 +1150,7 @@ SELECT
  c.id
 ,c.name
 ,c.networkprovider_id
-,p.name as networkprovider
+,p.name as networkprovider_name
 FROM dbo.sms_networkprovidercode c
 inner join dbo.sms_networkprovider p on c.networkprovider_id = p.id
 GO
@@ -1100,7 +1165,6 @@ as
 
 SELECT
 SCHED.id,
-SCHED.course_id,
 SCHED.section_id,
 SCHED.employee_id,
 SCHED.subject_id,
@@ -1110,18 +1174,22 @@ SCHED.datestart,
 SCHED.dateend,
 SCHED.note,
 
-SC.name AS section,
+SC.name AS section_name,
 EMP.number as emp_number,
 EMP.firstname as emp_firstname,
 EMP.middlename as emp_middlename,
 EMP.lastname as emp_lastname,
 EMP.picture as emp_picture,
-SBJ.name as [subject],
-RM.name as room,
+SBJ.code as [subject_code],
+SBJ.name as [subject_name],
+RM.name as room_name,
 DY.code as day_code,
-DY.name as [day],
+DY.name as [day_name],
+CRS.id as [course_id],
 CRS.name as course_name,
-CRS.code as course_code
+CRS.code as course_code,
+SC.level_id,
+LVL.name as level_name
 
 FROM enroll_schedule SCHED 
 INNER JOIN enroll_section SC ON SCHED.section_id = SC.id
@@ -1129,7 +1197,28 @@ INNER JOIN emp_employee EMP ON SCHED.employee_id = EMP.id
 INNER JOIN enroll_subject SBJ ON SCHED.subject_id = SBJ.id
 INNER JOIN enroll_room RM ON SCHED.room_id = RM.id
 INNER JOIN core_day DY ON SCHED.day_id = DY.id
-INNER JOIN enroll_course CRS ON SCHED.course_id = CRS.id
+INNER JOIN enroll_course CRS ON SC.course_id = CRS.id
+INNER JOIN enroll_level LVL ON SC.level_id = LVL.id
+GO
+PRINT N'Creating [dbo].[vsectioninfo]...';
+
+
+GO
+
+CREATE view	vsectioninfo
+as
+SELECT 
+SC.id,
+SC.name,
+SC.note,
+SC.course_id,
+SC.level_id,
+COR.name AS course_name,
+LVL.name as level_name
+
+FROM enroll_section SC
+INNER JOIN enroll_course COR ON SC.course_id = COR.id
+INNER JOIN enroll_level LVL ON SC.level_id = LVL.id
 GO
 PRINT N'Creating [dbo].[vstudentinfo]...';
 
@@ -1141,6 +1230,7 @@ GO
 
 CREATE VIEW [dbo].[vstudentinfo]
 AS
+
 SELECT     
 st.id
 , st.number
@@ -1151,21 +1241,25 @@ st.id
 , st.picture
 , st.gender_id
 , st.civilstatus_id
-, cs.name as civilstatus
+, cs.name as civilstatus_name
 , st.citizenship
 , st.street
 , st.barangay_id
-, st.mothername
-, st.motheroccupation
+, st.note
+, gn.name AS gender_name
+, bg.name AS barangay_name
+, bg.city_id
+, ct.name AS city_name
+, ct.province_id
+, pr.name AS province_name
 , st.fathername
 , st.fatheroccupation
-, st.note
-, gn.name AS gender
-, bg.name AS barangay
-, bg.city_id
-, ct.name AS city
-, ct.province_id
-, pr.name AS province
+, st.fathercontactnumber
+, st.fatheraddress
+, st.mothername
+, st.motheroccupation
+, st.mothercontactnumber
+, st.motheraddress
 
 FROM dbo.core_student st
 INNER JOIN dbo.core_civilstatus cs on st.civilstatus_id = cs.id
@@ -1226,6 +1320,19 @@ SET IDENTITY_INSERT [dbo].[core_day] OFF
 -- =============================================
 -- Script Template
 -- =============================================
+
+SET IDENTITY_INSERT [dbo].[enroll_schoolyear] ON
+INSERT INTO [dbo].[enroll_schoolyear](ID,NAME) VALUES(1,'2011-2012')
+INSERT INTO [dbo].[enroll_schoolyear](ID,NAME) VALUES(2,'2012-2013')
+SET IDENTITY_INSERT [dbo].[enroll_schoolyear] OFF
+
+SET IDENTITY_INSERT [dbo].[enroll_level] ON
+INSERT INTO [dbo].[enroll_level](ID,NAME) VALUES(1,'1st Year')
+INSERT INTO [dbo].[enroll_level](ID,NAME) VALUES(2,'2nd Year')
+INSERT INTO [dbo].[enroll_level](ID,NAME) VALUES(3,'3rd Year')
+INSERT INTO [dbo].[enroll_level](ID,NAME) VALUES(4,'4th Year')
+INSERT INTO [dbo].[enroll_level](ID,NAME) VALUES(5,'5th Year')
+SET IDENTITY_INSERT [dbo].[enroll_level] OFF
 -- =============================================
 -- Script Template
 -- =============================================
@@ -1277,6 +1384,26 @@ INSERT INTO [dbo].[core_barangay](ID,NAME, city_id) VALUES(1,'Brgy. Pinmilapil',
 INSERT INTO [dbo].[core_barangay](ID,NAME, city_id) VALUES(2,'Brgy. Olympia',2)
 SET IDENTITY_INSERT [dbo].[core_barangay] OFF
 
+SET IDENTITY_INSERT [dbo].[enroll_course] ON
+INSERT INTO [dbo].[enroll_course](id, name, code) VALUES(1,'Bachelor of Science and Technology in Information Technology','BS IT')
+INSERT INTO [dbo].[enroll_course](id, name, code) VALUES(2,'Bachelor of Science and Technoloy in Mathematics','BS Math')
+SET IDENTITY_INSERT [dbo].[enroll_course] OFF
+
+SET IDENTITY_INSERT [dbo].[enroll_section] ON
+INSERT INTO [dbo].enroll_section(id, name, note, course_id, level_id) VALUES(1,'I-A','',1,1)
+INSERT INTO [dbo].[enroll_section](id, name, note, course_id, level_id) VALUES(2,'II-A','',1,2)
+SET IDENTITY_INSERT [dbo].[enroll_section] OFF
+
+SET IDENTITY_INSERT [dbo].[enroll_room] ON
+INSERT INTO [dbo].[enroll_room](id, name, note) VALUES(1,'Room 101','')
+INSERT INTO [dbo].[enroll_room](id, name, note) VALUES(2,'Room 102','')
+SET IDENTITY_INSERT [dbo].[enroll_room] OFF
+
+SET IDENTITY_INSERT [dbo].[enroll_subject] ON
+INSERT INTO [dbo].[enroll_subject](id, code, name, note) VALUES(1,'Eng 101','English 101','')
+INSERT INTO [dbo].[enroll_subject](id, code, name, note) VALUES(2,'Math 101','Mathematics 101','')
+SET IDENTITY_INSERT [dbo].[enroll_subject] OFF
+
 INSERT INTO [dbo].[core_systemsettings] VALUES('cache','core_barangay,core_city,core_province,core_civilstatus,core_systemsettings,core_gender,sms_status,sms_networkprovidercode,sms_networkprovider')
 
 
@@ -1293,45 +1420,57 @@ USE [$(DatabaseName)];
 
 
 GO
-ALTER TABLE [dbo].[core_barangay] WITH CHECK CHECK CONSTRAINT [core_barangay_city];
+ALTER TABLE [dbo].[core_barangay] WITH CHECK CHECK CONSTRAINT [core_barangay_core_city];
 
-ALTER TABLE [dbo].[core_city] WITH CHECK CHECK CONSTRAINT [core_city_province];
+ALTER TABLE [dbo].[core_city] WITH CHECK CHECK CONSTRAINT [core_city_core_province];
 
-ALTER TABLE [dbo].[core_contact] WITH CHECK CHECK CONSTRAINT [core_contact_student];
+ALTER TABLE [dbo].[core_contact] WITH CHECK CHECK CONSTRAINT [core_contact_core_student];
 
-ALTER TABLE [dbo].[core_guardian] WITH CHECK CHECK CONSTRAINT [core_guardian_student];
+ALTER TABLE [dbo].[core_guardian] WITH CHECK CHECK CONSTRAINT [core_guardian_core_student];
 
-ALTER TABLE [dbo].[core_student] WITH CHECK CHECK CONSTRAINT [core_barangay_core_student];
+ALTER TABLE [dbo].[core_student] WITH CHECK CHECK CONSTRAINT [core_student_core_barangay];
 
-ALTER TABLE [dbo].[core_student] WITH CHECK CHECK CONSTRAINT [core_civilstatus_core_student];
+ALTER TABLE [dbo].[core_student] WITH CHECK CHECK CONSTRAINT [core_student_core_civilstatus];
 
-ALTER TABLE [dbo].[core_student] WITH CHECK CHECK CONSTRAINT [core_gender_core_student];
+ALTER TABLE [dbo].[core_student] WITH CHECK CHECK CONSTRAINT [core_student_core_gender];
 
-ALTER TABLE [dbo].[emp_contact] WITH CHECK CHECK CONSTRAINT [emp_contact_employee];
+ALTER TABLE [dbo].[emp_contact] WITH CHECK CHECK CONSTRAINT [emp_contact_emp_employee];
 
-ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_course_schedule];
+ALTER TABLE [dbo].[enroll_enrolledyear] WITH CHECK CHECK CONSTRAINT [enroll_enrolledyear_enroll_course];
 
-ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_day_schedule];
+ALTER TABLE [dbo].[enroll_enrolledyear] WITH CHECK CHECK CONSTRAINT [enroll_enrolledyear_enroll_level];
 
-ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_employee_schedule];
+ALTER TABLE [dbo].[enroll_enrolledyear] WITH CHECK CHECK CONSTRAINT [enroll_enrolledyear_enroll_schoolyear];
 
-ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_room_schedule];
+ALTER TABLE [dbo].[enroll_enrolledyear] WITH CHECK CHECK CONSTRAINT [enroll_enrolledyear_enroll_section];
 
-ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_section_schedule];
+ALTER TABLE [dbo].[enroll_enrolledyear] WITH CHECK CHECK CONSTRAINT [enroll_enrolledyear_enroll_semester];
 
-ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_subject_schedule];
+ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_schedule_enroll_day];
 
-ALTER TABLE [dbo].[sms_inbox] WITH CHECK CHECK CONSTRAINT [sms_inbox_status];
+ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_schedule_enroll_employee];
 
-ALTER TABLE [dbo].[sms_inbox_archive] WITH CHECK CHECK CONSTRAINT [sms_inbox_archive_status];
+ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_schedule_enroll_room];
 
-ALTER TABLE [dbo].[sms_networkprovidercode] WITH CHECK CHECK CONSTRAINT [sms_networkcode_networkprovider];
+ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_schedule_enroll_section];
 
-ALTER TABLE [dbo].[sms_notification] WITH CHECK CHECK CONSTRAINT [sms_notification_room];
+ALTER TABLE [dbo].[enroll_schedule] WITH CHECK CHECK CONSTRAINT [enroll_schedule_enroll_subject];
 
-ALTER TABLE [dbo].[sms_outbox] WITH CHECK CHECK CONSTRAINT [sms_outbox_status];
+ALTER TABLE [dbo].[enroll_section] WITH CHECK CHECK CONSTRAINT [enroll_section_enroll_course];
 
-ALTER TABLE [dbo].[sms_outbox_archive] WITH CHECK CHECK CONSTRAINT [sms_outbox_archive_status];
+ALTER TABLE [dbo].[enroll_section] WITH CHECK CHECK CONSTRAINT [enroll_section_enroll_level];
+
+ALTER TABLE [dbo].[sms_inbox] WITH CHECK CHECK CONSTRAINT [sms_inbox_sms_status];
+
+ALTER TABLE [dbo].[sms_inbox_archive] WITH CHECK CHECK CONSTRAINT [sms_inbox_archive_sms_status];
+
+ALTER TABLE [dbo].[sms_networkprovidercode] WITH CHECK CHECK CONSTRAINT [sms_networkcode_sms_networkprovider];
+
+ALTER TABLE [dbo].[sms_notification] WITH CHECK CHECK CONSTRAINT [sms_notification_enroll_room];
+
+ALTER TABLE [dbo].[sms_outbox] WITH CHECK CHECK CONSTRAINT [sms_outbox_sms_status];
+
+ALTER TABLE [dbo].[sms_outbox_archive] WITH CHECK CHECK CONSTRAINT [sms_outbox_archive_sms_status];
 
 
 GO

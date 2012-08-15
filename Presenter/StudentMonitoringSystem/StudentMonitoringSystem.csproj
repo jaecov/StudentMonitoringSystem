@@ -252,12 +252,14 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.core_contact.datasource" />
+    <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.core_guardian.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.emp_contact.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.enroll_section.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vbarangayinfo.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vcityinfo.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vemployeeinfo.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vscheduleinfo.datasource" />
+    <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vsectioninfo.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vstudentinfo.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

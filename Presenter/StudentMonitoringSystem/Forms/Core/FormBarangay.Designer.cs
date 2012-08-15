@@ -30,10 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.grdBarangay = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cityidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vbarangayinfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -45,6 +41,10 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cityidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.city_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdBarangay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vbarangayinfoBindingSource)).BeginInit();
             this.GroupBox1.SuspendLayout();
@@ -64,7 +64,7 @@
             this.idDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.cityidDataGridViewTextBoxColumn,
-            this.cityDataGridViewTextBoxColumn});
+            this.city_name});
             this.grdBarangay.DataSource = this.vbarangayinfoBindingSource;
             this.grdBarangay.Location = new System.Drawing.Point(3, 110);
             this.grdBarangay.Name = "grdBarangay";
@@ -73,35 +73,6 @@
             this.grdBarangay.Size = new System.Drawing.Size(799, 260);
             this.grdBarangay.TabIndex = 208;
             this.grdBarangay.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdBarangay_CellClick);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cityidDataGridViewTextBoxColumn
-            // 
-            this.cityidDataGridViewTextBoxColumn.DataPropertyName = "city_id";
-            this.cityidDataGridViewTextBoxColumn.HeaderText = "city_id";
-            this.cityidDataGridViewTextBoxColumn.Name = "cityidDataGridViewTextBoxColumn";
-            this.cityidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cityidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // cityDataGridViewTextBoxColumn
-            // 
-            this.cityDataGridViewTextBoxColumn.DataPropertyName = "city";
-            this.cityDataGridViewTextBoxColumn.HeaderText = "city";
-            this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
-            this.cityDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // vbarangayinfoBindingSource
             // 
@@ -141,7 +112,7 @@
             this.cmbCity.Name = "cmbCity";
             this.cmbCity.Size = new System.Drawing.Size(529, 21);
             this.cmbCity.TabIndex = 213;
-            this.cmbCity.ValueMember = "id";            
+            this.cmbCity.ValueMember = "id";
             // 
             // Label22
             // 
@@ -205,6 +176,35 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // cityidDataGridViewTextBoxColumn
+            // 
+            this.cityidDataGridViewTextBoxColumn.DataPropertyName = "city_id";
+            this.cityidDataGridViewTextBoxColumn.HeaderText = "city_id";
+            this.cityidDataGridViewTextBoxColumn.Name = "cityidDataGridViewTextBoxColumn";
+            this.cityidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cityidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // city_name
+            // 
+            this.city_name.DataPropertyName = "city_name";
+            this.city_name.HeaderText = "City";
+            this.city_name.Name = "city_name";
+            this.city_name.ReadOnly = true;
+            // 
             // FormBarangay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,9 +244,10 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridView grdBarangay;
         private System.Windows.Forms.BindingSource vbarangayinfoBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn city_name;
     }
 }

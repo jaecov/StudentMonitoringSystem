@@ -43,8 +43,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.provinceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.provinceidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.province_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vcityinfoBindingSource)).BeginInit();
             this.GroupBox1.SuspendLayout();
@@ -63,8 +63,8 @@
             this.grdCity.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
-            this.provinceDataGridViewTextBoxColumn,
-            this.provinceidDataGridViewTextBoxColumn});
+            this.provinceidDataGridViewTextBoxColumn,
+            this.province_name});
             this.grdCity.DataSource = this.vcityinfoBindingSource;
             this.grdCity.Location = new System.Drawing.Point(3, 110);
             this.grdCity.Name = "grdCity";
@@ -190,13 +190,6 @@
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // provinceDataGridViewTextBoxColumn
-            // 
-            this.provinceDataGridViewTextBoxColumn.DataPropertyName = "province";
-            this.provinceDataGridViewTextBoxColumn.HeaderText = "Province";
-            this.provinceDataGridViewTextBoxColumn.Name = "provinceDataGridViewTextBoxColumn";
-            this.provinceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // provinceidDataGridViewTextBoxColumn
             // 
             this.provinceidDataGridViewTextBoxColumn.DataPropertyName = "province_id";
@@ -204,6 +197,13 @@
             this.provinceidDataGridViewTextBoxColumn.Name = "provinceidDataGridViewTextBoxColumn";
             this.provinceidDataGridViewTextBoxColumn.ReadOnly = true;
             this.provinceidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // province_name
+            // 
+            this.province_name.DataPropertyName = "province_name";
+            this.province_name.HeaderText = "Province";
+            this.province_name.Name = "province_name";
+            this.province_name.ReadOnly = true;
             // 
             // FormCity
             // 
@@ -245,9 +245,10 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridView grdCity;
         private System.Windows.Forms.BindingSource vcityinfoBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn provinceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn provinceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn provinceidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn province_name;
     }
 }

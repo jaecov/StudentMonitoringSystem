@@ -12,6 +12,10 @@ namespace StudentMonitoringSystem.Presenter.Enroll
         int ID { get; set; }
         string Name { get; set; }
         string Note { get; set; }
-        List<enroll_section> SectionDataSource { set; }
+        int Course_ID { get; set; }
+        int Level_ID { get; set; }
+        List<vsectioninfo> SectionDataSource { set; }
+        List<enroll_course> CourseDataSource { set; }
+        List<enroll_level> LevelDataSource { set; }
     }
 }

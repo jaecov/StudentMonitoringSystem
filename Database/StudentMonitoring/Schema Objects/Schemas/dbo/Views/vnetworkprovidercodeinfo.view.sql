@@ -4,6 +4,6 @@ SELECT
  c.id
 ,c.name
 ,c.networkprovider_id
-,p.name as networkprovider
+,p.name as networkprovider_name
 FROM dbo.sms_networkprovidercode c
 inner join dbo.sms_networkprovider p on c.networkprovider_id = p.id

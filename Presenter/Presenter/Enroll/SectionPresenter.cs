@@ -21,7 +21,14 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
         public void LoadItems()
         {
-            View.SectionDataSource = Controller.GetObject<enroll_section>().ToList();
+            LoadSectionDataSource();
+            View.CourseDataSource = Controller.GetObject<enroll_course>().ToList();
+            View.LevelDataSource = Controller.GetObject<enroll_level>().ToList();
+        }
+
+        public void LoadSectionDataSource()
+        {
+            View.SectionDataSource = Controller.GetObject<vsectioninfo>().ToList();
         }
 
         public void LoadSectionInfo(int id)
@@ -55,7 +62,7 @@ namespace StudentMonitoringSystem.Presenter.Enroll
                     return false;
 
                 Controller.DeleteObject<enroll_section>(item);
-                LoadItems();
+                LoadSectionDataSource();
                 View.Notify(Common.Result.DeleteSuceeded, null);
                 return true;
             }
@@ -76,7 +83,7 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             {
                 UpdateSection();
             }
-            LoadItems();
+            LoadSectionDataSource();
         }
 
         private void CreateSection()
@@ -93,6 +100,8 @@ namespace StudentMonitoringSystem.Presenter.Enroll
                 var item = new enroll_section();
                 item.name = View.Name;
                 item.note = View.Note;
+                item.course_id = View.Course_ID;
+                item.level_id = View.Level_ID;
 
                 var result = Controller.CreateObject<enroll_section>(item);
                 View.ID = result.id;
@@ -123,6 +132,8 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
                 item.name = View.Name;
                 item.note = View.Note;
+                item.course_id = View.Course_ID;
+                item.level_id = View.Level_ID;
 
                 Controller.UpdateObject<enroll_section>(item);
                 View.Notify(Common.Result.UpdateSuceeded, null);
@@ -143,12 +154,16 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             switch (operation)
             {
                 case Common.Operation.Insert:
-                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");                   
+                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");
+                    if (View.Course_ID == 0) brokenRules.Add("Course is required.");
+                    if (View.Level_ID == 0) brokenRules.Add("Level is required.");
                     break;
 
                 case Common.Operation.Update:
                     if (View.ID == 0) brokenRules.Add("Select record first.");
                     if (View.Name == string.Empty) brokenRules.Add("Name is required.");
+                    if (View.Course_ID == 0) brokenRules.Add("Course is required.");
+                    if (View.Level_ID == 0) brokenRules.Add("Level is required.");
                     break;
 
                 case Common.Operation.Delete:

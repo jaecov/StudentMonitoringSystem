@@ -75,7 +75,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string civilstatus
+        public  string civilstatus_name
         {
             get;
             set;
@@ -111,13 +111,13 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string gender
+        public  string gender_name
         {
             get;
             set;
         }
     
-        public  string barangay
+        public  string barangay_name
         {
             get;
             set;
@@ -129,7 +129,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string city
+        public  string city_name
         {
             get;
             set;
@@ -141,7 +141,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string province
+        public  string province_name
         {
             get;
             set;

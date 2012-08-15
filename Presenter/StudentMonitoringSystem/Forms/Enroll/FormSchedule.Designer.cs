@@ -35,7 +35,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbCourse = new System.Windows.Forms.ComboBox();
-            this.label27 = new System.Windows.Forms.Label();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
@@ -61,20 +60,21 @@
             this.Label25 = new System.Windows.Forms.Label();
             this.dteEnd = new System.Windows.Forms.DateTimePicker();
             this.label15 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subjectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.section_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subject_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subject_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datestartDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateendDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sectionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.day_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.room_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coursenameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coursecodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emplastnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.empfirstnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subjectidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dayidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roomidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.empnumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,19 +100,19 @@
             this.grdSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
-            this.subjectDataGridViewTextBoxColumn,
+            this.section_name,
+            this.subject_code,
+            this.subject_name,
             this.datestartDataGridViewTextBoxColumn,
             this.dateendDataGridViewTextBoxColumn,
-            this.roomDataGridViewTextBoxColumn,
-            this.sectionDataGridViewTextBoxColumn,
-            this.dayDataGridViewTextBoxColumn,
+            this.day_name,
+            this.room_name,
             this.coursenameDataGridViewTextBoxColumn,
             this.coursecodeDataGridViewTextBoxColumn,
             this.emplastnameDataGridViewTextBoxColumn,
             this.empfirstnameDataGridViewTextBoxColumn,
             this.noteDataGridViewTextBoxColumn,
             this.subjectidDataGridViewTextBoxColumn,
-            this.dataGridViewTextBoxColumn1,
             this.dayidDataGridViewTextBoxColumn,
             this.roomidDataGridViewTextBoxColumn,
             this.empnumberDataGridViewTextBoxColumn,
@@ -169,16 +169,7 @@
             this.cmbCourse.Size = new System.Drawing.Size(347, 21);
             this.cmbCourse.TabIndex = 213;
             this.cmbCourse.ValueMember = "id";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.ForeColor = System.Drawing.Color.Red;
-            this.label27.Location = new System.Drawing.Point(19, 12);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(11, 13);
-            this.label27.TabIndex = 216;
-            this.label27.Text = "*";
+            this.cmbCourse.SelectedIndexChanged += new System.EventHandler(this.cmbCourse_SelectedIndexChanged);
             // 
             // GroupBox1
             // 
@@ -435,6 +426,16 @@
             this.label15.TabIndex = 242;
             this.label15.Text = "Time End:";
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.ForeColor = System.Drawing.Color.Red;
+            this.label27.Location = new System.Drawing.Point(19, 12);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(11, 13);
+            this.label27.TabIndex = 216;
+            this.label27.Text = "*";
+            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
@@ -442,12 +443,26 @@
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // subjectDataGridViewTextBoxColumn
+            // section_name
             // 
-            this.subjectDataGridViewTextBoxColumn.DataPropertyName = "subject";
-            this.subjectDataGridViewTextBoxColumn.HeaderText = "subject";
-            this.subjectDataGridViewTextBoxColumn.Name = "subjectDataGridViewTextBoxColumn";
-            this.subjectDataGridViewTextBoxColumn.ReadOnly = true;
+            this.section_name.DataPropertyName = "section_name";
+            this.section_name.HeaderText = "Section";
+            this.section_name.Name = "section_name";
+            this.section_name.ReadOnly = true;
+            // 
+            // subject_code
+            // 
+            this.subject_code.DataPropertyName = "subject_code";
+            this.subject_code.HeaderText = "Subject Code";
+            this.subject_code.Name = "subject_code";
+            this.subject_code.ReadOnly = true;
+            // 
+            // subject_name
+            // 
+            this.subject_name.DataPropertyName = "subject_name";
+            this.subject_name.HeaderText = "Subject Name";
+            this.subject_name.Name = "subject_name";
+            this.subject_name.ReadOnly = true;
             // 
             // datestartDataGridViewTextBoxColumn
             // 
@@ -463,26 +478,19 @@
             this.dateendDataGridViewTextBoxColumn.Name = "dateendDataGridViewTextBoxColumn";
             this.dateendDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // roomDataGridViewTextBoxColumn
+            // day_name
             // 
-            this.roomDataGridViewTextBoxColumn.DataPropertyName = "room";
-            this.roomDataGridViewTextBoxColumn.HeaderText = "room";
-            this.roomDataGridViewTextBoxColumn.Name = "roomDataGridViewTextBoxColumn";
-            this.roomDataGridViewTextBoxColumn.ReadOnly = true;
+            this.day_name.DataPropertyName = "day_name";
+            this.day_name.HeaderText = "Day";
+            this.day_name.Name = "day_name";
+            this.day_name.ReadOnly = true;
             // 
-            // sectionDataGridViewTextBoxColumn
+            // room_name
             // 
-            this.sectionDataGridViewTextBoxColumn.DataPropertyName = "section";
-            this.sectionDataGridViewTextBoxColumn.HeaderText = "section";
-            this.sectionDataGridViewTextBoxColumn.Name = "sectionDataGridViewTextBoxColumn";
-            this.sectionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dayDataGridViewTextBoxColumn
-            // 
-            this.dayDataGridViewTextBoxColumn.DataPropertyName = "day";
-            this.dayDataGridViewTextBoxColumn.HeaderText = "day";
-            this.dayDataGridViewTextBoxColumn.Name = "dayDataGridViewTextBoxColumn";
-            this.dayDataGridViewTextBoxColumn.ReadOnly = true;
+            this.room_name.DataPropertyName = "room_name";
+            this.room_name.HeaderText = "Room";
+            this.room_name.Name = "room_name";
+            this.room_name.ReadOnly = true;
             // 
             // coursenameDataGridViewTextBoxColumn
             // 
@@ -526,14 +534,6 @@
             this.subjectidDataGridViewTextBoxColumn.Name = "subjectidDataGridViewTextBoxColumn";
             this.subjectidDataGridViewTextBoxColumn.ReadOnly = true;
             this.subjectidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "course_id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "course_id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
             // 
             // dayidDataGridViewTextBoxColumn
             // 
@@ -651,7 +651,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbCourse;
-        internal System.Windows.Forms.Label label27;
         internal System.Windows.Forms.GroupBox GroupBox1;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnReset;
@@ -682,20 +681,26 @@
         internal System.Windows.Forms.Label Label25;
         internal System.Windows.Forms.DateTimePicker dteEnd;
         internal System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn subjectDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datestartDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateendDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roomDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sectionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dayDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        internal System.Windows.Forms.Label label27;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn section_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subject_code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subject_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datestartDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateendDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn day_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn room_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn coursenameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn coursecodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emplastnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn empfirstnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn subjectidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dayidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roomidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn empnumberDataGridViewTextBoxColumn;

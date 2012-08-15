@@ -89,6 +89,12 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<core_civilstatus> _core_civilstatus;
     
+    	public ObjectSet<core_contact> core_contact
+    	{
+    		get { return _core_contact  ?? (_core_contact = CreateObjectSet<core_contact>("core_contact")); }
+    	}
+    	private ObjectSet<core_contact> _core_contact;
+    
     	public ObjectSet<core_day> core_day
     	{
     		get { return _core_day  ?? (_core_day = CreateObjectSet<core_day>("core_day")); }
@@ -149,6 +155,18 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<enroll_course> _enroll_course;
     
+    	public ObjectSet<enroll_enrolledyear> enroll_enrolledyear
+    	{
+    		get { return _enroll_enrolledyear  ?? (_enroll_enrolledyear = CreateObjectSet<enroll_enrolledyear>("enroll_enrolledyear")); }
+    	}
+    	private ObjectSet<enroll_enrolledyear> _enroll_enrolledyear;
+    
+    	public ObjectSet<enroll_level> enroll_level
+    	{
+    		get { return _enroll_level  ?? (_enroll_level = CreateObjectSet<enroll_level>("enroll_level")); }
+    	}
+    	private ObjectSet<enroll_level> _enroll_level;
+    
     	public ObjectSet<enroll_room> enroll_room
     	{
     		get { return _enroll_room  ?? (_enroll_room = CreateObjectSet<enroll_room>("enroll_room")); }
@@ -160,6 +178,12 @@ namespace StudentMonitoringSystem.Entities
     		get { return _enroll_schedule  ?? (_enroll_schedule = CreateObjectSet<enroll_schedule>("enroll_schedule")); }
     	}
     	private ObjectSet<enroll_schedule> _enroll_schedule;
+    
+    	public ObjectSet<enroll_schoolyear> enroll_schoolyear
+    	{
+    		get { return _enroll_schoolyear  ?? (_enroll_schoolyear = CreateObjectSet<enroll_schoolyear>("enroll_schoolyear")); }
+    	}
+    	private ObjectSet<enroll_schoolyear> _enroll_schoolyear;
     
     	public ObjectSet<enroll_section> enroll_section
     	{
@@ -263,6 +287,12 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<vemployeeinfo> _vemployeeinfoes;
     
+    	public ObjectSet<venrolledyearinfo> venrolledyearinfoes
+    	{
+    		get { return _venrolledyearinfoes  ?? (_venrolledyearinfoes = CreateObjectSet<venrolledyearinfo>("venrolledyearinfoes")); }
+    	}
+    	private ObjectSet<venrolledyearinfo> _venrolledyearinfoes;
+    
     	public ObjectSet<vnetworkprovidercodeinfo> vnetworkprovidercodeinfoes
     	{
     		get { return _vnetworkprovidercodeinfoes  ?? (_vnetworkprovidercodeinfoes = CreateObjectSet<vnetworkprovidercodeinfo>("vnetworkprovidercodeinfoes")); }
@@ -275,11 +305,11 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<vscheduleinfo> _vscheduleinfoes;
     
-    	public ObjectSet<core_contact> core_contact
+    	public ObjectSet<vsectioninfo> vsectioninfoes
     	{
-    		get { return _core_contact  ?? (_core_contact = CreateObjectSet<core_contact>("core_contact")); }
+    		get { return _vsectioninfoes  ?? (_vsectioninfoes = CreateObjectSet<vsectioninfo>("vsectioninfoes")); }
     	}
-    	private ObjectSet<core_contact> _core_contact;
+    	private ObjectSet<vsectioninfo> _vsectioninfoes;
     
     	public ObjectSet<vstudentinfo> vstudentinfoes
     	{
@@ -321,6 +351,11 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(core_civilstatus))
     		{
     			return (ObjectSet<T>)(object)core_civilstatus;
+    		}
+    								
+    		if(typeof(T) == typeof(core_contact))
+    		{
+    			return (ObjectSet<T>)(object)core_contact;
     		}
     								
     		if(typeof(T) == typeof(core_day))
@@ -373,6 +408,16 @@ namespace StudentMonitoringSystem.Entities
     			return (ObjectSet<T>)(object)enroll_course;
     		}
     								
+    		if(typeof(T) == typeof(enroll_enrolledyear))
+    		{
+    			return (ObjectSet<T>)(object)enroll_enrolledyear;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_level))
+    		{
+    			return (ObjectSet<T>)(object)enroll_level;
+    		}
+    								
     		if(typeof(T) == typeof(enroll_room))
     		{
     			return (ObjectSet<T>)(object)enroll_room;
@@ -381,6 +426,11 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(enroll_schedule))
     		{
     			return (ObjectSet<T>)(object)enroll_schedule;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_schoolyear))
+    		{
+    			return (ObjectSet<T>)(object)enroll_schoolyear;
     		}
     								
     		if(typeof(T) == typeof(enroll_section))
@@ -468,6 +518,11 @@ namespace StudentMonitoringSystem.Entities
     			return (ObjectSet<T>)(object)vemployeeinfoes;
     		}
     								
+    		if(typeof(T) == typeof(venrolledyearinfo))
+    		{
+    			return (ObjectSet<T>)(object)venrolledyearinfoes;
+    		}
+    								
     		if(typeof(T) == typeof(vnetworkprovidercodeinfo))
     		{
     			return (ObjectSet<T>)(object)vnetworkprovidercodeinfoes;
@@ -478,9 +533,9 @@ namespace StudentMonitoringSystem.Entities
     			return (ObjectSet<T>)(object)vscheduleinfoes;
     		}
     								
-    		if(typeof(T) == typeof(core_contact))
+    		if(typeof(T) == typeof(vsectioninfo))
     		{
-    			return (ObjectSet<T>)(object)core_contact;
+    			return (ObjectSet<T>)(object)vsectioninfoes;
     		}
     								
     		if(typeof(T) == typeof(vstudentinfo))

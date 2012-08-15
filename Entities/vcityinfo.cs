@@ -39,7 +39,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string province
+        public  string province_name
         {
             get;
             set;

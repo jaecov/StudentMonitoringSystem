@@ -354,7 +354,7 @@ namespace StudentMonitoringSystem.Forms.Employee
             else
             {
                 ID = 0;
-                Number = Common.GenerateNewNumber();
+                Number = string.Empty;  
                 Firstname = string.Empty;
                 Middlename = string.Empty;
                 Lastname = string.Empty;
@@ -369,7 +369,7 @@ namespace StudentMonitoringSystem.Forms.Employee
                 Note = string.Empty;
                 Picture = string.Empty;
 
-                formContact.LoadContacts();
+                formContact.ResetAll();
             }
         }
 
@@ -580,6 +580,12 @@ namespace StudentMonitoringSystem.Forms.Employee
         #endregion
 
         #region Methods
+
+        public void ResetAll()
+        {
+            ContactDataSource = null;
+            Reset();
+        }
 
         public void Reset()
         {

@@ -21,6 +21,7 @@ namespace StudentMonitoringSystem.Forms.Core
         public FormStudent()
         {
             Presenter = new StudentPresenter(this);
+            formGuardian = new FormGuardian(this);
             formContact = new FormContact(this);
             InitializeComponent();
             grdStudent.AutoGenerateColumns = false;
@@ -37,6 +38,7 @@ namespace StudentMonitoringSystem.Forms.Core
         #region Variables
 
         FormContact formContact;
+        FormGuardian formGuardian;
 
         #endregion
 
@@ -223,6 +225,107 @@ namespace StudentMonitoringSystem.Forms.Core
             }
         }
 
+        public string FatherName
+        {
+            get
+            {
+                return txtFatherName.Text;
+            }
+            set
+            {
+                txtFatherName.Text = value;
+            }
+        }
+
+        public string FatherOccupation
+        {
+            get
+            {
+                return txtFatherOccupation.Text;
+            }
+            set
+            {
+                txtFatherOccupation.Text = value;
+            }
+        }
+
+        public string FatherAddress
+        {
+            get
+            {
+                return txtFatherAddress.Text;
+            }
+            set
+            {
+                txtFatherAddress.Text = value;
+            }
+        }
+
+        public string FatherContactNumber
+        {
+            get
+            {
+                return txtFatherContactNo.Text;
+            }
+            set
+            {
+                txtFatherContactNo.Text = value;
+            }
+        }
+
+        public string MotherName
+        {
+            get
+            {
+                return txtMotherName.Text;
+            }
+            set
+            {
+                txtMotherName.Text = value;
+            }
+        }
+
+        public string MotherOccupation
+        {
+            get
+            {
+                return txtMotherOccupation.Text;
+            }
+            set
+            {
+                txtMotherOccupation.Text = value;
+            }
+        }
+
+        public string MotherAddress
+        {
+            get
+            {
+                return txtMotherAddress.Text;
+            }
+            set
+            {
+                txtMotherAddress.Text = value;
+            }
+        }
+
+        public string MotherContactNumber
+        {
+            get
+            {
+                return txtMotherContactNo.Text;
+            }
+            set
+            {
+                txtMotherContactNo.Text = value;
+            }
+        }
+
+        public List<core_guardian> GuardianDataSource
+        {
+            set { coreguardianBindingSource.DataSource = value; }
+        }
+
         public List<core_civilstatus> CivilStatusDataSource
         {
             set
@@ -316,14 +419,6 @@ namespace StudentMonitoringSystem.Forms.Core
             Presenter.LoadItems();
         }
 
-        private void txtNumber_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (txtNumber.Text.Trim().Length >= 5)
-            {
-                lblNetwork.Text = Presenter.GetProvider(txtNumber.Text.Trim().Substring(0, 4));
-            }
-        }
-
         private void grdStudent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex <= -1)
@@ -340,6 +435,8 @@ namespace StudentMonitoringSystem.Forms.Core
             Presenter.LoadStudentInfo(id);
             formContact.LoadContacts();
             formContact.Reset();
+            formGuardian.LoadGuardians();
+            formGuardian.Reset();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -348,10 +445,14 @@ namespace StudentMonitoringSystem.Forms.Core
             {
                 formContact.Reset();
             }
+            else if (SelectedTab == Tab.Guardian)
+            {
+                formGuardian.Reset();
+            }
             else
             {
                 ID = 0;
-                Number = Common.GenerateNewNumber();
+                Number = string.Empty;
                 Firstname = string.Empty;
                 Middlename = string.Empty;
                 Lastname = string.Empty;
@@ -365,8 +466,17 @@ namespace StudentMonitoringSystem.Forms.Core
                 Barangay_ID = 0;
                 Note = string.Empty;
                 Picture = string.Empty;
+                FatherName = string.Empty;
+                FatherAddress = string.Empty;
+                FatherContactNumber = string.Empty;
+                FatherOccupation = string.Empty;
+                MotherName = string.Empty;
+                MotherAddress = string.Empty;
+                MotherContactNumber = string.Empty;
+                MotherOccupation = string.Empty;
 
-                formContact.LoadContacts();
+                formContact.ResetAll();
+                formGuardian.ResetAll();
             }
         }
 
@@ -379,6 +489,10 @@ namespace StudentMonitoringSystem.Forms.Core
                 if (SelectedTab == Tab.Contact)
                 {
                     formContact.Save();
+                }
+                else if (SelectedTab == Tab.Guardian)
+                {
+                    formGuardian.Save();
                 }
                 else
                 {
@@ -396,6 +510,10 @@ namespace StudentMonitoringSystem.Forms.Core
                 if (SelectedTab == Tab.Contact)
                 {
                     formContact.Delete();
+                }
+                else if (SelectedTab == Tab.Guardian)
+                {
+                    formGuardian.Delete();
                 }
                 else
                 {
@@ -423,6 +541,33 @@ namespace StudentMonitoringSystem.Forms.Core
             }
         }
 
+        private void btnWebcam_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Bitmap |*.bmp | JPG|*.jpg | GIF|*.gif | All Files|*.*";
+            openFileDialog.FileName = "";
+
+            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+
+                Picture = openFileDialog.FileName;
+            }
+        }
+
+        #region Contact
+
+        private void txtNumber_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtNumber.Text.Trim().Length >= 5)
+            {
+                lblNetwork.Text = Presenter.GetProvider(txtNumber.Text.Trim().Substring(0, 4));
+            }
+        }
+
         private void grdContact_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex <= -1 || e.RowIndex <= -1)
@@ -439,23 +584,37 @@ namespace StudentMonitoringSystem.Forms.Core
             formContact.LoadContactInfo(id);
             txtNumber_KeyUp(null, null);
         }
-               
-        private void btnWebcam_Click(object sender, EventArgs e)
-        {  
-        }
 
-        private void btnBrowse_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Guardian
+
+        private void txtGNumber_KeyUp(object sender, KeyEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Bitmap |*.bmp | JPG|*.jpg | GIF|*.gif | All Files|*.*";
-            openFileDialog.FileName = "";
-
-            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
+            if (txtGNumber.Text.Trim().Length >= 5)
             {
-
-                Picture = openFileDialog.FileName;
+                lblGNetwork.Text = Presenter.GetProvider(txtGNumber.Text.Trim().Substring(0, 4));
             }
         }
+
+        private void grdGuardian_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex <= -1 || e.RowIndex <= -1)
+                return;
+
+            if (grdGuardian.CurrentRow == null)
+                return;
+
+            var data = grdGuardian.CurrentRow.DataBoundItem as core_guardian;
+            if (data == null)
+                return;
+
+            int id = data.id;
+            formGuardian.LoadGuardianInfo(id);
+            txtGNumber_KeyUp(null, null);
+        }
+
+        #endregion
 
         #endregion
 
@@ -464,7 +623,8 @@ namespace StudentMonitoringSystem.Forms.Core
         enum Tab
         {
             StudentInfo = 0,
-            Contact = 1
+            Contact = 1,
+            Guardian = 2
         }
 
         private Tab SelectedTab
@@ -474,6 +634,10 @@ namespace StudentMonitoringSystem.Forms.Core
                 if (this.tabControl1.SelectedTab == tabContact)
                 {
                     return Tab.Contact;
+                }
+                if (this.tabControl1.SelectedTab == tabGuardian)
+                {
+                    return Tab.Guardian;
                 }
                 else
                 {
@@ -492,9 +656,8 @@ namespace StudentMonitoringSystem.Forms.Core
         }
 
         #endregion
-
     }
-    
+
     #region Contact
 
     public class FormContact : IContact
@@ -521,7 +684,7 @@ namespace StudentMonitoringSystem.Forms.Core
         {
             get
             {
-                return parent.txtNumber.Text;
+                return parent.txtNumber.Text.Replace("-", "");
             }
             set
             {
@@ -575,12 +738,19 @@ namespace StudentMonitoringSystem.Forms.Core
 
         #region Methods
 
+        public void ResetAll()
+        {
+            Reset();
+            ContactDataSource = null;
+        }
+
         public void Reset()
         {
             this.ID = 0;
             this.Number = string.Empty;
             this.Emailaddress = string.Empty;
             this.Note = string.Empty;
+            parent.lblNetwork.Text = string.Empty;
         }
 
         public void LoadContacts()
@@ -608,4 +778,167 @@ namespace StudentMonitoringSystem.Forms.Core
     }
 
     #endregion
+
+    #region Guardian
+
+    public class FormGuardian : IGuardian
+    {
+        FormStudent parent;
+        public FormGuardian(FormStudent form)
+        {
+            Presenter = new GuardianPresenter(this);
+            parent = form;
+        }
+
+        public GuardianPresenter Presenter
+        { get; set; }
+
+        #region IGuardian
+
+        public int ID
+        {
+            get;
+            set;
+        }
+
+        public string Name
+        {
+            get
+            {
+                return parent.txtGName.Text;
+            }
+            set
+            {
+                parent.txtGName.Text = value;
+            }
+        }
+
+        public string Address
+        {
+            get
+            {
+                return parent.txtGAddress.Text;
+            }
+            set
+            {
+                parent.txtGAddress.Text = value;
+            }
+        }
+
+        public string Relationship
+        {
+            get
+            {
+                return parent.txtGRelationship.Text;
+            }
+            set
+            {
+                parent.txtGRelationship.Text = value;
+            }
+        }
+
+        public string Number
+        {
+            get
+            {
+                return parent.txtGNumber.Text.Replace("-", "");
+            }
+            set
+            {
+                parent.txtGNumber.Text = value;
+            }
+        }
+
+        public string Emailaddress
+        {
+            get
+            {
+                return parent.txtGEmailAddress.Text;
+            }
+            set
+            {
+                parent.txtGEmailAddress.Text = value;
+            }
+        }
+
+        public string Note
+        {
+            get
+            {
+                return parent.txtGNote.Text;
+            }
+            set
+            {
+                parent.txtGNote.Text = value;
+            }
+        }
+
+        public int Student_ID
+        {
+            get { return parent.ID; }
+        }
+
+        public List<core_guardian> GuardianDataSource
+        {
+            set
+            {
+                parent.coreguardianBindingSource.DataSource = value;
+            }
+        }
+
+        public void Notify(Common.Result result, List<string> messages)
+        {
+            parent.Notify(result, messages);
+        }
+
+        #endregion
+
+        #region Methods
+
+        public void ResetAll()
+        {
+            Reset();
+            GuardianDataSource = null;
+        }
+
+        public void Reset()
+        {
+            this.ID = 0;
+            this.Name = string.Empty;
+            this.Address = string.Empty;
+            this.Relationship = string.Empty;
+            this.Number = string.Empty;
+            this.Emailaddress = string.Empty;
+            this.Note = string.Empty;
+            parent.lblGNetwork.Text = string.Empty;
+        }
+
+        public void LoadGuardians()
+        {
+            Presenter.LoadItems();
+        }
+
+        public void LoadGuardianInfo(int id)
+        {
+            Presenter.LoadGuardianInfo(id);
+        }
+
+        public void Save()
+        {
+            Presenter.Save();
+        }
+
+        public void Delete()
+        {
+            Presenter.Delete();
+            Reset();
+        }
+
+        #endregion
+
+    }
+
+    #endregion
+
+
 }

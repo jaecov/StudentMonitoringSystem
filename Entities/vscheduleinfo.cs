@@ -27,12 +27,6 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  int course_id
-        {
-            get;
-            set;
-        }
-    
         public  int section_id
         {
             get;
@@ -81,7 +75,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string section
+        public  string section_name
         {
             get;
             set;
@@ -117,13 +111,19 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string subject
+        public  string subject_code
         {
             get;
             set;
         }
     
-        public  string room
+        public  string subject_name
+        {
+            get;
+            set;
+        }
+    
+        public  string room_name
         {
             get;
             set;
@@ -135,7 +135,13 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string day
+        public  string day_name
+        {
+            get;
+            set;
+        }
+    
+        public  int course_id
         {
             get;
             set;
@@ -148,6 +154,18 @@ namespace StudentMonitoringSystem.Entities
         }
     
         public  string course_code
+        {
+            get;
+            set;
+        }
+    
+        public  int level_id
+        {
+            get;
+            set;
+        }
+    
+        public  string level_name
         {
             get;
             set;

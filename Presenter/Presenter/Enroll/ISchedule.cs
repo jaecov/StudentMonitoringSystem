@@ -11,7 +11,6 @@ namespace StudentMonitoringSystem.Presenter.Enroll
     {
         int ID { get; set; }
         string Note { get; set; }
-        int Course_ID { get; set; }
         int Section_ID { get; set; }
         int Employee_ID { get; set; }
         int Subject_ID { get; set; }
@@ -19,6 +18,8 @@ namespace StudentMonitoringSystem.Presenter.Enroll
         int Day_ID { get; set; }
         DateTime DateStart { get; set; }
         DateTime DateEnd { get; set; }
+
+        int Course_ID { set; }
 
         List<vscheduleinfo> ScheduleDataSource { set; }
         List<enroll_course> CourseDataSource { set; }

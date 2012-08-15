@@ -39,7 +39,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string city
+        public  string city_name
         {
             get;
             set;

@@ -95,10 +95,19 @@
     <Compile Include="enroll_course.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="enroll_enrolledyear.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="enroll_level.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="enroll_room.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="enroll_schedule.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="enroll_schoolyear.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="enroll_section.cs">
@@ -168,10 +177,16 @@
     <Compile Include="vemployeeinfo.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="venrolledyearinfo.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="vnetworkprovidercodeinfo.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="vscheduleinfo.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vsectioninfo.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="vstudentinfo.cs">

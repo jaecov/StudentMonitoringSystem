@@ -4,6 +4,7 @@
 
 CREATE VIEW [dbo].[vstudentinfo]
 AS
+
 SELECT     
 st.id
 , st.number
@@ -14,21 +15,25 @@ st.id
 , st.picture
 , st.gender_id
 , st.civilstatus_id
-, cs.name as civilstatus
+, cs.name as civilstatus_name
 , st.citizenship
 , st.street
 , st.barangay_id
-, st.mothername
-, st.motheroccupation
+, st.note
+, gn.name AS gender_name
+, bg.name AS barangay_name
+, bg.city_id
+, ct.name AS city_name
+, ct.province_id
+, pr.name AS province_name
 , st.fathername
 , st.fatheroccupation
-, st.note
-, gn.name AS gender
-, bg.name AS barangay
-, bg.city_id
-, ct.name AS city
-, ct.province_id
-, pr.name AS province
+, st.fathercontactnumber
+, st.fatheraddress
+, st.mothername
+, st.motheroccupation
+, st.mothercontactnumber
+, st.motheraddress
 
 FROM dbo.core_student st
 INNER JOIN dbo.core_civilstatus cs on st.civilstatus_id = cs.id

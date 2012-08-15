@@ -49,6 +49,8 @@
     </Compile>
     <Compile Include="Core\BarangayPresenter.cs" />
     <Compile Include="Core\CityPresenter.cs" />
+    <Compile Include="Core\GurdianPresenter.cs" />
+    <Compile Include="Core\IGuardian.cs" />
     <Compile Include="Core\IGender.cs" />
     <Compile Include="Core\GenderPresenter.cs" />
     <Compile Include="Core\ICivilStatus.cs" />

@@ -42,46 +42,78 @@ namespace StudentMonitoringSystem.Entities
         #endregion
         #region Navigation Properties
     
-        public virtual ICollection<enroll_schedule> enroll_schedule
+        public virtual ICollection<enroll_enrolledyear> enroll_enrolledyear
         {
             get
             {
-                if (_enroll_schedule == null)
+                if (_enroll_enrolledyear == null)
                 {
-                    var newCollection = new FixupCollection<enroll_schedule>();
-                    newCollection.CollectionChanged += Fixupenroll_schedule;
-                    _enroll_schedule = newCollection;
+                    var newCollection = new FixupCollection<enroll_enrolledyear>();
+                    newCollection.CollectionChanged += Fixupenroll_enrolledyear;
+                    _enroll_enrolledyear = newCollection;
                 }
-                return _enroll_schedule;
+                return _enroll_enrolledyear;
             }
             set
             {
-                if (!ReferenceEquals(_enroll_schedule, value))
+                if (!ReferenceEquals(_enroll_enrolledyear, value))
                 {
-                    var previousValue = _enroll_schedule as FixupCollection<enroll_schedule>;
+                    var previousValue = _enroll_enrolledyear as FixupCollection<enroll_enrolledyear>;
                     if (previousValue != null)
                     {
-                        previousValue.CollectionChanged -= Fixupenroll_schedule;
+                        previousValue.CollectionChanged -= Fixupenroll_enrolledyear;
                     }
-                    _enroll_schedule = value;
-                    var newValue = value as FixupCollection<enroll_schedule>;
+                    _enroll_enrolledyear = value;
+                    var newValue = value as FixupCollection<enroll_enrolledyear>;
                     if (newValue != null)
                     {
-                        newValue.CollectionChanged += Fixupenroll_schedule;
+                        newValue.CollectionChanged += Fixupenroll_enrolledyear;
                     }
                 }
             }
         }
-        private ICollection<enroll_schedule> _enroll_schedule;
+        private ICollection<enroll_enrolledyear> _enroll_enrolledyear;
+    
+        public virtual ICollection<enroll_section> enroll_section
+        {
+            get
+            {
+                if (_enroll_section == null)
+                {
+                    var newCollection = new FixupCollection<enroll_section>();
+                    newCollection.CollectionChanged += Fixupenroll_section;
+                    _enroll_section = newCollection;
+                }
+                return _enroll_section;
+            }
+            set
+            {
+                if (!ReferenceEquals(_enroll_section, value))
+                {
+                    var previousValue = _enroll_section as FixupCollection<enroll_section>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupenroll_section;
+                    }
+                    _enroll_section = value;
+                    var newValue = value as FixupCollection<enroll_section>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupenroll_section;
+                    }
+                }
+            }
+        }
+        private ICollection<enroll_section> _enroll_section;
 
         #endregion
         #region Association Fixup
     
-        private void Fixupenroll_schedule(object sender, NotifyCollectionChangedEventArgs e)
+        private void Fixupenroll_enrolledyear(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
             {
-                foreach (enroll_schedule item in e.NewItems)
+                foreach (enroll_enrolledyear item in e.NewItems)
                 {
                     item.enroll_course = this;
                 }
@@ -89,7 +121,29 @@ namespace StudentMonitoringSystem.Entities
     
             if (e.OldItems != null)
             {
-                foreach (enroll_schedule item in e.OldItems)
+                foreach (enroll_enrolledyear item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.enroll_course, this))
+                    {
+                        item.enroll_course = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupenroll_section(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (enroll_section item in e.NewItems)
+                {
+                    item.enroll_course = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (enroll_section item in e.OldItems)
                 {
                     if (ReferenceEquals(item.enroll_course, this))
                     {

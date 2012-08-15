@@ -30,7 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.grdSubject = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubjectinfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.Label22 = new System.Windows.Forms.Label();
@@ -40,12 +43,12 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubjectinfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtCode = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdSubject)).BeginInit();
-            this.GroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SubjectinfoBindingSource)).BeginInit();
+            this.GroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grdSubject
@@ -71,12 +74,30 @@
             this.grdSubject.TabIndex = 208;
             this.grdSubject.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdSubject_CellClick);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // note
             // 
             this.note.DataPropertyName = "note";
             this.note.HeaderText = "Note";
             this.note.Name = "note";
             this.note.ReadOnly = true;
+            // 
+            // SubjectinfoBindingSource
+            // 
+            this.SubjectinfoBindingSource.DataSource = typeof(StudentMonitoringSystem.Entities.enroll_subject);
             // 
             // txtName
             // 
@@ -90,9 +111,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(31, 12);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 13);
+            this.label7.Size = new System.Drawing.Size(38, 13);
             this.label7.TabIndex = 214;
-            this.label7.Text = "Name.:";
+            this.label7.Text = "Name:";
             // 
             // Label22
             // 
@@ -149,7 +170,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 44);
+            this.label1.Location = new System.Drawing.Point(31, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 13);
             this.label1.TabIndex = 219;
@@ -157,34 +178,45 @@
             // 
             // txtNote
             // 
-            this.txtNote.Location = new System.Drawing.Point(86, 44);
+            this.txtNote.Location = new System.Drawing.Point(86, 70);
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(529, 20);
             this.txtNote.TabIndex = 218;
             // 
-            // idDataGridViewTextBoxColumn
+            // label2
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(31, 42);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 221;
+            this.label2.Text = "Code:";
             // 
-            // nameDataGridViewTextBoxColumn
+            // label3
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(18, 42);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(11, 13);
+            this.label3.TabIndex = 222;
+            this.label3.Text = "*";
             // 
-            // SubjectinfoBindingSource
+            // txtCode
             // 
-            this.SubjectinfoBindingSource.DataSource = typeof(StudentMonitoringSystem.Entities.enroll_subject);
+            this.txtCode.Location = new System.Drawing.Point(86, 42);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(529, 20);
+            this.txtCode.TabIndex = 220;
             // 
             // FormSubject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 372);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtCode);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNote);
             this.Controls.Add(this.GroupBox1);
@@ -198,8 +230,8 @@
             this.Text = "Subject";
             this.Load += new System.EventHandler(this.FormSubject_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdSubject)).EndInit();
-            this.GroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SubjectinfoBindingSource)).EndInit();
+            this.GroupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,5 +255,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn note;
+        private System.Windows.Forms.Label label2;
+        internal System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtCode;
     }
 }

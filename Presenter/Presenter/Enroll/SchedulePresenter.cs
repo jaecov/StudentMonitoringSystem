@@ -21,13 +21,11 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
         public void LoadItems()
         {
-            View.CourseDataSource = Controller.GetObject<enroll_course>().ToList();
-            View.SectionDataSource = Controller.GetObject<enroll_section>().ToList();
+            View.CourseDataSource = Controller.GetObject<enroll_course>().ToList();            
             View.EmployeeDataSource = Controller.GetObject<vemployeeinfo>().ToList();
             View.SubjectDataSource = Controller.GetObject<enroll_subject>().ToList();
             View.RoomDataSource = Controller.GetObject<enroll_room>().ToList();
             View.DayDataSource = Controller.GetObject<core_day>().ToList();
-
             LoadScheduleDataSource();
         }
 
@@ -36,9 +34,14 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             View.ScheduleDataSource = Controller.GetObject<vscheduleinfo>().ToList();
         }
 
+        public void LoadSectionDataSource(int course_id)
+        {
+            View.SectionDataSource = Controller.GetObject<enroll_section>().Where(c => c.course_id == course_id).ToList();
+        }
+
         public void LoadScheduleInfo(int id)
         {
-            var item = Controller.GetObjectItemByColumnID<enroll_schedule>(id);
+            var item = Controller.GetObjectItemByColumnID<vscheduleinfo>(id);
             if (item == null)
             {
                 throw new Exception("Item not found.");
@@ -116,7 +119,6 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
                 var item = new enroll_schedule();
                 item.id = View.ID;
-                item.course_id = View.Course_ID;
                 item.section_id = View.Section_ID;
                 item.employee_id = View.Employee_ID;
                 item.subject_id = View.Subject_ID;
@@ -152,8 +154,6 @@ namespace StudentMonitoringSystem.Presenter.Enroll
                 {
                     throw new Exception("Can not update.Item not found.");
                 }
-
-                item.course_id = View.Course_ID;
                 item.section_id = View.Section_ID;
                 item.employee_id = View.Employee_ID;
                 item.subject_id = View.Subject_ID;
@@ -182,7 +182,6 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             switch (operation)
             {
                 case Common.Operation.Insert:
-                    if (View.Course_ID == 0) brokenRules.Add("Course is required.");
                     if (View.Section_ID == 0) brokenRules.Add("Section is required.");
                     if (View.Employee_ID == 0) brokenRules.Add("Employee is required.");
                     if (View.Subject_ID == 0) brokenRules.Add("Subject is required.");
@@ -193,8 +192,7 @@ namespace StudentMonitoringSystem.Presenter.Enroll
                     break;
 
                 case Common.Operation.Update:
-                    if (View.ID == 0) brokenRules.Add("Select record first.");                    
-                    if (View.Course_ID == 0) brokenRules.Add("Course is required.");
+                    if (View.ID == 0) brokenRules.Add("Select record first.");                                        
                     if (View.Section_ID == 0) brokenRules.Add("Section is required.");
                     if (View.Employee_ID == 0) brokenRules.Add("Employee is required.");
                     if (View.Subject_ID == 0) brokenRules.Add("Subject is required.");

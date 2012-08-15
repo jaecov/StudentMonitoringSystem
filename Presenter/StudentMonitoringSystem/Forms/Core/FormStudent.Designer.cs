@@ -99,6 +99,59 @@
             this.Label48 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label39 = new System.Windows.Forms.Label();
+            this.txtMotherContactNo = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.txtFatherContactNo = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.txtMotherAddress = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.txtFatherAddress = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtMotherOccupation = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.txtMotherName = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.txtFatherOccupation = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.txtFatherName = new System.Windows.Forms.TextBox();
+            this.tabGuardian = new System.Windows.Forms.TabPage();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.txtGRelationship = new System.Windows.Forms.TextBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.txtGAddress = new System.Windows.Forms.TextBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.txtGName = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.lblGNetwork = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.txtGNote = new System.Windows.Forms.TextBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.txtGNumber = new System.Windows.Forms.MaskedTextBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.txtGEmailAddress = new System.Windows.Forms.TextBox();
+            this.grdGuardian = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.relationshipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailaddressDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.corestudentDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coreguardianBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabSchool = new System.Windows.Forms.TabPage();
+            this.cmbSection = new System.Windows.Forms.ComboBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.cmbSchoolYear = new System.Windows.Forms.ComboBox();
+            this.label52 = new System.Windows.Forms.Label();
+            this.cmbLevel = new System.Windows.Forms.ComboBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.cmbCourse = new System.Windows.Forms.ComboBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.grdStudent = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,13 +159,13 @@
             this.firstnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.middlenameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateofbirthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.genderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.civilstatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.citizenshipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gender_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.civilstatus_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.streetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.barangayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.provinceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.barangay_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.city_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.province_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.citizenshipDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fathernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -125,6 +178,14 @@
             this.cityidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.provinceidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vstudentinfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label54 = new System.Windows.Forms.Label();
+            this.grd = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -133,8 +194,14 @@
             this.tabContact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.corecontactBindingSource)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            this.tabGuardian.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGuardian)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coreguardianBindingSource)).BeginInit();
+            this.tabSchool.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdStudent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vstudentinfoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grd)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCitizenship
@@ -321,6 +388,8 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabContact);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabGuardian);
+            this.tabControl1.Controls.Add(this.tabSchool);
             this.tabControl1.Location = new System.Drawing.Point(4, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -866,13 +935,560 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label39);
+            this.tabPage4.Controls.Add(this.txtMotherContactNo);
+            this.tabPage4.Controls.Add(this.label40);
+            this.tabPage4.Controls.Add(this.txtFatherContactNo);
+            this.tabPage4.Controls.Add(this.label37);
+            this.tabPage4.Controls.Add(this.txtMotherAddress);
+            this.tabPage4.Controls.Add(this.label38);
+            this.tabPage4.Controls.Add(this.txtFatherAddress);
+            this.tabPage4.Controls.Add(this.label35);
+            this.tabPage4.Controls.Add(this.txtMotherOccupation);
+            this.tabPage4.Controls.Add(this.label36);
+            this.tabPage4.Controls.Add(this.txtMotherName);
+            this.tabPage4.Controls.Add(this.label33);
+            this.tabPage4.Controls.Add(this.txtFatherOccupation);
+            this.tabPage4.Controls.Add(this.label34);
+            this.tabPage4.Controls.Add(this.txtFatherName);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(770, 159);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Guardian and Parent";
+            this.tabPage4.Text = "Parent";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label39.Location = new System.Drawing.Point(346, 70);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(67, 13);
+            this.label39.TabIndex = 260;
+            this.label39.Text = "Contact No.:";
+            // 
+            // txtMotherContactNo
+            // 
+            this.txtMotherContactNo.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtMotherContactNo.Location = new System.Drawing.Point(443, 67);
+            this.txtMotherContactNo.MaxLength = 100;
+            this.txtMotherContactNo.Name = "txtMotherContactNo";
+            this.txtMotherContactNo.Size = new System.Drawing.Size(199, 20);
+            this.txtMotherContactNo.TabIndex = 259;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label40.Location = new System.Drawing.Point(12, 73);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(67, 13);
+            this.label40.TabIndex = 258;
+            this.label40.Text = "Contact No.:";
+            // 
+            // txtFatherContactNo
+            // 
+            this.txtFatherContactNo.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtFatherContactNo.Location = new System.Drawing.Point(109, 70);
+            this.txtFatherContactNo.MaxLength = 100;
+            this.txtFatherContactNo.Name = "txtFatherContactNo";
+            this.txtFatherContactNo.Size = new System.Drawing.Size(199, 20);
+            this.txtFatherContactNo.TabIndex = 257;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label37.Location = new System.Drawing.Point(346, 96);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(48, 13);
+            this.label37.TabIndex = 256;
+            this.label37.Text = "Address:";
+            // 
+            // txtMotherAddress
+            // 
+            this.txtMotherAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtMotherAddress.Location = new System.Drawing.Point(443, 93);
+            this.txtMotherAddress.MaxLength = 100;
+            this.txtMotherAddress.Multiline = true;
+            this.txtMotherAddress.Name = "txtMotherAddress";
+            this.txtMotherAddress.Size = new System.Drawing.Size(199, 46);
+            this.txtMotherAddress.TabIndex = 255;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label38.Location = new System.Drawing.Point(12, 99);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(48, 13);
+            this.label38.TabIndex = 254;
+            this.label38.Text = "Address:";
+            // 
+            // txtFatherAddress
+            // 
+            this.txtFatherAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtFatherAddress.Location = new System.Drawing.Point(109, 96);
+            this.txtFatherAddress.MaxLength = 100;
+            this.txtFatherAddress.Multiline = true;
+            this.txtFatherAddress.Name = "txtFatherAddress";
+            this.txtFatherAddress.Size = new System.Drawing.Size(199, 46);
+            this.txtFatherAddress.TabIndex = 253;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label35.Location = new System.Drawing.Point(346, 44);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(65, 13);
+            this.label35.TabIndex = 252;
+            this.label35.Text = "Occupation:";
+            // 
+            // txtMotherOccupation
+            // 
+            this.txtMotherOccupation.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtMotherOccupation.Location = new System.Drawing.Point(443, 41);
+            this.txtMotherOccupation.MaxLength = 100;
+            this.txtMotherOccupation.Name = "txtMotherOccupation";
+            this.txtMotherOccupation.Size = new System.Drawing.Size(199, 20);
+            this.txtMotherOccupation.TabIndex = 251;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label36.Location = new System.Drawing.Point(346, 19);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(81, 13);
+            this.label36.TabIndex = 250;
+            this.label36.Text = "Mother\'s Name:";
+            // 
+            // txtMotherName
+            // 
+            this.txtMotherName.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtMotherName.Location = new System.Drawing.Point(443, 15);
+            this.txtMotherName.MaxLength = 100;
+            this.txtMotherName.Name = "txtMotherName";
+            this.txtMotherName.Size = new System.Drawing.Size(199, 20);
+            this.txtMotherName.TabIndex = 249;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label33.Location = new System.Drawing.Point(12, 47);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(65, 13);
+            this.label33.TabIndex = 248;
+            this.label33.Text = "Occupation:";
+            // 
+            // txtFatherOccupation
+            // 
+            this.txtFatherOccupation.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtFatherOccupation.Location = new System.Drawing.Point(109, 44);
+            this.txtFatherOccupation.MaxLength = 100;
+            this.txtFatherOccupation.Name = "txtFatherOccupation";
+            this.txtFatherOccupation.Size = new System.Drawing.Size(199, 20);
+            this.txtFatherOccupation.TabIndex = 247;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label34.Location = new System.Drawing.Point(12, 22);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(78, 13);
+            this.label34.TabIndex = 246;
+            this.label34.Text = "Father\'s Name:";
+            // 
+            // txtFatherName
+            // 
+            this.txtFatherName.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtFatherName.Location = new System.Drawing.Point(109, 18);
+            this.txtFatherName.MaxLength = 100;
+            this.txtFatherName.Name = "txtFatherName";
+            this.txtFatherName.Size = new System.Drawing.Size(199, 20);
+            this.txtFatherName.TabIndex = 245;
+            // 
+            // tabGuardian
+            // 
+            this.tabGuardian.Controls.Add(this.label50);
+            this.tabGuardian.Controls.Add(this.label49);
+            this.tabGuardian.Controls.Add(this.txtGRelationship);
+            this.tabGuardian.Controls.Add(this.label47);
+            this.tabGuardian.Controls.Add(this.txtGAddress);
+            this.tabGuardian.Controls.Add(this.label46);
+            this.tabGuardian.Controls.Add(this.txtGName);
+            this.tabGuardian.Controls.Add(this.label41);
+            this.tabGuardian.Controls.Add(this.lblGNetwork);
+            this.tabGuardian.Controls.Add(this.label43);
+            this.tabGuardian.Controls.Add(this.txtGNote);
+            this.tabGuardian.Controls.Add(this.label44);
+            this.tabGuardian.Controls.Add(this.txtGNumber);
+            this.tabGuardian.Controls.Add(this.label45);
+            this.tabGuardian.Controls.Add(this.txtGEmailAddress);
+            this.tabGuardian.Controls.Add(this.grdGuardian);
+            this.tabGuardian.Location = new System.Drawing.Point(4, 22);
+            this.tabGuardian.Name = "tabGuardian";
+            this.tabGuardian.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGuardian.Size = new System.Drawing.Size(770, 159);
+            this.tabGuardian.TabIndex = 4;
+            this.tabGuardian.Text = "Guardian";
+            this.tabGuardian.UseVisualStyleBackColor = true;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.ForeColor = System.Drawing.Color.Red;
+            this.label50.Location = new System.Drawing.Point(6, 6);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(11, 13);
+            this.label50.TabIndex = 265;
+            this.label50.Text = "*";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label49.Location = new System.Drawing.Point(18, 59);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(68, 13);
+            this.label49.TabIndex = 264;
+            this.label49.Text = "Relationship:";
+            // 
+            // txtGRelationship
+            // 
+            this.txtGRelationship.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtGRelationship.Location = new System.Drawing.Point(88, 59);
+            this.txtGRelationship.MaxLength = 100;
+            this.txtGRelationship.Name = "txtGRelationship";
+            this.txtGRelationship.Size = new System.Drawing.Size(180, 20);
+            this.txtGRelationship.TabIndex = 263;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label47.Location = new System.Drawing.Point(18, 35);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(48, 13);
+            this.label47.TabIndex = 262;
+            this.label47.Text = "Address:";
+            // 
+            // txtGAddress
+            // 
+            this.txtGAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtGAddress.Location = new System.Drawing.Point(88, 35);
+            this.txtGAddress.MaxLength = 100;
+            this.txtGAddress.Name = "txtGAddress";
+            this.txtGAddress.Size = new System.Drawing.Size(180, 20);
+            this.txtGAddress.TabIndex = 261;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label46.Location = new System.Drawing.Point(18, 10);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(38, 13);
+            this.label46.TabIndex = 260;
+            this.label46.Text = "Name:";
+            // 
+            // txtGName
+            // 
+            this.txtGName.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtGName.Location = new System.Drawing.Point(88, 10);
+            this.txtGName.MaxLength = 100;
+            this.txtGName.Name = "txtGName";
+            this.txtGName.Size = new System.Drawing.Size(180, 20);
+            this.txtGName.TabIndex = 259;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label41.Location = new System.Drawing.Point(321, 10);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(49, 13);
+            this.label41.TabIndex = 258;
+            this.label41.Text = "Provider:";
+            // 
+            // lblGNetwork
+            // 
+            this.lblGNetwork.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblGNetwork.Location = new System.Drawing.Point(376, 7);
+            this.lblGNetwork.Name = "lblGNetwork";
+            this.lblGNetwork.Size = new System.Drawing.Size(199, 20);
+            this.lblGNetwork.TabIndex = 257;
+            this.lblGNetwork.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label43.Location = new System.Drawing.Point(596, 10);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(33, 13);
+            this.label43.TabIndex = 256;
+            this.label43.Text = "Note:";
+            // 
+            // txtGNote
+            // 
+            this.txtGNote.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtGNote.Location = new System.Drawing.Point(631, 6);
+            this.txtGNote.MaxLength = 100;
+            this.txtGNote.Multiline = true;
+            this.txtGNote.Name = "txtGNote";
+            this.txtGNote.Size = new System.Drawing.Size(133, 75);
+            this.txtGNote.TabIndex = 255;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label44.Location = new System.Drawing.Point(321, 35);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(47, 13);
+            this.label44.TabIndex = 254;
+            this.label44.Text = "Number:";
+            // 
+            // txtGNumber
+            // 
+            this.txtGNumber.Location = new System.Drawing.Point(376, 35);
+            this.txtGNumber.Mask = "####-#######";
+            this.txtGNumber.Name = "txtGNumber";
+            this.txtGNumber.PromptChar = ' ';
+            this.txtGNumber.Size = new System.Drawing.Size(199, 20);
+            this.txtGNumber.TabIndex = 251;
+            this.txtGNumber.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtGNumber_KeyUp);
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label45.Location = new System.Drawing.Point(321, 59);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(35, 13);
+            this.label45.TabIndex = 253;
+            this.label45.Text = "Email:";
+            // 
+            // txtGEmailAddress
+            // 
+            this.txtGEmailAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txtGEmailAddress.Location = new System.Drawing.Point(376, 59);
+            this.txtGEmailAddress.MaxLength = 100;
+            this.txtGEmailAddress.Name = "txtGEmailAddress";
+            this.txtGEmailAddress.Size = new System.Drawing.Size(199, 20);
+            this.txtGEmailAddress.TabIndex = 252;
+            // 
+            // grdGuardian
+            // 
+            this.grdGuardian.AllowUserToAddRows = false;
+            this.grdGuardian.AllowUserToDeleteRows = false;
+            this.grdGuardian.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdGuardian.AutoGenerateColumns = false;
+            this.grdGuardian.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdGuardian.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdGuardian.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn2,
+            this.nameDataGridViewTextBoxColumn,
+            this.addressDataGridViewTextBoxColumn,
+            this.relationshipDataGridViewTextBoxColumn,
+            this.numberDataGridViewTextBoxColumn2,
+            this.emailaddressDataGridViewTextBoxColumn1,
+            this.studentidDataGridViewTextBoxColumn1,
+            this.noteDataGridViewTextBoxColumn2,
+            this.corestudentDataGridViewTextBoxColumn1});
+            this.grdGuardian.DataSource = this.coreguardianBindingSource;
+            this.grdGuardian.Location = new System.Drawing.Point(6, 87);
+            this.grdGuardian.Name = "grdGuardian";
+            this.grdGuardian.ReadOnly = true;
+            this.grdGuardian.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdGuardian.Size = new System.Drawing.Size(758, 66);
+            this.grdGuardian.TabIndex = 250;
+            this.grdGuardian.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdGuardian_CellClick);
+            // 
+            // idDataGridViewTextBoxColumn2
+            // 
+            this.idDataGridViewTextBoxColumn2.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn2.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
+            this.idDataGridViewTextBoxColumn2.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // relationshipDataGridViewTextBoxColumn
+            // 
+            this.relationshipDataGridViewTextBoxColumn.DataPropertyName = "relationship";
+            this.relationshipDataGridViewTextBoxColumn.HeaderText = "Relationship";
+            this.relationshipDataGridViewTextBoxColumn.Name = "relationshipDataGridViewTextBoxColumn";
+            this.relationshipDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // numberDataGridViewTextBoxColumn2
+            // 
+            this.numberDataGridViewTextBoxColumn2.DataPropertyName = "number";
+            this.numberDataGridViewTextBoxColumn2.HeaderText = "Number";
+            this.numberDataGridViewTextBoxColumn2.Name = "numberDataGridViewTextBoxColumn2";
+            this.numberDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // emailaddressDataGridViewTextBoxColumn1
+            // 
+            this.emailaddressDataGridViewTextBoxColumn1.DataPropertyName = "emailaddress";
+            this.emailaddressDataGridViewTextBoxColumn1.HeaderText = "Email Address";
+            this.emailaddressDataGridViewTextBoxColumn1.Name = "emailaddressDataGridViewTextBoxColumn1";
+            this.emailaddressDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // studentidDataGridViewTextBoxColumn1
+            // 
+            this.studentidDataGridViewTextBoxColumn1.DataPropertyName = "student_id";
+            this.studentidDataGridViewTextBoxColumn1.HeaderText = "student_id";
+            this.studentidDataGridViewTextBoxColumn1.Name = "studentidDataGridViewTextBoxColumn1";
+            this.studentidDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.studentidDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // noteDataGridViewTextBoxColumn2
+            // 
+            this.noteDataGridViewTextBoxColumn2.DataPropertyName = "note";
+            this.noteDataGridViewTextBoxColumn2.HeaderText = "Note";
+            this.noteDataGridViewTextBoxColumn2.Name = "noteDataGridViewTextBoxColumn2";
+            this.noteDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // corestudentDataGridViewTextBoxColumn1
+            // 
+            this.corestudentDataGridViewTextBoxColumn1.DataPropertyName = "core_student";
+            this.corestudentDataGridViewTextBoxColumn1.HeaderText = "core_student";
+            this.corestudentDataGridViewTextBoxColumn1.Name = "corestudentDataGridViewTextBoxColumn1";
+            this.corestudentDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.corestudentDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // coreguardianBindingSource
+            // 
+            this.coreguardianBindingSource.DataSource = typeof(StudentMonitoringSystem.Entities.core_guardian);
+            // 
+            // tabSchool
+            // 
+            this.tabSchool.Controls.Add(this.grd);
+            this.tabSchool.Controls.Add(this.label54);
+            this.tabSchool.Controls.Add(this.cmbSection);
+            this.tabSchool.Controls.Add(this.label53);
+            this.tabSchool.Controls.Add(this.cmbSchoolYear);
+            this.tabSchool.Controls.Add(this.label52);
+            this.tabSchool.Controls.Add(this.cmbLevel);
+            this.tabSchool.Controls.Add(this.label51);
+            this.tabSchool.Controls.Add(this.cmbCourse);
+            this.tabSchool.Controls.Add(this.label42);
+            this.tabSchool.Controls.Add(this.textBox1);
+            this.tabSchool.Location = new System.Drawing.Point(4, 22);
+            this.tabSchool.Name = "tabSchool";
+            this.tabSchool.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSchool.Size = new System.Drawing.Size(770, 159);
+            this.tabSchool.TabIndex = 5;
+            this.tabSchool.Text = "Enrollment";
+            this.tabSchool.UseVisualStyleBackColor = true;
+            // 
+            // cmbSection
+            // 
+            this.cmbSection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSection.FormattingEnabled = true;
+            this.cmbSection.Location = new System.Drawing.Point(75, 63);
+            this.cmbSection.Name = "cmbSection";
+            this.cmbSection.Size = new System.Drawing.Size(254, 21);
+            this.cmbSection.TabIndex = 269;
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label53.Location = new System.Drawing.Point(35, 91);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(36, 13);
+            this.label53.TabIndex = 268;
+            this.label53.Text = "Level:";
+            // 
+            // cmbSchoolYear
+            // 
+            this.cmbSchoolYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSchoolYear.FormattingEnabled = true;
+            this.cmbSchoolYear.Location = new System.Drawing.Point(75, 37);
+            this.cmbSchoolYear.Name = "cmbSchoolYear";
+            this.cmbSchoolYear.Size = new System.Drawing.Size(254, 21);
+            this.cmbSchoolYear.TabIndex = 267;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label52.Location = new System.Drawing.Point(3, 39);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(68, 13);
+            this.label52.TabIndex = 266;
+            this.label52.Text = "School Year:";
+            // 
+            // cmbLevel
+            // 
+            this.cmbLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLevel.FormattingEnabled = true;
+            this.cmbLevel.Location = new System.Drawing.Point(75, 89);
+            this.cmbLevel.Name = "cmbLevel";
+            this.cmbLevel.Size = new System.Drawing.Size(254, 21);
+            this.cmbLevel.TabIndex = 265;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label51.Location = new System.Drawing.Point(25, 66);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(46, 13);
+            this.label51.TabIndex = 264;
+            this.label51.Text = "Section:";
+            // 
+            // cmbCourse
+            // 
+            this.cmbCourse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCourse.FormattingEnabled = true;
+            this.cmbCourse.Location = new System.Drawing.Point(75, 11);
+            this.cmbCourse.Name = "cmbCourse";
+            this.cmbCourse.Size = new System.Drawing.Size(254, 21);
+            this.cmbCourse.TabIndex = 263;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label42.Location = new System.Drawing.Point(28, 14);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(43, 13);
+            this.label42.TabIndex = 262;
+            this.label42.Text = "Course:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.textBox1.Location = new System.Drawing.Point(74, 116);
+            this.textBox1.MaxLength = 100;
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(255, 36);
+            this.textBox1.TabIndex = 261;
             // 
             // grdStudent
             // 
@@ -891,13 +1507,13 @@
             this.firstnameDataGridViewTextBoxColumn,
             this.middlenameDataGridViewTextBoxColumn,
             this.dateofbirthDataGridViewTextBoxColumn,
-            this.genderDataGridViewTextBoxColumn,
-            this.civilstatusDataGridViewTextBoxColumn,
-            this.citizenshipDataGridViewTextBoxColumn,
+            this.gender_name,
+            this.civilstatus_name,
             this.streetDataGridViewTextBoxColumn,
-            this.barangayDataGridViewTextBoxColumn,
-            this.cityDataGridViewTextBoxColumn,
-            this.provinceDataGridViewTextBoxColumn,
+            this.barangay_name,
+            this.city_name,
+            this.province_name,
+            this.citizenshipDataGridViewTextBoxColumn,
             this.noteDataGridViewTextBoxColumn,
             this.pictureDataGridViewTextBoxColumn,
             this.fathernameDataGridViewTextBoxColumn,
@@ -961,26 +1577,19 @@
             this.dateofbirthDataGridViewTextBoxColumn.Name = "dateofbirthDataGridViewTextBoxColumn";
             this.dateofbirthDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // genderDataGridViewTextBoxColumn
+            // gender_name
             // 
-            this.genderDataGridViewTextBoxColumn.DataPropertyName = "gender";
-            this.genderDataGridViewTextBoxColumn.HeaderText = "Gender";
-            this.genderDataGridViewTextBoxColumn.Name = "genderDataGridViewTextBoxColumn";
-            this.genderDataGridViewTextBoxColumn.ReadOnly = true;
+            this.gender_name.DataPropertyName = "gender_name";
+            this.gender_name.HeaderText = "gender_name";
+            this.gender_name.Name = "gender_name";
+            this.gender_name.ReadOnly = true;
             // 
-            // civilstatusDataGridViewTextBoxColumn
+            // civilstatus_name
             // 
-            this.civilstatusDataGridViewTextBoxColumn.DataPropertyName = "civilstatus";
-            this.civilstatusDataGridViewTextBoxColumn.HeaderText = "Civil Status";
-            this.civilstatusDataGridViewTextBoxColumn.Name = "civilstatusDataGridViewTextBoxColumn";
-            this.civilstatusDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // citizenshipDataGridViewTextBoxColumn
-            // 
-            this.citizenshipDataGridViewTextBoxColumn.DataPropertyName = "citizenship";
-            this.citizenshipDataGridViewTextBoxColumn.HeaderText = "Citizenship";
-            this.citizenshipDataGridViewTextBoxColumn.Name = "citizenshipDataGridViewTextBoxColumn";
-            this.citizenshipDataGridViewTextBoxColumn.ReadOnly = true;
+            this.civilstatus_name.DataPropertyName = "civilstatus_name";
+            this.civilstatus_name.HeaderText = "civilstatus_name";
+            this.civilstatus_name.Name = "civilstatus_name";
+            this.civilstatus_name.ReadOnly = true;
             // 
             // streetDataGridViewTextBoxColumn
             // 
@@ -989,26 +1598,33 @@
             this.streetDataGridViewTextBoxColumn.Name = "streetDataGridViewTextBoxColumn";
             this.streetDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // barangayDataGridViewTextBoxColumn
+            // barangay_name
             // 
-            this.barangayDataGridViewTextBoxColumn.DataPropertyName = "barangay";
-            this.barangayDataGridViewTextBoxColumn.HeaderText = "Barangay";
-            this.barangayDataGridViewTextBoxColumn.Name = "barangayDataGridViewTextBoxColumn";
-            this.barangayDataGridViewTextBoxColumn.ReadOnly = true;
+            this.barangay_name.DataPropertyName = "barangay_name";
+            this.barangay_name.HeaderText = "Barangay";
+            this.barangay_name.Name = "barangay_name";
+            this.barangay_name.ReadOnly = true;
             // 
-            // cityDataGridViewTextBoxColumn
+            // city_name
             // 
-            this.cityDataGridViewTextBoxColumn.DataPropertyName = "city";
-            this.cityDataGridViewTextBoxColumn.HeaderText = "City";
-            this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
-            this.cityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.city_name.DataPropertyName = "city_name";
+            this.city_name.HeaderText = "City";
+            this.city_name.Name = "city_name";
+            this.city_name.ReadOnly = true;
             // 
-            // provinceDataGridViewTextBoxColumn
+            // province_name
             // 
-            this.provinceDataGridViewTextBoxColumn.DataPropertyName = "province";
-            this.provinceDataGridViewTextBoxColumn.HeaderText = "Province";
-            this.provinceDataGridViewTextBoxColumn.Name = "provinceDataGridViewTextBoxColumn";
-            this.provinceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.province_name.DataPropertyName = "province_name";
+            this.province_name.HeaderText = "Province";
+            this.province_name.Name = "province_name";
+            this.province_name.ReadOnly = true;
+            // 
+            // citizenshipDataGridViewTextBoxColumn
+            // 
+            this.citizenshipDataGridViewTextBoxColumn.DataPropertyName = "citizenship";
+            this.citizenshipDataGridViewTextBoxColumn.HeaderText = "Citizenship";
+            this.citizenshipDataGridViewTextBoxColumn.Name = "citizenshipDataGridViewTextBoxColumn";
+            this.citizenshipDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // noteDataGridViewTextBoxColumn
             // 
@@ -1097,6 +1713,86 @@
             // 
             this.vstudentinfoBindingSource.DataSource = typeof(StudentMonitoringSystem.Entities.vstudentinfo);
             // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label54.Location = new System.Drawing.Point(38, 118);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(33, 13);
+            this.label54.TabIndex = 270;
+            this.label54.Text = "Note:";
+            // 
+            // grd
+            // 
+            this.grd.AllowUserToAddRows = false;
+            this.grd.AllowUserToDeleteRows = false;
+            this.grd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.grd.AutoGenerateColumns = false;
+            this.grd.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grd.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
+            this.grd.DataSource = this.corecontactBindingSource;
+            this.grd.Location = new System.Drawing.Point(335, 6);
+            this.grd.Name = "grd";
+            this.grd.ReadOnly = true;
+            this.grd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grd.Size = new System.Drawing.Size(431, 145);
+            this.grd.TabIndex = 271;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "number";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Number";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "emailaddress";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Email Address";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "note";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Note";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "student_id";
+            this.dataGridViewTextBoxColumn5.HeaderText = "student_id";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "core_student";
+            this.dataGridViewTextBoxColumn6.HeaderText = "core_student";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            // 
             // FormStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1120,8 +1816,17 @@
             this.tabContact.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdContact)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.corecontactBindingSource)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.tabGuardian.ResumeLayout(false);
+            this.tabGuardian.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdGuardian)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coreguardianBindingSource)).EndInit();
+            this.tabSchool.ResumeLayout(false);
+            this.tabSchool.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdStudent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vstudentinfoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grd)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1179,30 +1884,11 @@
         internal System.Windows.Forms.Button btnWebcam;
         private System.Windows.Forms.DataGridView grdStudent;
         private System.Windows.Forms.BindingSource vstudentinfoBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lastnameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn firstnameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn middlenameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateofbirthDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn civilstatusDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn citizenshipDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn streetDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn barangayDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn provinceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pictureDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fathernameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fatheroccupationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mothernameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn motheroccupationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn genderidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn civilstatusidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn barangayidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cityidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn provinceidDataGridViewTextBoxColumn;
         public System.Windows.Forms.DataGridView grdContact;
         internal System.Windows.Forms.Label label30;
         internal System.Windows.Forms.Label label29;
@@ -1224,6 +1910,91 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn studentidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn corestudentDataGridViewTextBoxColumn;
         public System.Windows.Forms.BindingSource corecontactBindingSource;
+        internal System.Windows.Forms.Label label39;
+        internal System.Windows.Forms.TextBox txtMotherContactNo;
+        internal System.Windows.Forms.Label label40;
+        internal System.Windows.Forms.TextBox txtFatherContactNo;
+        internal System.Windows.Forms.Label label37;
+        internal System.Windows.Forms.TextBox txtMotherAddress;
+        internal System.Windows.Forms.Label label38;
+        internal System.Windows.Forms.TextBox txtFatherAddress;
+        internal System.Windows.Forms.Label label35;
+        internal System.Windows.Forms.TextBox txtMotherOccupation;
+        internal System.Windows.Forms.Label label36;
+        internal System.Windows.Forms.TextBox txtMotherName;
+        internal System.Windows.Forms.Label label33;
+        internal System.Windows.Forms.TextBox txtFatherOccupation;
+        internal System.Windows.Forms.Label label34;
+        internal System.Windows.Forms.TextBox txtFatherName;
+        private System.Windows.Forms.TabPage tabGuardian;
+        public System.Windows.Forms.DataGridView grdGuardian;
+        internal System.Windows.Forms.Label label49;
+        internal System.Windows.Forms.TextBox txtGRelationship;
+        internal System.Windows.Forms.Label label47;
+        internal System.Windows.Forms.TextBox txtGAddress;
+        internal System.Windows.Forms.Label label46;
+        internal System.Windows.Forms.TextBox txtGName;
+        internal System.Windows.Forms.Label label41;
+        internal System.Windows.Forms.Label lblGNetwork;
+        internal System.Windows.Forms.Label label43;
+        internal System.Windows.Forms.TextBox txtGNote;
+        internal System.Windows.Forms.Label label44;
+        internal System.Windows.Forms.MaskedTextBox txtGNumber;
+        internal System.Windows.Forms.Label label45;
+        internal System.Windows.Forms.TextBox txtGEmailAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn relationshipDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailaddressDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn studentidDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn corestudentDataGridViewTextBoxColumn1;
+        public System.Windows.Forms.BindingSource coreguardianBindingSource;
+        private System.Windows.Forms.TabPage tabSchool;
+        internal System.Windows.Forms.Label label50;
+        private System.Windows.Forms.ComboBox cmbCourse;
+        internal System.Windows.Forms.Label label42;
+        internal System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cmbLevel;
+        internal System.Windows.Forms.Label label51;
+        private System.Windows.Forms.ComboBox cmbSchoolYear;
+        internal System.Windows.Forms.Label label52;
+        private System.Windows.Forms.ComboBox cmbSection;
+        internal System.Windows.Forms.Label label53;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastnameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn firstnameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn middlenameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateofbirthDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gender_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn civilstatus_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn streetDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn barangay_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn city_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn province_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn citizenshipDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pictureDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fathernameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fatheroccupationDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mothernameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn motheroccupationDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn genderidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn civilstatusidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn barangayidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cityidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn provinceidDataGridViewTextBoxColumn;
+        internal System.Windows.Forms.Label label54;
+        public System.Windows.Forms.DataGridView grd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
 
       
 

@@ -59,6 +59,7 @@ namespace StudentMonitoringSystem.Forms.Enroll
         {
             ID = 0;
             Name = string.Empty;
+            Code = string.Empty;
             Note = string.Empty;
         }
 
@@ -104,6 +105,11 @@ namespace StudentMonitoringSystem.Forms.Enroll
         {
             get { return txtName.Text; }
             set { txtName.Text = value; }
+        }
+        public new string Code
+        {
+            get { return txtCode.Text; }
+            set { txtCode.Text = value; }
         }
 
         public string Note

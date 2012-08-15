@@ -96,6 +96,15 @@ namespace StudentMonitoringSystem.Forms.Enroll
                 return false;
         }
 
+        private void cmbCourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCourse.SelectedValue != null)
+            {
+                int id = Convert.ToInt32(cmbCourse.SelectedValue);
+                Presenter.LoadSectionDataSource(id);
+            }
+        }
+
         #endregion
 
         #region ISchedule
@@ -121,13 +130,7 @@ namespace StudentMonitoringSystem.Forms.Enroll
         }
 
         public int Course_ID
-        {
-            get
-            {
-                int value = 0;
-                int.TryParse(Convert.ToString(cmbCourse.SelectedValue), out value);
-                return value;
-            }
+        {           
             set
             {
                 if (cmbCourse.Items.Count > 0)
@@ -326,5 +329,6 @@ namespace StudentMonitoringSystem.Forms.Enroll
         }
 
         #endregion
+
     }
 }

@@ -27,6 +27,24 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
+        public  string name
+        {
+            get;
+            set;
+        }
+    
+        public  string address
+        {
+            get;
+            set;
+        }
+    
+        public  string relationship
+        {
+            get;
+            set;
+        }
+    
         public  string number
         {
             get;
@@ -34,12 +52,6 @@ namespace StudentMonitoringSystem.Entities
         }
     
         public  string emailaddress
-        {
-            get;
-            set;
-        }
-    
-        public  string relationship
         {
             get;
             set;

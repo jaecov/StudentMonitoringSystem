@@ -146,55 +146,37 @@
     <Build Include="Schema Objects\Database Level Objects\Storage\Files\StudentMonitoringDb.sqlfile.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\sms_inbox_status.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\sms_inbox.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\sms_inbox_archive_status.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\sms_inbox_archive.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\core_city_province.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\core_city.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\core_barangay_city.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\core_barangay.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\core_barangay_core_student.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\core_core_student.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\core_civilstatus_core_student.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\core_contact.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\core_gender_core_student.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\emp_contact.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\core_contact_student.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\sms_networkprovidercode.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\emp_contact_employee.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\sms_notification.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_employee_schedule.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\sms_outbox.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_room_schedule.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_section_schedule.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_subject_schedule.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\sms_networkprovidercode_networkprovider.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\sms_notification_room.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\sms_outbox_status.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\sms_outbox_archive_status.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\sms_outbox_archive.fkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\core_civilstatus.table.sql">
@@ -296,7 +278,7 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\core_guardian.table.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\core_guardian_student.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\core_guardian.fkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Views\vemployeeinfo.view.sql">
@@ -317,10 +299,31 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\core_day.table.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_day_schedule.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_schedule.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_course_schedule.fkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\enroll_schoolyear.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\enroll_enrolledyear.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_enrolledyear.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\enroll_level.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\enroll_section.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\vsectioninfo.view.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\venrolledyearinfo.view.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\enroll_semester.table.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

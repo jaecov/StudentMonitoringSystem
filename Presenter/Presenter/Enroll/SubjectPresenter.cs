@@ -32,6 +32,7 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
             View.ID = id;
             View.Name = item.name;
+            View.Code = item.code;
             View.Note = item.note;
         }
 
@@ -93,6 +94,7 @@ namespace StudentMonitoringSystem.Presenter.Enroll
 
                 var item = new enroll_subject();
                 item.name = View.Name;
+                item.code = View.Code;
                 item.note = View.Note;
                 var result = Controller.CreateObject<enroll_subject>(item);
                 View.ID = result.id;
@@ -122,6 +124,7 @@ namespace StudentMonitoringSystem.Presenter.Enroll
                 }
 
                 item.name = View.Name;
+                item.code = View.Code;
                 item.note = View.Note;
                 Controller.UpdateObject<enroll_subject>(item);
                 View.Notify(Common.Result.UpdateSuceeded, null);
@@ -142,12 +145,14 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             switch (operation)
             {
                 case Common.Operation.Insert:
-                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");                    
+                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");
+                    if (View.Code == string.Empty) brokenRules.Add("Code is required.");  
                     break;
 
                 case Common.Operation.Update:
                     if (View.ID == 0) brokenRules.Add("Select record first.");
-                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");                    
+                    if (View.Name == string.Empty) brokenRules.Add("Name is required.");
+                    if (View.Code == string.Empty) brokenRules.Add("Code is required.");  
                     break;
 
                 case Common.Operation.Delete:

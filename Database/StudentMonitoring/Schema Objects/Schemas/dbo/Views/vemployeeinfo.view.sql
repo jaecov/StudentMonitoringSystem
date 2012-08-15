@@ -12,18 +12,18 @@ SELECT
 , emp.dateofbirth
 , emp.gender_id
 , emp.civilstatus_id
-, cs.name as civilstatus
+, cs.name as civilstatus_name
 , emp.citizenship
 , emp.street
 , emp.barangay_id
 , emp.picture
 , emp.note
-, gn.name AS gender
-, bg.name AS barangay
+, gn.name AS gender_name
+, bg.name AS barangay_name
 , bg.city_id
-, ct.name AS city
+, ct.name AS city_name
 , ct.province_id
-, pr.name AS province
+, pr.name AS province_name
 , isnull(emp.street,'') + ' ' + bg.name + ' ' + ct.name + ' ' + pr.name  as [address]
 
 FROM dbo.emp_employee emp

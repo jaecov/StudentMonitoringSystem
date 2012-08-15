@@ -39,7 +39,7 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
-        public  string networkprovider
+        public  string networkprovider_name
         {
             get;
             set;

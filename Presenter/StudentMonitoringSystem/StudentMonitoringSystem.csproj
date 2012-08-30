@@ -314,6 +314,7 @@
       <DependentUpon>FormTest.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.core_city.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.core_contact.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.core_guardian.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.emp_contact.datasource" />

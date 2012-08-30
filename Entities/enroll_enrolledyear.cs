@@ -27,6 +27,23 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
+        public  int student_id
+        {
+            get { return _student_id; }
+            set
+            {
+                if (_student_id != value)
+                {
+                    if (core_student != null && core_student.id != value)
+                    {
+                        core_student = null;
+                    }
+                    _student_id = value;
+                }
+            }
+        }
+        private int _student_id;
+    
         public  int level_id
         {
             get { return _level_id; }
@@ -60,6 +77,23 @@ namespace StudentMonitoringSystem.Entities
             }
         }
         private int _schoolyear_id;
+    
+        public  int semester_id
+        {
+            get { return _semester_id; }
+            set
+            {
+                if (_semester_id != value)
+                {
+                    if (enroll_semester != null && enroll_semester.id != value)
+                    {
+                        enroll_semester = null;
+                    }
+                    _semester_id = value;
+                }
+            }
+        }
+        private int _semester_id;
     
         public  int course_id
         {
@@ -103,6 +137,21 @@ namespace StudentMonitoringSystem.Entities
 
         #endregion
         #region Navigation Properties
+    
+        public virtual core_student core_student
+        {
+            get { return _core_student; }
+            set
+            {
+                if (!ReferenceEquals(_core_student, value))
+                {
+                    var previousValue = _core_student;
+                    _core_student = value;
+                    Fixupcore_student(previousValue);
+                }
+            }
+        }
+        private core_student _core_student;
     
         public virtual enroll_course enroll_course
         {
@@ -163,9 +212,44 @@ namespace StudentMonitoringSystem.Entities
             }
         }
         private enroll_section _enroll_section;
+    
+        public virtual enroll_semester enroll_semester
+        {
+            get { return _enroll_semester; }
+            set
+            {
+                if (!ReferenceEquals(_enroll_semester, value))
+                {
+                    var previousValue = _enroll_semester;
+                    _enroll_semester = value;
+                    Fixupenroll_semester(previousValue);
+                }
+            }
+        }
+        private enroll_semester _enroll_semester;
 
         #endregion
         #region Association Fixup
+    
+        private void Fixupcore_student(core_student previousValue)
+        {
+            if (previousValue != null && previousValue.enroll_enrolledyear.Contains(this))
+            {
+                previousValue.enroll_enrolledyear.Remove(this);
+            }
+    
+            if (core_student != null)
+            {
+                if (!core_student.enroll_enrolledyear.Contains(this))
+                {
+                    core_student.enroll_enrolledyear.Add(this);
+                }
+                if (student_id != core_student.id)
+                {
+                    student_id = core_student.id;
+                }
+            }
+        }
     
         private void Fixupenroll_course(enroll_course previousValue)
         {
@@ -243,6 +327,26 @@ namespace StudentMonitoringSystem.Entities
                 if (section_id != enroll_section.id)
                 {
                     section_id = enroll_section.id;
+                }
+            }
+        }
+    
+        private void Fixupenroll_semester(enroll_semester previousValue)
+        {
+            if (previousValue != null && previousValue.enroll_enrolledyear.Contains(this))
+            {
+                previousValue.enroll_enrolledyear.Remove(this);
+            }
+    
+            if (enroll_semester != null)
+            {
+                if (!enroll_semester.enroll_enrolledyear.Contains(this))
+                {
+                    enroll_semester.enroll_enrolledyear.Add(this);
+                }
+                if (semester_id != enroll_semester.id)
+                {
+                    semester_id = enroll_semester.id;
                 }
             }
         }

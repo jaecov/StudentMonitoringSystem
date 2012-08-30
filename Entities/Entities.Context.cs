@@ -191,6 +191,12 @@ namespace StudentMonitoringSystem.Entities
     	}
     	private ObjectSet<enroll_section> _enroll_section;
     
+    	public ObjectSet<enroll_semester> enroll_semester
+    	{
+    		get { return _enroll_semester  ?? (_enroll_semester = CreateObjectSet<enroll_semester>("enroll_semester")); }
+    	}
+    	private ObjectSet<enroll_semester> _enroll_semester;
+    
     	public ObjectSet<enroll_subject> enroll_subject
     	{
     		get { return _enroll_subject  ?? (_enroll_subject = CreateObjectSet<enroll_subject>("enroll_subject")); }
@@ -436,6 +442,11 @@ namespace StudentMonitoringSystem.Entities
     		if(typeof(T) == typeof(enroll_section))
     		{
     			return (ObjectSet<T>)(object)enroll_section;
+    		}
+    								
+    		if(typeof(T) == typeof(enroll_semester))
+    		{
+    			return (ObjectSet<T>)(object)enroll_semester;
     		}
     								
     		if(typeof(T) == typeof(enroll_subject))

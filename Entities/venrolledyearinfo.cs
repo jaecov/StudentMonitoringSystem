@@ -33,6 +33,12 @@ namespace StudentMonitoringSystem.Entities
             set;
         }
     
+        public  int student_id
+        {
+            get;
+            set;
+        }
+    
         public  int level_id
         {
             get;
@@ -52,6 +58,12 @@ namespace StudentMonitoringSystem.Entities
         }
     
         public  int section_id
+        {
+            get;
+            set;
+        }
+    
+        public  int semester_id
         {
             get;
             set;
@@ -82,6 +94,12 @@ namespace StudentMonitoringSystem.Entities
         }
     
         public  string section_name
+        {
+            get;
+            set;
+        }
+    
+        public  string semester_name
         {
             get;
             set;

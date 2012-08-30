@@ -49,6 +49,8 @@
     </Compile>
     <Compile Include="Core\BarangayPresenter.cs" />
     <Compile Include="Core\CityPresenter.cs" />
+    <Compile Include="Core\IStudentInfoList.cs" />
+    <Compile Include="Core\StudentInfoListPresenter.cs" />
     <Compile Include="Core\GurdianPresenter.cs" />
     <Compile Include="Core\IGuardian.cs" />
     <Compile Include="Core\IGender.cs" />
@@ -63,6 +65,8 @@
     <Compile Include="Employee\IContact.cs" />
     <Compile Include="Employee\IEmployee.cs" />
     <Compile Include="Employee\EmployeePresenter.cs" />
+    <Compile Include="Enroll\IEnrolledYear.cs" />
+    <Compile Include="Enroll\EnrolledYearPresenter.cs" />
     <Compile Include="Enroll\ISchedule.cs" />
     <Compile Include="Enroll\SchedulePresenter.cs" />
     <Compile Include="Enroll\ISubject.cs" />

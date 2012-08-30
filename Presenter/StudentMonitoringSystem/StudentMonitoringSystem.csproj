@@ -70,6 +70,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Core\FormStudentInfoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Core\FormStudentInfoList.Designer.cs">
+      <DependentUpon>FormStudentInfoList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Core\FormGender.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Core\FormStudentInfoList.resx">
+      <DependentUpon>FormStudentInfoList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Core\FormGender.resx">
       <DependentUpon>FormGender.cs</DependentUpon>
     </EmbeddedResource>
@@ -258,6 +267,7 @@
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vbarangayinfo.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vcityinfo.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vemployeeinfo.datasource" />
+    <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.venrolledyearinfo.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vscheduleinfo.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vsectioninfo.datasource" />
     <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vstudentinfo.datasource" />

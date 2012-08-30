@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using StudentMonitoringSystem.Presenter;
 using StudentMonitoringSystem.Presenter.Core;
+using StudentMonitoringSystem.Presenter.Enroll;
 using System.Collections;
 using StudentMonitoringSystem.Entities;
 
@@ -20,11 +21,11 @@ namespace StudentMonitoringSystem.Forms.Core
 
         public FormStudent()
         {
+            InitializeComponent();
             Presenter = new StudentPresenter(this);
             formGuardian = new FormGuardian(this);
             formContact = new FormContact(this);
-            InitializeComponent();
-            grdStudent.AutoGenerateColumns = false;
+            formEnrolledYear = new FormEnrolledYear(this);
         }
 
         public StudentPresenter Presenter
@@ -39,7 +40,7 @@ namespace StudentMonitoringSystem.Forms.Core
 
         FormContact formContact;
         FormGuardian formGuardian;
-
+        FormEnrolledYear formEnrolledYear;
         #endregion
 
         #region IStudent
@@ -419,24 +420,29 @@ namespace StudentMonitoringSystem.Forms.Core
             Presenter.LoadItems();
         }
 
-        private void grdStudent_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex <= -1)
-                return;
+            bool ok = false;
+            int studentId = 0;
+            FormStudentInfoList form = new FormStudentInfoList();
+            var result = form.ShowAsDialog();
 
-            if (grdStudent.CurrentRow == null)
-                return;
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                studentId = form.ID;
+                View(studentId);
+            }
+        }
 
-            var data = grdStudent.CurrentRow.DataBoundItem as vstudentinfo;
-            if (data == null)
-                return;
-
-            int id = data.id;
-            Presenter.LoadStudentInfo(id);
-            formContact.LoadContacts();
+        private void View(int studentId)
+        {
+            Presenter.LoadStudentInfo(studentId);
+            formContact.LoadItems();
             formContact.Reset();
-            formGuardian.LoadGuardians();
+            formGuardian.LoadItems();
             formGuardian.Reset();
+            formEnrolledYear.LoadItems();
+            formEnrolledYear.Reset();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -448,6 +454,10 @@ namespace StudentMonitoringSystem.Forms.Core
             else if (SelectedTab == Tab.Guardian)
             {
                 formGuardian.Reset();
+            }
+            else if (SelectedTab == Tab.Enrollment)
+            {
+                formEnrolledYear.Reset();
             }
             else
             {
@@ -477,45 +487,51 @@ namespace StudentMonitoringSystem.Forms.Core
 
                 formContact.ResetAll();
                 formGuardian.ResetAll();
+                formEnrolledYear.ResetAll();
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var ask = Confirm("Do you want to save? Click OK to proceed.");
-
-            if (ask)
+            if (SelectedTab == Tab.Contact)
             {
-                if (SelectedTab == Tab.Contact)
-                {
-                    formContact.Save();
-                }
-                else if (SelectedTab == Tab.Guardian)
-                {
-                    formGuardian.Save();
-                }
-                else
-                {
-                    Presenter.Save();
-                }
+                formContact.Save();
             }
+            else if (SelectedTab == Tab.Guardian)
+            {
+                formGuardian.Save();
+            }
+            else if (SelectedTab == Tab.Enrollment)
+            {
+                formEnrolledYear.Save();
+            }
+            else
+            {
+                var answer = Confirm("Do you want to save? Click OK to proceed.");
+                if (answer)
+                    Presenter.Save();
+            }
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            var ask = Confirm("Do you want to delete? Click OK to proceed");
-
-            if (ask)
+            if (SelectedTab == Tab.Contact)
             {
-                if (SelectedTab == Tab.Contact)
-                {
-                    formContact.Delete();
-                }
-                else if (SelectedTab == Tab.Guardian)
-                {
-                    formGuardian.Delete();
-                }
-                else
+                formContact.Delete();
+            }
+            else if (SelectedTab == Tab.Guardian)
+            {
+                formGuardian.Delete();
+            }
+            else if (SelectedTab == Tab.Enrollment)
+            {
+                formEnrolledYear.Delete();
+            }
+            else
+            {
+                var answer = Confirm("Do you want to delete? Click OK to proceed");
+                if (answer)
                 {
                     Presenter.Delete();
                     btnReset_Click(sender, e);
@@ -616,6 +632,26 @@ namespace StudentMonitoringSystem.Forms.Core
 
         #endregion
 
+        #region EnrolledYear
+
+        private void grdEnrolledYear_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex <= -1 || e.RowIndex <= -1)
+                return;
+
+            if (grdEnrolledYear.CurrentRow == null)
+                return;
+
+            var data = grdEnrolledYear.CurrentRow.DataBoundItem as venrolledyearinfo;
+            if (data == null)
+                return;
+
+            int id = data.id;
+            this.formEnrolledYear.LoadEnrolledYearInfo(id);
+        }
+
+        #endregion
+
         #endregion
 
         #region Methods
@@ -624,7 +660,8 @@ namespace StudentMonitoringSystem.Forms.Core
         {
             StudentInfo = 0,
             Contact = 1,
-            Guardian = 2
+            Guardian = 2,
+            Enrollment = 3
         }
 
         private Tab SelectedTab
@@ -635,9 +672,13 @@ namespace StudentMonitoringSystem.Forms.Core
                 {
                     return Tab.Contact;
                 }
-                if (this.tabControl1.SelectedTab == tabGuardian)
+                else if (this.tabControl1.SelectedTab == tabGuardian)
                 {
                     return Tab.Guardian;
+                }
+                else if (this.tabControl1.SelectedTab == tabEnrollment)
+                {
+                    return Tab.Enrollment;
                 }
                 else
                 {
@@ -646,7 +687,7 @@ namespace StudentMonitoringSystem.Forms.Core
             }
         }
 
-        private bool Confirm(string msg, string title = "Confirm")
+        public bool Confirm(string msg, string title = "Confirm")
         {
             var result = MessageBox.Show(msg, title, MessageBoxButtons.OKCancel);
             if (result == System.Windows.Forms.DialogResult.OK)
@@ -656,6 +697,7 @@ namespace StudentMonitoringSystem.Forms.Core
         }
 
         #endregion
+
     }
 
     #region Contact
@@ -753,7 +795,7 @@ namespace StudentMonitoringSystem.Forms.Core
             parent.lblNetwork.Text = string.Empty;
         }
 
-        public void LoadContacts()
+        public void LoadItems()
         {
             Presenter.LoadItems();
         }
@@ -765,13 +807,20 @@ namespace StudentMonitoringSystem.Forms.Core
 
         public void Save()
         {
-            Presenter.Save();
+            var answer = parent.Confirm("Do you want to save? Click OK to proceed.", "Contact");
+            if (answer)
+                Presenter.Save();
         }
 
         public void Delete()
         {
-            Presenter.Delete();
-            Reset();
+            var answer = parent.Confirm("Do you want to delete? Click OK to proceed", "Contact");
+            if (answer)
+            {
+
+                Presenter.Delete();
+                Reset();
+            }
         }
 
         #endregion
@@ -913,7 +962,7 @@ namespace StudentMonitoringSystem.Forms.Core
             parent.lblGNetwork.Text = string.Empty;
         }
 
-        public void LoadGuardians()
+        public void LoadItems()
         {
             Presenter.LoadItems();
         }
@@ -925,13 +974,19 @@ namespace StudentMonitoringSystem.Forms.Core
 
         public void Save()
         {
-            Presenter.Save();
+            var answer = parent.Confirm("Do you want to save? Click OK to proceed.", "Guardian");
+            if (answer)
+                Presenter.Save();
         }
 
         public void Delete()
         {
-            Presenter.Delete();
-            Reset();
+            var answer = parent.Confirm("Do you want to delete? Click OK to proceed", "Guardian");
+            if (answer)
+            {
+                Presenter.Delete();
+                Reset();
+            }
         }
 
         #endregion
@@ -940,5 +995,237 @@ namespace StudentMonitoringSystem.Forms.Core
 
     #endregion
 
+    #region EnrolledYear
+
+    public class FormEnrolledYear : IEnrolledYear
+    {
+        FormStudent parent;
+        public FormEnrolledYear(FormStudent form)
+        {
+            Presenter = new EnrolledYearPresenter(this);
+            parent = form;
+
+            LoadItems();
+        }
+
+        public EnrolledYearPresenter Presenter
+        { get; set; }
+
+        #region IEnrolledYear
+
+        public int ID
+        {
+            get;
+            set;
+        }
+
+        public int Student_ID
+        {
+            get { return parent.ID; }
+        }
+
+        public int Course_ID
+        {
+            get
+            {
+                int value = 0;
+                int.TryParse(Convert.ToString(parent.cmbCourse.SelectedValue), out value);
+                return value;
+            }
+            set
+            {
+                if (parent.cmbCourse.Items.Count > 0)
+                    parent.cmbCourse.SelectedValue = value;
+            }
+        }
+
+        public int Level_ID
+        {
+            get
+            {
+                int value = 0;
+                int.TryParse(Convert.ToString(parent.cmbLevel.SelectedValue), out value);
+                return value;
+            }
+            set
+            {
+                if (parent.cmbLevel.Items.Count > 0)
+                    parent.cmbLevel.SelectedValue = value;
+            }
+        }
+
+        public int SchoolYear_ID
+        {
+            get
+            {
+                int value = 0;
+                int.TryParse(Convert.ToString(parent.cmbSchoolYear.SelectedValue), out value);
+                return value;
+            }
+            set
+            {
+                if (parent.cmbSchoolYear.Items.Count > 0)
+                    parent.cmbSchoolYear.SelectedValue = value;
+            }
+        }
+
+        public int Semester_ID
+        {
+            get
+            {
+                int value = 0;
+                int.TryParse(Convert.ToString(parent.cmbSemester.SelectedValue), out value);
+                return value;
+            }
+            set
+            {
+                if (parent.cmbSemester.Items.Count > 0)
+                    parent.cmbSemester.SelectedValue = value;
+            }
+        }
+
+        public int Section_ID
+        {
+            get
+            {
+                int value = 0;
+                int.TryParse(Convert.ToString(parent.cmbSection.SelectedValue), out value);
+                return value;
+            }
+            set
+            {
+                if (parent.cmbSection.Items.Count > 0)
+                    parent.cmbSection.SelectedValue = value;
+            }
+        }
+
+        public string Note
+        {
+            get { return parent.txtEnrollmentNote.Text; }
+            set { parent.txtEnrollmentNote.Text = value; }
+        }
+
+        public void Notify(Common.Result result, List<string> messages)
+        {
+            parent.Notify(result, messages);
+        }
+
+        public List<venrolledyearinfo> EnrolledYearDataSource
+        {
+            set
+            {
+                parent.venrolledyearinfoBindingSource.DataSource = value;
+            }
+        }
+
+        public List<enroll_course> CourseDataSource
+        {
+            set
+            {
+                value.Insert(0, new enroll_course() { id = 0, name = "Select" });
+                parent.cmbCourse.DisplayMember = "name";
+                parent.cmbCourse.ValueMember = "id";
+                parent.cmbCourse.DataSource = value;
+            }
+        }
+
+        public List<enroll_level> LevelDataSource
+        {
+            set
+            {
+                value.Insert(0, new enroll_level() { id = 0, name = "Select" });
+                parent.cmbLevel.DisplayMember = "name";
+                parent.cmbLevel.ValueMember = "id";
+                parent.cmbLevel.DataSource = value;
+            }
+        }
+
+        public List<enroll_schoolyear> SchoolYearDataSource
+        {
+            set
+            {
+                value.Insert(0, new enroll_schoolyear() { id = 0, name = "Select" });
+                parent.cmbSchoolYear.DisplayMember = "name";
+                parent.cmbSchoolYear.ValueMember = "id";
+                parent.cmbSchoolYear.DataSource = value;
+            }
+        }
+
+        public List<enroll_semester> SemesterDataSource
+        {
+            set
+            {
+                value.Insert(0, new enroll_semester() { id = 0, name = "Select" });
+                parent.cmbSemester.DisplayMember = "name";
+                parent.cmbSemester.ValueMember = "id";
+                parent.cmbSemester.DataSource = value;
+            }
+        }
+
+        public List<enroll_section> SectionDataSource
+        {
+            set
+            {
+                value.Insert(0, new enroll_section() { id = 0, name = "Select" });
+                parent.cmbSection.DisplayMember = "name";
+                parent.cmbSection.ValueMember = "id";
+                parent.cmbSection.DataSource = value;
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        public void ResetAll()
+        {
+            Reset();
+            EnrolledYearDataSource = null;
+        }
+
+        public void Reset()
+        {
+            this.ID = 0;
+            this.Level_ID = 0;
+            this.SchoolYear_ID = 0;
+            this.Semester_ID = 0;
+            this.Course_ID = 0;
+            this.Section_ID = 0;
+            this.Note = string.Empty;
+        }
+
+        public void LoadItems()
+        {
+            Presenter.LoadItems();
+        }
+
+        public void LoadEnrolledYearInfo(int id)
+        {
+            Presenter.LoadEnrolledYearInfo(id);
+        }
+
+        public void Save()
+        {
+            var answer = parent.Confirm("Do you want to save? Click OK to proceed.", "Enrollment");
+            if (answer)
+                Presenter.Save();
+        }
+
+        public void Delete()
+        {
+            var answer = parent.Confirm("Do you want to delete? Click OK to proceed", "Enrollment");
+            if (answer)
+            {
+                Presenter.Delete();
+                Reset();
+            }
+        }
+
+        #endregion
+
+
+
+    }
+    #endregion
 
 }

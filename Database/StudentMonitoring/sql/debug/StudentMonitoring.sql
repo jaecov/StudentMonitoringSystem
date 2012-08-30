@@ -311,27 +311,28 @@ PRINT N'Creating [dbo].[core_student]...';
 
 GO
 CREATE TABLE [dbo].[core_student] (
-    [id]                  INT            IDENTITY (1, 1) NOT NULL,
-    [number]              VARCHAR (50)   NOT NULL,
-    [firstname]           VARCHAR (50)   NOT NULL,
-    [middlename]          VARCHAR (50)   NOT NULL,
-    [lastname]            VARCHAR (50)   NOT NULL,
-    [dateofbirth]         DATE           NOT NULL,
-    [picture]             VARCHAR (1000) NULL,
-    [gender_id]           INT            NOT NULL,
-    [civilstatus_id]      INT            NOT NULL,
-    [citizenship]         VARCHAR (50)   NOT NULL,
-    [street]              VARCHAR (100)  NULL,
-    [barangay_id]         INT            NOT NULL,
-    [mothername]          VARCHAR (100)  NULL,
-    [motheroccupation]    VARCHAR (100)  NULL,
-    [mothercontactnumber] VARCHAR (11)   NULL,
-    [motheraddress]       VARCHAR (100)  NULL,
-    [fathername]          VARCHAR (100)  NULL,
-    [fatheroccupation]    VARCHAR (100)  NULL,
-    [fathercontactnumber] VARCHAR (11)   NULL,
-    [fatheraddress]       VARCHAR (100)  NULL,
-    [note]                VARCHAR (100)  NULL,
+    [id]                      INT            IDENTITY (1, 1) NOT NULL,
+    [number]                  VARCHAR (50)   NOT NULL,
+    [firstname]               VARCHAR (50)   NOT NULL,
+    [middlename]              VARCHAR (50)   NOT NULL,
+    [lastname]                VARCHAR (50)   NOT NULL,
+    [dateofbirth]             DATE           NOT NULL,
+    [picture]                 VARCHAR (1000) NULL,
+    [gender_id]               INT            NOT NULL,
+    [civilstatus_id]          INT            NOT NULL,
+    [citizenship]             VARCHAR (50)   NOT NULL,
+    [street]                  VARCHAR (100)  NULL,
+    [barangay_id]             INT            NOT NULL,
+    [mothername]              VARCHAR (100)  NULL,
+    [motheroccupation]        VARCHAR (100)  NULL,
+    [mothercontactnumber]     VARCHAR (11)   NULL,
+    [motheraddress]           VARCHAR (100)  NULL,
+    [fathername]              VARCHAR (100)  NULL,
+    [fatheroccupation]        VARCHAR (100)  NULL,
+    [fathercontactnumber]     VARCHAR (11)   NULL,
+    [fatheraddress]           VARCHAR (100)  NULL,
+    [note]                    VARCHAR (100)  NULL,
+    [current_enrolledyear_id] INT            NOT NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
@@ -421,6 +422,7 @@ PRINT N'Creating [dbo].[enroll_enrolledyear]...';
 GO
 CREATE TABLE [dbo].[enroll_enrolledyear] (
     [id]            INT           IDENTITY (1, 1) NOT NULL,
+    [student_id]    INT           NOT NULL,
     [level_id]      INT           NOT NULL,
     [schoolyear_id] INT           NOT NULL,
     [semester_id]   INT           NOT NULL,
@@ -437,8 +439,9 @@ PRINT N'Creating [dbo].[enroll_level]...';
 
 GO
 CREATE TABLE [dbo].[enroll_level] (
-    [id]   INT         IDENTITY (1, 1) NOT NULL,
-    [name] VARCHAR (9) NOT NULL,
+    [id]          INT         IDENTITY (1, 1) NOT NULL,
+    [name]        VARCHAR (9) NOT NULL,
+    [recordorder] INT         NOT NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
@@ -508,9 +511,10 @@ PRINT N'Creating [dbo].[enroll_semester]...';
 
 GO
 CREATE TABLE [dbo].[enroll_semester] (
-    [id]   INT           IDENTITY (1, 1) NOT NULL,
-    [name] VARCHAR (50)  NOT NULL,
-    [note] VARCHAR (100) NULL,
+    [id]          INT           IDENTITY (1, 1) NOT NULL,
+    [name]        VARCHAR (50)  NOT NULL,
+    [note]        VARCHAR (100) NULL,
+    [recordorder] INT           NOT NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
@@ -736,6 +740,15 @@ ALTER TABLE [dbo].[core_contact]
 
 
 GO
+PRINT N'Creating On column: current_enrolledyear_id...';
+
+
+GO
+ALTER TABLE [dbo].[core_student]
+    ADD DEFAULT (0) FOR [current_enrolledyear_id];
+
+
+GO
 PRINT N'Creating On column: number...';
 
 
@@ -877,6 +890,15 @@ PRINT N'Creating emp_contact_emp_employee...';
 GO
 ALTER TABLE [dbo].[emp_contact] WITH NOCHECK
     ADD CONSTRAINT [emp_contact_emp_employee] FOREIGN KEY ([employee_id]) REFERENCES [dbo].[emp_employee] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+GO
+PRINT N'Creating enroll_enrolledyear_core_student...';
+
+
+GO
+ALTER TABLE [dbo].[enroll_enrolledyear] WITH NOCHECK
+    ADD CONSTRAINT [enroll_enrolledyear_core_student] FOREIGN KEY ([student_id]) REFERENCES [dbo].[core_student] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -1124,21 +1146,26 @@ as
 SELECT 
 EY.id,
 EY.note,
+EY.student_id,
 EY.level_id,
 EY.schoolyear_id,
 EY.course_id,
 EY.section_id,
+EY.semester_id,
 LVL.name AS [level_name],
 SY.name as [schoolyear_name],
 C.code as [course_code],
 C.name as [course_name],
-SC.name as [section_name]
+SC.name as [section_name],
+SM.name as [semester_name]
 
 FROM enroll_enrolledyear EY
 INNER JOIN enroll_level LVL ON EY.level_id = LVL.id
 INNER JOIN enroll_schoolyear SY ON EY.schoolyear_id = SY.id
 INNER JOIN enroll_course C ON EY.course_id = C.id
 INNER JOIN enroll_section SC ON EY.section_id = SC.id
+INNER JOIN enroll_semester SM ON EY.semester_id = SM.id
+INNER JOIN core_student ST ON EY.student_id = ST.id
 GO
 PRINT N'Creating [dbo].[vnetworkprovidercodeinfo]...';
 
@@ -1327,12 +1354,19 @@ INSERT INTO [dbo].[enroll_schoolyear](ID,NAME) VALUES(2,'2012-2013')
 SET IDENTITY_INSERT [dbo].[enroll_schoolyear] OFF
 
 SET IDENTITY_INSERT [dbo].[enroll_level] ON
-INSERT INTO [dbo].[enroll_level](ID,NAME) VALUES(1,'1st Year')
-INSERT INTO [dbo].[enroll_level](ID,NAME) VALUES(2,'2nd Year')
-INSERT INTO [dbo].[enroll_level](ID,NAME) VALUES(3,'3rd Year')
-INSERT INTO [dbo].[enroll_level](ID,NAME) VALUES(4,'4th Year')
-INSERT INTO [dbo].[enroll_level](ID,NAME) VALUES(5,'5th Year')
+INSERT INTO [dbo].[enroll_level](ID,NAME,[recordorder]) VALUES(1,'1st Year',1)
+INSERT INTO [dbo].[enroll_level](ID,NAME,[recordorder]) VALUES(2,'2nd Year',2)
+INSERT INTO [dbo].[enroll_level](ID,NAME,[recordorder]) VALUES(3,'3rd Year',3)
+INSERT INTO [dbo].[enroll_level](ID,NAME,[recordorder]) VALUES(4,'4th Year',4)
+INSERT INTO [dbo].[enroll_level](ID,NAME,[recordorder]) VALUES(5,'5th Year',5)
 SET IDENTITY_INSERT [dbo].[enroll_level] OFF
+
+SET IDENTITY_INSERT [dbo].[enroll_semester] ON
+INSERT INTO [dbo].[enroll_semester](ID,NAME,[recordorder]) VALUES(1,'1st Semester',1)
+INSERT INTO [dbo].[enroll_semester](ID,NAME,[recordorder]) VALUES(2,'2nd Semester',2)
+INSERT INTO [dbo].[enroll_semester](ID,NAME,[recordorder]) VALUES(3,'3rd Semester',3)
+INSERT INTO [dbo].[enroll_semester](ID,NAME,[recordorder]) VALUES(4,'N/A',4)
+SET IDENTITY_INSERT [dbo].[enroll_semester] OFF
 -- =============================================
 -- Script Template
 -- =============================================
@@ -1435,6 +1469,8 @@ ALTER TABLE [dbo].[core_student] WITH CHECK CHECK CONSTRAINT [core_student_core_
 ALTER TABLE [dbo].[core_student] WITH CHECK CHECK CONSTRAINT [core_student_core_gender];
 
 ALTER TABLE [dbo].[emp_contact] WITH CHECK CHECK CONSTRAINT [emp_contact_emp_employee];
+
+ALTER TABLE [dbo].[enroll_enrolledyear] WITH CHECK CHECK CONSTRAINT [enroll_enrolledyear_core_student];
 
 ALTER TABLE [dbo].[enroll_enrolledyear] WITH CHECK CHECK CONSTRAINT [enroll_enrolledyear_enroll_course];
 

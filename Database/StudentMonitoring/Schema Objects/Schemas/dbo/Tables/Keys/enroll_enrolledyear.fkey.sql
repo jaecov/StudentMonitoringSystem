@@ -3,6 +3,10 @@
 	REFERENCES [dbo].[enroll_schoolyear] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 go;
 ALTER TABLE [dbo].[enroll_enrolledyear]
+	ADD CONSTRAINT [enroll_enrolledyear_core_student] FOREIGN KEY ([student_id]) 
+	REFERENCES [dbo].[core_student] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+go;
+ALTER TABLE [dbo].[enroll_enrolledyear]
 	ADD CONSTRAINT [enroll_enrolledyear_enroll_semester] FOREIGN KEY ([semester_id]) 
 	REFERENCES [dbo].[enroll_semester] ([id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 go;

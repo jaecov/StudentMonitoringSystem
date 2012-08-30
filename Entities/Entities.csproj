@@ -113,6 +113,9 @@
     <Compile Include="enroll_section.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="enroll_semester.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="enroll_subject.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

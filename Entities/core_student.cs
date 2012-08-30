@@ -179,6 +179,12 @@ namespace StudentMonitoringSystem.Entities
             get;
             set;
         }
+    
+        public  int current_enrolledyear_id
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties
@@ -291,6 +297,38 @@ namespace StudentMonitoringSystem.Entities
             }
         }
         private ICollection<core_guardian> _core_guardian;
+    
+        public virtual ICollection<enroll_enrolledyear> enroll_enrolledyear
+        {
+            get
+            {
+                if (_enroll_enrolledyear == null)
+                {
+                    var newCollection = new FixupCollection<enroll_enrolledyear>();
+                    newCollection.CollectionChanged += Fixupenroll_enrolledyear;
+                    _enroll_enrolledyear = newCollection;
+                }
+                return _enroll_enrolledyear;
+            }
+            set
+            {
+                if (!ReferenceEquals(_enroll_enrolledyear, value))
+                {
+                    var previousValue = _enroll_enrolledyear as FixupCollection<enroll_enrolledyear>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= Fixupenroll_enrolledyear;
+                    }
+                    _enroll_enrolledyear = value;
+                    var newValue = value as FixupCollection<enroll_enrolledyear>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += Fixupenroll_enrolledyear;
+                    }
+                }
+            }
+        }
+        private ICollection<enroll_enrolledyear> _enroll_enrolledyear;
 
         #endregion
         #region Association Fixup
@@ -390,6 +428,28 @@ namespace StudentMonitoringSystem.Entities
             if (e.OldItems != null)
             {
                 foreach (core_guardian item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.core_student, this))
+                    {
+                        item.core_student = null;
+                    }
+                }
+            }
+        }
+    
+        private void Fixupenroll_enrolledyear(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (enroll_enrolledyear item in e.NewItems)
+                {
+                    item.core_student = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (enroll_enrolledyear item in e.OldItems)
                 {
                     if (ReferenceEquals(item.core_student, this))
                     {

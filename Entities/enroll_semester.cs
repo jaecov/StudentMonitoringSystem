@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 namespace StudentMonitoringSystem.Entities
 {
     [Serializable]
-    public partial class enroll_level: BaseObject
+    public partial class enroll_semester: BaseObject
     {
         #region Primitive Properties
     
@@ -28,6 +28,12 @@ namespace StudentMonitoringSystem.Entities
         }
     
         public  string name
+        {
+            get;
+            set;
+        }
+    
+        public  string note
         {
             get;
             set;
@@ -73,38 +79,6 @@ namespace StudentMonitoringSystem.Entities
             }
         }
         private ICollection<enroll_enrolledyear> _enroll_enrolledyear;
-    
-        public virtual ICollection<enroll_section> enroll_section
-        {
-            get
-            {
-                if (_enroll_section == null)
-                {
-                    var newCollection = new FixupCollection<enroll_section>();
-                    newCollection.CollectionChanged += Fixupenroll_section;
-                    _enroll_section = newCollection;
-                }
-                return _enroll_section;
-            }
-            set
-            {
-                if (!ReferenceEquals(_enroll_section, value))
-                {
-                    var previousValue = _enroll_section as FixupCollection<enroll_section>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= Fixupenroll_section;
-                    }
-                    _enroll_section = value;
-                    var newValue = value as FixupCollection<enroll_section>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += Fixupenroll_section;
-                    }
-                }
-            }
-        }
-        private ICollection<enroll_section> _enroll_section;
 
         #endregion
         #region Association Fixup
@@ -115,7 +89,7 @@ namespace StudentMonitoringSystem.Entities
             {
                 foreach (enroll_enrolledyear item in e.NewItems)
                 {
-                    item.enroll_level = this;
+                    item.enroll_semester = this;
                 }
             }
     
@@ -123,31 +97,9 @@ namespace StudentMonitoringSystem.Entities
             {
                 foreach (enroll_enrolledyear item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.enroll_level, this))
+                    if (ReferenceEquals(item.enroll_semester, this))
                     {
-                        item.enroll_level = null;
-                    }
-                }
-            }
-        }
-    
-        private void Fixupenroll_section(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (enroll_section item in e.NewItems)
-                {
-                    item.enroll_level = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (enroll_section item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.enroll_level, this))
-                    {
-                        item.enroll_level = null;
+                        item.enroll_semester = null;
                     }
                 }
             }

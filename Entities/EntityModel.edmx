@@ -29,6 +29,7 @@
           <EntitySet Name="enroll_schedule" EntityType="StudentMonitoringModel.Store.enroll_schedule" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="enroll_schoolyear" EntityType="StudentMonitoringModel.Store.enroll_schoolyear" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="enroll_section" EntityType="StudentMonitoringModel.Store.enroll_section" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="enroll_semester" EntityType="StudentMonitoringModel.Store.enroll_semester" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="enroll_subject" EntityType="StudentMonitoringModel.Store.enroll_subject" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="log_entrybook" EntityType="StudentMonitoringModel.Store.log_entrybook" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="log_entrybook_archive" EntityType="StudentMonitoringModel.Store.log_entrybook_archive" store:Type="Tables" Schema="dbo" />
@@ -98,15 +99,18 @@
             <DefiningQuery>SELECT 
       [venrolledyearinfo].[id] AS [id], 
       [venrolledyearinfo].[note] AS [note], 
+      [venrolledyearinfo].[student_id] AS [student_id], 
       [venrolledyearinfo].[level_id] AS [level_id], 
       [venrolledyearinfo].[schoolyear_id] AS [schoolyear_id], 
       [venrolledyearinfo].[course_id] AS [course_id], 
       [venrolledyearinfo].[section_id] AS [section_id], 
+      [venrolledyearinfo].[semester_id] AS [semester_id], 
       [venrolledyearinfo].[level_name] AS [level_name], 
       [venrolledyearinfo].[schoolyear_name] AS [schoolyear_name], 
       [venrolledyearinfo].[course_code] AS [course_code], 
       [venrolledyearinfo].[course_name] AS [course_name], 
-      [venrolledyearinfo].[section_name] AS [section_name]
+      [venrolledyearinfo].[section_name] AS [section_name], 
+      [venrolledyearinfo].[semester_name] AS [semester_name]
       FROM [dbo].[venrolledyearinfo] AS [venrolledyearinfo]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vnetworkprovidercodeinfo" EntityType="StudentMonitoringModel.Store.vnetworkprovidercodeinfo" store:Type="Views" store:Schema="dbo" store:Name="vnetworkprovidercodeinfo">
@@ -221,6 +225,10 @@
             <End Role="emp_employee" EntitySet="emp_employee" />
             <End Role="emp_contact" EntitySet="emp_contact" />
           </AssociationSet>
+          <AssociationSet Name="enroll_enrolledyear_core_student" Association="StudentMonitoringModel.Store.enroll_enrolledyear_core_student">
+            <End Role="core_student" EntitySet="core_student" />
+            <End Role="enroll_enrolledyear" EntitySet="enroll_enrolledyear" />
+          </AssociationSet>
           <AssociationSet Name="enroll_enrolledyear_enroll_course" Association="StudentMonitoringModel.Store.enroll_enrolledyear_enroll_course">
             <End Role="enroll_course" EntitySet="enroll_course" />
             <End Role="enroll_enrolledyear" EntitySet="enroll_enrolledyear" />
@@ -235,6 +243,10 @@
           </AssociationSet>
           <AssociationSet Name="enroll_enrolledyear_enroll_section" Association="StudentMonitoringModel.Store.enroll_enrolledyear_enroll_section">
             <End Role="enroll_section" EntitySet="enroll_section" />
+            <End Role="enroll_enrolledyear" EntitySet="enroll_enrolledyear" />
+          </AssociationSet>
+          <AssociationSet Name="enroll_enrolledyear_enroll_semester" Association="StudentMonitoringModel.Store.enroll_enrolledyear_enroll_semester">
+            <End Role="enroll_semester" EntitySet="enroll_semester" />
             <End Role="enroll_enrolledyear" EntitySet="enroll_enrolledyear" />
           </AssociationSet>
           <AssociationSet Name="enroll_schedule_enroll_day" Association="StudentMonitoringModel.Store.enroll_schedule_enroll_day">
@@ -409,6 +421,7 @@
           <Property Name="fathercontactnumber" Type="varchar" MaxLength="11" />
           <Property Name="fatheraddress" Type="varchar" MaxLength="100" />
           <Property Name="note" Type="varchar" MaxLength="100" />
+          <Property Name="current_enrolledyear_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="core_systemsettings">
           <Key>
@@ -468,8 +481,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="student_id" Type="int" Nullable="false" />
           <Property Name="level_id" Type="int" Nullable="false" />
           <Property Name="schoolyear_id" Type="int" Nullable="false" />
+          <Property Name="semester_id" Type="int" Nullable="false" />
           <Property Name="course_id" Type="int" Nullable="false" />
           <Property Name="section_id" Type="int" Nullable="false" />
           <Property Name="note" Type="varchar" MaxLength="100" />
@@ -480,6 +495,7 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="varchar" Nullable="false" MaxLength="9" />
+          <Property Name="recordorder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="enroll_room">
           <Key>
@@ -519,6 +535,15 @@
           <Property Name="note" Type="varchar" MaxLength="100" />
           <Property Name="course_id" Type="int" Nullable="false" />
           <Property Name="level_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="enroll_semester">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="note" Type="varchar" MaxLength="100" />
+          <Property Name="recordorder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="enroll_subject">
           <Key>
@@ -742,27 +767,33 @@
         <EntityType Name="venrolledyearinfo">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="student_id" />
             <PropertyRef Name="level_id" />
             <PropertyRef Name="schoolyear_id" />
             <PropertyRef Name="course_id" />
             <PropertyRef Name="section_id" />
+            <PropertyRef Name="semester_id" />
             <PropertyRef Name="level_name" />
             <PropertyRef Name="schoolyear_name" />
             <PropertyRef Name="course_code" />
             <PropertyRef Name="course_name" />
             <PropertyRef Name="section_name" />
+            <PropertyRef Name="semester_name" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="note" Type="varchar" MaxLength="100" />
+          <Property Name="student_id" Type="int" Nullable="false" />
           <Property Name="level_id" Type="int" Nullable="false" />
           <Property Name="schoolyear_id" Type="int" Nullable="false" />
           <Property Name="course_id" Type="int" Nullable="false" />
           <Property Name="section_id" Type="int" Nullable="false" />
+          <Property Name="semester_id" Type="int" Nullable="false" />
           <Property Name="level_name" Type="varchar" Nullable="false" MaxLength="9" />
           <Property Name="schoolyear_name" Type="varchar" Nullable="false" MaxLength="9" />
           <Property Name="course_code" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="course_name" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="section_name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="semester_name" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'StudentMonitoring.dbo.vnetworkprovidercodeinfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -1002,6 +1033,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="enroll_enrolledyear_core_student">
+          <End Role="core_student" Type="StudentMonitoringModel.Store.core_student" Multiplicity="1" />
+          <End Role="enroll_enrolledyear" Type="StudentMonitoringModel.Store.enroll_enrolledyear" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="core_student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="enroll_enrolledyear">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="enroll_enrolledyear_enroll_course">
           <End Role="enroll_course" Type="StudentMonitoringModel.Store.enroll_course" Multiplicity="1" />
           <End Role="enroll_enrolledyear" Type="StudentMonitoringModel.Store.enroll_enrolledyear" Multiplicity="*" />
@@ -1047,6 +1090,18 @@
             </Principal>
             <Dependent Role="enroll_enrolledyear">
               <PropertyRef Name="section_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="enroll_enrolledyear_enroll_semester">
+          <End Role="enroll_semester" Type="StudentMonitoringModel.Store.enroll_semester" Multiplicity="1" />
+          <End Role="enroll_enrolledyear" Type="StudentMonitoringModel.Store.enroll_enrolledyear" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enroll_semester">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="enroll_enrolledyear">
+              <PropertyRef Name="semester_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1234,6 +1289,7 @@
           <EntitySet Name="enroll_schedule" EntityType="StudentMonitoringModel.enroll_schedule" />
           <EntitySet Name="enroll_schoolyear" EntityType="StudentMonitoringModel.enroll_schoolyear" />
           <EntitySet Name="enroll_section" EntityType="StudentMonitoringModel.enroll_section" />
+          <EntitySet Name="enroll_semester" EntityType="StudentMonitoringModel.enroll_semester" />
           <EntitySet Name="enroll_subject" EntityType="StudentMonitoringModel.enroll_subject" />
           <EntitySet Name="log_entrybook" EntityType="StudentMonitoringModel.log_entrybook" />
           <EntitySet Name="log_entrybook_archive" EntityType="StudentMonitoringModel.log_entrybook_archive" />
@@ -1287,6 +1343,10 @@
             <End Role="core_student" EntitySet="core_student" />
             <End Role="core_guardian" EntitySet="core_guardian" />
           </AssociationSet>
+          <AssociationSet Name="enroll_enrolledyear_core_student" Association="StudentMonitoringModel.enroll_enrolledyear_core_student">
+            <End Role="core_student" EntitySet="core_student" />
+            <End Role="enroll_enrolledyear" EntitySet="enroll_enrolledyear" />
+          </AssociationSet>
           <AssociationSet Name="emp_contact_emp_employee" Association="StudentMonitoringModel.emp_contact_emp_employee">
             <End Role="emp_employee" EntitySet="emp_employee" />
             <End Role="emp_contact" EntitySet="emp_contact" />
@@ -1313,6 +1373,10 @@
           </AssociationSet>
           <AssociationSet Name="enroll_enrolledyear_enroll_section" Association="StudentMonitoringModel.enroll_enrolledyear_enroll_section">
             <End Role="enroll_section" EntitySet="enroll_section" />
+            <End Role="enroll_enrolledyear" EntitySet="enroll_enrolledyear" />
+          </AssociationSet>
+          <AssociationSet Name="enroll_enrolledyear_enroll_semester" Association="StudentMonitoringModel.enroll_enrolledyear_enroll_semester">
+            <End Role="enroll_semester" EntitySet="enroll_semester" />
             <End Role="enroll_enrolledyear" EntitySet="enroll_enrolledyear" />
           </AssociationSet>
           <AssociationSet Name="enroll_section_enroll_level" Association="StudentMonitoringModel.enroll_section_enroll_level">
@@ -1485,11 +1549,13 @@
           <Property Type="String" Name="fathercontactnumber" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="fatheraddress" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="note" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="current_enrolledyear_id" Nullable="false" />
           <NavigationProperty Name="core_barangay" Relationship="StudentMonitoringModel.core_student_core_barangay" FromRole="core_student" ToRole="core_barangay" />
           <NavigationProperty Name="core_civilstatus" Relationship="StudentMonitoringModel.core_student_core_civilstatus" FromRole="core_student" ToRole="core_civilstatus" />
           <NavigationProperty Name="core_contact" Relationship="StudentMonitoringModel.core_contact_core_student" FromRole="core_student" ToRole="core_contact" />
           <NavigationProperty Name="core_gender" Relationship="StudentMonitoringModel.core_student_core_gender" FromRole="core_student" ToRole="core_gender" />
           <NavigationProperty Name="core_guardian" Relationship="StudentMonitoringModel.core_guardian_core_student" FromRole="core_student" ToRole="core_guardian" />
+          <NavigationProperty Name="enroll_enrolledyear" Relationship="StudentMonitoringModel.enroll_enrolledyear_core_student" FromRole="core_student" ToRole="enroll_enrolledyear" />
         </EntityType>
         <EntityType Name="core_systemsettings">
           <Key>
@@ -1554,15 +1620,19 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="student_id" Nullable="false" />
           <Property Type="Int32" Name="level_id" Nullable="false" />
           <Property Type="Int32" Name="schoolyear_id" Nullable="false" />
+          <Property Type="Int32" Name="semester_id" Nullable="false" />
           <Property Type="Int32" Name="course_id" Nullable="false" />
           <Property Type="Int32" Name="section_id" Nullable="false" />
           <Property Type="String" Name="note" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="core_student" Relationship="StudentMonitoringModel.enroll_enrolledyear_core_student" FromRole="enroll_enrolledyear" ToRole="core_student" />
           <NavigationProperty Name="enroll_course" Relationship="StudentMonitoringModel.enroll_enrolledyear_enroll_course" FromRole="enroll_enrolledyear" ToRole="enroll_course" />
           <NavigationProperty Name="enroll_level" Relationship="StudentMonitoringModel.enroll_enrolledyear_enroll_level" FromRole="enroll_enrolledyear" ToRole="enroll_level" />
           <NavigationProperty Name="enroll_schoolyear" Relationship="StudentMonitoringModel.enroll_enrolledyear_enroll_schoolyear" FromRole="enroll_enrolledyear" ToRole="enroll_schoolyear" />
           <NavigationProperty Name="enroll_section" Relationship="StudentMonitoringModel.enroll_enrolledyear_enroll_section" FromRole="enroll_enrolledyear" ToRole="enroll_section" />
+          <NavigationProperty Name="enroll_semester" Relationship="StudentMonitoringModel.enroll_enrolledyear_enroll_semester" FromRole="enroll_enrolledyear" ToRole="enroll_semester" />
         </EntityType>
         <EntityType Name="enroll_level">
           <Key>
@@ -1570,6 +1640,7 @@
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="recordorder" Nullable="false" />
           <NavigationProperty Name="enroll_enrolledyear" Relationship="StudentMonitoringModel.enroll_enrolledyear_enroll_level" FromRole="enroll_level" ToRole="enroll_enrolledyear" />
           <NavigationProperty Name="enroll_section" Relationship="StudentMonitoringModel.enroll_section_enroll_level" FromRole="enroll_level" ToRole="enroll_section" />
         </EntityType>
@@ -1623,6 +1694,16 @@
           <NavigationProperty Name="enroll_enrolledyear" Relationship="StudentMonitoringModel.enroll_enrolledyear_enroll_section" FromRole="enroll_section" ToRole="enroll_enrolledyear" />
           <NavigationProperty Name="enroll_level" Relationship="StudentMonitoringModel.enroll_section_enroll_level" FromRole="enroll_section" ToRole="enroll_level" />
           <NavigationProperty Name="enroll_schedule" Relationship="StudentMonitoringModel.enroll_schedule_enroll_section" FromRole="enroll_section" ToRole="enroll_schedule" />
+        </EntityType>
+        <EntityType Name="enroll_semester">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="note" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="recordorder" Nullable="false" />
+          <NavigationProperty Name="enroll_enrolledyear" Relationship="StudentMonitoringModel.enroll_enrolledyear_enroll_semester" FromRole="enroll_semester" ToRole="enroll_enrolledyear" />
         </EntityType>
         <EntityType Name="enroll_subject">
           <Key>
@@ -1843,27 +1924,33 @@
         <EntityType Name="venrolledyearinfo">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="student_id" />
             <PropertyRef Name="level_id" />
             <PropertyRef Name="schoolyear_id" />
             <PropertyRef Name="course_id" />
             <PropertyRef Name="section_id" />
+            <PropertyRef Name="semester_id" />
             <PropertyRef Name="level_name" />
             <PropertyRef Name="schoolyear_name" />
             <PropertyRef Name="course_code" />
             <PropertyRef Name="course_name" />
             <PropertyRef Name="section_name" />
+            <PropertyRef Name="semester_name" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="note" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="student_id" Nullable="false" />
           <Property Type="Int32" Name="level_id" Nullable="false" />
           <Property Type="Int32" Name="schoolyear_id" Nullable="false" />
           <Property Type="Int32" Name="course_id" Nullable="false" />
           <Property Type="Int32" Name="section_id" Nullable="false" />
+          <Property Type="Int32" Name="semester_id" Nullable="false" />
           <Property Type="String" Name="level_name" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="schoolyear_name" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="course_code" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="course_name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="section_name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="semester_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="vnetworkprovidercodeinfo">
           <Key>
@@ -2091,6 +2178,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="enroll_enrolledyear_core_student">
+          <End Type="StudentMonitoringModel.core_student" Role="core_student" Multiplicity="1" />
+          <End Type="StudentMonitoringModel.enroll_enrolledyear" Role="enroll_enrolledyear" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="core_student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="enroll_enrolledyear">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="emp_contact_emp_employee">
           <End Type="StudentMonitoringModel.emp_employee" Role="emp_employee" Multiplicity="1" />
           <End Type="StudentMonitoringModel.emp_contact" Role="emp_contact" Multiplicity="*" />
@@ -2172,6 +2271,18 @@
             </Principal>
             <Dependent Role="enroll_enrolledyear">
               <PropertyRef Name="section_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="enroll_enrolledyear_enroll_semester">
+          <End Type="StudentMonitoringModel.enroll_semester" Role="enroll_semester" Multiplicity="1" />
+          <End Type="StudentMonitoringModel.enroll_enrolledyear" Role="enroll_enrolledyear" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enroll_semester">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="enroll_enrolledyear">
+              <PropertyRef Name="semester_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2409,6 +2520,7 @@
           <EntitySetMapping Name="core_student">
             <EntityTypeMapping TypeName="StudentMonitoringModel.core_student">
               <MappingFragment StoreEntitySet="core_student">
+                <ScalarProperty Name="current_enrolledyear_id" ColumnName="current_enrolledyear_id" />
                 <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="fatheraddress" ColumnName="fatheraddress" />
                 <ScalarProperty Name="fathercontactnumber" ColumnName="fathercontactnumber" />
@@ -2497,8 +2609,10 @@
                 <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="section_id" ColumnName="section_id" />
                 <ScalarProperty Name="course_id" ColumnName="course_id" />
+                <ScalarProperty Name="semester_id" ColumnName="semester_id" />
                 <ScalarProperty Name="schoolyear_id" ColumnName="schoolyear_id" />
                 <ScalarProperty Name="level_id" ColumnName="level_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2506,6 +2620,7 @@
           <EntitySetMapping Name="enroll_level">
             <EntityTypeMapping TypeName="StudentMonitoringModel.enroll_level">
               <MappingFragment StoreEntitySet="enroll_level">
+                <ScalarProperty Name="recordorder" ColumnName="recordorder" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -2548,6 +2663,16 @@
               <MappingFragment StoreEntitySet="enroll_section">
                 <ScalarProperty Name="level_id" ColumnName="level_id" />
                 <ScalarProperty Name="course_id" ColumnName="course_id" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="enroll_semester">
+            <EntityTypeMapping TypeName="StudentMonitoringModel.enroll_semester">
+              <MappingFragment StoreEntitySet="enroll_semester">
+                <ScalarProperty Name="recordorder" ColumnName="recordorder" />
                 <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -2747,15 +2872,18 @@
           <EntitySetMapping Name="venrolledyearinfoes">
             <EntityTypeMapping TypeName="StudentMonitoringModel.venrolledyearinfo">
               <MappingFragment StoreEntitySet="venrolledyearinfo">
+                <ScalarProperty Name="semester_name" ColumnName="semester_name" />
                 <ScalarProperty Name="section_name" ColumnName="section_name" />
                 <ScalarProperty Name="course_name" ColumnName="course_name" />
                 <ScalarProperty Name="course_code" ColumnName="course_code" />
                 <ScalarProperty Name="schoolyear_name" ColumnName="schoolyear_name" />
                 <ScalarProperty Name="level_name" ColumnName="level_name" />
+                <ScalarProperty Name="semester_id" ColumnName="semester_id" />
                 <ScalarProperty Name="section_id" ColumnName="section_id" />
                 <ScalarProperty Name="course_id" ColumnName="course_id" />
                 <ScalarProperty Name="schoolyear_id" ColumnName="schoolyear_id" />
                 <ScalarProperty Name="level_id" ColumnName="level_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
                 <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -2871,183 +2999,249 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="EntityModel" ZoomLevel="73">
-        <EntityTypeShape EntityType="StudentMonitoringModel.C__RefactorLog" Width="1.5" PointX="2.75" PointY="0.75" Height="1.2110807291666674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.audt_audittrail" Width="1.5" PointX="4.75" PointY="0.75" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.audt_log" Width="1.5" PointX="2.75" PointY="7.75" Height="2.1725878906249818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.core_barangay" Width="1.5" PointX="13.25" PointY="10.125" Height="1.9802864583333246" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.core_city" Width="1.5" PointX="11" PointY="10.125" Height="1.9802864583333246" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.core_civilstatus" Width="1.5" PointX="13.25" PointY="7.125" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.core_contact" Width="1.5" PointX="17.75" PointY="8.25" Height="2.1725878906249818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.core_day" Width="1.5" PointX="6" PointY="7.375" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.core_gender" Width="1.5" PointX="13.25" PointY="13.5" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.core_guardian" Width="1.5" PointX="17.75" PointY="11.25" Height="2.7494921874999818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.core_province" Width="1.5" PointX="8.75" PointY="10.375" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.core_student" Width="1.5" PointX="15.5" PointY="8.125" Height="6.0186165364583246" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.core_systemsettings" Width="1.5" PointX="6.75" PointY="0.75" Height="1.4033821614583246" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.core_user" Width="1.5" PointX="0.75" PointY="10.75" Height="1.9802864583333246" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.emp_contact" Width="1.5" PointX="8.25" PointY="17.875" Height="2.1725878906249818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.emp_employee" Width="1.5" PointX="6" PointY="10" Height="3.9033007812499818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_course" Width="1.5" PointX="0.75" PointY="3.875" Height="1.9802864583333246" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_enrolledyear" Width="1.5" PointX="3" PointY="3.375" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_level" Width="1.5" PointX="0.75" PointY="0.875" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_room" Width="1.5" PointX="6" PointY="14.625" Height="1.9802864583333246" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_schedule" Width="1.5" PointX="8.25" PointY="3" Height="3.7109993489583246" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_schoolyear" Width="1.5" PointX="0.75" PointY="7.375" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_section" Width="1.5" PointX="6" PointY="3.5" Height="2.7494921874999818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_subject" Width="1.5" PointX="6" PointY="17.375" Height="1.980286458333353" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.log_entrybook" Width="1.5" PointX="2.75" PointY="10.75" Height="1.9802864583333246" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.log_entrybook_archive" Width="1.5" PointX="10.75" PointY="3.75" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.sms_inbox" Width="1.5" PointX="18" PointY="16.375" Height="2.1725878906249818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.sms_inbox_archive" Width="1.5" PointX="18" PointY="19.375" Height="2.557190755208353" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.sms_networkprovider" Width="1.5" PointX="10.75" PointY="1" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.sms_networkprovidercode" Width="1.5" PointX="13" PointY="0.875" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.sms_notification" Width="1.5" PointX="8.25" PointY="14.375" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.sms_outbox" Width="1.5" PointX="18" PointY="22.625" Height="2.1725878906249818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.sms_outbox_archive" Width="1.5" PointX="18" PointY="25.625" Height="2.557190755208353" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.sms_sent" Width="1.5" PointX="12.75" PointY="3.75" Height="1.9802864583333246" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.sms_sent_archive" Width="1.5" PointX="0.75" PointY="13.75" Height="2.1725878906249818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.sms_status" Width="1.5" PointX="15.75" PointY="21.125" Height="2.1725878906249818" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.vbarangayinfo" Width="1.5" PointX="2.75" PointY="13.75" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.vcityinfo" Width="1.5" PointX="14.75" PointY="3.75" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.vemployeeinfo" Width="1.5" PointX="16.75" PointY="0.75" Height="5.2494108072916674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.venrolledyearinfo" Width="1.5" PointX="0.75" PointY="16.75" Height="3.1340950520833246" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.vnetworkprovidercodeinfo" Width="1.5" PointX="2.75" PointY="16.75" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.vscheduleinfo" Width="1.5" PointX="10.75" PointY="16.75" Height="5.8263151041666674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.vsectioninfo" Width="1.5" PointX="12.75" PointY="16.75" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="StudentMonitoringModel.vstudentinfo" Width="1.5" PointX="18.75" PointY="0.75" Height="6.4032194010416674" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.C__RefactorLog" Width="1.5" PointX="3.75" PointY="1" Height="1.2110807291666674" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.audt_audittrail" Width="1.5" PointX="5.75" PointY="1" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.audt_log" Width="1.5" PointX="10.75" PointY="4" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.core_barangay" Width="1.5" PointX="1.5" PointY="17" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.core_city" Width="1.5" PointX="1.5" PointY="20" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.core_civilstatus" Width="1.5" PointX="1.5" PointY="0.75" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.core_contact" Width="1.5" PointX="3" PointY="9.5" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.core_day" Width="1.5" PointX="6" PointY="8" Height="1.7879850260416106" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.core_gender" Width="1.5" PointX="1.5" PointY="26.125" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.core_guardian" Width="1.5" PointX="3" PointY="12.5" Height="2.7494921874999818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.core_province" Width="1.5" PointX="1.5" PointY="23.25" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.core_student" Width="1.5" PointX="0.75" PointY="9.125" Height="6.4032194010416674" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.core_systemsettings" Width="1.5" PointX="7.75" PointY="1" Height="1.403382161458353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.core_user" Width="1.5" PointX="12.75" PointY="4" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.emp_contact" Width="1.5" PointX="8.25" PointY="10.5" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.emp_employee" Width="1.5" PointX="6" PointY="10.625" Height="3.9033007812499818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_course" Width="1.5" PointX="0.75" PointY="4.5" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_enrolledyear" Width="1.5" PointX="3" PointY="3.625" Height="3.710999348958353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_level" Width="1.5" PointX="0.75" PointY="28.5" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_room" Width="1.5" PointX="6" PointY="15.25" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_schedule" Width="1.5" PointX="8.25" PointY="3.625" Height="3.710999348958353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_schoolyear" Width="1.5" PointX="0.75" PointY="31.125" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_section" Width="1.5" PointX="6" PointY="4.125" Height="2.7494921874999818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_semester" Width="1.5" PointX="0.75" PointY="33.5" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.enroll_subject" Width="1.5" PointX="6" PointY="18" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.log_entrybook" Width="1.5" PointX="13.75" PointY="7" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.log_entrybook_archive" Width="1.5" PointX="13.75" PointY="10" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.sms_inbox" Width="1.5" PointX="11" PointY="9.625" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.sms_inbox_archive" Width="1.5" PointX="11" PointY="12.5" Height="2.557190755208353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.sms_networkprovider" Width="1.5" PointX="10.75" PointY="1.25" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.sms_networkprovidercode" Width="1.5" PointX="13" PointY="1.125" Height="1.7879850260416106" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.sms_notification" Width="1.5" PointX="8.25" PointY="18" Height="2.3648893229166106" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.sms_outbox" Width="1.5" PointX="11" PointY="15.875" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.sms_outbox_archive" Width="1.5" PointX="11" PointY="18.75" Height="2.557190755208353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.sms_sent" Width="1.5" PointX="13.75" PointY="14" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.sms_sent_archive" Width="1.5" PointX="14.75" PointY="4" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.sms_status" Width="1.5" PointX="8.75" PointY="14.375" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.vbarangayinfo" Width="1.5" PointX="10.75" PointY="7" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.vcityinfo" Width="1.5" PointX="15.75" PointY="1" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.vemployeeinfo" Width="1.5" PointX="15.75" PointY="7" Height="5.2494108072916674" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.venrolledyearinfo" Width="1.5" PointX="15.75" PointY="13" Height="3.710999348958353" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.vnetworkprovidercodeinfo" Width="1.5" PointX="16.75" PointY="4" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.vscheduleinfo" Width="1.5" PointX="17.75" PointY="7" Height="5.8263151041666674" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.vsectioninfo" Width="1.5" PointX="17.75" PointY="14" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="StudentMonitoringModel.vstudentinfo" Width="1.5" PointX="13.75" PointY="18" Height="6.4032194010416674" />
         <AssociationConnector Association="StudentMonitoringModel.core_barangay_core_city" >
-          <ConnectorPoint PointX="12.5" PointY="11.115143229166662" />
-          <ConnectorPoint PointX="13.25" PointY="11.115143229166662" />
+          <ConnectorPoint PointX="2.25" PointY="20" />
+          <ConnectorPoint PointX="2.25" PointY="18.980286458333353" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.core_student_core_barangay" >
-          <ConnectorPoint PointX="14.75" PointY="11.115143229166662" />
-          <ConnectorPoint PointX="15.5" PointY="11.115143229166662" />
+          <ConnectorPoint PointX="1.875" PointY="17" />
+          <ConnectorPoint PointX="1.875" PointY="15.528219401041667" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.core_city_core_province" >
-          <ConnectorPoint PointX="10.25" PointY="11.172841796874991" />
-          <ConnectorPoint PointX="11" PointY="11.172841796874991" />
+          <ConnectorPoint PointX="2.25" PointY="23.25" />
+          <ConnectorPoint PointX="2.25" PointY="21.980286458333353" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.core_student_core_civilstatus" >
-          <ConnectorPoint PointX="14.75" PointY="8.4228417968749909" />
-          <ConnectorPoint PointX="15.5" PointY="8.4228417968749909" />
+          <ConnectorPoint PointX="2.5937505" PointY="2.3456835937499818" />
+          <ConnectorPoint PointX="2.5937505" PointY="12.326609700520834" />
+          <ConnectorPoint PointX="2.25" PointY="12.326609700520834" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.core_contact_core_student" >
-          <ConnectorPoint PointX="17" PointY="9.3362939453124909" />
-          <ConnectorPoint PointX="17.75" PointY="9.3362939453124909" />
+          <ConnectorPoint PointX="2.25" PointY="10.586293945312491" />
+          <ConnectorPoint PointX="2.5104171666666666" PointY="10.586293945312489" />
+          <ConnectorPoint PointX="2.9583333333333339" PointY="10.586293945312491" />
+          <ConnectorPoint PointX="3" PointY="10.586293945312491" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.enroll_schedule_enroll_day" >
-          <ConnectorPoint PointX="7.5" PointY="8.2689925130208337" />
-          <ConnectorPoint PointX="7.854166666666667" PointY="8.2689925130208319" />
-          <ConnectorPoint PointX="8.1458333333333339" PointY="8.2689925130208337" />
-          <ConnectorPoint PointX="8.3854166666666661" PointY="8.2689925130208337" />
-          <ConnectorPoint PointX="8.5520833333333339" PointY="8.2689925130208337" />
-          <ConnectorPoint PointX="9" PointY="8.2689925130208337" />
-          <ConnectorPoint PointX="9" PointY="6.7109993489583246" />
+          <ConnectorPoint PointX="7.5" PointY="8.8939925130208053" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="8.8939925130208035" />
+          <ConnectorPoint PointX="8.1458333333333339" PointY="8.8939925130208053" />
+          <ConnectorPoint PointX="9" PointY="8.8939925130208053" />
+          <ConnectorPoint PointX="9" PointY="7.335999348958353" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.core_student_core_gender" >
-          <ConnectorPoint PointX="14.75" PointY="13.821808268229162" />
-          <ConnectorPoint PointX="15.5" PointY="13.821808268229162" />
+          <ConnectorPoint PointX="1.5" PointY="26.922841796874991" />
+          <ConnectorPoint PointX="1.1249995" PointY="26.922841796874991" />
+          <ConnectorPoint PointX="1.1249995" PointY="15.528219401041667" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.core_guardian_core_student" >
-          <ConnectorPoint PointX="17" PointY="12.624746093749991" />
-          <ConnectorPoint PointX="17.75" PointY="12.624746093749991" />
+          <ConnectorPoint PointX="2.25" PointY="13.874746093749991" />
+          <ConnectorPoint PointX="2.6041666666666665" PointY="13.874746093749989" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="13.874746093749991" />
+          <ConnectorPoint PointX="3" PointY="13.874746093749991" />
+        </AssociationConnector>
+        <AssociationConnector Association="StudentMonitoringModel.enroll_enrolledyear_core_student" >
+          <ConnectorPoint PointX="2.25" PointY="9.18846053846154" />
+          <ConnectorPoint PointX="2.53482493490112" PointY="8.9036356035604172" />
+          <ConnectorPoint PointX="2.8089255650988796" PointY="8.62953497336266" />
+          <ConnectorPoint PointX="2.8125" PointY="8.62596053846154" />
+          <ConnectorPoint PointX="2.8125" PointY="5.4804996744791765" />
+          <ConnectorPoint PointX="3" PointY="5.4804996744791765" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.emp_contact_emp_employee" >
-          <ConnectorPoint PointX="7.5" PointY="13.903300781249982" />
-          <ConnectorPoint PointX="7.875" PointY="14.278300781249982" />
-          <ConnectorPoint PointX="7.875" PointY="18.961293945312491" />
-          <ConnectorPoint PointX="8.25" PointY="18.961293945312491" />
+          <ConnectorPoint PointX="7.5" PointY="11.648793945312491" />
+          <ConnectorPoint PointX="7.854166666666667" PointY="11.648793945312489" />
+          <ConnectorPoint PointX="8.1458333333333339" PointY="11.648793945312491" />
+          <ConnectorPoint PointX="8.25" PointY="11.648793945312491" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.enroll_schedule_enroll_employee" >
-          <ConnectorPoint PointX="7.5" PointY="12.936989687499988" />
-          <ConnectorPoint PointX="7.854166666666667" PointY="12.936989687499986" />
-          <ConnectorPoint PointX="8.1458333333333339" PointY="12.936989687499988" />
-          <ConnectorPoint PointX="8.46875" PointY="12.936989687499988" />
-          <ConnectorPoint PointX="8.46875" PointY="6.7109993489583246" />
+          <ConnectorPoint PointX="7.5" PointY="10.626152846153847" />
+          <ConnectorPoint PointX="7.875" PointY="10.251152846153847" />
+          <ConnectorPoint PointX="7.875" PointY="5.4804996744791765" />
+          <ConnectorPoint PointX="8.25" PointY="5.4804996744791765" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.enroll_enrolledyear_enroll_course" >
-          <ConnectorPoint PointX="2.25" PointY="4.8651432291666623" />
-          <ConnectorPoint PointX="3" PointY="4.8651432291666623" />
+          <ConnectorPoint PointX="2.25" PointY="6.0428930664062648" />
+          <ConnectorPoint PointX="2.2916666666666665" PointY="6.0428930664062639" />
+          <ConnectorPoint PointX="2.4583333333333335" PointY="6.0428930664062648" />
+          <ConnectorPoint PointX="2.5104171666666666" PointY="6.0428930664062639" />
+          <ConnectorPoint PointX="2.6770838333333336" PointY="6.0428930664062648" />
+          <ConnectorPoint PointX="2.7291666666666665" PointY="6.0428930664062639" />
+          <ConnectorPoint PointX="2.8958333333333335" PointY="6.0428930664062648" />
+          <ConnectorPoint PointX="3" PointY="6.0428930664062648" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.enroll_section_enroll_course" >
-          <ConnectorPoint PointX="2.25" PointY="5.8552864583333246" />
-          <ConnectorPoint PointX="2.625" PointY="6.2302864583333246" />
-          <ConnectorPoint PointX="2.625" PointY="6.6244921874999818" />
-          <ConnectorPoint PointX="4.322916666666667" PointY="6.6244921874999809" />
-          <ConnectorPoint PointX="4.489583333333333" PointY="6.6244921874999818" />
-          <ConnectorPoint PointX="5.625" PointY="6.6244921874999818" />
-          <ConnectorPoint PointX="6" PointY="6.2494921874999818" />
+          <ConnectorPoint PointX="2.25" PointY="5.2401945332031392" />
+          <ConnectorPoint PointX="2.375" PointY="5.2401945332031392" />
+          <ConnectorPoint PointX="2.375" PointY="7.585999348958353" />
+          <ConnectorPoint PointX="2.5104171666666666" PointY="7.5859993489583522" />
+          <ConnectorPoint PointX="2.6770838333333336" PointY="7.585999348958353" />
+          <ConnectorPoint PointX="2.7291666666666665" PointY="7.5859993489583522" />
+          <ConnectorPoint PointX="2.8958333333333335" PointY="7.585999348958353" />
+          <ConnectorPoint PointX="3.2604146666666667" PointY="7.5859993489583522" />
+          <ConnectorPoint PointX="3.4270813333333336" PointY="7.585999348958353" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="7.5859993489583522" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="7.585999348958353" />
+          <ConnectorPoint PointX="4.0729186666666672" PointY="7.5859993489583522" />
+          <ConnectorPoint PointX="4.2395853333333333" PointY="7.585999348958353" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="7.5859993489583522" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="7.585999348958353" />
+          <ConnectorPoint PointX="6.75" PointY="7.585999348958353" />
+          <ConnectorPoint PointX="6.75" PointY="6.8744921874999818" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.enroll_enrolledyear_enroll_level" >
-          <ConnectorPoint PointX="2.25" PointY="2.3432828776041674" />
-          <ConnectorPoint PointX="4.40625" PointY="2.3432828776041674" />
-          <ConnectorPoint PointX="4.40625" PointY="3.375" />
+          <ConnectorPoint PointX="2.25" PointY="29.490143229166677" />
+          <ConnectorPoint PointX="3.4166666666666665" PointY="29.490143229166677" />
+          <ConnectorPoint PointX="3.5833333333333335" PointY="29.490143229166677" />
+          <ConnectorPoint PointX="3.75" PointY="29.490143229166677" />
+          <ConnectorPoint PointX="3.75" PointY="15.499492187499982" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="15.499492187499982" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="15.499492187499982" />
+          <ConnectorPoint PointX="2.75" PointY="15.499492187499982" />
+          <ConnectorPoint PointX="2.75" PointY="7.960999348958353" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="7.9609993489583522" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="7.960999348958353" />
+          <ConnectorPoint PointX="3.75" PointY="7.960999348958353" />
+          <ConnectorPoint PointX="3.75" PointY="7.335999348958353" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.enroll_enrolledyear_enroll_schoolyear" >
-          <ConnectorPoint PointX="2.25" PointY="7.53125" />
-          <ConnectorPoint PointX="4.40625" PointY="7.53125" />
-          <ConnectorPoint PointX="4.40625" PointY="6.3167936197916674" />
+          <ConnectorPoint PointX="2.25" PointY="31.922841796874991" />
+          <ConnectorPoint PointX="3.4166666666666665" PointY="31.922841796874991" />
+          <ConnectorPoint PointX="3.5833333333333335" PointY="31.922841796874991" />
+          <ConnectorPoint PointX="4" PointY="31.922841796874991" />
+          <ConnectorPoint PointX="4" PointY="15.749492187499982" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="15.749492187499982" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="15.749492187499982" />
+          <ConnectorPoint PointX="3.5833333333333335" PointY="15.749492187499982" />
+          <ConnectorPoint PointX="3.4166666666666665" PointY="15.749492187499982" />
+          <ConnectorPoint PointX="2.6875" PointY="15.749492187499982" />
+          <ConnectorPoint PointX="2.6875" PointY="7.710999348958353" />
+          <ConnectorPoint PointX="2.7291666666666665" PointY="7.7109993489583522" />
+          <ConnectorPoint PointX="2.8958333333333335" PointY="7.710999348958353" />
+          <ConnectorPoint PointX="3.343748" PointY="7.710999348958353" />
+          <ConnectorPoint PointX="3.343748" PointY="7.335999348958353" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.enroll_enrolledyear_enroll_section" >
-          <ConnectorPoint PointX="6" PointY="4.8434935937499972" />
-          <ConnectorPoint PointX="4.5" PointY="4.8434935937499972" />
+          <ConnectorPoint PointX="6" PointY="5.4997460937499909" />
+          <ConnectorPoint PointX="4.5" PointY="5.4997460937499909" />
+        </AssociationConnector>
+        <AssociationConnector Association="StudentMonitoringModel.enroll_enrolledyear_enroll_semester" >
+          <ConnectorPoint PointX="2.25" PointY="34.490143229166677" />
+          <ConnectorPoint PointX="3.5" PointY="34.490143229166677" />
+          <ConnectorPoint PointX="3.5" PointY="15.624492187499982" />
+          <ConnectorPoint PointX="2.875" PointY="15.624492187499982" />
+          <ConnectorPoint PointX="2.875" PointY="7.835999348958353" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="7.8359993489583522" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="7.835999348958353" />
+          <ConnectorPoint PointX="4.156252" PointY="7.835999348958353" />
+          <ConnectorPoint PointX="4.156252" PointY="7.335999348958353" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.enroll_section_enroll_level" >
-          <ConnectorPoint PointX="2.25" PointY="2.6317350260416674" />
-          <ConnectorPoint PointX="4.322916666666667" PointY="2.631735026041667" />
-          <ConnectorPoint PointX="4.489583333333333" PointY="2.6317350260416674" />
-          <ConnectorPoint PointX="6.5" PointY="2.6317350260416674" />
-          <ConnectorPoint PointX="6.5" PointY="3.5" />
+          <ConnectorPoint PointX="2.25" PointY="28.501152846153843" />
+          <ConnectorPoint PointX="2.6261528461538433" PointY="28.125" />
+          <ConnectorPoint PointX="3.4166666666666665" PointY="28.125" />
+          <ConnectorPoint PointX="3.5833333333333335" PointY="28.125" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="28.125" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="28.125" />
+          <ConnectorPoint PointX="3.9166666666666665" PointY="28.125" />
+          <ConnectorPoint PointX="4.083333333333333" PointY="28.125" />
+          <ConnectorPoint PointX="5.625" PointY="28.125" />
+          <ConnectorPoint PointX="5.625" PointY="7.2494921874999818" />
+          <ConnectorPoint PointX="6" PointY="6.8744921874999818" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.enroll_schedule_enroll_room" >
-          <ConnectorPoint PointX="7.5" PointY="14.688460538461539" />
-          <ConnectorPoint PointX="7.8785744349011209" PointY="14.30988610356042" />
-          <ConnectorPoint PointX="7.9964255650988791" PointY="14.192034973362663" />
-          <ConnectorPoint PointX="8.0625" PointY="14.125960538461541" />
-          <ConnectorPoint PointX="8.0625" PointY="4.8554996744791623" />
-          <ConnectorPoint PointX="8.25" PointY="4.8554996744791623" />
+          <ConnectorPoint PointX="7.5" PointY="15.313460538461539" />
+          <ConnectorPoint PointX="7.8785744349011209" PointY="14.93488610356042" />
+          <ConnectorPoint PointX="7.9964255650988791" PointY="14.817034973362663" />
+          <ConnectorPoint PointX="8.0625" PointY="14.750960538461541" />
+          <ConnectorPoint PointX="8.0625" PointY="6.4395015117188148" />
+          <ConnectorPoint PointX="8.25" PointY="6.4395015117188148" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.sms_notification_enroll_room" >
-          <ConnectorPoint PointX="7.5" PointY="15.678125998397427" />
-          <ConnectorPoint PointX="7.791666666666667" PointY="15.678125998397427" />
-          <ConnectorPoint PointX="8.0208333333333339" PointY="15.678125998397427" />
-          <ConnectorPoint PointX="8.25" PointY="15.678125998397427" />
+          <ConnectorPoint PointX="7.5" PointY="16.920187174479167" />
+          <ConnectorPoint PointX="7.854166666666667" PointY="16.920187174479167" />
+          <ConnectorPoint PointX="8.0208333333333339" PointY="16.920187174479167" />
+          <ConnectorPoint PointX="8.46875" PointY="16.920187174479167" />
+          <ConnectorPoint PointX="8.46875" PointY="18" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.enroll_schedule_enroll_section" >
-          <ConnectorPoint PointX="7.5" PointY="5.6149959309895721" />
-          <ConnectorPoint PointX="7.854166666666667" PointY="5.6149959309895712" />
-          <ConnectorPoint PointX="8.1458333333333339" PointY="5.6149959309895721" />
-          <ConnectorPoint PointX="8.25" PointY="5.6149959309895721" />
+          <ConnectorPoint PointX="7.5" PointY="4.7402498372395883" />
+          <ConnectorPoint PointX="7.854166666666667" PointY="4.7402498372395874" />
+          <ConnectorPoint PointX="8.0208333333333339" PointY="4.7402498372395883" />
+          <ConnectorPoint PointX="8.25" PointY="4.7402498372395883" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.enroll_schedule_enroll_subject" >
-          <ConnectorPoint PointX="7.5" PointY="17.438460538461534" />
-          <ConnectorPoint PointX="7.8160744349011209" PointY="17.122386103560412" />
-          <ConnectorPoint PointX="7.9339255650988791" PointY="17.004534973362656" />
-          <ConnectorPoint PointX="7.9375" PointY="17.000960538461534" />
-          <ConnectorPoint PointX="7.9375" PointY="3.8964978372395875" />
-          <ConnectorPoint PointX="8.25" PointY="3.8964978372395875" />
+          <ConnectorPoint PointX="7.5" PointY="18.063460538461534" />
+          <ConnectorPoint PointX="7.9375" PointY="17.625960538461534" />
+          <ConnectorPoint PointX="7.9375" PointY="4.1513729186197441" />
+          <ConnectorPoint PointX="8.25" PointY="4.1513729186197441" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.sms_inbox_sms_status" >
-          <ConnectorPoint PointX="16.5" PointY="21.125" />
-          <ConnectorPoint PointX="16.5" PointY="17.461293945312491" />
-          <ConnectorPoint PointX="18" PointY="17.461293945312491" />
+          <ConnectorPoint PointX="10.03125" PointY="14.375" />
+          <ConnectorPoint PointX="10.03125" PointY="10.03125" />
+          <ConnectorPoint PointX="11" PointY="10.03125" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.sms_inbox_archive_sms_status" >
-          <ConnectorPoint PointX="17.25" PointY="21.528595377604177" />
-          <ConnectorPoint PointX="18" PointY="21.528595377604177" />
+          <ConnectorPoint PointX="10.25" PointY="14.716095377604177" />
+          <ConnectorPoint PointX="11" PointY="14.716095377604177" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.sms_networkcode_sms_networkprovider" >
-          <ConnectorPoint PointX="12.25" PointY="1.7978417968749909" />
-          <ConnectorPoint PointX="13" PointY="1.7978417968749909" />
+          <ConnectorPoint PointX="12.25" PointY="2.0478417968749909" />
+          <ConnectorPoint PointX="13" PointY="2.0478417968749909" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.sms_outbox_sms_status" >
-          <ConnectorPoint PointX="17.25" PointY="22.961293945312491" />
-          <ConnectorPoint PointX="18" PointY="22.961293945312491" />
+          <ConnectorPoint PointX="10.25" PointY="16.211293945312491" />
+          <ConnectorPoint PointX="11" PointY="16.211293945312491" />
         </AssociationConnector>
         <AssociationConnector Association="StudentMonitoringModel.sms_outbox_archive_sms_status" >
-          <ConnectorPoint PointX="16.5" PointY="23.297587890624982" />
-          <ConnectorPoint PointX="16.5" PointY="26.903595377604177" />
-          <ConnectorPoint PointX="18" PointY="26.903595377604177" />
+          <ConnectorPoint PointX="10.03125" PointY="16.547587890624982" />
+          <ConnectorPoint PointX="10.03125" PointY="20.867290039062482" />
+          <ConnectorPoint PointX="11" PointY="20.867290039062482" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

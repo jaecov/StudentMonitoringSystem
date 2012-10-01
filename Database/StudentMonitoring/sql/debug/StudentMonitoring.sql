@@ -10,14 +10,13 @@ SET NUMERIC_ROUNDABORT OFF;
 
 GO
 :setvar DatabaseName "StudentMonitoring"
-:setvar DefaultDataPath "C:\Program Files\Microsoft SQL Server\MSSQL10_50.SQL2K8R2\MSSQL\DATA\"
-:setvar DefaultLogPath "C:\Program Files\Microsoft SQL Server\MSSQL10_50.SQL2K8R2\MSSQL\DATA\"
-
-GO
-USE [master]
+:setvar DefaultDataPath "C:\Program Files (x86)\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\DATA\"
+:setvar DefaultLogPath "C:\Program Files (x86)\Microsoft SQL Server\MSSQL10_50.MSSQLSERVER\MSSQL\DATA\"
 
 GO
 :on error exit
+GO
+USE [master]
 GO
 IF (DB_ID(N'$(DatabaseName)') IS NOT NULL
     AND DATABASEPROPERTYEX(N'$(DatabaseName)','Status') <> N'ONLINE')
@@ -148,7 +147,6 @@ ELSE
 
 GO
 USE [$(DatabaseName)]
-
 GO
 IF fulltextserviceproperty(N'IsFulltextInstalled') = 1
     EXECUTE sp_fulltext_database 'enable';
@@ -333,6 +331,7 @@ CREATE TABLE [dbo].[core_student] (
     [fatheraddress]           VARCHAR (100)  NULL,
     [note]                    VARCHAR (100)  NULL,
     [current_enrolledyear_id] INT            NOT NULL,
+    [RFID]                    VARCHAR (256)  NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
@@ -398,6 +397,7 @@ CREATE TABLE [dbo].[emp_employee] (
     [barangay_id]    INT            NOT NULL,
     [picture]        VARCHAR (1000) NULL,
     [note]           VARCHAR (100)  NULL,
+    [RFID]           VARCHAR (256)  NULL,
     PRIMARY KEY CLUSTERED ([id] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
@@ -1124,6 +1124,7 @@ SELECT
 , ct.province_id
 , pr.name AS province_name
 , isnull(emp.street,'') + ' ' + bg.name + ' ' + ct.name + ' ' + pr.name  as [address]
+, emp.RFID
 
 FROM dbo.emp_employee emp
 INNER JOIN dbo.core_civilstatus cs on emp.civilstatus_id = cs.id
@@ -1258,6 +1259,7 @@ GO
 CREATE VIEW [dbo].[vstudentinfo]
 AS
 
+
 SELECT     
 st.id
 , st.number
@@ -1287,13 +1289,25 @@ st.id
 , st.motheroccupation
 , st.mothercontactnumber
 , st.motheraddress
+, st.current_enrolledyear_id
+, st.RFID
+, sy.name as schoolyear_name
+, c.name as course_name
+, c.code as course_code
+, l.name as level_name
+, sc.name as section_name
 
 FROM dbo.core_student st
 INNER JOIN dbo.core_civilstatus cs on st.civilstatus_id = cs.id
 INNER JOIN dbo.core_gender gn ON st.gender_id = gn.id 
 INNER JOIN dbo.core_barangay bg ON st.barangay_id = bg.id 
 INNER JOIN dbo.core_city ct ON bg.city_id = ct.id 
-INNER JOIN dbo.core_province pr ON ct.province_id = pr.id;
+INNER JOIN dbo.core_province pr ON ct.province_id = pr.id
+LEFT JOIN  dbo.enroll_enrolledyear ey  on st.current_enrolledyear_id = ey.id
+LEFT JOIN dbo.enroll_schoolyear sy ON ey.schoolyear_id = sy.id
+LEFT JOIN enroll_course c ON ey.course_id = c.id
+LEFT JOIN dbo.enroll_level l ON ey.level_id = l.id
+left JOIN dbo.enroll_section sc ON ey.section_id = sc.id
 GO
 -- Refactoring step to update target server with deployed transaction logs
 CREATE TABLE  [dbo].[__RefactorLog] (OperationKey UNIQUEIDENTIFIER NOT NULL PRIMARY KEY)
@@ -1439,6 +1453,20 @@ INSERT INTO [dbo].[enroll_subject](id, code, name, note) VALUES(2,'Math 101','Ma
 SET IDENTITY_INSERT [dbo].[enroll_subject] OFF
 
 INSERT INTO [dbo].[core_systemsettings] VALUES('cache','core_barangay,core_city,core_province,core_civilstatus,core_systemsettings,core_gender,sms_status,sms_networkprovidercode,sms_networkprovider')
+
+SET IDENTITY_INSERT [dbo].[core_student] ON
+INSERT INTO core_student (id, number, firstname, middlename, lastname, dateofbirth, picture, gender_id, civilstatus_id, citizenship, street, barangay_id, mothername, motheroccupation, mothercontactnumber, motheraddress, fathername, fatheroccupation, fathercontactnumber, fatheraddress, note, current_enrolledyear_id, RFID)
+VALUES (1, 2010, 'romeo', 'escoto', 'melo', '07/29/1986', '', 1, 1, 'filipino', '7109 san anselmo st.', '2', 'corazon escoto', 'housekeeper', 'n/a', 'pangasinan', 'rodolfo melo', 'baker', 'n/a', 'pangsinan', 'test 1', 0, 1)
+SET IDENTITY_INSERT [dbo].[core_student] OFF	
+
+SET IDENTITY_INSERT [dbo].[enroll_enrolledyear] ON
+
+INSERT INTO dbo.enroll_enrolledyear (id, student_id, level_id, schoolyear_id, semester_id, course_id, section_id, note)
+VALUES (1, 1, 1, 1, 1, 1, 1, 'test 1')
+INSERT INTO dbo.enroll_enrolledyear (id, student_id, level_id, schoolyear_id, semester_id, course_id, section_id, note)
+VALUES (2, 1, 1, 1, 2, 1, 1, 'test 2')
+
+SET IDENTITY_INSERT [dbo].[enroll_enrolledyear] OFF
 
 
 

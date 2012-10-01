@@ -65,6 +65,8 @@
     <Compile Include="Employee\IContact.cs" />
     <Compile Include="Employee\IEmployee.cs" />
     <Compile Include="Employee\EmployeePresenter.cs" />
+    <Compile Include="Employee\IEmployeeInfoList.cs" />
+    <Compile Include="Employee\EmployeeInfoListPresenter.cs" />
     <Compile Include="Enroll\IEnrolledYear.cs" />
     <Compile Include="Enroll\EnrolledYearPresenter.cs" />
     <Compile Include="Enroll\ISchedule.cs" />

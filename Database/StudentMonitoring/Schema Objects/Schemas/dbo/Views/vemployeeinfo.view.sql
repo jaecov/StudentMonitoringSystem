@@ -25,6 +25,7 @@ SELECT
 , ct.province_id
 , pr.name AS province_name
 , isnull(emp.street,'') + ' ' + bg.name + ' ' + ct.name + ' ' + pr.name  as [address]
+, emp.RFID
 
 FROM dbo.emp_employee emp
 INNER JOIN dbo.core_civilstatus cs on emp.civilstatus_id = cs.id

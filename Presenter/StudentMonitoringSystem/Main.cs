@@ -32,18 +32,9 @@ namespace StudentMonitoringSystem
             ShowForm(student);
         }
 
-        private void studentmonitoringToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormStudent student = new FormStudent();
-            ShowForm(student);
-        }
+       
 
-        private void EmployeeInformationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormEmployee student = new FormEmployee();
-            ShowForm(student);
-        }
-
+     
         private void BarangayToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormBarangay();
@@ -136,7 +127,17 @@ namespace StudentMonitoringSystem
 
         #endregion
 
-       
+        private void StudentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormStudent student = new FormStudent();
+            ShowForm(student);
+        }
+
+        private void EmployeeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormEmployee student = new FormEmployee();
+            ShowForm(student);
+        }
 
     }
 }

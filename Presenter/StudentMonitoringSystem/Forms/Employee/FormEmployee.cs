@@ -22,8 +22,7 @@ namespace StudentMonitoringSystem.Forms.Employee
         {
             Presenter = new EmployeePresenter(this);
             formContact = new FormContact(this);
-            InitializeComponent();
-            grdEmployee.AutoGenerateColumns = false;
+            InitializeComponent();            
         }
 
         public EmployeePresenter Presenter
@@ -225,6 +224,18 @@ namespace StudentMonitoringSystem.Forms.Employee
             }
         }
 
+        public string RFID
+        {
+            get
+            {
+                return ctlRFID1.RFID;
+            }
+            set
+            {
+                ctlRFID1.RFID = value;
+            }
+        }
+
         public List<core_civilstatus> CivilStatusDataSource
         {
             set
@@ -317,6 +328,24 @@ namespace StudentMonitoringSystem.Forms.Employee
         private void Employee_Load(object sender, EventArgs e)
         {
             Presenter.LoadItems();
+
+            ctlRFID1.PORT = "COM6";
+            ctlRFID1.SetDefault();
+            ctlRFID1.OpenPort(); 
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            bool ok = false;
+            int employeeId = 0;
+            FormEmployeeInfoList form = new FormEmployeeInfoList();
+            var result = form.ShowAsDialog();
+
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                employeeId = form.ID;
+                View(employeeId);
+            }
         }
 
         private void txtNumber_KeyUp(object sender, KeyEventArgs e)
@@ -327,20 +356,9 @@ namespace StudentMonitoringSystem.Forms.Employee
             }
         }
 
-        private void grdEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void View(int employeeId)
         {
-            if (e.RowIndex <= -1)
-                return;
-
-            if (grdEmployee.CurrentRow == null)
-                return;
-
-            var data = grdEmployee.CurrentRow.DataBoundItem as vemployeeinfo;
-            if (data == null)
-                return;
-
-            int id = data.id;
-            Presenter.LoadEmployeeInfo(id);
+            Presenter.LoadEmployeeInfo(employeeId);
             formContact.LoadContacts();
             formContact.Reset();
         }
@@ -462,6 +480,11 @@ namespace StudentMonitoringSystem.Forms.Employee
             }
         }
 
+        private void FormEmployee_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ctlRFID1.ClosePort();
+        }
+
         #endregion
 
         #region Methods
@@ -476,7 +499,7 @@ namespace StudentMonitoringSystem.Forms.Employee
         {
             get
             {
-                if (this.tabControl1.SelectedTab == tabContact)
+                if (this.radPVEmployee.SelectedPage == tabContact)
                 {
                     return Tab.Contact;
                 }
@@ -497,7 +520,6 @@ namespace StudentMonitoringSystem.Forms.Employee
         }
 
         #endregion
-
 
     }
 

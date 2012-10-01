@@ -62,6 +62,7 @@ namespace StudentMonitoringSystem.Presenter.Core
             View.MotherAddress = item.motheraddress;
             View.MotherContactNumber = item.mothercontactnumber;
             View.MotherOccupation = item.motheroccupation;
+            View.RFID = item.RFID;
         }
 
         public void LoadCityDataSource(int provinceID)
@@ -121,6 +122,7 @@ namespace StudentMonitoringSystem.Presenter.Core
             item.motheraddress = View.MotherAddress;
             item.mothercontactnumber = View.MotherContactNumber;
             item.motheroccupation = View.MotherOccupation;
+            item.RFID = View.RFID;
         }
 
         #endregion

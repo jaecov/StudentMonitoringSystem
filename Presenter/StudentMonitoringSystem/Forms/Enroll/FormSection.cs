@@ -136,7 +136,7 @@ namespace StudentMonitoringSystem.Forms.Enroll
             }
         }
 
-        public new string Note
+        public string Note
         {
             get { return txtNote.Text; }
             set { txtNote.Text = value; }

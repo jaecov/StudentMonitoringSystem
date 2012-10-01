@@ -23,7 +23,7 @@ namespace StudentMonitoringSystem.Presenter
 
         private string _sync = "sync";
 
-        public virtual IQueryable<T> GetObject<T>() where T : BaseObject
+        public virtual IQueryable<T> GetObject<T>(bool useSameContext = false) where T : BaseObject
         {
             string entity = typeof(T).Name;
             if (CacheList.Contains(entity))
@@ -44,14 +44,16 @@ namespace StudentMonitoringSystem.Presenter
             }
             else
             {
-                _context = new StudentMonitoringEntities();
+                if (!useSameContext)
+                    _context = new StudentMonitoringEntities();
+
                 return _context.GetObjectSet<T>() as IQueryable<T>;
             }
         }
 
-        public virtual T GetObjectItemByColumnID<T>(int id) where T : BaseObject
+        public virtual T GetObjectItemByColumnID<T>(int id, bool useSameContext = false) where T : BaseObject
         {
-            return GetObject<T>().Where(c => c.id == id).FirstOrDefault();
+            return GetObject<T>(useSameContext).Where(c => c.id == id).FirstOrDefault();
         }
 
         #endregion
@@ -66,7 +68,7 @@ namespace StudentMonitoringSystem.Presenter
         }
 
         public virtual T UpdateObject<T>(T data) where T : BaseObject
-        {
+        {          
             _context.GetObjectSet<T>().ApplyCurrentValues(data);
             this.Save<T>();
             return data;

@@ -50,6 +50,9 @@
     <Reference Include="PDUConverter">
       <HintPath>..\..\ReferenceLibraries\PDUConverter.dll</HintPath>
     </Reference>
+    <Reference Include="StudentMonitoringSystem.Ctl">
+      <HintPath>..\Ctl\obj\Debug\StudentMonitoringSystem.Ctl.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
@@ -61,11 +64,15 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.WinControls, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <HintPath>..\..\ReferenceLibraries\TelerikQ22012\Telerik.WinControls.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.WinControls.ChartView, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\..\ReferenceLibraries\TelerikQ22012\Telerik.WinControls.ChartView.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\..\ReferenceLibraries\TelerikQ22012\Telerik.WinControls.GridView.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.WinControls.RadChart, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\..\ReferenceLibraries\TelerikQ22012\Telerik.WinControls.RadChart.dll</HintPath>
     </Reference>
@@ -117,8 +124,12 @@
     <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\..\ReferenceLibraries\TelerikQ22012\Telerik.WinControls.Themes.Windows7.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
-    <Reference Include="TelerikCommon, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.UI, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <HintPath>..\..\ReferenceLibraries\TelerikQ22012\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <HintPath>..\..\ReferenceLibraries\TelerikQ22012\TelerikCommon.dll</HintPath>
+    </Reference>
     <Reference Include="WeifenLuo.WinFormsUI.Docking">
       <HintPath>..\..\ReferenceLibraries\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
@@ -171,6 +182,12 @@
     </Compile>
     <Compile Include="Forms\Employee\FormEmployee.Designer.cs">
       <DependentUpon>FormEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee\FormEmployeeInfoList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee\FormEmployeeInfoList.Designer.cs">
+      <DependentUpon>FormEmployeeInfoList.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Enroll\FormSchedule.cs">
       <SubType>Form</SubType>
@@ -270,6 +287,9 @@
     <EmbeddedResource Include="Forms\Employee\FormEmployee.resx">
       <DependentUpon>FormEmployee.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Employee\FormEmployeeInfoList.resx">
+      <DependentUpon>FormEmployeeInfoList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Enroll\FormSchedule.resx">
       <DependentUpon>FormSchedule.cs</DependentUpon>
     </EmbeddedResource>
@@ -354,7 +374,7 @@
     <Content Include="Resources\customer1.png" />
     <Content Include="Resources\delete.png" />
     <Content Include="Resources\delete1.png" />
-    <Content Include="Resources\employee.png" />
+    <None Include="Resources\employee.png" />
     <Content Include="Resources\employee_user.png" />
     <Content Include="Resources\export.png" />
     <Content Include="Resources\gear.gif" />
@@ -408,7 +428,17 @@
       <Name>Presenter</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

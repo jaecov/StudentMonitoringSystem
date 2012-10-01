@@ -185,6 +185,12 @@ namespace StudentMonitoringSystem.Entities
             get;
             set;
         }
+    
+        public  string RFID
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

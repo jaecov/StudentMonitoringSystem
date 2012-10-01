@@ -136,6 +136,20 @@ SET IDENTITY_INSERT [dbo].[enroll_subject] OFF
 
 INSERT INTO [dbo].[core_systemsettings] VALUES('cache','core_barangay,core_city,core_province,core_civilstatus,core_systemsettings,core_gender,sms_status,sms_networkprovidercode,sms_networkprovider')
 
+SET IDENTITY_INSERT [dbo].[core_student] ON
+INSERT INTO core_student (id, number, firstname, middlename, lastname, dateofbirth, picture, gender_id, civilstatus_id, citizenship, street, barangay_id, mothername, motheroccupation, mothercontactnumber, motheraddress, fathername, fatheroccupation, fathercontactnumber, fatheraddress, note, current_enrolledyear_id, RFID)
+VALUES (1, 2010, 'romeo', 'escoto', 'melo', '07/29/1986', '', 1, 1, 'filipino', '7109 san anselmo st.', '2', 'corazon escoto', 'housekeeper', 'n/a', 'pangasinan', 'rodolfo melo', 'baker', 'n/a', 'pangsinan', 'test 1', 0, 1)
+SET IDENTITY_INSERT [dbo].[core_student] OFF	
+
+SET IDENTITY_INSERT [dbo].[enroll_enrolledyear] ON
+
+INSERT INTO dbo.enroll_enrolledyear (id, student_id, level_id, schoolyear_id, semester_id, course_id, section_id, note)
+VALUES (1, 1, 1, 1, 1, 1, 1, 'test 1')
+INSERT INTO dbo.enroll_enrolledyear (id, student_id, level_id, schoolyear_id, semester_id, course_id, section_id, note)
+VALUES (2, 1, 1, 1, 2, 1, 1, 'test 2')
+
+SET IDENTITY_INSERT [dbo].[enroll_enrolledyear] OFF
+
 
 
 

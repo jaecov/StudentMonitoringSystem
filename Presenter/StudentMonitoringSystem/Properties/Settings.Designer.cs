@@ -22,5 +22,17 @@ namespace StudentMonitoringSystem.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PortRFID {
+            get {
+                return ((string)(this["PortRFID"]));
+            }
+            set {
+                this["PortRFID"] = value;
+            }
+        }
     }
 }

@@ -322,6 +322,18 @@ namespace StudentMonitoringSystem.Forms.Core
             }
         }
 
+        public string RFID
+        {
+            get
+            {
+                return ctlRFID1.RFID;
+            }
+            set
+            {
+                ctlRFID1.RFID = value;
+            }
+        }
+
         public List<core_guardian> GuardianDataSource
         {
             set { coreguardianBindingSource.DataSource = value; }
@@ -418,6 +430,10 @@ namespace StudentMonitoringSystem.Forms.Core
         private void Student_Load(object sender, EventArgs e)
         {
             Presenter.LoadItems();
+
+            ctlRFID1.PORT = "COM6";
+            ctlRFID1.SetDefault();
+            ctlRFID1.OpenPort();          
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -484,6 +500,7 @@ namespace StudentMonitoringSystem.Forms.Core
                 MotherAddress = string.Empty;
                 MotherContactNumber = string.Empty;
                 MotherOccupation = string.Empty;
+                RFID = string.Empty;    
 
                 formContact.ResetAll();
                 formGuardian.ResetAll();
@@ -668,15 +685,15 @@ namespace StudentMonitoringSystem.Forms.Core
         {
             get
             {
-                if (this.tabControl1.SelectedTab == tabContact)
+                if (this.radStudentPV.SelectedPage == tabContact)
                 {
                     return Tab.Contact;
                 }
-                else if (this.tabControl1.SelectedTab == tabGuardian)
+                else if (this.radStudentPV.SelectedPage == tabGuardian)
                 {
                     return Tab.Guardian;
                 }
-                else if (this.tabControl1.SelectedTab == tabEnrollment)
+                else if (this.radStudentPV.SelectedPage == tabEnrollment)
                 {
                     return Tab.Enrollment;
                 }
@@ -697,6 +714,11 @@ namespace StudentMonitoringSystem.Forms.Core
         }
 
         #endregion
+
+        private void FormStudent_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ctlRFID1.ClosePort();
+        }
 
     }
 

@@ -188,6 +188,48 @@ namespace StudentMonitoringSystem.Entities
             get;
             set;
         }
+    
+        public  int current_enrolledyear_id
+        {
+            get;
+            set;
+        }
+    
+        public  string RFID
+        {
+            get;
+            set;
+        }
+    
+        public  string schoolyear_name
+        {
+            get;
+            set;
+        }
+    
+        public  string course_name
+        {
+            get;
+            set;
+        }
+    
+        public  string course_code
+        {
+            get;
+            set;
+        }
+    
+        public  string level_name
+        {
+            get;
+            set;
+        }
+    
+        public  string section_name
+        {
+            get;
+            set;
+        }
 
         #endregion
     }

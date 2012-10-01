@@ -106,7 +106,7 @@ namespace StudentMonitoringSystem.Forms.Enroll
             get { return txtName.Text; }
             set { txtName.Text = value; }
         }
-        public new string Code
+        public string Code
         {
             get { return txtCode.Text; }
             set { txtCode.Text = value; }

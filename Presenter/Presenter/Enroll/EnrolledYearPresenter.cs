@@ -73,6 +73,8 @@ namespace StudentMonitoringSystem.Presenter.Enroll
                 Controller.DeleteObject<enroll_schoolyear>(item);
                 LoadEnrolledYearDataSource();
                 View.Notify(Common.Result.DeleteSuceeded, null);
+
+                UpdateStudentCurrentEnrolledYear(true);
                 return true;
             }
             catch (Exception ex)
@@ -92,7 +94,33 @@ namespace StudentMonitoringSystem.Presenter.Enroll
             {
                 UpdateEnrolledYear();
             }
+            UpdateStudentCurrentEnrolledYear(false);
             LoadEnrolledYearDataSource();
+        }
+
+        private void UpdateStudentCurrentEnrolledYear(bool deleted)
+        {
+            var item = Controller.GetObjectItemByColumnID<core_student>(View.Student_ID);
+            if (item == null)
+            {
+                throw new Exception("Can not update.Item not found.");
+            }
+
+            int? newId = null;
+                        
+            newId = (from ey in Controller.GetObject<enroll_enrolledyear>()
+                     join sy in Controller.GetObject<enroll_schoolyear>(true) on ey.schoolyear_id equals sy.id
+                     join sem in Controller.GetObject<enroll_semester>(true) on ey.semester_id equals sem.id
+                     where ey.student_id == View.Student_ID
+
+                     orderby  "cast(" + sy.name + " as int)" descending, sem.recordorder descending
+                     select ey.id).FirstOrDefault();
+
+            if (newId == null)
+                newId = 0;
+
+            item.current_enrolledyear_id = (int)newId;
+            Controller.UpdateObject<core_student>(item);
         }
 
         private void CreateEnrolledYear()

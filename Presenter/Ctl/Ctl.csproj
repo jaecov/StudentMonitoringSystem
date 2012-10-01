@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F484E17D-7E9F-4A1C-BBC1-5FD580180422}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StudentMonitoringSystem.Ctl</RootNamespace>
+    <AssemblyName>StudentMonitoringSystem.Ctl</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <HintPath>..\..\ReferenceLibraries\TelerikQ22012\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\..\ReferenceLibraries\TelerikQ22012\Telerik.WinControls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <HintPath>..\..\ReferenceLibraries\TelerikQ22012\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2012.2.608.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <HintPath>..\..\ReferenceLibraries\TelerikQ22012\TelerikCommon.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="ctlEmployeeSearchForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlEmployeeSearchForm.Designer.cs">
+      <DependentUpon>ctlEmployeeSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctlCity.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlCity.Designer.cs">
+      <DependentUpon>ctlCity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctlRFID.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlRFID.Designer.cs">
+      <DependentUpon>ctlRFID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctlStudentSearchForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlStudentSearchForm.Designer.cs">
+      <DependentUpon>ctlStudentSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ctlEmployeeSearchForm.resx">
+      <DependentUpon>ctlEmployeeSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlCity.resx">
+      <DependentUpon>ctlCity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlRFID.resx">
+      <DependentUpon>ctlRFID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlStudentSearchForm.resx">
+      <DependentUpon>ctlStudentSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Entities\Entities.csproj">
+      <Project>{41CD239D-F384-4F2C-8E26-1543A71E9FF5}</Project>
+      <Name>Entities %28Entities\Entities%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Presenter\Presenter.csproj">
+      <Project>{090F5B83-DB64-4180-874D-F17BEB5360B4}</Project>
+      <Name>Presenter</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vcityinfo.datasource" />
+    <None Include="Properties\DataSources\StudentMonitoringSystem.Entities.vstudentinfo.datasource" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

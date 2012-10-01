@@ -10,8 +10,8 @@ namespace StudentMonitoringSystem.Presenter
 {
     public partial interface IController
     {
-        IQueryable<T> GetObject<T>() where T : BaseObject;
-        T GetObjectItemByColumnID<T>(int id) where T : BaseObject; 
+        IQueryable<T> GetObject<T>(bool useSameContext = false) where T : BaseObject;
+        T GetObjectItemByColumnID<T>(int id, bool useSameContext = false) where T : BaseObject;
         T CreateObject<T>(T data) where T : BaseObject;
         T UpdateObject<T>(T data) where T : BaseObject;
         void DeleteObject<T>(T data) where T : BaseObject;
@@ -22,6 +22,6 @@ namespace StudentMonitoringSystem.Presenter
 
         //List<T> GetDTOObject<T>(string serviceToken) where T : DC.BaseObject;
 
-      
+
     }
 }

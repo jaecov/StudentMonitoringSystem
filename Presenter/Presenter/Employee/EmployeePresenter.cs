@@ -54,6 +54,7 @@ namespace StudentMonitoringSystem.Presenter.Employee
             View.Street = item.street;
             View.Note = item.note;
             View.Picture = item.picture;
+            View.RFID = item.RFID;
         }
 
         public void LoadCityDataSource(int provinceID)
@@ -96,6 +97,7 @@ namespace StudentMonitoringSystem.Presenter.Employee
             item.street = View.Street;
             item.note = View.Note;
             item.picture = View.Picture;
+            item.RFID = View.RFID;
         }
 
         public string GetProvider(string code)

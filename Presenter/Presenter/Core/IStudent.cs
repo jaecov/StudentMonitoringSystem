@@ -32,6 +32,7 @@ namespace StudentMonitoringSystem.Presenter.Core
         string MotherContactNumber { get; set; }
         string Note { get; set; }
         string Picture { get; set; }
+        string RFID { get; set; }
 
         List<core_civilstatus> CivilStatusDataSource { set; }
         List<core_gender> GenderDataSource { set; }

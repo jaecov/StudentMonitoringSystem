@@ -21,26 +21,9 @@ namespace StudentMonitoringSystem.Presenter.Core
 
         public void LoadItems()
         {
-            LoadStudentList();
-            View.LevelDataSource = Controller.GetObject<enroll_level>().ToList();
-            View.SchoolYearDataSource = Controller.GetObject<enroll_schoolyear>().ToList();
-            View.SemesterDataSource = Controller.GetObject<enroll_semester>().ToList();
-            View.CourseDataSource = Controller.GetObject<enroll_course>().ToList();
-            View.SectionDataSource = Controller.GetObject<enroll_section>().ToList();
+            View.StudentInfoListDataSource = Controller.GetObject<vstudentinfo>().ToList();
         }
 
-        public void LoadStudentList()
-        {
-            var query =  Controller.GetObject<vstudentinfo>()
-                                              .Where(c => c.firstname.StartsWith(View.Firstname)
-                                                       && c.lastname.StartsWith(View.Lastname));
-            //if(View.Course_ID > 0)
-            //    query = query
-
-            View.StudentInfoListDataSource =query.ToList();
-
-        }
-      
         #endregion
 
     }

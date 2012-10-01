@@ -31,11 +31,7 @@
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.RegistrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StudentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.studentmonitoringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.StudentIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.EmployeeInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.EmployeeIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SendSMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ViewInboxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,17 +43,19 @@
             this.MaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CourseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scheduleToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.roomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.NetworkProviderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.networkProviderCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SmartTagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.provinceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BarangayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.provinceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.civilStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.genderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.roomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.subjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AdministratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserAuditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,7 +71,7 @@
             this.HelpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DockPanel1 = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.scheduleToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.radRibbonBarButtonGroup3 = new Telerik.WinControls.UI.RadRibbonBarButtonGroup();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,7 +90,7 @@
             this.HelpToolStripMenuItem});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(738, 24);
+            this.MenuStrip.Size = new System.Drawing.Size(863, 24);
             this.MenuStrip.TabIndex = 6;
             this.MenuStrip.Text = "MenuStrip";
             // 
@@ -110,50 +108,19 @@
             // 
             // StudentToolStripMenuItem
             // 
-            this.StudentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.studentmonitoringToolStripMenuItem,
-            this.StudentIDToolStripMenuItem});
             this.StudentToolStripMenuItem.Image = global::StudentMonitoringSystem.Properties.Resources.student;
             this.StudentToolStripMenuItem.Name = "StudentToolStripMenuItem";
             this.StudentToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.StudentToolStripMenuItem.Text = "&Student";
-            // 
-            // studentmonitoringToolStripMenuItem
-            // 
-            this.studentmonitoringToolStripMenuItem.Image = global::StudentMonitoringSystem.Properties.Resources.student;
-            this.studentmonitoringToolStripMenuItem.Name = "studentmonitoringToolStripMenuItem";
-            this.studentmonitoringToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.studentmonitoringToolStripMenuItem.Text = "Student Information";
-            this.studentmonitoringToolStripMenuItem.Click += new System.EventHandler(this.studentmonitoringToolStripMenuItem_Click);
-            // 
-            // StudentIDToolStripMenuItem
-            // 
-            this.StudentIDToolStripMenuItem.Name = "StudentIDToolStripMenuItem";
-            this.StudentIDToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.StudentIDToolStripMenuItem.Text = "Student ID";
+            this.StudentToolStripMenuItem.Click += new System.EventHandler(this.StudentToolStripMenuItem_Click);
             // 
             // EmployeeToolStripMenuItem
             // 
-            this.EmployeeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.EmployeeInformationToolStripMenuItem,
-            this.EmployeeIDToolStripMenuItem});
+            this.EmployeeToolStripMenuItem.Image = global::StudentMonitoringSystem.Properties.Resources.employee;
             this.EmployeeToolStripMenuItem.Name = "EmployeeToolStripMenuItem";
             this.EmployeeToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.EmployeeToolStripMenuItem.Text = "Employee";
-            // 
-            // EmployeeInformationToolStripMenuItem
-            // 
-            this.EmployeeInformationToolStripMenuItem.Image = global::StudentMonitoringSystem.Properties.Resources.student;
-            this.EmployeeInformationToolStripMenuItem.Name = "EmployeeInformationToolStripMenuItem";
-            this.EmployeeInformationToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.EmployeeInformationToolStripMenuItem.Text = "Employee Information";
-            this.EmployeeInformationToolStripMenuItem.Click += new System.EventHandler(this.EmployeeInformationToolStripMenuItem_Click);
-            // 
-            // EmployeeIDToolStripMenuItem
-            // 
-            this.EmployeeIDToolStripMenuItem.Name = "EmployeeIDToolStripMenuItem";
-            this.EmployeeIDToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.EmployeeIDToolStripMenuItem.Text = "Employee ID";
+            this.EmployeeToolStripMenuItem.Text = "&Employee";
+            this.EmployeeToolStripMenuItem.Click += new System.EventHandler(this.EmployeeToolStripMenuItem_Click);
             // 
             // SMSToolStripMenuItem
             // 
@@ -214,18 +181,19 @@
             this.MaintenanceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CourseToolStripMenuItem,
             this.sectionToolStripMenuItem,
-            this.ScheduleToolStripMenuItem,
+            this.subjectToolStripMenuItem,
+            this.scheduleToolStripMenuItem2,
+            this.roomToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.NetworkProviderToolStripMenuItem,
             this.networkProviderCodeToolStripMenuItem,
-            this.SmartTagsToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.provinceToolStripMenuItem,
             this.BarangayToolStripMenuItem,
             this.cityToolStripMenuItem,
-            this.provinceToolStripMenuItem,
+            this.toolStripMenuItem3,
             this.civilStatusToolStripMenuItem,
-            this.genderToolStripMenuItem,
-            this.roomToolStripMenuItem,
-            this.subjectToolStripMenuItem,
-            this.scheduleToolStripMenuItem2});
+            this.genderToolStripMenuItem});
             this.MaintenanceToolStripMenuItem.Name = "MaintenanceToolStripMenuItem";
             this.MaintenanceToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.MaintenanceToolStripMenuItem.Text = "Maintenance";
@@ -234,7 +202,7 @@
             // 
             this.CourseToolStripMenuItem.Name = "CourseToolStripMenuItem";
             this.CourseToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.CourseToolStripMenuItem.Text = "Course and Section";
+            this.CourseToolStripMenuItem.Text = "Course";
             this.CourseToolStripMenuItem.Click += new System.EventHandler(this.CourseToolStripMenuItem_Click);
             // 
             // sectionToolStripMenuItem
@@ -244,11 +212,31 @@
             this.sectionToolStripMenuItem.Text = "Section";
             this.sectionToolStripMenuItem.Click += new System.EventHandler(this.sectionToolStripMenuItem_Click);
             // 
-            // ScheduleToolStripMenuItem
+            // subjectToolStripMenuItem
             // 
-            this.ScheduleToolStripMenuItem.Name = "ScheduleToolStripMenuItem";
-            this.ScheduleToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.ScheduleToolStripMenuItem.Text = "Section Schedule";
+            this.subjectToolStripMenuItem.Name = "subjectToolStripMenuItem";
+            this.subjectToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.subjectToolStripMenuItem.Text = "Subject";
+            this.subjectToolStripMenuItem.Click += new System.EventHandler(this.subjectToolStripMenuItem_Click);
+            // 
+            // scheduleToolStripMenuItem2
+            // 
+            this.scheduleToolStripMenuItem2.Name = "scheduleToolStripMenuItem2";
+            this.scheduleToolStripMenuItem2.Size = new System.Drawing.Size(197, 22);
+            this.scheduleToolStripMenuItem2.Text = "Schedule";
+            this.scheduleToolStripMenuItem2.Click += new System.EventHandler(this.scheduleToolStripMenuItem2_Click);
+            // 
+            // roomToolStripMenuItem
+            // 
+            this.roomToolStripMenuItem.Name = "roomToolStripMenuItem";
+            this.roomToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.roomToolStripMenuItem.Text = "Room";
+            this.roomToolStripMenuItem.Click += new System.EventHandler(this.roomToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(194, 6);
             // 
             // NetworkProviderToolStripMenuItem
             // 
@@ -264,11 +252,17 @@
             this.networkProviderCodeToolStripMenuItem.Text = "Network Provider Code";
             this.networkProviderCodeToolStripMenuItem.Click += new System.EventHandler(this.networkProviderCodeToolStripMenuItem_Click);
             // 
-            // SmartTagsToolStripMenuItem
+            // toolStripMenuItem1
             // 
-            this.SmartTagsToolStripMenuItem.Name = "SmartTagsToolStripMenuItem";
-            this.SmartTagsToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.SmartTagsToolStripMenuItem.Text = "Smart Tags";
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(194, 6);
+            // 
+            // provinceToolStripMenuItem
+            // 
+            this.provinceToolStripMenuItem.Name = "provinceToolStripMenuItem";
+            this.provinceToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.provinceToolStripMenuItem.Text = "Province";
+            this.provinceToolStripMenuItem.Click += new System.EventHandler(this.provinceToolStripMenuItem_Click);
             // 
             // BarangayToolStripMenuItem
             // 
@@ -284,12 +278,10 @@
             this.cityToolStripMenuItem.Text = "City";
             this.cityToolStripMenuItem.Click += new System.EventHandler(this.cityToolStripMenuItem_Click);
             // 
-            // provinceToolStripMenuItem
+            // toolStripMenuItem3
             // 
-            this.provinceToolStripMenuItem.Name = "provinceToolStripMenuItem";
-            this.provinceToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.provinceToolStripMenuItem.Text = "Province";
-            this.provinceToolStripMenuItem.Click += new System.EventHandler(this.provinceToolStripMenuItem_Click);
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(194, 6);
             // 
             // civilStatusToolStripMenuItem
             // 
@@ -304,20 +296,6 @@
             this.genderToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.genderToolStripMenuItem.Text = "Gender";
             this.genderToolStripMenuItem.Click += new System.EventHandler(this.genderToolStripMenuItem_Click);
-            // 
-            // roomToolStripMenuItem
-            // 
-            this.roomToolStripMenuItem.Name = "roomToolStripMenuItem";
-            this.roomToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.roomToolStripMenuItem.Text = "Room";
-            this.roomToolStripMenuItem.Click += new System.EventHandler(this.roomToolStripMenuItem_Click);
-            // 
-            // subjectToolStripMenuItem
-            // 
-            this.subjectToolStripMenuItem.Name = "subjectToolStripMenuItem";
-            this.subjectToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.subjectToolStripMenuItem.Text = "Subject";
-            this.subjectToolStripMenuItem.Click += new System.EventHandler(this.subjectToolStripMenuItem_Click);
             // 
             // AdministratorToolStripMenuItem
             // 
@@ -429,27 +407,31 @@
             this.DockPanel1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DockPanel1.Location = new System.Drawing.Point(0, 24);
             this.DockPanel1.Name = "DockPanel1";
-            this.DockPanel1.Size = new System.Drawing.Size(738, 359);
+            this.DockPanel1.Size = new System.Drawing.Size(863, 359);
             this.DockPanel1.TabIndex = 8;
             // 
-            // scheduleToolStripMenuItem2
+            // radRibbonBarButtonGroup3
             // 
-            this.scheduleToolStripMenuItem2.Name = "scheduleToolStripMenuItem2";
-            this.scheduleToolStripMenuItem2.Size = new System.Drawing.Size(197, 22);
-            this.scheduleToolStripMenuItem2.Text = "Schedule";
-            this.scheduleToolStripMenuItem2.Click += new System.EventHandler(this.scheduleToolStripMenuItem2_Click);
+            this.radRibbonBarButtonGroup3.AccessibleDescription = "radRibbonBarButtonGroup1";
+            this.radRibbonBarButtonGroup3.AccessibleName = "radRibbonBarButtonGroup1";
+            this.radRibbonBarButtonGroup3.FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
+            this.radRibbonBarButtonGroup3.Name = "radRibbonBarButtonGroup3";
+            this.radRibbonBarButtonGroup3.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.radRibbonBarButtonGroup3.StretchVertically = true;
+            this.radRibbonBarButtonGroup3.Text = "radRibbonBarButtonGroup1";
+            this.radRibbonBarButtonGroup3.Visibility = Telerik.WinControls.ElementVisibility.Visible;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 383);
+            this.ClientSize = new System.Drawing.Size(863, 383);
             this.Controls.Add(this.DockPanel1);
             this.Controls.Add(this.MenuStrip);
             this.IsMdiContainer = true;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Main";
+            this.Text = "radRibbonBar1";
             this.Load += new System.EventHandler(this.Main_Load);
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
@@ -463,11 +445,7 @@
         internal System.Windows.Forms.MenuStrip MenuStrip;
         internal System.Windows.Forms.ToolStripMenuItem RegistrationToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem StudentToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem studentmonitoringToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem StudentIDToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem EmployeeToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem EmployeeInformationToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem EmployeeIDToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem SMSToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem SendSMSToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem ViewInboxToolStripMenuItem;
@@ -478,9 +456,7 @@
         internal System.Windows.Forms.ToolStripMenuItem SystemSettingsToolStripMenuItem1;
         internal System.Windows.Forms.ToolStripMenuItem MaintenanceToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem CourseToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem ScheduleToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem NetworkProviderToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem SmartTagsToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem AdministratorToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem UserAuditToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem ReportToolStripMenuItem;
@@ -506,5 +482,9 @@
         private System.Windows.Forms.ToolStripMenuItem roomToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scheduleToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private Telerik.WinControls.UI.RadRibbonBarButtonGroup radRibbonBarButtonGroup3;
     }
 }

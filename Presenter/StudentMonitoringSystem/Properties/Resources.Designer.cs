@@ -60,6 +60,13 @@ namespace StudentMonitoringSystem.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap employee {
+            get {
+                object obj = ResourceManager.GetObject("employee", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap registration {
             get {
                 object obj = ResourceManager.GetObject("registration", resourceCulture);
